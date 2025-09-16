@@ -1,0 +1,51 @@
+﻿{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "validate:resume": "tsx scripts/validate-resume.ts",
+    "import:cv": "tsx scripts/import-cv.ts",
+    "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "og:generate": "tsx scripts/generate-og-image.ts"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
+    "lucide-react": "^0.437.0",
+    "next-themes": "^0.2.1",
+    "next": "14.2.5",
+    "next-intl": "^3.10.0",
+    "pdf-parse": "^1.1.1",
+    "yaml": "^2.4.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.5",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.5"
+  }
+}
+

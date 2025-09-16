@@ -1,0 +1,19 @@
+﻿basics:
+  name: "Maxence CERFONTAINE"
+  label: "Ingénieur Cloud / Cloud Architect"
+  summary: "Ingénieur cloud spécialisé dans la conception d'architectures hybrides sécurisées et scalables."
+  email: "maxence.cerfontaine@outlook.fr"
+  phone: "+33 6 95 84 45 54"
+  location: "Paris, France"
+  profiles:
+    - network: "LinkedIn"
+      url: "https://www.linkedin.com/in/maxence-cerfontaine"
+    - network: "GitHub"
+      url: "https://github.com/maxence-cerfontaine"
+work: []
+education: []
+certificates: []
+skills: []
+languages: []
+references: []
+projects: []

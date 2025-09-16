@@ -1,0 +1,83 @@
+﻿{
+  "nav": {
+    "home": "Accueil",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "actions": {
+    "downloadResume": "Télécharger le CV",
+    "readMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "send": "Envoyer",
+    "theme": "Changer de thème",
+    "language": "Changer de langue",
+    "skip": "Aller au contenu"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "cta": "Discutons de votre prochain projet",
+    "availability": "Disponible pour des missions cloud et DevOps."
+  },
+  "experience": {
+    "title": "Expérience",
+    "filterLabel": "Filtrer par technologie",
+    "description": "Retour sur les projets majeurs et les responsabilités clés.",
+    "all": "Toutes"
+  },
+  "education": {
+    "title": "Formation & Certifications",
+    "education": "Formation",
+    "certifications": "Certifications",
+    "languages": "Langues"
+  },
+  "skills": {
+    "title": "Compétences",
+    "level": "Niveau"
+  },
+  "projects": {
+    "title": "Projets",
+    "empty": "Les projets seront bientôt disponibles.
+",
+    "subtitle": "Sélection de réalisations et initiatives personnelles."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Envoyez-moi un message ou connectons-nous sur les réseaux.",
+    "profiles": "Profils",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "success": "Merci pour votre message ! Je reviens vers vous rapidement.",
+    "error": "Une erreur est survenue. Merci de réessayer."
+  },
+  "basics": {
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "Anglais"
+  },
+  "footer": {
+    "madeWith": "Portfolio propulsé par Next.js & Tailwind CSS",
+    "navigation": "Navigation"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "cta": "Retour à l'accueil"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Restez informé des retours d'expérience cloud et DevOps.",
+    "comingSoon": "Les articles arriveront bientôt."
+  }
+}
+
+
+

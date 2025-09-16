@@ -1,0 +1,81 @@
+﻿{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "actions": {
+    "downloadResume": "Download resume",
+    "readMore": "Learn more",
+    "viewAll": "View all",
+    "send": "Send",
+    "theme": "Toggle theme",
+    "language": "Change language",
+    "skip": "Skip to content"
+  },
+  "hero": {
+    "greeting": "Hi, I am",
+    "cta": "Let's discuss your next project",
+    "availability": "Open to cloud and DevOps opportunities."
+  },
+  "experience": {
+    "title": "Experience",
+    "filterLabel": "Filter by technology",
+    "description": "A look at key engagements and responsibilities.",
+    "all": "All"
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "education": "Education",
+    "certifications": "Certifications",
+    "languages": "Languages"
+  },
+  "skills": {
+    "title": "Skills",
+    "level": "Level"
+  },
+  "projects": {
+    "title": "Projects",
+    "empty": "Projects will be added soon.",
+    "subtitle": "Selected engagements and personal initiatives."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Send me a message or connect on social media.",
+    "profiles": "Profiles",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "success": "Thanks for your message! I will reply soon.",
+    "error": "Something went wrong. Please try again."
+  },
+  "basics": {
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location"
+  },
+  "languages": {
+    "fr": "French",
+    "en": "English"
+  },
+  "footer": {
+    "madeWith": "Portfolio powered by Next.js & Tailwind CSS",
+    "navigation": "Navigation"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has moved.",
+    "cta": "Back to home"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Stay tuned for cloud and DevOps insights.",
+    "comingSoon": "Articles are coming soon."
+  }
+}
+
+

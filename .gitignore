@@ -1,0 +1,11 @@
+﻿node_modules
+.next
+out
+.pnp.cjs
+.yarn
+.DS_Store
+*.log
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
