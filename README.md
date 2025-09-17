@@ -1,109 +1,83 @@
-# Maxence Cerfontaine · Portfolio
+﻿# Portfolio (Maxence Cerfontaine)
 
-Portfolio Next.js 14 (App Router) conçu pour présenter le profil de Maxence Cerfontaine en français et en anglais.
+Single repository for my bilingual (FR/EN) resume and portfolio powered by Next.js 14 (App Router).
 
-## Caractéristiques
+## Stack & Features
 
-- Next.js 14 + TypeScript strict + Tailwind CSS + shadcn/ui
-- Gestion i18n via `next-intl` (FR par défaut, EN optionnel)
-- Dark mode piloté par `next-themes`
-- Données centralisées dans `content/resume.json` (schéma inspiré de JSON Resume et validé par Zod)
-- Pages dédiées : accueil, expérience, formation, projets, compétences, contact, blog (placeholder)
-- Composants réutilisables (timeline, cards, tags, filtres par technologies)
-- SEO : metadata dynamiques, sitemap, robots.txt, API de téléchargement du CV
-- CI GitHub Actions (lint, typecheck, build) et configuration Vercel prête à l'emploi
+- Next.js 14 + TypeScript strict mode + Tailwind CSS + shadcn/ui
+- Internationalisation handled by `next-intl` (FR default, EN optional)
+- Dark mode via `next-themes`
+- Content centralised in `content/resume.json` (JSON Resume inspired, validated with Zod)
+- App routes for experience, education, projects, skills, contact, blog placeholder
+- Reusable UI primitives (timeline, cards, tags, filters)
+- SEO ready (dynamic metadata, sitemap, robots.txt, resume download endpoint)
+- CI workflow (`lint`, `typecheck`, `build`) and Vercel-ready configuration
 
-## Pré-requis
+## Requirements
 
-- Node.js 18+ (recommandé : 20)
+- Node.js 18+ (recommended 20)
 - npm 9+
 
-## Installation
+## Getting Started
 
 ```bash
 npm install
-```
-
-Lancez le serveur de développement :
-
-```bash
 npm run dev
 ```
 
-Build et serveur de production local :
+Local production build:
 
 ```bash
 npm run build
-npm start
+npm run start
 ```
 
-## Données CV
+## Resume Data
 
-### Données attendues
+`content/resume.json` drives the entire site. Populate it with your details (name, contact, experience, education, skills, certifications, languages, references, projects).
 
-Le fichier `content/resume.json` doit au minimum reprendre les informations suivantes :
+> Tip: a placeholder file is committed so the build succeeds out of the box. Replace it with your own data before deploying.
 
-- **Identité** : `basics.name="Maxence CERFONTAINE"`, `basics.label="Ingénieur Cloud / Cloud Architect"`, `basics.email="maxence.cerfontaine@outlook.fr"`, `basics.phone="+33 6 95 84 45 54"`, `basics.location="Paris, France"`.
-- **Expérience** : missions Galeries Lafayette (Hardis), Hardis Group – Cloud Ops, Fitness Park, Dimotrans, Finaré avec résumés, `highlights` et `keywords` pertinents.
-- **Formation** : EFREI (Licence + Master), Concordia University (semestre), avec dates et localisation.
-- **Compétences** : AWS (avancé), Azure/GCP (fondamentaux), Terraform/CloudFormation, Python, Linux, PowerShell, Git, Kubernetes, Jenkins, FinOps et autres outils associés.
-- **Certifications** : AWS SAA, AWS Cloud Practitioner, AZ-104, AZ-900, MS-900, Projet Voltaire (815/1000), TOEIC (930/990).
-- **Langues & Références** : Français (natif), Anglais (avancé) et contact de référence `Sylvain Chabi`.
-
-Ces données servent d'exemple pour structurer le JSON ; adapte les dates, résumés et `highlights` selon les besoins.
-
-
-
-Le site consomme exclusivement `content/resume.json`. Dépose ton fichier (respectant le schéma JSON Resume-like) à cet emplacement.
-
-### Valider le schéma
+### Validation
 
 ```bash
 npm run validate:resume
 ```
 
-### Importer depuis un PDF (optionnel)
-
-Un script de secours est fourni si tu dois générer un JSON initial depuis un PDF :
+### Import helper (from PDF)
 
 ```bash
 npm run import:cv -- ./cv.pdf
 ```
 
-Le script extrait le texte du PDF (via `pdf-parse`), charge le modèle `content/resume.example.yaml` puis écrit `content/resume.json`. Ouvre ensuite le JSON et complète les rubriques (expérience, projets, etc.) avant de relancer `npm run validate:resume`.
+This extracts text with `pdf-parse`, merges it with the template `content/resume.example.yaml`, and writes `content/resume.json` for manual review.
 
-## Commandes utiles
+## Useful Commands
 
 | Script | Description |
 | ------ | ----------- |
-| `npm run dev` | Démarre Next.js en mode développement |
-| `npm run build` | Build production |
-| `npm start` | Lance le serveur Next.js en mode production |
-| `npm run lint` | Vérifie ESLint |
-| `npm run typecheck` | Vérifie TypeScript |
-| `npm run format` | Formate le code via Prettier |
-| `npm run validate:resume` | Valide `content/resume.json` avec Zod |
-| `npm run import:cv -- ./cv.pdf` | Génère un JSON à partir d'un PDF (fallback) |
-| `npm run generate:sitemap` | Écrit `public/sitemap.xml` |
-| `npm run og:generate` | Regénère `public/og-image.png` |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Build the production bundle (outputs to `.next/`) |
+| `npm run start` | Launch the Next.js production server |
+| `npm run lint` | Run ESLint |
+| `npm run typecheck` | Run TypeScript diagnostics |
+| `npm run format` | Format with Prettier |
+| `npm run validate:resume` | Validate `content/resume.json` |
+| `npm run import:cv -- ./cv.pdf` | Bootstrap resume JSON from a PDF |
+| `npm run generate:sitemap` | Regenerate `public/sitemap.xml` |
+| `npm run og:generate` | Regenerate `public/og-image.png` |
 
-## Déploiement Vercel
+## Deployment (Vercel)
 
-1. Crée un projet sur Vercel et connecte ton dépôt GitHub.
-2. Définis la variable d'environnement `NEXT_PUBLIC_SITE_URL` (ex. `https://portfolio-maxence.vercel.app`).
-3. Vercel détecte Next.js automatiquement (`npm run build`).
+1. Create a project on Vercel and connect this repository.
+2. Set the environment variable `NEXT_PUBLIC_SITE_URL` (e.g. `https://portfolio-maxence.vercel.app`).
+3. Vercel will run `npm run build` automatically.
 
 ## CI/CD
 
-`.github/workflows/ci.yml` déclenche lint + typecheck + build sur les PR et sur `main`. Les jobs utilisent Node 20 et installent les dépendances via `npm ci`.
+`/.github/workflows/ci.yml` installs dependencies with `npm ci`, runs linting, type checking, and ensures the app builds on every push/PR.
 
-## Accessibilité & SEO
-
-- Liens d’évitement, navigation clavier, contraste renforcé.
-- Métadonnées dynamiques (Open Graph, Twitter) basées sur le CV.
-- Sitemap et robots.txt maintenus avec les scripts fournis.
-
-## Structure principale
+## Project Structure
 
 ```
 app/
@@ -115,16 +89,25 @@ app/
   ...
 components/
   nav-bar.tsx, footer.tsx, section.tsx, timeline.tsx, ...
+content/
+  resume.json (your data)
+  resume.example.yaml
 lib/
-  resume.ts, seo.ts, i18n.ts, date.ts
+  i18n/index.ts, i18n/request.ts, resume.ts, seo.ts, date.ts
 scripts/
   import-cv.ts, validate-resume.ts, generate-sitemap.ts, generate-og-image.ts
-content/
-  resume.example.yaml
 ```
 
-Complète `content/resume.json`, lance le dev server et ton portfolio sera prêt pour Vercel.
+## Build Output
 
+`npm run build` creates the production artefacts inside `.next/`. Run `npm run start` or deploy to Vercel to serve the optimised site.
 
+## Accessibility & SEO
 
-# Portfolio
+- Skip link, keyboard navigation, strong contrast defaults
+- Dynamic Open Graph/Twitter metadata derived from `resume.json`
+- Sitemap and robots maintained via scripts
+
+---
+
+Questions or issues: open an issue or ping me directly.
