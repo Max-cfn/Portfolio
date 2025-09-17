@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next';
+import type { AppPathname } from '@/lib/navigation';
 import { getResume } from './resume';
 import type { Locale } from './i18n';
 
@@ -52,6 +53,6 @@ export function getSiteUrl() {
   return SITE_URL;
 }
 
-export function getStaticRoutes() {
+export function getStaticRoutes(): AppPathname[] {
   return ['/', '/experience', '/education', '/projects', '/skills', '/contact', '/blog'];
 }

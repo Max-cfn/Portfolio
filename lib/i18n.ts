@@ -7,7 +7,7 @@ export const i18n = {
   defaultLocale,
   locales,
   localePrefix: 'as-needed'
-};
+} as const;
 
 export default i18n;
 

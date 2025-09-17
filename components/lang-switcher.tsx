@@ -2,7 +2,7 @@
 
 import { Globe } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next-intl/client';
+import { usePathname, useRouter } from '@/lib/navigation';
 import { locales } from '@/lib/i18n';
 
 export default function LangSwitcher() {
