@@ -1,4 +1,4 @@
-﻿import { promises as fs } from 'fs';
+import { promises as fs } from 'fs';
 import path from 'path';
 import { z } from 'zod';
 
@@ -121,7 +121,20 @@ export async function getResume(): Promise<Resume> {
   }
 }
 
-export async function getAllKeywords(locale: string = 'fr') {\n  const resume = await getResume();\n  const keywordSets = [\n    ...resume.work.flatMap((job) => job.keywords),\n    ...resume.projects.flatMap((project) => project.keywords ?? []),\n    ...resume.skills.flatMap((skill) => skill.keywords)\n  ];\n  return Array.from(new Set(keywordSets.filter(Boolean))).sort((a, b) =>\n    a.localeCompare(b, locale)\n  );\n}\n\nexport async function getSkillsByCategory() {
+export async function getAllKeywords(locale: string = 'fr') {
+  const resume = await getResume();
+  const keywordSets = [
+    ...resume.work.flatMap((job) => job.keywords),
+    ...resume.projects.flatMap((project) => project.keywords ?? []),
+    ...resume.skills.flatMap((skill) => skill.keywords)
+  ];
+
+  return Array.from(new Set(keywordSets.filter(Boolean))).sort((a, b) =>
+    a.localeCompare(b, locale)
+  );
+}
+
+export async function getSkillsByCategory() {
   const resume = await getResume();
   return resume.skills.reduce<Record<string, typeof resume.skills>>((acc, skill) => {
     const key = skill.category ?? skill.name;

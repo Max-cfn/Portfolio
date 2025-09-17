@@ -1,4 +1,4 @@
-﻿import Link from 'next-intl/link';
+﻿import { Link } from '@/lib/navigation';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n';
 import { getResume, getAllKeywords } from '@/lib/resume';

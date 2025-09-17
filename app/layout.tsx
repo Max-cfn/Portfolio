@@ -3,12 +3,14 @@ import { headers } from 'next/headers';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
-import './globals.css';
+import '@/styles/globals.css';
 import Footer from '@/components/footer';
 import NavBar from '@/components/nav-bar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { defaultLocale, locales, type Locale } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/seo';
+
+export const dynamic = 'force-dynamic';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 

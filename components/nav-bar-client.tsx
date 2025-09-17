@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
-import Link from 'next-intl/link';
-import { usePathname } from 'next-intl/client';
+import { Link, usePathname } from '@/lib/navigation';
+import type { AppPathname } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import type { Resume } from '@/lib/resume';
@@ -27,7 +27,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
   const tNav = useTranslations('nav');
   const tActions = useTranslations('actions');
 
-  const items = [
+  const items: Array<{ href: AppPathname; label: string }> = [
     { href: '/', label: tNav('home') },
     { href: '/experience', label: tNav('experience') },
     { href: '/education', label: tNav('education') },
@@ -36,7 +36,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
     { href: '/contact', label: tNav('contact') }
   ];
 
-  const current = pathname ?? '/';
+  const current: AppPathname = (pathname ?? '/') as AppPathname;
 
   const profiles = basics.profiles || [];
 
@@ -90,7 +90,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                 const icon = socialIcons[key];
                 const label = profile.network ?? 'profile';
                 return (
-                  <Link
+                  <a
                     key={label}
                     href={profile.url ?? '#'}
                     target="_blank"
@@ -103,7 +103,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                         {(profile.network ?? '?').slice(0, 1)}
                       </span>
                     )}
-                  </Link>
+                  </a>
                 );
               })}
           </div>
@@ -148,7 +148,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                     const icon = socialIcons[key];
                     const label = profile.network ?? 'profile';
                     return (
-                      <Link
+                      <a
                         key={label}
                         href={profile.url ?? '#'}
                         target="_blank"
@@ -161,7 +161,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                             {(profile.network ?? '?').slice(0, 1)}
                           </span>
                         )}
-                      </Link>
+                      </a>
                     );
                   })}
               </div>

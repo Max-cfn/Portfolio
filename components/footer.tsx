@@ -1,4 +1,4 @@
-﻿import Link from 'next-intl/link';
+﻿import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getResume } from '@/lib/resume';
 import { getSiteUrl, getStaticRoutes } from '@/lib/seo';

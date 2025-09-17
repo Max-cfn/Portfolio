@@ -1,4 +1,4 @@
-﻿import Link from 'next-intl/link';
+﻿import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 
 export default async function NotFound() {

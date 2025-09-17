@@ -40,8 +40,7 @@
   },
   "projects": {
     "title": "Projets",
-    "empty": "Les projets seront bientôt disponibles.
-",
+    "empty": "Les projets seront bientôt disponibles.",
     "subtitle": "Sélection de réalisations et initiatives personnelles."
   },
   "contact": {
@@ -78,6 +77,7 @@
     "comingSoon": "Les articles arriveront bientôt."
   }
 }
+
 
 
 
