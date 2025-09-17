@@ -10,6 +10,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { defaultLocale, locales, type Locale } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/seo';
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 type RootLayoutProps = {

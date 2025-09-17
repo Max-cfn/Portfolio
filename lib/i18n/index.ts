@@ -14,10 +14,10 @@ export default i18n;
 export async function getMessages(locale: Locale) {
   switch (locale) {
     case 'fr':
-      return (await import('../locales/fr.json')).default;
+      return (await import('@/locales/fr.json')).default;
     case 'en':
-      return (await import('../locales/en.json')).default;
+      return (await import('@/locales/en.json')).default;
     default:
-      return (await import('../locales/fr.json')).default;
+      return (await import('@/locales/fr.json')).default;
   }
 }
