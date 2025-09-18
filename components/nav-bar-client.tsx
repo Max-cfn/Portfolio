@@ -42,7 +42,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
 
   const downloadButton = (
     <Button asChild variant="secondary" className="hidden sm:inline-flex">
-      <a href="/api/resume" rel="noopener" download>
+      <a href="/cv/resume.pdf" rel="noopener" download>
         {tActions('downloadResume')}
       </a>
     </Button>
@@ -136,7 +136,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                 </Link>
               ))}
               <Button asChild variant="secondary" className="w-full">
-                <a href="/api/resume" rel="noopener" download>
+                <a href="/cv/resume.pdf" rel="noopener" download>
                   {tActions('downloadResume')}
                 </a>
               </Button>
