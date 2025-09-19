@@ -1,8 +1,8 @@
 import type { Locale } from '@/lib/i18n';
 
 export const CV_STATIC_PATHS: Record<Locale, string> = {
-  fr: '/resume-fr.pdf',
-  en: '/resume-en.pdf'
+  fr: '/cv/resume-fr.pdf',
+  en: '/cv/resume-en.pdf'
 } as const;
 
 export const CV_DOWNLOAD_FILENAME = 'CV_CERFONTAINE.pdf';
