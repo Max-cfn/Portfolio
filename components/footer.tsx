@@ -24,9 +24,7 @@ export default async function Footer() {
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               {resume.basics.email && (
                 <li>
-                  <a href={`mailto:${resume.basics.email}`} className="hover:text-foreground">
-                    {resume.basics.email}
-                  </a>
+                  <span className="hover:text-foreground">{resume.basics.email}</span>
                 </li>
               )}
               {resume.basics.phone && <li>{resume.basics.phone}</li>}

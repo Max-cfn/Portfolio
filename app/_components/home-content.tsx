@@ -1,10 +1,10 @@
-﻿import { Link } from '@/lib/navigation';
+import { Link } from '@/lib/navigation';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n';
+import { getCvPath, CV_DOWNLOAD_FILENAME } from '@/lib/cv';
 import { getResume, getAllKeywords } from '@/lib/resume';
 import Section from '@/components/section';
 import Tag from '@/components/tag';
-import ContactForm from '@/components/contact-form';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -33,6 +33,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
 
   const featuredExperience = resume.work.slice(0, 3);
   const featuredProjects = (resume.projects ?? []).slice(0, 3);
+  const cvPath = getCvPath(locale);
 
   return (
     <>
@@ -51,7 +52,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
               <Link href="/contact">{tHero('cta')}</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href="/api/resume" download>
+              <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
                 {tActions('downloadResume')}
               </a>
             </Button>
@@ -68,9 +69,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
               <div>
                 <dt className="text-muted-foreground">{tBasics('email')}</dt>
                 <dd>
-                  <a href={`mailto:${resume.basics.email}`} className="hover:text-primary">
-                    {resume.basics.email}
-                  </a>
+                  <span className="hover:text-primary">{resume.basics.email}</span>
                 </dd>
               </div>
               <div>
@@ -104,7 +103,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
                 <CardTitle>{job.position}</CardTitle>
                 <CardDescription>
                   {job.name}
-                  {job.location ? ` · ${job.location}` : ''}
+                  {job.location ? ` - ${job.location}` : ''}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -113,7 +112,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
                   <ul className="space-y-2 text-sm text-foreground/80">
                     {job.highlights.slice(0, 3).map((highlight) => (
                       <li key={highlight} className="flex gap-2">
-                        <span aria-hidden="true">•</span>
+                        <span aria-hidden="true">-</span>
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -148,7 +147,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
                     <ul className="space-y-2 text-sm text-foreground/80">
                       {project.highlights.slice(0, 3).map((highlight) => (
                         <li key={highlight} className="flex gap-2">
-                          <span aria-hidden="true">•</span>
+                          <span aria-hidden="true">-</span>
                           <span>{highlight}</span>
                         </li>
                       ))}
@@ -176,25 +175,33 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
       </Section>
 
       <Section title={tContact('title')} description={tContact('subtitle')}>
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <p>{resume.basics.summary}</p>
-            <ul className="space-y-2">
-              <li>
-                <a href={`mailto:${resume.basics.email}`} className="hover:text-primary">
-                  {resume.basics.email}
-                </a>
-              </li>
-              <li>{resume.basics.phone}</li>
-              <li>{resume.basics.location}</li>
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-border bg-card/60 p-6 shadow-sm">
-            <ContactForm />
-          </div>
+        <div className="space-y-4 text-sm text-muted-foreground">
+          <p>{resume.basics.summary}</p>
+          <p>{tContact('downloadDescription')}</p>
+          <p>{tContact('downloadNote')}</p>
+          <Button asChild className="w-full sm:w-auto">
+            <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
+              {tContact('downloadCta')}
+            </a>
+          </Button>
+          {resume.basics.profiles.length > 0 && (
+            <div className="space-y-2">
+              <h3 className="text-base font-semibold text-foreground">{tContact('profiles')}</h3>
+              <div className="flex flex-wrap gap-2">
+                {resume.basics.profiles
+                  .filter((profile) => Boolean(profile.url))
+                  .map((profile) => (
+                    <Tag key={profile.network}>
+                      <a href={profile.url ?? '#'} target="_blank" rel="noopener" className="hover:text-primary">
+                        {profile.network}
+                      </a>
+                    </Tag>
+                  ))}
+              </div>
+            </div>
+          )}
         </div>
       </Section>
     </>
   );
 }
-

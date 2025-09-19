@@ -34,9 +34,9 @@ npm run start
 
 ## Resume Data
 
-`content/resume.json` drives the entire site. Populate it with your details (name, contact, experience, education, skills, certifications, languages, references, projects).
+`content/resume.json` drives the entire site. Populate it with your details (name, experience, education, skills, certifications, languages, references, projects).
 
-> Tip: a placeholder file is committed so the build succeeds out of the box. Replace it with your own data before deploying.
+> Tip: a placeholder JSON and PDF path are committed so the build succeeds out of the box. Replace them with your own data before deploying.
 
 ### Validation
 

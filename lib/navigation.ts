@@ -8,7 +8,8 @@ const pathnames = {
   '/projects': '/projects',
   '/skills': '/skills',
   '/contact': '/contact',
-  '/blog': '/blog'
+  '/blog': '/blog',
+  '/color-test': '/color-test'
 } satisfies Pathnames<typeof i18n.locales>;
 
 export type AppPathname = keyof typeof pathnames;
