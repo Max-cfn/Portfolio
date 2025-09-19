@@ -1,13 +1,12 @@
 import { Link } from '@/lib/navigation';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n';
+import { getCvPath, CV_DOWNLOAD_FILENAME } from '@/lib/cv';
 import { getResume, getAllKeywords } from '@/lib/resume';
 import Section from '@/components/section';
 import Tag from '@/components/tag';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-const CV_STATIC_PATH = '/resume.pdf';
 
 export default async function HomeContent({ locale }: { locale: Locale }) {
   unstable_setRequestLocale(locale);
@@ -34,6 +33,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
 
   const featuredExperience = resume.work.slice(0, 3);
   const featuredProjects = (resume.projects ?? []).slice(0, 3);
+  const cvPath = getCvPath(locale);
 
   return (
     <>
@@ -52,7 +52,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
               <Link href="/contact">{tHero('cta')}</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href={CV_STATIC_PATH} download>
+              <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
                 {tActions('downloadResume')}
               </a>
             </Button>
@@ -180,7 +180,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
           <p>{tContact('downloadDescription')}</p>
           <p>{tContact('downloadNote')}</p>
           <Button asChild className="w-full sm:w-auto">
-            <a href={CV_STATIC_PATH} download>
+            <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
               {tContact('downloadCta')}
             </a>
           </Button>

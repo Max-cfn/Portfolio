@@ -41,17 +41,23 @@ export default function LangSwitcher() {
   };
 
   return (
-    <label className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-      <Globe className="h-4 w-4" aria-hidden="true" />
+    <label className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+      <Globe className="h-5 w-5" aria-hidden="true" />
       <span className="sr-only">{tActions('language')}</span>
       <select
-        className="rounded-md border border-border bg-transparent px-2 py-1 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-ring"
+        className="rounded-md border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-muted"
+        style={{ backgroundColor: 'hsl(var(--card))', color: 'hsl(var(--foreground))' }}
         value={locale}
         onChange={(event) => handleChange(event.target.value as Locale)}
         aria-label={tActions('language')}
       >
         {locales.map((code) => (
-          <option key={code} value={code} className="text-foreground">
+          <option
+            key={code}
+            value={code}
+            className="bg-card text-foreground"
+            style={{ backgroundColor: 'hsl(var(--card))', color: 'hsl(var(--foreground))' }}
+          >
             {tLang(code as 'fr' | 'en')}
           </option>
         ))}
