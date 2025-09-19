@@ -4,7 +4,7 @@ import Tag from "@/components/tag";
 import { Button } from "@/components/ui/button";
 import { getResume } from "@/lib/resume";
 
-const CV_STATIC_PATH = "/cv/resume.pdf";
+const CV_STATIC_PATH = "/resume.pdf";
 
 export const revalidate = 3600;
 

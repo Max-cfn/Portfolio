@@ -7,7 +7,7 @@ import Tag from '@/components/tag';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-const CV_STATIC_PATH = '/cv/resume.pdf';
+const CV_STATIC_PATH = '/resume.pdf';
 
 export default async function HomeContent({ locale }: { locale: Locale }) {
   unstable_setRequestLocale(locale);
