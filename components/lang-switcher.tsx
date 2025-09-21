@@ -1,11 +1,15 @@
+<<<<<<< ours
 'use client';
 
 import { useTransition } from 'react';
+=======
+'use client';
+
+>>>>>>> theirs
 import { Globe } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, type AppPathname } from '@/lib/navigation';
 import { locales, type Locale } from '@/lib/i18n';
-import { cn } from '@/lib/utils';
 
 const supportedPathnames: AppPathname[] = [
   '/',
@@ -46,10 +50,14 @@ export default function LangSwitcher() {
   };
 
   return (
-    <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+    <label className="inline-flex items-center gap-2 text-sm text-muted-foreground">
       <Globe className="h-5 w-5" aria-hidden="true" />
       <span className="sr-only">{tActions('language')}</span>
       <div
+<<<<<<< ours
+=======
+        className="inline-flex items-center gap-1 rounded-full border border-border bg-card p-1"
+>>>>>>> theirs
         role="group"
         aria-label={tActions('language')}
         aria-busy={isPending}
@@ -57,13 +65,17 @@ export default function LangSwitcher() {
       >
         {locales.map((code) => {
           const isActive = code === locale;
+<<<<<<< ours
           const isDisabled = isActive || isPending;
 
+=======
+>>>>>>> theirs
           return (
             <button
               key={code}
               type="button"
               onClick={() => handleChange(code)}
+<<<<<<< ours
               disabled={isDisabled}
               aria-pressed={isActive}
               aria-label={tLang(code as 'fr' | 'en')}
@@ -75,6 +87,18 @@ export default function LangSwitcher() {
               )}
             >
               {code.toUpperCase()}
+=======
+              disabled={isActive}
+              className={cn(
+                'min-w-[2.75rem] rounded-full px-3 py-1 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-default disabled:opacity-100',
+                isActive
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              )}
+              aria-pressed={isActive}
+            >
+              {tLang(code as 'fr' | 'en')}
+>>>>>>> theirs
             </button>
           );
         })}
