@@ -10,6 +10,7 @@ import { Globe } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, type AppPathname } from '@/lib/navigation';
 import { locales, type Locale } from '@/lib/i18n';
+import { cn } from '@/lib/utils';
 
 const supportedPathnames: AppPathname[] = [
   '/',
@@ -50,7 +51,7 @@ export default function LangSwitcher() {
   };
 
   return (
-    <label className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+    <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
       <Globe className="h-5 w-5" aria-hidden="true" />
       <span className="sr-only">{tActions('language')}</span>
       <div
