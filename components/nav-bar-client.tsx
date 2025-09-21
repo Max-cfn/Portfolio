@@ -1,15 +1,19 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
-import { Link, usePathname } from '@/lib/navigation';
-import type { AppPathname } from '@/lib/navigation';
-import { useTranslations } from 'next-intl';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+
+import { useLocale, useTranslations } from 'next-intl';
+
 import { Button } from '@/components/ui/button';
-import type { Resume } from '@/lib/resume';
 import LangSwitcher from './lang-switcher';
 import ThemeToggle from './theme-toggle';
+import type { Resume } from '@/lib/resume';
+import { Link, usePathname } from '@/lib/navigation';
+import type { AppPathname } from '@/lib/navigation';
+import { CV_DOWNLOAD_FILENAME, getCvPath } from '@/lib/cv';
+import type { Locale } from '@/lib/i18n';
 
 const socialIcons: Record<string, JSX.Element> = {
   github: <Github className="h-4 w-4" aria-hidden="true" />,
@@ -24,8 +28,13 @@ type NavBarClientProps = {
 export default function NavBarClient({ basics }: NavBarClientProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
   const tNav = useTranslations('nav');
   const tActions = useTranslations('actions');
+
+  const current: AppPathname = (pathname ?? '/') as AppPathname;
+  const profiles = basics.profiles || [];
+  const typedLocale = locale as Locale;
 
   const items: Array<{ href: AppPathname; label: string }> = [
     { href: '/', label: tNav('home') },
@@ -36,13 +45,11 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
     { href: '/contact', label: tNav('contact') }
   ];
 
-  const current: AppPathname = (pathname ?? '/') as AppPathname;
-
-  const profiles = basics.profiles || [];
+  const cvPath = getCvPath(typedLocale);
 
   const downloadButton = (
     <Button asChild variant="secondary" className="hidden sm:inline-flex">
-      <a href="/api/resume" rel="noopener" download>
+      <a href={cvPath} rel="noopener" download={CV_DOWNLOAD_FILENAME}>
         {tActions('downloadResume')}
       </a>
     </Button>
@@ -136,7 +143,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                 </Link>
               ))}
               <Button asChild variant="secondary" className="w-full">
-                <a href="/api/resume" rel="noopener" download>
+                <a href={cvPath} rel="noopener" download={CV_DOWNLOAD_FILENAME}>
                   {tActions('downloadResume')}
                 </a>
               </Button>

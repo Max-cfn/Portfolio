@@ -3,44 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --primary: 222 47% 11%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --ring: 222 84% 67%;
+  --background: 38 38% 96%;
+  --foreground: 220 27% 14%;
+  --muted: 38 24% 90%;
+  --muted-foreground: 220 12% 38%;
+  --accent: 15 70% 43%;
+  --accent-foreground: 34 75% 96%;
+  --border: 38 16% 80%;
+  --input: 38 16% 80%;
+  --primary: 220 28% 22%;
+  --primary-foreground: 34 80% 96%;
+  --secondary: 155 18% 36%;
+  --secondary-foreground: 40 70% 93%;
+  --destructive: 3 65% 44%;
+  --destructive-foreground: 34 75% 96%;
+  --ring: 155 18% 36%;
   --radius: 0.75rem;
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card: 40 28% 92%;
+  --card-foreground: 220 27% 14%;
 }
 
 .dark {
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --primary: 210 40% 98%;
-  --primary-foreground: 222 47% 11%;
-  --secondary: 210 40% 20%;
-  --secondary-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 85.7% 97.3%;
-  --ring: 215 20.2% 65.1%;
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
+  --background: 220 28% 10%;
+  --foreground: 34 55% 92%;
+  --muted: 220 20% 18%;
+  --muted-foreground: 34 32% 70%;
+  --accent: 15 65% 44%;
+  --accent-foreground: 33 70% 96%;
+  --border: 220 22% 24%;
+  --input: 220 22% 24%;
+  --primary: 35 78% 78%;
+  --primary-foreground: 216 33% 12%;
+  --secondary: 155 28% 48%;
+  --secondary-foreground: 220 30% 14%;
+  --destructive: 3 60% 46%;
+  --destructive-foreground: 34 70% 96%;
+  --ring: 155 30% 48%;
+  --card: 220 20% 14%;
+  --card-foreground: 34 52% 90%;
 }
 
 html {
