@@ -23,7 +23,12 @@ function Providers({ children }: { children: ReactNode }) {
   const messages = useMessages();
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Paris">
+    <NextIntlClientProvider
+      key={locale}
+      locale={locale}
+      messages={messages}
+      timeZone="Europe/Paris"
+    >
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

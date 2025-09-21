@@ -1,17 +1,19 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
-import { Link, usePathname } from '@/lib/navigation';
-import type { AppPathname } from '@/lib/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+
 import { useLocale, useTranslations } from 'next-intl';
+
 import { Button } from '@/components/ui/button';
-import type { Resume } from '@/lib/resume';
 import LangSwitcher from './lang-switcher';
 import ThemeToggle from './theme-toggle';
+import type { Resume } from '@/lib/resume';
+import { Link, usePathname } from '@/lib/navigation';
+import type { AppPathname } from '@/lib/navigation';
+import { CV_DOWNLOAD_FILENAME, getCvPath } from '@/lib/cv';
 import type { Locale } from '@/lib/i18n';
-import { getCvPath, CV_DOWNLOAD_FILENAME } from '@/lib/cv';
 
 const socialIcons: Record<string, JSX.Element> = {
   github: <Github className="h-4 w-4" aria-hidden="true" />,
@@ -30,6 +32,10 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
   const tNav = useTranslations('nav');
   const tActions = useTranslations('actions');
 
+  const current: AppPathname = (pathname ?? '/') as AppPathname;
+  const profiles = basics.profiles || [];
+  const typedLocale = locale as Locale;
+
   const items: Array<{ href: AppPathname; label: string }> = [
     { href: '/', label: tNav('home') },
     { href: '/experience', label: tNav('experience') },
@@ -39,10 +45,6 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
     { href: '/contact', label: tNav('contact') }
   ];
 
-  const current: AppPathname = (pathname ?? '/') as AppPathname;
-
-  const profiles = basics.profiles || [];
-  const typedLocale = locale as Locale;
   const cvPath = getCvPath(typedLocale);
 
   const downloadButton = (

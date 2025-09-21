@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useTransition } from 'react';
 import { Globe } from 'lucide-react';
@@ -41,7 +41,13 @@ export default function LangSwitcher() {
     const targetPath = supportedPathnames.includes(candidate) ? candidate : fallbackPathname;
 
     startTransition(() => {
-      router.replace(targetPath, { locale: nextLocale });
+      (async () => {
+        try {
+          await router.replace(targetPath, { locale: nextLocale });
+        } finally {
+          router.refresh();
+        }
+      })();
     });
   };
 
@@ -50,10 +56,10 @@ export default function LangSwitcher() {
       <Globe className="h-5 w-5" aria-hidden="true" />
       <span className="sr-only">{tActions('language')}</span>
       <div
-        className="inline-flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm"
         role="group"
         aria-label={tActions('language')}
         aria-busy={isPending}
+        className="inline-flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm"
       >
         {locales.map((code) => {
           const isActive = code === locale;
