@@ -10,6 +10,9 @@
     },
     "actions": {
         "downloadResume": "Download resume",
+        "downloadResumeEnglish": "Resume in English",
+        "downloadResumeFrench": "Resume in French",
+        "chooseResumeLanguage": "Select resume language",
         "readMore": "Learn more",
         "viewAll": "View all",
         "send": "Send",

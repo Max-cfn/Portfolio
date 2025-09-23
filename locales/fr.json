@@ -10,6 +10,9 @@
     },
     "actions": {
         "downloadResume": "T\u00e9l\u00e9charger le CV",
+        "downloadResumeFrench": "CV en fran\u00e7ais",
+        "downloadResumeEnglish": "CV en anglais",
+        "chooseResumeLanguage": "S\u00e9lectionner la langue du CV",
         "readMore": "En savoir plus",
         "viewAll": "Voir tout",
         "send": "Envoyer",

@@ -1,22 +1,16 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import Section from "@/components/section";
 import Tag from "@/components/tag";
-import { Button } from "@/components/ui/button";
-import type { Locale } from "@/lib/i18n";
-import { getCvPath, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
+import CvDownloadMenu from "@/components/cv-download-menu";
 import { getResume } from "@/lib/resume";
 
 export const revalidate = 3600;
 
 export default async function ContactPage() {
-  const [resume, locale, tContact] = await Promise.all([
+  const [resume, tContact] = await Promise.all([
     getResume(),
-    getLocale(),
     getTranslations("contact")
   ]);
-
-  const typedLocale = locale as Locale;
-  const cvPath = getCvPath(typedLocale);
 
   const profiles = resume.basics.profiles?.filter((profile) => Boolean(profile.url)) ?? [];
 
@@ -26,11 +20,13 @@ export default async function ContactPage() {
         <div className="space-y-4">
           <p>{tContact("downloadDescription")}</p>
           <p>{tContact("downloadNote")}</p>
-          <Button asChild size="lg" className="w-full sm:w-auto">
-            <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
-              {tContact("downloadCta")}
-            </a>
-          </Button>
+          <CvDownloadMenu
+            label={tContact("downloadCta")}
+            size="lg"
+            className="w-full sm:w-auto"
+            buttonClassName="w-full sm:w-auto"
+            align="start"
+          />
         </div>
 
         {profiles.length > 0 && (

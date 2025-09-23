@@ -4,16 +4,15 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
+import CvDownloadMenu from './cv-download-menu';
 import LangSwitcher from './lang-switcher';
 import ThemeToggle from './theme-toggle';
 import type { Resume } from '@/lib/resume';
 import { Link, usePathname } from '@/lib/navigation';
 import type { AppPathname } from '@/lib/navigation';
-import { CV_DOWNLOAD_FILENAME, getCvPath } from '@/lib/cv';
-import type { Locale } from '@/lib/i18n';
 
 const socialIcons: Record<string, JSX.Element> = {
   github: <Github className="h-4 w-4" aria-hidden="true" />,
@@ -28,13 +27,10 @@ type NavBarClientProps = {
 export default function NavBarClient({ basics }: NavBarClientProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const locale = useLocale();
   const tNav = useTranslations('nav');
-  const tActions = useTranslations('actions');
 
   const current: AppPathname = (pathname ?? '/') as AppPathname;
   const profiles = basics.profiles || [];
-  const typedLocale = locale as Locale;
 
   const items: Array<{ href: AppPathname; label: string }> = [
     { href: '/', label: tNav('home') },
@@ -44,16 +40,6 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
     { href: '/skills', label: tNav('skills') },
     { href: '/contact', label: tNav('contact') }
   ];
-
-  const cvPath = getCvPath(typedLocale);
-
-  const downloadButton = (
-    <Button asChild variant="secondary" className="hidden sm:inline-flex">
-      <a href={cvPath} rel="noopener" download={CV_DOWNLOAD_FILENAME}>
-        {tActions('downloadResume')}
-      </a>
-    </Button>
-  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
@@ -88,7 +74,7 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
         <div className="hidden items-center gap-2 md:flex">
           <LangSwitcher />
           <ThemeToggle />
-          {downloadButton}
+          <CvDownloadMenu variant="secondary" buttonClassName="hidden sm:inline-flex" align="end" />
           <div className="flex items-center gap-2">
             {profiles
               .filter((profile) => Boolean(profile.url))
@@ -142,11 +128,12 @@ export default function NavBarClient({ basics }: NavBarClientProps) {
                   {item.label}
                 </Link>
               ))}
-              <Button asChild variant="secondary" className="w-full">
-                <a href={cvPath} rel="noopener" download={CV_DOWNLOAD_FILENAME}>
-                  {tActions('downloadResume')}
-                </a>
-              </Button>
+              <CvDownloadMenu
+                variant="secondary"
+                className="w-full"
+                buttonClassName="w-full"
+                align="start"
+              />
               <div className="flex items-center gap-3">
                 {profiles
                   .filter((profile) => Boolean(profile.url))

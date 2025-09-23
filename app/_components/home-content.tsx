@@ -1,11 +1,11 @@
 import { Link } from '@/lib/navigation';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n';
-import { getCvPath, CV_DOWNLOAD_FILENAME } from '@/lib/cv';
 import { getResume, getAllKeywords } from '@/lib/resume';
 import Section from '@/components/section';
 import Tag from '@/components/tag';
 import { Button } from '@/components/ui/button';
+import CvDownloadMenu from '@/components/cv-download-menu';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default async function HomeContent({ locale }: { locale: Locale }) {
@@ -33,8 +33,6 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
 
   const featuredExperience = resume.work.slice(0, 3);
   const featuredProjects = (resume.projects ?? []).slice(0, 3);
-  const cvPath = getCvPath(locale);
-
   return (
     <>
       <section className="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-20 sm:px-6 lg:flex-row lg:items-center">
@@ -51,11 +49,13 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
             <Button asChild size="lg">
               <Link href="/contact">{tHero('cta')}</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
-                {tActions('downloadResume')}
-              </a>
-            </Button>
+            <CvDownloadMenu
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto"
+              buttonClassName="w-full sm:w-auto"
+              align="start"
+            />
           </div>
           <div className="flex flex-wrap gap-2">
             {keywords.slice(0, 8).map((keyword) => (
@@ -179,11 +179,12 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
           <p>{resume.basics.summary}</p>
           <p>{tContact('downloadDescription')}</p>
           <p>{tContact('downloadNote')}</p>
-          <Button asChild className="w-full sm:w-auto">
-            <a href={cvPath} download={CV_DOWNLOAD_FILENAME}>
-              {tContact('downloadCta')}
-            </a>
-          </Button>
+          <CvDownloadMenu
+            label={tContact('downloadCta')}
+            className="w-full sm:w-auto"
+            buttonClassName="w-full sm:w-auto"
+            align="start"
+          />
           {resume.basics.profiles.length > 0 && (
             <div className="space-y-2">
               <h3 className="text-base font-semibold text-foreground">{tContact('profiles')}</h3>
