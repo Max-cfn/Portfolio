@@ -203,7 +203,7 @@ export default function CvDownloadMenu({
         type="button"
         variant={variant}
         size={size}
-        className={cn('gap-2', buttonClassName)}
+        className={cn('gap-2', variant === 'outline' && 'hover:bg-secondary hover:text-secondary-foreground', buttonClassName)}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
@@ -238,7 +238,7 @@ export default function CvDownloadMenu({
                 href={option.href}
                 download={option.download}
                 rel="noopener"
-                className="block px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="block px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-secondary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 ref={(node) => {
                   optionRefs.current[index] = node;
                 }}
@@ -253,3 +253,5 @@ export default function CvDownloadMenu({
     </div>
   );
 }
+
+

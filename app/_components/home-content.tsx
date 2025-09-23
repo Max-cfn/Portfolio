@@ -46,11 +46,8 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
           </h2>
           <p className="max-w-2xl text-lg text-muted-foreground">{resume.basics.summary}</p>
           <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link href="/contact">{tHero('cta')}</Link>
-            </Button>
             <CvDownloadMenu
-              variant="outline"
+              variant="secondary"
               size="lg"
               className="w-full sm:w-auto"
               buttonClassName="w-full sm:w-auto"
@@ -180,6 +177,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
           <p>{tContact('downloadDescription')}</p>
           <p>{tContact('downloadNote')}</p>
           <CvDownloadMenu
+            variant="secondary"
             label={tContact('downloadCta')}
             className="w-full sm:w-auto"
             buttonClassName="w-full sm:w-auto"
@@ -206,3 +204,7 @@ export default async function HomeContent({ locale }: { locale: Locale }) {
     </>
   );
 }
+
+
+
+
