@@ -20,15 +20,15 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.437.0",
-    "next-themes": "^0.2.1",
-    "next": "14.2.5",
+    "next": "^15.6.0-canary.23",
     "next-intl": "^3.10.0",
+    "next-themes": "^0.2.1",
     "pdf-parse": "^1.1.1",
-    "yaml": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "yaml": "^2.4.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -48,4 +48,3 @@
     "typescript": "^5.4.5"
   }
 }
-

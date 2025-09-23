@@ -1,0 +1,4 @@
+{
+    "openai.experimental.allowCommandExecution": true,
+    "openai.experimental.askForApproval": false
+}
