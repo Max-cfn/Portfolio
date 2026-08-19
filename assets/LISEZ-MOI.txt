@@ -1,0 +1,23 @@
+DOSSIER LOGOS
+=============
+
+Logos des écoles affichés dans la section "Formation".
+
+  logo-efrei.png       — logo officiel Efrei (efrei.fr), PNG 300x150, fond transparent
+  logo-concordia.svg   — logo officiel Concordia University (concordia.ca), SVG 132x20
+
+Pour ajouter une ligne de formation avec son logo, dans le bloc CONFIG
+de index.html (section "edu") :
+
+  { y:"2022 — 2024", t:{...}, p:{...},
+    logo:{ src:"assets/logo-efrei.png", alt:"Efrei Paris", h:34 } }
+
+  h = hauteur d'affichage en px. Les logos très larges (type wordmark)
+  se règlent plutôt vers 18-20, les logos carrés vers 30-34.
+  La largeur s'ajuste toute seule (max 130px).
+
+Sans clé "logo", la ligne s'affiche simplement sans marque.
+
+Les logos des organismes de certification (AWS, Google Cloud, Microsoft,
+Terraform) ne sont pas ici : ce sont des SVG inline, dans l'objet LOGOS
+du script de index.html.
