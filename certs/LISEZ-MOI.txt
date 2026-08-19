@@ -1,0 +1,20 @@
+DOSSIER CERTIFICATS
+===================
+
+Dépose ici les PDF de tes attestations, puis renseigne le chemin
+dans le bloc CONFIG de index.html (section "certs").
+
+Exemple :
+  1. tu déposes  certs/aws-sa-pro.pdf
+  2. dans index.html tu passes de :
+       { name:"AWS Solutions Architect", lvl:"Professional", who:"aws", url:null },
+     à :
+       { name:"AWS Solutions Architect", lvl:"Professional", who:"aws", url:"certs/aws-sa-pro.pdf" },
+
+Tu peux aussi mettre un lien de vérification en ligne à la place d'un PDF :
+  - AWS      : lien Credly  (https://www.credly.com/badges/...)
+  - Google   : lien Credly ou Accredible
+  - Microsoft: lien Microsoft Learn  (https://learn.microsoft.com/api/credentials/share/...)
+  - HashiCorp: lien Credly
+
+Tant que url vaut null, le site affiche "attestation sur demande".

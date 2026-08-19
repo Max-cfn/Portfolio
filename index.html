@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maxence Cerfontaine — Cloud &amp; DevOps</title>
+<meta name="description" content="Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform, FinOps. 10 certifications dont AWS Solutions Architect Professional.">
+<meta name="author" content="Maxence Cerfontaine">
+<meta name="theme-color" content="#F4F2EB">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://REMPLACER-PAR-TON-DOMAINE/">
+
+<!-- Carte de partage (LinkedIn, Slack, WhatsApp, X…) -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Maxence Cerfontaine">
+<meta property="og:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
+<meta property="og:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure. 10 certifications dont AWS Solutions Architect Professional.">
+<meta property="og:url" content="https://REMPLACER-PAR-TON-DOMAINE/">
+<meta property="og:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
+<meta name="twitter:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure.">
+<meta name="twitter:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..640;1,9..144,340..640&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════
+   Maxence Cerfontaine — v4 « fiche technique »
+   Papier chaud · encre · un seul vert · typographie éditoriale
+   ════════════════════════════════════════════════════════════ */
+:root{
+  --paper:#F4F2EB; --paper2:#EDEAE0; --card:#FBFAF6;
+  --ink:#1C1B15; --ink2:#454336; --mut:#7C7A6B; --faint:#A6A493;
+  --rule:#D8D4C4; --rule2:#BEB9A5;
+  --green:#28603C; --green2:#3E7A4C; --green-bg:#E4EBE0;
+  --rust:#9A5B2D;
+  --disp:"Fraunces",Georgia,serif;
+  --sans:"Archivo",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.62;font-size:15.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+a{color:var(--ink)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::selection{background:var(--green);color:var(--paper)}
+.mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--mut)}
+.mnum{font-family:var(--mono);font-size:11.5px;color:var(--rust)}
+
+/* ── nav ── */
+nav{position:sticky;top:0;z-index:50;background:rgba(244,242,235,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;justify-content:space-between;height:60px;align-items:center;gap:16px}
+.brand{text-decoration:none;font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+.brand span{color:var(--green)}
+.nav-r{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{font-size:13.5px;color:var(--ink2);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent}
+.nav-links a:hover{border-bottom-color:var(--green);color:var(--green)}
+.lang{font-family:var(--mono);font-size:12px;display:flex;gap:3px;color:var(--faint)}
+.lang button{color:var(--faint);padding:2px 3px}
+.lang button.on{color:var(--ink);border-bottom:2px solid var(--green)}
+.lang button:not(.on):hover{color:var(--ink2)}
+
+/* ── hero ── */
+header{padding:66px 0 56px;border-bottom:1px solid var(--rule)}
+.hero{display:grid;grid-template-columns:1.5fr .9fr;gap:56px;align-items:start}
+.crumb{font-family:var(--mono);font-size:12px;color:var(--mut);margin-bottom:26px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.crumb .sep{color:var(--rule2)}
+.crumb .ok{color:var(--green)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green)}
+h1{font-family:var(--disp);font-weight:470;font-size:clamp(40px,6vw,64px);line-height:1.02;letter-spacing:-.015em;margin-bottom:22px}
+h1 em{font-style:italic;color:var(--green)}
+.lede{font-size:16.5px;color:var(--ink2);max-width:56ch;margin-bottom:32px}
+.hactions{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-size:14px;font-weight:600;padding:12px 22px;border-radius:2px;transition:background .15s}
+.btn:hover{background:var(--green)}
+.tlink{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--rule2);padding-bottom:2px;transition:.15s}
+.tlink:hover{border-bottom-color:var(--green);color:var(--green)}
+.fiche{border-top:2px solid var(--ink);padding-top:14px}
+.fiche .mlabel{display:block;margin-bottom:10px;text-transform:uppercase;letter-spacing:.12em}
+.frow{display:flex;justify-content:space-between;gap:14px;padding:7.5px 0;border-bottom:1px solid var(--rule);font-size:13.5px}
+.frow:last-child{border-bottom:none}
+.frow span{color:var(--mut)}
+.frow b{font-weight:600;text-align:right}
+
+/* ── sections ── */
+section{padding:54px 0;border-bottom:1px solid var(--rule)}
+.shead{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+.shead h2{font-family:var(--disp);font-weight:500;font-size:31px;letter-spacing:-.01em}
+.ssub{font-size:13.5px;color:var(--mut);margin-bottom:30px;max-width:70ch}
+
+/* ── tabs ── */
+.tabbar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule2);margin-bottom:30px;gap:14px;flex-wrap:wrap}
+.tabs{display:flex;gap:26px}
+.tabs button{font-size:14px;font-weight:500;color:var(--mut);padding:0 2px 10px;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--green);font-weight:600}
+.tabs button:not(.on):hover{color:var(--ink2)}
+.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:0 2px 10px}
+.xall:hover{text-decoration:underline}
+.view{display:none}
+.view.on{display:block;animation:vf .22s ease}
+@keyframes vf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ── vue schéma ── */
+.legend{font-family:var(--mono);font-size:11.5px;color:var(--mut);margin-bottom:16px}
+.legend i{display:inline-block;width:8px;height:8px;margin:0 5px 0 14px;vertical-align:0}
+.legend i:first-child{margin-left:0}
+.region{border:1px dashed var(--rule2);padding:34px 18px 18px;position:relative;background:var(--card)}
+.region-lbl{position:absolute;top:-9px;left:16px;background:var(--paper);padding:0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
+.vpc{border:1px solid var(--rule2);padding:30px 14px 16px;position:relative;margin-bottom:20px;background:var(--paper)}
+.vpc:last-child{margin-bottom:0}
+.vpc-lbl{position:absolute;top:-10px;left:14px;background:var(--ink);color:var(--paper);padding:1px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+.vpc-meta{position:absolute;top:-8px;right:14px;background:var(--paper);padding:0 8px;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
+.svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.svc{background:var(--card);border:1px solid var(--rule2);padding:13px 14px;text-align:left;transition:.14s;position:relative}
+.svc:hover{border-color:var(--ink);transform:translateY(-1px)}
+.svc.on{border-color:var(--green);background:var(--green-bg)}
+.svc.on::after{content:"";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green)}
+.svc-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.ico{min-width:22px;height:22px;padding:0 4px;display:grid;place-items:center;font-family:var(--mono);font-size:8px;font-weight:500;color:#fff;flex-shrink:0}
+.svc-n{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.005em}
+.svc-r{font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:2px}
+.svc-d{font-family:var(--mono);font-size:10.5px;color:var(--mut)}
+.svc-live{font-family:var(--mono);font-size:9.5px;color:var(--rust);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.inline-detail{grid-column:1/-1;border-left:3px solid var(--green);background:var(--card);border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 24px;animation:vf .2s ease}
+
+/* ── détail commun ── */
+.dt-h{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:2px}
+.dt-h h3{font-family:var(--disp);font-size:20px;font-weight:520;letter-spacing:-.005em}
+.dt-when{font-family:var(--mono);font-size:11.5px;color:var(--rust);padding-top:6px;white-space:nowrap}
+.dt-role{font-family:var(--mono);font-size:12px;color:var(--green);margin-bottom:14px}
+.dt-intro{font-size:14.5px;color:var(--ink2);margin-bottom:13px;max-width:78ch}
+.dt ul,.inline-detail ul{list-style:none;margin-bottom:13px}
+.dt li,.inline-detail li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14.5px;color:var(--ink2)}
+.dt li::before,.inline-detail li::before{content:"—";position:absolute;left:0;color:var(--green)}
+.stackline{font-family:var(--mono);font-size:11.5px;color:var(--mut);line-height:1.8}
+.stackline b{color:var(--ink2);font-weight:500}
+
+/* ── chronologie par employeur ── */
+.emp{border:1px solid var(--rule2);background:var(--card);margin-bottom:26px}
+.emp:last-child{margin-bottom:0}
+.emp-head{width:100%;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px 24px;text-align:left}
+.emp-head:hover .emp-n{color:var(--green)}
+.emp-n{display:block;font-family:var(--disp);font-size:23px;font-weight:520;letter-spacing:-.008em;transition:color .15s}
+.emp-sub{display:block;font-family:var(--mono);font-size:11.5px;color:var(--mut);margin-top:3px}
+.emp-sub .rl{color:var(--green)}
+.emp-right{text-align:right;flex-shrink:0}
+.emp-when{font-family:var(--mono);font-size:11.5px;color:var(--rust);white-space:nowrap;display:block}
+.emp-x{font-family:var(--mono);font-size:16px;color:var(--faint);transition:transform .18s;display:inline-block;margin-top:4px}
+.emp.on .emp-x{transform:rotate(45deg);color:var(--green)}
+.emp-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.emp-body-in{padding:0 24px 20px;border-bottom:1px dashed var(--rule)}
+.emp-body-in .dt-intro{border-left:2px solid var(--green-bg);padding-left:14px}
+.emp-missions{padding:16px 24px 22px 24px}
+.emp-missions .mlabel{display:block;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.entry{position:relative;padding-left:30px;margin-bottom:6px}
+.entry:last-child{margin-bottom:0}
+.entry::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--rule2)}
+.entry::after{content:"";position:absolute;left:8px;top:23px;width:16px;height:1px;background:var(--rule2)}
+.entry:last-child::before{bottom:auto;height:23px}
+.e-card{border:1px solid transparent;transition:.14s;background:var(--paper)}
+.e-card:hover{border-color:var(--rule)}
+.e-card.on{border-color:var(--rule2)}
+.e-btn{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;width:100%;padding:10px 14px;text-align:left}
+.e-when{font-family:var(--mono);font-size:11px;color:var(--rust);display:block;margin-bottom:2px}
+.e-t{font-size:15.5px;font-weight:600;letter-spacing:-.005em;display:block}
+.e-c{font-family:var(--mono);font-size:11px;color:var(--mut);display:block;margin-top:1px}
+.e-x{font-family:var(--mono);color:var(--faint);font-size:15px;flex-shrink:0;padding-top:4px;transition:transform .18s}
+.e-card.on .e-x{transform:rotate(45deg);color:var(--green)}
+.e-body{max-height:0;overflow:hidden;transition:max-height .26s ease}
+.e-body-in{margin:0 14px 14px;padding:14px 0 0 18px;border-left:2px solid var(--green-bg);border-top:1px dashed var(--rule)}
+
+/* ── compétences ── */
+.skrow{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.skrow:last-child{border-bottom:none}
+.skrow dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding-top:3px}
+.skrow dd .main{font-size:15px;font-weight:500}
+.skrow dd .main b{font-weight:600}
+.skrow dd .lvl{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.skitem{margin-bottom:6px}
+.skitem:last-child{margin-bottom:0}
+.skinline{font-size:14.5px;color:var(--ink2)}
+
+/* ── certifications ── */
+.certcols{columns:2;column-gap:52px}
+.crow{display:flex;align-items:baseline;gap:12px;padding:10.5px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
+.crow .who{font-family:var(--mono);font-size:10px;font-weight:500;color:#fff;padding:2px 6px;flex-shrink:0;min-width:38px;text-align:center;transform:translateY(-1px)}
+.crow .nm{font-size:14.5px;font-weight:600;letter-spacing:-.005em}
+.crow .lv{font-family:var(--mono);font-size:11px;color:var(--mut)}
+.crow .sp{flex:1;border-bottom:1px dotted var(--rule2);transform:translateY(-4px);min-width:18px}
+.crow a.vf{font-family:var(--mono);font-size:11.5px;color:var(--green);text-decoration:none;white-space:nowrap}
+.crow a.vf:hover{text-decoration:underline}
+.crow .vn{font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap}
+
+/* ── formation ── */
+.edrow{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule)}
+.edrow:last-child{border-bottom:none}
+.edrow .y{font-family:var(--mono);font-size:12px;color:var(--rust);padding-top:2px}
+.edrow h4{font-size:16px;font-weight:600;letter-spacing:-.005em}
+.edrow p{font-size:13.5px;color:var(--mut)}
+
+/* ── contact ── */
+.contact h3{font-family:var(--disp);font-weight:470;font-size:clamp(28px,4vw,42px);letter-spacing:-.01em;margin-bottom:10px}
+.contact h3 em{font-style:italic;color:var(--green)}
+.contact p{color:var(--mut);margin-bottom:26px;max-width:52ch}
+.contact .big{font-family:var(--disp);font-size:clamp(19px,2.6vw,26px);font-weight:500;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--rule2);transition:.15s}
+.contact .big:hover{border-bottom-color:var(--green);color:var(--green)}
+.contact .sm{font-family:var(--mono);font-size:13px;color:var(--mut);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px;transition:.15s}
+.contact .sm:hover{color:var(--green);border-bottom-color:var(--green)}
+footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
+
+@media(max-width:720px){
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;gap:34px}
+  .emp-head{flex-direction:column;gap:6px}
+  .emp-right{text-align:left}
+  .emp-missions{padding:14px 14px 18px}
+  .certcols{columns:1}
+  .skrow,.edrow{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">Maxence <span>Cerfontaine</span></a>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a href="#parcours" data-t="nav_exp"></a></li>
+      <li><a href="#skills" data-t="nav_skills"></a></li>
+      <li><a href="#certs" data-t="nav_certs"></a></li>
+      <li><a href="#edu" data-t="nav_edu"></a></li>
+      <li><a href="#contact" data-t="nav_contact"></a></li>
+    </ul>
+    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">EN</button></div>
+  </div>
+</div></nav>
+
+<div class="wrap" id="top">
+<header>
+  <div class="hero">
+    <div>
+      <div class="crumb"><span class="dot"></span><span class="ok" data-t="crumb_status"></span><span class="sep">/</span><span data-t="crumb_loc"></span><span class="sep">/</span><span>AWS · GCP · Azure</span></div>
+      <h1 data-t="h1" data-html="1"></h1>
+      <p class="lede" data-t="lede"></p>
+      <div class="hactions">
+        <a class="btn" id="cv-main" href="#" download data-t="cv_btn"></a>
+        <a class="tlink" id="cv-alt" href="#" download data-t="cv_alt"></a>
+        <a class="tlink" href="#contact" data-t="contact_btn"></a>
+      </div>
+    </div>
+    <aside class="fiche">
+      <span class="mlabel" data-t="fiche"></span>
+      <div class="frow"><span data-t="f1"></span><b data-t="f1v"></b></div>
+      <div class="frow"><span data-t="f2"></span><b>Paris, France</b></div>
+      <div class="frow"><span data-t="f3"></span><b>AWS · GCP · Azure</b></div>
+      <div class="frow"><span data-t="f4"></span><b data-t="f4v"></b></div>
+      <div class="frow"><span data-t="f5"></span><b>TOEIC 930/990</b></div>
+    </aside>
+  </div>
+</header>
+
+<section id="parcours">
+  <div class="shead"><span class="mnum">01</span><h2 data-t="s1"></h2></div>
+  <p class="ssub" data-t="s1_sub"></p>
+  <div class="tabbar">
+    <div class="tabs">
+      <button id="tab-arch" class="on" onclick="setView('arch')" data-t="tab_arch"></button>
+      <button id="tab-chrono" onclick="setView('chrono')" data-t="tab_chrono"></button>
+    </div>
+    <button class="xall" id="xall" onclick="toggleAll()" style="display:none"></button>
+  </div>
+  <div class="view on" id="view-arch">
+    <div class="legend" id="legend"></div>
+    <div class="region">
+      <span class="region-lbl" data-t="region"></span>
+      <div id="arch-root"></div>
+    </div>
+  </div>
+  <div class="view" id="view-chrono"><div id="tl-root"></div></div>
+</section>
+
+<section id="skills">
+  <div class="shead"><span class="mnum">02</span><h2 data-t="s_sk"></h2></div>
+  <p class="ssub" data-t="s_sk_sub"></p>
+  <dl id="skills-root"></dl>
+</section>
+
+<section id="certs">
+  <div class="shead"><span class="mnum">03</span><h2 data-t="s2"></h2></div>
+  <p class="ssub" data-t="s2_sub"></p>
+  <div class="certcols" id="certs-root"></div>
+</section>
+
+<section id="edu">
+  <div class="shead"><span class="mnum">04</span><h2 data-t="s3"></h2></div>
+  <div id="edu-root"></div>
+</section>
+
+<section id="contact" style="border-bottom:none">
+  <div class="contact">
+    <h3 data-t="c_h" data-html="1"></h3>
+    <p data-t="c_p"></p>
+    <div class="hactions" style="gap:26px;align-items:baseline">
+      <a class="big" href="mailto:maxence.cerfontaine@outlook.fr">maxence.cerfontaine@outlook.fr</a>
+      <a class="sm" href="https://www.linkedin.com/in/maxence-cerfontaine" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-t="foot"></span>
+  <span data-t="foot2"></span>
+</footer>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   TOUT LE CONTENU EST ICI. Pour modifier le site, édite uniquement
+   cet objet CONFIG — jamais le HTML au-dessus.
+   ══════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  /* CV : dépose les PDF dans cv/ à côté de index.html */
+  cv: { fr:"cv/CV_FR_CERFONTAINE_MAXENCE.pdf", en:"cv/CV_EN_Cerfontaine_Maxence.pdf" },
+
+  ui: {
+    fr: {
+      nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
+      crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
+      h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
+      lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
+      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter",
+      fiche:"Fiche technique",
+      f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
+      f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
+      s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture, ou la chronologie par employeur. Chaque élément se déplie.",
+      tab_arch:"Schéma d'architecture", tab_chrono:"Chronologie",
+      xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
+      region:"RÉGION — eu-west-3 (Paris)",
+      s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
+      s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
+      s3:"Formation",
+      c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Site statique — sans cookies ni trackers",
+      verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
+      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions"
+    },
+    en: {
+      nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
+      crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
+      h1:'<em>Cloud</em> &amp; DevOps Engineer.',
+      lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
+      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch",
+      fiche:"Data sheet",
+      f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
+      f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
+      s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram, or the employer-by-employer timeline. Every item expands.",
+      tab_arch:"Architecture diagram", tab_chrono:"Timeline",
+      xall_open:"[+] expand all", xall_close:"[–] collapse all",
+      region:"REGION — eu-west-3 (Paris)",
+      s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
+      s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
+      s3:"Education",
+      c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Static site — no cookies, no trackers",
+      verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
+      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments"
+    }
+  },
+
+  /* ── Employeurs : la « grosse entrée » de la chronologie.
+        intro + bullets = le poste lui-même (ex-« Socle & FinOps »). ── */
+  companies: [
+    { id:"devoteam", name:"Devoteam A Cloud",
+      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      contract:{fr:"CDI", en:"Permanent"},
+      loc:{fr:"Levallois-Perret · hybride", en:"Levallois-Perret · hybrid"},
+      when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
+      live:true,
+      intro:{
+        fr:"Ingénieur DevOps au sein de Devoteam A Cloud, entité de Devoteam dédiée à l'expertise AWS. J'interviens sur la conception, la sécurisation et l'industrialisation de plateformes cloud pour les clients du cabinet, avec une montée en compétences continue sur l'écosystème AWS.",
+        en:"DevOps Engineer at Devoteam A Cloud, Devoteam's AWS-focused entity. I work on designing, securing and industrializing cloud platforms for the firm's clients, with continuous upskilling across the AWS ecosystem."},
+      bullets:{
+        fr:["Interventions sur des projets cloud AWS de bout en bout : cadrage technique, implémentation, mise en production.",
+            "Pratique quotidienne de la CI/CD (GitLab) et des services de conteneurs AWS (ECS).",
+            "Montée en compétences continue sur l'écosystème AWS."],
+        en:["End-to-end AWS cloud projects: technical scoping, implementation, production releases.",
+            "Daily practice of CI/CD (GitLab) and AWS container services (ECS).",
+            "Continuous upskilling across the AWS ecosystem."]},
+      stack:"AWS · ECS · GitLab CI · Terraform",
+      /* carte affichée dans le schéma ? non : Devoteam n'a que la mission GenAI */
+      coreCard:null },
+
+    { id:"hardis", name:"Hardis Group",
+      role:{fr:"Ingénieur Cloud — équipe Cloud Operations", en:"Cloud Engineer — Cloud Operations team"},
+      contract:{fr:"CDI", en:"Permanent"},
+      loc:{fr:"Paris La Défense · hybride", en:"Paris La Défense · hybrid"},
+      when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
+      intro:{
+        fr:"Au sein de l'équipe Cloud Operations (CO) d'Hardis Group, j'interviens sur des environnements AWS, GCP et Azure pour accompagner nos clients dans la conception, l'industrialisation et l'exploitation de leurs infrastructures cloud, en régie comme au forfait.",
+        en:"Within Hardis Group's Cloud Operations (CO) team, I worked across AWS, GCP and Azure environments, supporting clients in the design, industrialization and operation of their cloud infrastructures, both on-site and under fixed-price contracts."},
+      bullets:{
+        fr:["Conception et validation d'architectures cloud dans le cadre de projets en régie ou au forfait.",
+            "Automatisation et industrialisation des déploiements via Terraform, et CloudFormation selon les contextes.",
+            "Intégration de pratiques FinOps et pilotage d'optimisations de coûts cloud — fonctions Start/Stop, audits réguliers.",
+            "Gestion du RUN et traitement des incidents (N2/N3) dans un contexte multi-clients, via outil de ticketing.",
+            "Contribution à la transformation continue des environnements cloud clients, sous forme de plans d'action et de mini-projets."],
+        en:["Design and validation of cloud architectures for both on-site and fixed-price projects.",
+            "Deployment automation and industrialization with Terraform, and CloudFormation where relevant.",
+            "FinOps practices and cloud cost-optimization initiatives — Start/Stop functions, regular audits.",
+            "RUN operations and incident management (L2/L3) in a multi-client context, through a ticketing tool.",
+            "Continuous transformation of client cloud environments through action plans and mini-projects."]},
+      stack:"AWS · GCP · Azure · Terraform · CloudFormation · FinOps · ITSM",
+      /* cette carte apparaît dans le schéma d'architecture */
+      coreCard:{ cloud:"multi",
+        card:{fr:"Socle & FinOps", en:"Core & FinOps"},
+        sub:{fr:"Paris La Défense", en:"Paris La Défense"} } }
+  ],
+
+  /* ── Missions (imbriquées sous leur employeur) ── */
+  missions: [
+    { id:"genai", company:"devoteam", cloud:"aws", live:true,
+      card:{fr:"Plateforme GenAI", en:"GenAI Platform"},
+      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      sub:{fr:"Levallois-Perret", en:"Levallois-Perret"},
+      title:{fr:"Plateforme GenAI sécurisée", en:"Secured GenAI Platform"},
+      when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
+      intro:{
+        fr:"Construction d'une plateforme GenAI destinée à fournir aux clients des LLM personnalisés et conformes à leurs exigences de sécurité et de conformité.",
+        en:"Building a GenAI platform that provides clients with custom LLMs meeting their security and compliance requirements."},
+      bullets:{
+        fr:["Déploiement de la plateforme sur un réseau AWS entièrement isolé et sécurisé, garantissant le cloisonnement des données clients.",
+            "Exposition de LLM personnalisés et conformes via LiteLLM, avec gestion centralisée des accès et des quotas.",
+            "Conception, maintenance et évolution de la pipeline CI/CD sous GitLab, du build jusqu'au déploiement.",
+            "Migration d'applications historiques EC2 vers ECS, et déploiement de nouvelles applications cloud native sur ECS."],
+        en:["Platform deployed on a fully isolated, secured AWS network, guaranteeing strict separation of client data.",
+            "Custom, compliant LLMs served through LiteLLM, with centralized access and quota management.",
+            "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment.",
+            "Migration of legacy EC2 applications to ECS, and deployment of new cloud-native applications on ECS."]},
+      stack:"AWS · ECS · EC2 · LiteLLM · GitLab CI · VPC" },
+
+    { id:"gl", company:"hardis", cloud:"gcp",
+      card:{fr:"Galeries Lafayette", en:"Galeries Lafayette"},
+      role:{fr:"DevOps · mission en régie", en:"DevOps · on-site assignment"},
+      sub:{fr:"mar → oct 2025", en:"Mar → Oct 2025"},
+      title:{fr:"Galeries Lafayette — migration e-commerce vers GCP", en:"Galeries Lafayette — e-commerce migration to GCP"},
+      when:{fr:"mar 2025 → oct 2025 · 8 mois", en:"Mar 2025 → Oct 2025 · 8 mos"},
+      intro:{
+        fr:"Intégré à l'équipe BUILD Cloud des Galeries Lafayette, j'ai participé à la migration d'un ensemble d'applications e-commerce depuis l'infrastructure on-premise vers Google Cloud Platform, dans une logique de modernisation et de réduction des coûts.",
+        en:"Embedded in Galeries Lafayette's BUILD Cloud team, I took part in migrating a set of e-commerce applications from on-premise infrastructure to Google Cloud Platform, driving modernization and cost reduction."},
+      bullets:{
+        fr:["Participation à la conception et au déploiement de l'architecture cible sur GKE, avec interconnexion à Cloud SQL, Cloud Storage et Cloud DNS.",
+            "Déploiement et supervision d'environnements applicatifs selon un modèle blue/green, garantissant la continuité de service pendant les migrations.",
+            "Contribution à la mise en place d'une chaîne CI/CD complète — Jenkins, Bitbucket, ArgoCD, Atlantis — intégrée à la gestion d'infrastructure Terraform.",
+            "Réalisation d'un audit IAM afin d'identifier les écarts avec les bonnes pratiques GCP et d'assurer la conformité de la posture de sécurité.",
+            "Participation aux initiatives FinOps pour la rationalisation des ressources et la reprise en main de l'infrastructure par les équipes Galeries Lafayette.",
+            "Mises en production de mises à jour d'applications critiques pour le commerce."],
+        en:["Contributed to the design and deployment of the target architecture on GKE, interconnected with Cloud SQL, Cloud Storage and Cloud DNS.",
+            "Deployed and supervised application environments using a blue/green model, guaranteeing service continuity throughout the migrations.",
+            "Helped build a complete CI/CD chain — Jenkins, Bitbucket, ArgoCD, Atlantis — integrated with Terraform-managed infrastructure.",
+            "Performed an IAM audit to identify gaps against GCP best practices and ensure a compliant security posture.",
+            "Took part in FinOps initiatives to rationalize resources and hand infrastructure ownership back to Galeries Lafayette teams.",
+            "Released business-critical application updates into production."]},
+      stack:"GCP (GKE · Cloud SQL · Cloud Storage · IAM · Cloud DNS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes · Git" },
+
+    { id:"fp", company:"hardis", cloud:"aws",
+      card:{fr:"Fitness Park", en:"Fitness Park"},
+      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+      sub:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
+      title:{fr:"Fitness Park — industrialisation Terraform", en:"Fitness Park — Terraform industrialization"},
+      when:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
+      intro:{
+        fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
+        en:"Long-term support of Fitness Park's AWS infrastructure through the Hardis service center: IaC remediation, international expansion projects and delivery of a complete application."},
+      bullets:{
+        fr:["Refonte du socle Terraform de l'infrastructure : résorption des drifts accumulés et remise en service de la CI de déploiement automatique.",
+            "Réalisation des projets d'ouverture de nouveaux pays (Portugal, Italie) et d'amélioration continue, pilotés en Terraform.",
+            "Projet « Égérie » livré en un mois : cadrage du besoin, schéma d'architecture et estimation des coûts, puis déploiement sur une stack neuve, totalement indépendante de l'infrastructure existante."],
+        en:["Terraform overhaul of the infrastructure: remediation of accumulated drift and restoration of the automated deployment CI.",
+            "Delivered new-country rollouts (Portugal, Italy) and continuous improvement projects, driven with Terraform.",
+            "\"Égérie\" project delivered in one month: requirements scoping, architecture diagram and cost estimate, then deployment on a brand-new stack fully independent from the existing infrastructure."]},
+      stack:"AWS · Terraform · CI/CD" },
+
+    { id:"dim", company:"hardis", cloud:"aws",
+      card:{fr:"Dimotrans", en:"Dimotrans"},
+      role:{fr:"Cloud Engineer · RUN", en:"Cloud Engineer · RUN"},
+      sub:{fr:"mar → déc 2024", en:"Mar → Dec 2024"},
+      title:{fr:"Dimotrans — RUN et modernisation", en:"Dimotrans — RUN & modernization"},
+      when:{fr:"mar 2024 → déc 2024", en:"Mar 2024 → Dec 2024"},
+      intro:{
+        fr:"Exploitation quotidienne de l'infrastructure AWS du groupe logistique Dimotrans, avec un volet audit et modernisation.",
+        en:"Day-to-day operation of logistics group Dimotrans' AWS infrastructure, with an audit and modernization dimension."},
+      bullets:{
+        fr:["Exploitation de l'infrastructure AWS en RUN : supervision, audits et recommandations d'amélioration.",
+            "Migration de bases de données obsolètes vers des versions supportées, en limitant l'impact applicatif.",
+            "Gestion de l'infrastructure via ITSM (iTop) et support par tickets."],
+        en:["AWS infrastructure RUN operations: supervision, audits and improvement recommendations.",
+            "Migration of end-of-life databases to supported versions, minimizing application impact.",
+            "Infrastructure managed through ITSM (iTop) with ticket-based support."]},
+      stack:"AWS · RDS · iTop" },
+
+    { id:"finare", company:"hardis", cloud:"aws",
+      card:{fr:"Finaré", en:"Finaré"},
+      role:{fr:"Cloud Architect · SRE · forfait", en:"Cloud Architect · SRE · fixed-price"},
+      sub:{fr:"mai → sep 2024", en:"May → Sep 2024"},
+      title:{fr:"Finaré — data platform AWS × Snowflake", en:"Finaré — AWS × Snowflake data platform"},
+      when:{fr:"mai 2024 → sep 2024", en:"May 2024 → Sep 2024"},
+      intro:{
+        fr:"Projet au forfait : conception et déploiement de l'architecture AWS d'une data platform s'appuyant sur Snowflake.",
+        en:"Fixed-price project: design and deployment of the AWS architecture for a Snowflake-based data platform."},
+      bullets:{
+        fr:["Conception de bout en bout de l'architecture AWS, en intégration avec Snowflake.",
+            "Déploiement de l'ensemble des ressources en Infrastructure as Code avec AWS CloudFormation.",
+            "Configuration du réseau, des utilisateurs IAM et du monitoring selon les best practices AWS."],
+        en:["End-to-end AWS architecture design, integrated with Snowflake.",
+            "All resources deployed as Infrastructure as Code with AWS CloudFormation.",
+            "Network, IAM users and monitoring configured following AWS best practices."]},
+      stack:"AWS · Snowflake · CloudFormation · IAM" }
+  ],
+
+  skills: [
+    { lbl:{fr:"Cloud providers", en:"Cloud providers"},
+      items:{fr:[["AWS","avancé"],["Google Cloud","intermédiaire"],["Azure","fondamentaux"]],
+             en:[["AWS","advanced"],["Google Cloud","intermediate"],["Azure","fundamentals"]]} },
+    { lbl:{fr:"Infrastructure as Code", en:"Infrastructure as Code"},
+      inline:{fr:"Terraform · CloudFormation · Atlantis", en:"Terraform · CloudFormation · Atlantis"} },
+    { lbl:{fr:"Conteneurs & CI/CD", en:"Containers & CI/CD"},
+      inline:{fr:"Kubernetes · GKE · ECS · Docker · GitLab CI · Jenkins · ArgoCD · Bitbucket", en:"Kubernetes · GKE · ECS · Docker · GitLab CI · Jenkins · ArgoCD · Bitbucket"} },
+    { lbl:{fr:"Systèmes & langages", en:"Systems & languages"},
+      inline:{fr:"Python · Linux · PowerShell · Git", en:"Python · Linux · PowerShell · Git"} },
+    { lbl:{fr:"Pratiques", en:"Practices"},
+      inline:{fr:"FinOps · SRE · Sécurité cloud · Migration · Audit IAM", en:"FinOps · SRE · Cloud security · Migration · IAM audit"} },
+    { lbl:{fr:"Langues", en:"Languages"},
+      items:{fr:[["Français","langue maternelle"],["Anglais","avancé — TOEIC 930/990"]],
+             en:[["French","native"],["English","advanced — TOEIC 930/990"]]} }
+  ],
+
+  /* url : colle ton lien Credly / CertMetrics / Microsoft Learn,
+     OU le chemin d'un PDF déposé dans certs/ (ex "certs/aws-sa-pro.pdf").
+     null → « attestation sur demande ». */
+  certs: [
+    { name:"AWS Solutions Architect", lvl:"Professional",        who:"aws", url:"https://www.credly.com/badges/52af07a4-d667-483f-baf8-4bfc88afe91c/public_url" },
+    { name:"AWS Solutions Architect", lvl:"Associate",           who:"aws", url:"https://www.credly.com/badges/707c418f-d83f-4135-9ef7-267904f93b2f/public_url" },
+    { name:"AWS AI Practitioner",     lvl:"Foundational",        who:"aws", url:"https://www.credly.com/badges/9ac72cb5-3984-4e9a-abdf-49a8bc8766d8/public_url" },
+    { name:"AWS Cloud Practitioner",  lvl:"Foundational",        who:"aws", url:"https://www.credly.com/badges/3653321e-3bb1-4ccd-9858-09c907f2a512/public_url" },
+    { name:"Associate Cloud Engineer",lvl:"Google Cloud",        who:"gcp", url:"https://www.credly.com/badges/9a7f3f5e-a563-4a4a-8b75-b99ed8fe49fe/public_url" },
+    { name:"Terraform Associate",     lvl:"HashiCorp",           who:"hc",  url:"https://www.credly.com/badges/2173fba6-372a-45a7-9755-680f1fc442bc/public_url" },
+    { name:"AZ-104",                  lvl:"Azure Administrator", who:"az",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/FC6CB99A727C9187?sharingId=2BC6B7FEA1075E9A" },
+    { name:"AZ-900",                  lvl:"Azure Fundamentals",  who:"az",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/A4DEE29AFA0F387A?sharingId=2BC6B7FEA1075E9A" },
+    { name:"MS-900",                  lvl:"Microsoft 365",       who:"az",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/1E66DB4A452CE7BD?sharingId=2BC6B7FEA1075E9A" },
+    { name:"TOEIC 930/990",           lvl:{fr:"Anglais",en:"English"}, who:"oth", url:null }
+  ],
+
+  edu: [
+    { y:"2022 — 2024", t:{fr:"Master Architecture Cloud", en:"Master's in Cloud Architecture"},
+      p:{fr:"École d'ingénieurs EFREI Paris — Paris, France", en:"EFREI Paris School of Engineering — Paris, France"} },
+    { y:{fr:"jan — mai 2022", en:"Jan — May 2022"}, t:{fr:"Semestre à l'étranger", en:"Academic semester abroad"},
+      p:{fr:"Concordia University — Montréal, Canada · cursus anglophone", en:"Concordia University — Montréal, Canada · English courses"} },
+    { y:"2019 — 2022", t:{fr:"Licence Biologie & Numérique", en:"Bachelor of Engineering Science"},
+      p:{fr:"EFREI Paris — prépa intégrée", en:"EFREI Paris — BioInformatics minor"} }
+  ]
+};
+/* ══════════ fin du CONFIG — moteur de rendu ci-dessous ══════════ */
+
+let LANG='fr', ALLOPEN=false;
+const $=s=>document.querySelector(s);
+const pick=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v[LANG]:v;
+const CLOUD={aws:'#B06E10',gcp:'#3B6BB8',az:'#2E7CA8',hc:'#6C4BA8',multi:'#5F6A54',oth:'#8A8674'};
+const CTXT={aws:'AWS',gcp:'GCP',az:'AZ',hc:'HC',multi:'MULTI',oth:'—'};
+const t=k=>CONFIG.ui[LANG][k]||'';
+
+function renderStatic(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const v=t(el.dataset.t);
+    if(el.dataset.html)el.innerHTML=v;else el.textContent=v;
+  });
+  $('#cv-main').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
+  $('#cv-alt').href=LANG==='fr'?CONFIG.cv.en:CONFIG.cv.fr;
+  $('#btn-fr').classList.toggle('on',LANG==='fr');
+  $('#btn-en').classList.toggle('on',LANG==='en');
+  $('#legend').innerHTML=['aws','gcp','multi'].map(c=>`<i style="background:${CLOUD[c]}"></i>${CTXT[c]}`).join('');
+  updateXall();
+}
+
+function stackHTML(o){return `<div class="stackline"><b>${t('env_lbl')}</b> — ${o.stack}</div>`;}
+function detailHTML(o){
+  return `<div class="dt-h"><h3>${pick(o.title)}</h3><span class="dt-when">${pick(o.when)}</span></div>
+    <div class="dt-role">${pick(o.role)}</div>
+    ${o.intro?`<p class="dt-intro">${pick(o.intro)}</p>`:''}
+    <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
+}
+
+/* ── schéma ── */
+function renderArch(){
+  const root=$('#arch-root');root.innerHTML='';
+  CONFIG.companies.forEach(co=>{
+    const vpc=document.createElement('div');vpc.className='vpc';
+    vpc.innerHTML=`<span class="vpc-lbl">${co.name}</span><span class="vpc-meta">${pick(co.when)}</span>`;
+    const grid=document.createElement('div');grid.className='svcs';
+    const items=[];
+    if(co.coreCard){
+      items.push({obj:{title:{fr:pick2(co.coreCard.card,'fr'),en:pick2(co.coreCard.card,'en')},when:co.when,role:co.role,intro:co.intro,bullets:co.bullets,stack:co.stack},
+                  card:co.coreCard.card,role:co.role,sub:co.coreCard.sub,cloud:co.coreCard.cloud,live:false});
+    }
+    CONFIG.missions.filter(m=>m.company===co.id).forEach(m=>items.push({obj:m,card:m.card,role:m.role,sub:m.sub,cloud:m.cloud,live:m.live}));
+    items.forEach(it=>{
+      const b=document.createElement('button');b.className='svc';
+      b.innerHTML=`<div class="svc-top"><span class="ico" style="background:${CLOUD[it.cloud]}">${CTXT[it.cloud]}</span>
+        <span class="svc-n">${pick(it.card)}</span></div>
+        <div class="svc-r">${pick(it.role)}</div><div class="svc-d">${pick(it.sub)}</div>
+        ${it.live?`<div class="svc-live">● ${t('current')}</div>`:''}`;
+      b.addEventListener('click',()=>{
+        const was=b.classList.contains('on');
+        document.querySelectorAll('.svc').forEach(x=>x.classList.remove('on'));
+        document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
+        if(was)return;
+        b.classList.add('on');
+        const d=document.createElement('div');d.className='inline-detail';d.innerHTML=detailHTML(it.obj);
+        b.after(d);d.scrollIntoView({behavior:'smooth',block:'nearest'});
+      });
+      grid.appendChild(b);
+    });
+    vpc.appendChild(grid);root.appendChild(vpc);
+  });
+}
+function pick2(v,l){return (v&&typeof v==='object'&&!Array.isArray(v))?v[l]:v;}
+
+/* ── chronologie par employeur ── */
+function renderChrono(){
+  const root=$('#tl-root');root.innerHTML='';
+  CONFIG.companies.forEach(co=>{
+    const emp=document.createElement('div');emp.className='emp';
+    emp.innerHTML=`<button class="emp-head">
+        <span><span class="emp-n">${co.name}</span>
+          <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span>
+        <span class="emp-right"><span class="emp-when">${pick(co.when)}</span><span class="emp-x">+</span></span>
+      </button>
+      <div class="emp-body"><div class="emp-body-in dt">
+        <p class="dt-intro">${pick(co.intro)}</p>
+        <ul>${co.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>
+        ${stackHTML(co)}
+      </div></div>`;
+    const body=emp.querySelector('.emp-body');
+    emp.querySelector('.emp-head').addEventListener('click',()=>{
+      const was=emp.classList.contains('on');
+      if(was){emp.classList.remove('on');body.style.maxHeight='0';}
+      else{emp.classList.add('on');body.style.maxHeight=body.scrollHeight+'px';}
+      syncXall();
+    });
+    const ms=CONFIG.missions.filter(m=>m.company===co.id);
+    if(ms.length){
+      const zone=document.createElement('div');zone.className='emp-missions';
+      zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
+      ms.forEach(m=>{
+        const e=document.createElement('div');e.className='entry';
+        const card=document.createElement('div');card.className='e-card';
+        card.innerHTML=`<button class="e-btn"><span>
+            <span class="e-when">${pick(m.when)}</span>
+            <span class="e-t">${pick(m.title)}</span>
+            <span class="e-c">${pick(m.role)}</span>
+          </span><span class="e-x">+</span></button>
+          <div class="e-body"><div class="e-body-in dt">
+            ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
+            <ul>${m.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(m)}
+          </div></div>`;
+        const bd=card.querySelector('.e-body');
+        card.querySelector('.e-btn').addEventListener('click',()=>{
+          const was=card.classList.contains('on');
+          if(was){card.classList.remove('on');bd.style.maxHeight='0';}
+          else{card.classList.add('on');bd.style.maxHeight=bd.scrollHeight+'px';}
+          syncXall();
+        });
+        e.appendChild(card);zone.appendChild(e);
+      });
+      emp.appendChild(zone);
+    }
+    root.appendChild(emp);
+  });
+}
+
+/* ── tout déplier ── */
+function updateXall(){$('#xall').textContent=ALLOPEN?t('xall_close'):t('xall_open');}
+function syncXall(){
+  const all=[...document.querySelectorAll('.e-card'),...document.querySelectorAll('.emp')];
+  ALLOPEN=all.length>0&&all.every(c=>c.classList.contains('on'));
+  updateXall();
+}
+function toggleAll(){
+  ALLOPEN=!ALLOPEN;
+  document.querySelectorAll('.emp').forEach(emp=>{
+    const b=emp.querySelector('.emp-body');
+    if(ALLOPEN){emp.classList.add('on');b.style.maxHeight=b.scrollHeight+'px';}
+    else{emp.classList.remove('on');b.style.maxHeight='0';}
+  });
+  document.querySelectorAll('.e-card').forEach(c=>{
+    const bd=c.querySelector('.e-body');
+    if(ALLOPEN){c.classList.add('on');bd.style.maxHeight=bd.scrollHeight+'px';}
+    else{c.classList.remove('on');bd.style.maxHeight='0';}
+  });
+  updateXall();
+}
+
+/* ── compétences / certifs / formation ── */
+function renderSkills(){
+  const root=$('#skills-root');root.innerHTML='';
+  CONFIG.skills.forEach(s=>{
+    const row=document.createElement('div');row.className='skrow';
+    let body='';
+    if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
+    else{body=`<div class="skinline">${pick(s.inline)}</div>`;}
+    row.innerHTML=`<dt>${pick(s.lbl)}</dt><dd>${body}</dd>`;
+    root.appendChild(row);
+  });
+}
+function renderCerts(){
+  const root=$('#certs-root');root.innerHTML='';
+  CONFIG.certs.forEach(c=>{
+    const d=document.createElement('div');d.className='crow';
+    const link=c.url?`<a class="vf" href="${c.url}" target="_blank" rel="noopener">${t('verify')}</a>`
+                    :`<span class="vn">${t('verify_none')}</span>`;
+    d.innerHTML=`<span class="who" style="background:${CLOUD[c.who]}">${CTXT[c.who]}</span>
+      <span><span class="nm">${pick(c.name)}</span><br><span class="lv">${pick(c.lvl)}</span></span>
+      <span class="sp"></span>${link}`;
+    root.appendChild(d);
+  });
+}
+function renderEdu(){
+  const root=$('#edu-root');root.innerHTML='';
+  CONFIG.edu.forEach(e=>{
+    const d=document.createElement('div');d.className='edrow';
+    d.innerHTML=`<div class="y">${pick(e.y)}</div><div><h4>${pick(e.t)}</h4><p>${pick(e.p)}</p></div>`;
+    root.appendChild(d);
+  });
+}
+
+function setView(v){
+  $('#tab-arch').classList.toggle('on',v==='arch');
+  $('#tab-chrono').classList.toggle('on',v==='chrono');
+  $('#view-arch').classList.toggle('on',v==='arch');
+  $('#view-chrono').classList.toggle('on',v==='chrono');
+  $('#xall').style.display=v==='chrono'?'block':'none';
+}
+function setLang(l){
+  LANG=l;ALLOPEN=false;
+  renderStatic();renderArch();renderChrono();renderSkills();renderCerts();renderEdu();
+}
+setLang('fr');
+</script>
+</body>
+</html>

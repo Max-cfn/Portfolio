@@ -1,0 +1,14 @@
+DOSSIER CV
+==========
+
+Les deux PDF présents ici ont été générés automatiquement depuis tes .docx
+avec LibreOffice. La pagination peut différer très légèrement de Word.
+
+Pour des PDF strictement identiques à ce que tu vois dans Word :
+  Word > Fichier > Enregistrer sous > Format PDF
+puis remplace les fichiers ici EN GARDANT LES MÊMES NOMS :
+  - CV_FR_CERFONTAINE_MAXENCE.pdf
+  - CV_EN_Cerfontaine_Maxence.pdf
+
+Si tu changes les noms, mets à jour le bloc CONFIG en haut du script
+dans index.html (clé "cv").
