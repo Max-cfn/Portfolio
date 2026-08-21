@@ -108,9 +108,12 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 @keyframes vf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
 /* ── vue schéma ── */
-.legend{font-family:var(--mono);font-size:11.5px;color:var(--mut);margin-bottom:16px}
-.legend i{display:inline-block;width:8px;height:8px;margin:0 5px 0 14px;vertical-align:0}
-.legend i:first-child{margin-left:0}
+.legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.legend .mlabel{margin-right:4px}
+.lgd{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;color:var(--mut);border:1px solid var(--rule2);background:var(--card);padding:5px 11px;border-radius:2px;transition:.14s}
+.lgd svg{width:13px;height:13px;display:block}
+.lgd:hover{border-color:var(--ink);color:var(--ink)}
+.lgd.on{border-color:var(--green);color:var(--green);background:var(--green-bg)}
 .region{border:1px dashed var(--rule2);padding:34px 18px 18px;position:relative;background:var(--card)}
 .region-lbl{position:absolute;top:-9px;left:16px;background:var(--paper);padding:0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
 .vpc{border:1px solid var(--rule2);padding:30px 14px 16px;position:relative;margin-bottom:20px;background:var(--paper)}
@@ -123,7 +126,8 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .svc.on{border-color:var(--green);background:var(--green-bg)}
 .svc.on::after{content:"";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green)}
 .svc-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.ico{min-width:22px;height:22px;padding:0 4px;display:grid;place-items:center;font-family:var(--mono);font-size:8px;font-weight:500;color:#fff;flex-shrink:0}
+.ico{width:22px;height:22px;display:grid;place-items:center;flex-shrink:0}
+.ico svg{width:19px;height:19px;display:block}
 .svc-n{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.005em}
 .svc-r{font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:2px}
 .svc-d{font-family:var(--mono);font-size:10.5px;color:var(--mut)}
@@ -174,6 +178,9 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .e-when{font-family:var(--mono);font-size:11px;color:var(--rust);display:block;margin-bottom:2px}
 .e-t{font-size:15.5px;font-weight:600;letter-spacing:-.005em;display:block}
 .e-c{font-family:var(--mono);font-size:11px;color:var(--mut);display:block;margin-top:1px}
+.e-logo{width:26px;height:26px;border:1px solid var(--rule);background:var(--card);display:grid;place-items:center;flex-shrink:0;margin-top:3px}
+.e-logo svg{width:15px;height:15px;display:block}
+.e-txt{flex:1;min-width:0}
 .e-x{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:50%;background:var(--card);
   font-family:var(--mono);font-size:18px;line-height:1;color:var(--mut);flex-shrink:0;
   transition:transform .18s,color .15s,border-color .15s,background .15s}
@@ -213,8 +220,9 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .edrow h4{font-size:16px;font-weight:600;letter-spacing:-.005em}
 .edrow p{font-size:13.5px;color:var(--mut)}
 .edlogo{align-self:center;display:flex;justify-content:flex-end}
-/* multiply : fond blanc des logos fournis en PNG fondu dans le papier */
-.edlogo img{display:block;width:auto;max-width:130px;object-fit:contain;mix-blend-mode:multiply}
+/* multiply : fond blanc des logos fournis en PNG fondu dans le papier ;
+   largeur fixée par CONFIG.edu pour une taille commune */
+.edlogo img{display:block;height:auto;mix-blend-mode:multiply}
 
 /* ── contact ── */
 .contact h3{font-family:var(--disp);font-weight:470;font-size:clamp(28px,4vw,42px);letter-spacing:-.01em;margin-bottom:10px}
@@ -254,7 +262,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
     </ul>
-    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">EN</button></div>
+    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">🇫🇷 FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">🇬🇧 EN</button></div>
   </div>
 </div></nav>
 
@@ -352,11 +360,11 @@ const CONFIG = {
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
       lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
-      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter",
+      cv_btn:"🇫🇷 Télécharger le CV", cv_alt:"🇬🇧 English resume (PDF)", contact_btn:"Me contacter",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
-      s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture, ou la chronologie par employeur. Chaque élément se déplie.",
+      s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture — filtrable par techno — ou la chronologie par employeur. Chaque élément se déplie.",
       tab_arch:"Schéma d'architecture", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
       region:"RÉGION — eu-west-3 (Paris)",
@@ -366,18 +374,18 @@ const CONFIG = {
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Site statique — sans cookies ni trackers",
       verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
-      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions"
+      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions", filter_lbl:"filtrer —"
     },
     en: {
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
       lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
-      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch",
+      cv_btn:"🇬🇧 Download resume", cv_alt:"🇫🇷 CV français (PDF)", contact_btn:"Get in touch",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
-      s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram, or the employer-by-employer timeline. Every item expands.",
+      s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram — filterable by tech — or the employer-by-employer timeline. Every item expands.",
       tab_arch:"Architecture diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
       region:"REGION — eu-west-3 (Paris)",
@@ -387,7 +395,7 @@ const CONFIG = {
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Static site — no cookies, no trackers",
       verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
-      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments"
+      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments", filter_lbl:"filter —"
     }
   },
 
@@ -399,6 +407,7 @@ const CONFIG = {
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Levallois-Perret · hybride", en:"Levallois-Perret · hybrid"},
       when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
+      since:"2026-04",
       live:true,
       intro:{
         fr:"Ingénieur DevOps au sein de Devoteam A Cloud, entité de Devoteam dédiée à l'expertise AWS. J'interviens sur la conception, la sécurisation et l'industrialisation de plateformes cloud pour les clients du cabinet, avec une montée en compétences continue sur l'écosystème AWS.",
@@ -437,7 +446,31 @@ const CONFIG = {
       /* cette carte apparaît dans le schéma d'architecture */
       coreCard:{ cloud:"multi",
         card:{fr:"Socle & FinOps", en:"Core & FinOps"},
-        sub:{fr:"Paris La Défense", en:"Paris La Défense"} } }
+        sub:{fr:"Paris La Défense", en:"Paris La Défense"} } },
+
+    { id:"also", name:"ALSO Group",
+      role:{fr:"Cloud Sales Specialist", en:"Cloud Sales Specialist"},
+      contract:{fr:"Stage", en:"Internship"},
+      loc:{fr:"Gennevilliers", en:"Gennevilliers"},
+      when:{fr:"nov 2022 → mars 2023 · 5 mois", en:"Nov 2022 → Mar 2023 · 5 mos"},
+      intro:{
+        fr:"Chez ALSO, distributeur IT européen, j'étais l'interface entre l'entreprise et un portefeuille de partenaires revendeurs autour de la marketplace cloud : relation commerciale, support et migrations de services Microsoft.",
+        en:"At ALSO, a leading European IT distributor, I was the interface between the company and a portfolio of reseller partners around the cloud marketplace: business relationship, support and Microsoft service migrations."},
+      bullets:{
+        fr:["Référent et point de contact privilégié des partenaires pour toutes leurs demandes : marketplace, services, tarification, campagnes commerciales.",
+            "Premier niveau de support technique, qualification des demandes et escalade vers les équipes spécialisées.",
+            "Accompagnement des migrations de services Microsoft en fin de vie vers les offres actuelles, en anticipant les dates anniversaires, décisives sur certains contrats.",
+            "Cadrage d'un projet de passage complet d'un environnement on-premises vers le cloud : périmètre, besoins et proposition d'une solution adaptée.",
+            "Montée en compétences sur Azure et Microsoft 365 au fil des parcours de formation de l'écosystème Microsoft."],
+        en:["Trusted point of contact for a portfolio of partners on every request: marketplace, services, pricing, sales campaigns.",
+            "First-line technical support, qualifying requests and escalating to the dedicated teams.",
+            "Guided partners through migrations of end-of-life Microsoft services to current offerings, anticipating the anniversary dates critical to some contracts.",
+            "Scoped a full on-premises-to-cloud move: perimeter, requirements and a fitting solution proposal.",
+            "Built up Azure and Microsoft 365 skills through Microsoft ecosystem training tracks."]},
+      stack:"Azure · Microsoft 365 · Marketplace ALSO",
+      coreCard:{ cloud:"az",
+        card:{fr:"Partenaires & marketplace", en:"Partners & marketplace"},
+        sub:{fr:"Gennevilliers", en:"Gennevilliers"} } }
   ],
 
   /* ── Missions (imbriquées sous leur employeur) ── */
@@ -448,6 +481,7 @@ const CONFIG = {
       sub:{fr:"Levallois-Perret", en:"Levallois-Perret"},
       title:{fr:"Plateforme GenAI sécurisée", en:"Secured GenAI Platform"},
       when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
+      since:"2026-04",
       intro:{
         fr:"Construction d'une plateforme GenAI destinée à fournir aux clients des LLM personnalisés et conformes à leurs exigences de sécurité et de conformité.",
         en:"Building a GenAI platform that provides clients with custom LLMs meeting their security and compliance requirements."},
@@ -461,6 +495,26 @@ const CONFIG = {
             "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment.",
             "Migration of legacy EC2 applications to ECS, and deployment of new cloud-native applications on ECS."]},
       stack:"AWS · ECS · EC2 · LiteLLM · GitLab CI · VPC" },
+
+    { id:"courir", company:"hardis", cloud:"gcp",
+      card:{fr:"Courir", en:"Courir"},
+      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+      sub:{fr:"oct 2025 → mar 2026", en:"Oct 2025 → Mar 2026"},
+      title:{fr:"Courir — supervision et détection automatisée d'incidents", en:"Courir — monitoring & automated incident detection"},
+      when:{fr:"oct 2025 → mar 2026 · 6 mois", en:"Oct 2025 → Mar 2026 · 6 mos"},
+      intro:{
+        fr:"Pour l'enseigne Courir, mise en place de la supervision de l'infrastructure GCP et d'une chaîne de détection d'incidents entièrement automatisée, des alertes de monitoring jusqu'au ticket de support.",
+        en:"For the retailer Courir, set up GCP infrastructure monitoring and a fully automated incident-detection chain, from monitoring alerts down to the support ticket."},
+      bullets:{
+        fr:["Alertes GCP Monitoring reliées à l'outil de ticketing via GCP Workflows et son API REST : le ticket d'incident est créé automatiquement, sans intervention humaine.",
+            "Qualification automatique de chaque incident : priorité dérivée de la sévérité de l'alerte, affectation à l'équipe de support concernée, description formatée avec origine, résumé et lien direct vers la console GCP.",
+            "Cycle de vie complet outillé pour l'équipe Cloud Operations : prise en charge, communication client et traçabilité jusqu'à la clôture.",
+            "Remise à plat du socle Terraform et correction des drifts accumulés."],
+        en:["GCP Monitoring alerts wired to the ticketing tool through GCP Workflows and its REST API: incident tickets are created automatically, with no human intervention.",
+            "Automatic qualification of every incident: priority derived from alert severity, routing to the right support team, formatted description with origin, summary and a direct link to the GCP console.",
+            "Full lifecycle tooling for the Cloud Operations team: takeover, client communication and traceability through to closure.",
+            "Terraform overhaul and remediation of accumulated drift."]},
+      stack:"GCP (Cloud Monitoring · Workflows) · Terraform · API REST · ITSM" },
 
     { id:"gl", company:"hardis", cloud:"gcp",
       card:{fr:"Galeries Lafayette", en:"Galeries Lafayette"},
@@ -574,17 +628,17 @@ const CONFIG = {
     { name:"TOEIC 930/990",           lvl:{fr:"Anglais",en:"English"}, who:"oth", url:null }
   ],
 
-  /* logo : fichier dans assets/ + hauteur d'affichage en px */
+  /* logo : fichier dans assets/ + largeur d'affichage en px (commune → même taille) */
   edu: [
     { y:"2022 — 2024", t:{fr:"Master Architecture Cloud", en:"Master's in Cloud Architecture"},
       p:{fr:"École d'ingénieurs EFREI Paris — Paris, France", en:"EFREI Paris School of Engineering — Paris, France"},
-      logo:{ src:"assets/logo-efrei.png", alt:"EFREI Paris", h:34 } },
+      logo:{ src:"assets/logo-efrei.png", alt:"EFREI Paris", w:120 } },
     { y:{fr:"jan — mai 2022", en:"Jan — May 2022"}, t:{fr:"Semestre à l'étranger", en:"Academic semester abroad"},
       p:{fr:"Concordia University — Montréal, Canada · cursus anglophone", en:"Concordia University — Montréal, Canada · English courses"},
-      logo:{ src:"assets/logo-concordia.svg", alt:"Concordia University", h:18 } },
+      logo:{ src:"assets/logo-concordia.svg", alt:"Concordia University", w:120 } },
     { y:"2019 — 2022", t:{fr:"Licence Biologie & Numérique", en:"Bachelor of Engineering Science"},
       p:{fr:"EFREI Paris — prépa intégrée", en:"EFREI Paris — BioInformatics minor"},
-      logo:{ src:"assets/logo-efrei.png", alt:"EFREI Paris", h:30 } }
+      logo:{ src:"assets/logo-efrei.png", alt:"EFREI Paris", w:120 } }
   ]
 };
 /* ══════════ fin du CONFIG — moteur de rendu ci-dessous ══════════ */
@@ -606,6 +660,21 @@ const LOGOS={
   oth:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="#7C7A6B" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4.1" ry="9"/><path d="M3.2 12h17.6M5 6.6h14M5 17.4h14"/></g></svg>'
 };
 const t=k=>CONFIG.ui[LANG][k]||'';
+LOGOS.multi=LOGOS.oth;
+
+/* durée depuis une date "YYYY-MM", comptée en mois inclusifs
+   (mar 2024 → mar 2026 = « 2 ans 1 mois ») — l'affichage du poste
+   en cours reste juste sans retoucher le CONFIG chaque mois. */
+function dur(since){
+  const [y,m]=since.split('-').map(Number), now=new Date();
+  let n=(now.getFullYear()-y)*12+now.getMonth()+1-m+1;
+  if(n<1)n=1;
+  const yr=Math.floor(n/12), mo=n%12, fr=LANG==='fr', out=[];
+  if(yr)out.push(yr+(fr?(yr>1?' ans':' an'):(yr>1?' yrs':' yr')));
+  if(mo)out.push(mo+(fr?' mois':(mo>1?' mos':' mo')));
+  return out.join(' ');
+}
+const whenStr=o=>pick(o.when)+(o.since?' · '+dur(o.since):'');
 
 function renderStatic(){
   document.documentElement.lang=LANG;
@@ -617,16 +686,40 @@ function renderStatic(){
   $('#cv-alt').href=LANG==='fr'?CONFIG.cv.en:CONFIG.cv.fr;
   $('#btn-fr').classList.toggle('on',LANG==='fr');
   $('#btn-en').classList.toggle('on',LANG==='en');
-  $('#legend').innerHTML=['aws','gcp','multi'].map(c=>`<i style="background:${CLOUD[c]}"></i>${CTXT[c]}`).join('');
+  renderLegend();
   updateXall();
 }
 
 function stackHTML(o){return `<div class="stackline"><b>${t('env_lbl')}</b> — ${o.stack}</div>`;}
 function detailHTML(o){
-  return `<div class="dt-h"><h3>${pick(o.title)}</h3><span class="dt-when">${pick(o.when)}</span></div>
+  return `<div class="dt-h"><h3>${pick(o.title)}</h3><span class="dt-when">${whenStr(o)}</span></div>
     <div class="dt-role">${pick(o.role)}</div>
     ${o.intro?`<p class="dt-intro">${pick(o.intro)}</p>`:''}
     <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
+}
+
+/* ── filtre par techno du schéma ── */
+let ARCHFILTER=null;
+function renderLegend(){
+  const lg=$('#legend');lg.innerHTML=`<span class="mlabel">${t('filter_lbl')}</span>`;
+  [['aws','AWS'],['gcp','GCP'],['az','Azure'],['multi',LANG==='fr'?'Général':'General']].forEach(([c,label])=>{
+    const b=document.createElement('button');
+    b.className='lgd'+(ARCHFILTER===c?' on':'');
+    b.innerHTML=`${LOGOS[c]}${label}`;
+    b.addEventListener('click',()=>{ARCHFILTER=(ARCHFILTER===c)?null:c;applyArchFilter();renderLegend();});
+    lg.appendChild(b);
+  });
+}
+function applyArchFilter(){
+  document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
+  document.querySelectorAll('.svc').forEach(sv=>{
+    sv.classList.remove('on');
+    sv.style.display=(!ARCHFILTER||sv.dataset.cloud===ARCHFILTER)?'':'none';
+  });
+  document.querySelectorAll('.vpc').forEach(v=>{
+    const any=[...v.querySelectorAll('.svc')].some(sv=>sv.style.display!=='none');
+    v.style.display=any?'':'none';
+  });
 }
 
 /* ── schéma ── */
@@ -634,17 +727,17 @@ function renderArch(){
   const root=$('#arch-root');root.innerHTML='';
   CONFIG.companies.forEach(co=>{
     const vpc=document.createElement('div');vpc.className='vpc';
-    vpc.innerHTML=`<span class="vpc-lbl">${co.name}</span><span class="vpc-meta">${pick(co.when)}</span>`;
+    vpc.innerHTML=`<span class="vpc-lbl">${co.name}</span><span class="vpc-meta">${whenStr(co)}</span>`;
     const grid=document.createElement('div');grid.className='svcs';
     const items=[];
     if(co.coreCard){
-      items.push({obj:{title:{fr:pick2(co.coreCard.card,'fr'),en:pick2(co.coreCard.card,'en')},when:co.when,role:co.role,intro:co.intro,bullets:co.bullets,stack:co.stack},
+      items.push({obj:{title:{fr:pick2(co.coreCard.card,'fr'),en:pick2(co.coreCard.card,'en')},when:co.when,since:co.since,role:co.role,intro:co.intro,bullets:co.bullets,stack:co.stack},
                   card:co.coreCard.card,role:co.role,sub:co.coreCard.sub,cloud:co.coreCard.cloud,live:false});
     }
     CONFIG.missions.filter(m=>m.company===co.id).forEach(m=>items.push({obj:m,card:m.card,role:m.role,sub:m.sub,cloud:m.cloud,live:m.live}));
     items.forEach(it=>{
-      const b=document.createElement('button');b.className='svc';
-      b.innerHTML=`<div class="svc-top"><span class="ico" style="background:${CLOUD[it.cloud]}">${CTXT[it.cloud]}</span>
+      const b=document.createElement('button');b.className='svc';b.dataset.cloud=it.cloud;
+      b.innerHTML=`<div class="svc-top"><span class="ico">${LOGOS[it.cloud]||LOGOS.oth}</span>
         <span class="svc-n">${pick(it.card)}</span></div>
         <div class="svc-r">${pick(it.role)}</div><div class="svc-d">${pick(it.sub)}</div>
         ${it.live?`<div class="svc-live">● ${t('current')}</div>`:''}`;
@@ -661,6 +754,7 @@ function renderArch(){
     });
     vpc.appendChild(grid);root.appendChild(vpc);
   });
+  applyArchFilter();
 }
 function pick2(v,l){return (v&&typeof v==='object'&&!Array.isArray(v))?v[l]:v;}
 
@@ -691,7 +785,7 @@ function renderChrono(){
     emp.innerHTML=`<button class="emp-head" aria-expanded="true">
         <span><span class="emp-n">${co.name}</span>
           <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span>
-        <span class="emp-right"><span class="emp-when">${pick(co.when)}</span><span class="emp-x">+</span></span>
+        <span class="emp-right"><span class="emp-when">${whenStr(co)}</span><span class="emp-x">+</span></span>
       </button>
       <div class="emp-body"><div class="emp-body-in dt">
         <p class="dt-intro">${pick(co.intro)}</p>
@@ -717,8 +811,8 @@ function renderChrono(){
       ms.forEach(m=>{
         const e=document.createElement('div');e.className='entry';
         const card=document.createElement('div');card.className='e-card';
-        card.innerHTML=`<button class="e-btn" aria-expanded="false"><span>
-            <span class="e-when">${pick(m.when)}</span>
+        card.innerHTML=`<button class="e-btn" aria-expanded="false"><span class="e-logo">${LOGOS[m.cloud]||LOGOS.oth}</span><span class="e-txt">
+            <span class="e-when">${whenStr(m)}</span>
             <span class="e-t">${pick(m.title)}</span>
             <span class="e-c">${pick(m.role)}</span>
           </span><span class="e-x">+</span></button>
@@ -794,7 +888,7 @@ function renderEdu(){
   const root=$('#edu-root');root.innerHTML='';
   CONFIG.edu.forEach(e=>{
     const d=document.createElement('div');d.className='edrow';
-    const logo=e.logo?`<div class="edlogo"><img src="${e.logo.src}" alt="${e.logo.alt}" style="height:${e.logo.h}px" loading="lazy"></div>`:'<div></div>';
+    const logo=e.logo?`<div class="edlogo"><img src="${e.logo.src}" alt="${e.logo.alt}" style="width:${e.logo.w}px" loading="lazy"></div>`:'<div></div>';
     d.innerHTML=`<div class="y">${pick(e.y)}</div><div><h4>${pick(e.t)}</h4><p>${pick(e.p)}</p></div>${logo}`;
     root.appendChild(d);
   });
