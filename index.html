@@ -52,6 +52,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 ::selection{background:var(--green);color:var(--paper)}
 .mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--mut)}
 .mnum{font-family:var(--mono);font-size:11.5px;color:var(--rust)}
+.flag{display:inline-block;width:16px;aspect-ratio:5/3;height:auto;border-radius:2px;vertical-align:-2px;outline:1px solid rgba(28,27,21,.14);outline-offset:-1px}
+.flag+.flag{margin-left:3px}
+.lang .flag{width:14px;vertical-align:-1.5px}
 
 /* ── nav ── */
 nav{position:sticky;top:0;z-index:50;background:rgba(244,242,235,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
@@ -121,7 +124,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .vpc-lbl{position:absolute;top:-10px;left:14px;background:var(--ink);color:var(--paper);padding:1px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
 .vpc-meta{position:absolute;top:-8px;right:14px;background:var(--paper);padding:0 8px;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
 .svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-.svc{background:var(--card);border:1px solid var(--rule2);padding:13px 14px;text-align:left;transition:.14s;position:relative}
+.svc{background:var(--card);border:1px solid var(--rule2);padding:13px 14px;text-align:left;transition:.14s;position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
 .svc:hover{border-color:var(--ink);transform:translateY(-1px)}
 .svc.on{border-color:var(--green);background:var(--green-bg)}
 .svc.on::after{content:"";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green)}
@@ -263,7 +266,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
     </ul>
-    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">🇫🇷 FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">🇬🇧 EN</button></div>
+    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">EN</button></div>
   </div>
 </div></nav>
 
@@ -361,7 +364,7 @@ const CONFIG = {
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
       lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
-      cv_btn:"🇫🇷 Télécharger le CV", cv_alt:"🇬🇧 English resume (PDF)", contact_btn:"Me contacter",
+      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
@@ -382,7 +385,7 @@ const CONFIG = {
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
       lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
-      cv_btn:"🇬🇧 Download resume", cv_alt:"🇫🇷 CV français (PDF)", contact_btn:"Get in touch",
+      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
@@ -492,13 +495,11 @@ const CONFIG = {
       bullets:{
         fr:["Déploiement de la plateforme sur un réseau AWS entièrement isolé et sécurisé, garantissant le cloisonnement des données clients.",
             "Exposition de LLM personnalisés et conformes via LiteLLM, avec gestion centralisée des accès et des quotas.",
-            "Conception, maintenance et évolution de la pipeline CI/CD sous GitLab, du build jusqu'au déploiement.",
-            "Migration d'applications historiques EC2 vers ECS, et déploiement de nouvelles applications cloud native sur ECS."],
+            "Conception, maintenance et évolution de la pipeline CI/CD sous GitLab, du build jusqu'au déploiement."],
         en:["Platform deployed on a fully isolated, secured AWS network, guaranteeing strict separation of client data.",
             "Custom, compliant LLMs served through LiteLLM, with centralized access and quota management.",
-            "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment.",
-            "Migration of legacy EC2 applications to ECS, and deployment of new cloud-native applications on ECS."]},
-      stack:"AWS · ECS · EC2 · LiteLLM · GitLab CI · VPC" },
+            "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment."]},
+      stack:"AWS · ECS · LiteLLM · GitLab CI · VPC" },
 
     { id:"courir", company:"hardis", cloud:"gcp",
       card:{fr:"Courir", en:"Courir"},
@@ -671,6 +672,15 @@ const LOGOS={
 const t=k=>CONFIG.ui[LANG][k]||'';
 LOGOS.multi=LOGOS.oth;
 
+/* Drapeaux en SVG inline : rendu identique partout, là où les emojis
+   drapeaux s'affichent en lettres (Windows). Anglais = UK + US. */
+const FLAGS={
+  fr:'<svg class="flag" viewBox="0 0 50 30" aria-hidden="true"><rect width="50" height="30" fill="#fff"/><rect width="16.7" height="30" fill="#002395"/><rect x="33.3" width="16.7" height="30" fill="#ED2939"/></svg>',
+  gb:'<svg class="flag" viewBox="0 0 50 30" aria-hidden="true"><rect width="50" height="30" fill="#012169"/><path d="M0 0 50 30M50 0 0 30" stroke="#fff" stroke-width="6"/><path d="M0 0 50 30M50 0 0 30" stroke="#C8102E" stroke-width="2.5"/><path d="M25 0v30M0 15h50" stroke="#fff" stroke-width="10"/><path d="M25 0v30M0 15h50" stroke="#C8102E" stroke-width="6"/></svg>',
+  us:'<svg class="flag" viewBox="0 0 50 30" aria-hidden="true"><rect width="50" height="30" fill="#fff"/><g fill="#B22234"><rect width="50" height="4.3"/><rect y="8.6" width="50" height="4.3"/><rect y="17.1" width="50" height="4.3"/><rect y="25.7" width="50" height="4.3"/></g><rect width="21" height="15" fill="#3C3B6E"/></svg>'
+};
+FLAGS.en=FLAGS.gb+FLAGS.us;
+
 /* durée depuis une date "YYYY-MM", comptée en mois inclusifs
    (mar 2024 → mar 2026 = « 2 ans 1 mois ») — l'affichage du poste
    en cours reste juste sans retoucher le CONFIG chaque mois. */
@@ -693,6 +703,10 @@ function renderStatic(){
   });
   $('#cv-main').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-alt').href=LANG==='fr'?CONFIG.cv.en:CONFIG.cv.fr;
+  $('#cv-main').innerHTML=(LANG==='fr'?FLAGS.fr:FLAGS.en)+' '+t('cv_btn');
+  $('#cv-alt').innerHTML=(LANG==='fr'?FLAGS.en:FLAGS.fr)+' '+t('cv_alt');
+  $('#btn-fr').innerHTML=FLAGS.fr+' FR';
+  $('#btn-en').innerHTML=FLAGS.en+' EN';
   $('#btn-fr').classList.toggle('on',LANG==='fr');
   $('#btn-en').classList.toggle('on',LANG==='en');
   renderLegend();
