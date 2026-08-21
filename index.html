@@ -266,7 +266,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
     </ul>
-    <div class="lang"><button id="btn-fr" onclick="setLang('fr')">FR</button><span>/</span><button id="btn-en" onclick="setLang('en')">EN</button></div>
+    <div class="lang"><button id="btn-fr" onclick="setLang('fr',true)">FR</button><span>/</span><button id="btn-en" onclick="setLang('en',true)">EN</button></div>
   </div>
 </div></nav>
 
@@ -925,11 +925,22 @@ function setView(v){
   $('#view-chrono').classList.toggle('on',v==='chrono');
   $('#xall').style.display=v==='chrono'?'block':'none';
 }
-function setLang(l){
+function setLang(l,remember){
+  if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
   LANG=l;ALLOPEN=false;
   renderStatic();renderArch();renderChrono();renderSkills();renderCerts();renderEdu();
 }
-setLang('fr');
+
+/* Langue initiale : choix mémorisé, sinon langue du navigateur —
+   un visiteur non francophone (donc a priori hors de France) démarre
+   en anglais, un navigateur en français garde le français. */
+let initLang=null;
+try{initLang=localStorage.getItem('lang')}catch(e){}
+if(initLang!=='fr'&&initLang!=='en'){
+  const nav=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'fr'];
+  initLang=nav.some(l=>/^fr/i.test(l))?'fr':'en';
+}
+setLang(initLang);
 </script>
 </body>
 </html>
