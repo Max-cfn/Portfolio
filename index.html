@@ -234,6 +234,12 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
+/* étroit : l'étiquette employeur et la période se chevauchaient sur la
+   bordure haute du bloc — la période repasse dans le flux, sous l'étiquette. */
+@media(max-width:560px){
+  .vpc{padding-top:22px}
+  .vpc-meta{position:static;display:block;background:none;padding:0;margin-bottom:12px}
+}
 </style>
 </head>
 <body>
