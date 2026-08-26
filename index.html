@@ -140,7 +140,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-company-logo img{display:block;max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
 .arch-company-name,.arch-mission-name{display:block;font-weight:600;line-height:1.25}
 .arch-company-name{font-family:var(--disp);font-size:18px;font-weight:520}
-.arch-node-role{display:block;font-family:var(--mono);font-size:9.5px;color:var(--green);margin-bottom:3px;line-height:1.35}
+.arch-node-role{display:block;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green);margin-bottom:3px;line-height:1.4}
 .arch-node-when{display:block;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:4px;line-height:1.35}
 .arch-toggle{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--rule2);border-radius:50%;font-family:var(--mono);font-size:16px;color:var(--mut);transition:transform .2s,color .15s,border-color .15s}
 .arch-item.on .arch-toggle{transform:rotate(45deg);color:var(--green);border-color:var(--green)}
@@ -158,6 +158,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-provider{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
 .arch-provider svg{width:17px;height:17px;display:block}
 .arch-mission-name{font-size:13px}
+.arch-mission-role{display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green);margin-top:5px;line-height:1.4}
 .arch-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--rust);text-transform:uppercase;margin-top:6px}
 .arch-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
 @media(max-width:980px) and (min-width:861px){
@@ -475,7 +476,7 @@ const CONFIG = {
         intro + bullets = le poste lui-même (ex-« Socle & FinOps »). ── */
   companies: [
     { id:"devoteam", name:"Devoteam A Cloud",
-      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      role:{fr:"Ingénieur DevOps AWS", en:"AWS DevOps Engineer"},
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Levallois-Perret · hybride", en:"Levallois-Perret · hybrid"},
       when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
@@ -496,7 +497,7 @@ const CONFIG = {
       coreCard:null },
 
     { id:"hardis", name:"Hardis Group",
-      role:{fr:"Ingénieur Cloud — équipe Cloud Operations", en:"Cloud Engineer — Cloud Operations team"},
+      role:{fr:"Ingénieur Cloud multi-cloud · Cloud Operations", en:"Multi-cloud Engineer · Cloud Operations"},
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Paris La Défense · hybride", en:"Paris La Défense · hybrid"},
       when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
@@ -517,7 +518,7 @@ const CONFIG = {
       stack:"AWS · GCP · Azure · Terraform · CloudFormation · FinOps · ITSM",
       /* cette carte apparaît dans le schéma d'architecture */
       coreCard:{ cloud:"multi",
-        card:{fr:"Socle & FinOps", en:"Core & FinOps"},
+        card:{fr:"Cloud Operations & FinOps", en:"Cloud Operations & FinOps"},
         sub:{fr:"Paris La Défense", en:"Paris La Défense"},
         tag:{fr:"Architecture, IaC, FinOps et RUN multi-clients", en:"Architecture, IaC, FinOps & multi-client RUN"} } },
 
@@ -542,7 +543,7 @@ const CONFIG = {
             "Built up Azure and Microsoft 365 skills through Microsoft ecosystem training tracks."]},
       stack:"Azure · Microsoft 365 · Marketplace ALSO",
       coreCard:{ cloud:"az",
-        card:{fr:"Partenaires & marketplace", en:"Partners & marketplace"},
+        card:{fr:"Partenaires cloud & marketplace", en:"Cloud partners & marketplace"},
         sub:{fr:"Gennevilliers", en:"Gennevilliers"},
         tag:{fr:"Relation partenaires, marketplace, migrations Microsoft", en:"Partner relations, marketplace, Microsoft migrations"} } }
   ],
@@ -550,8 +551,8 @@ const CONFIG = {
   /* ── Missions (imbriquées sous leur employeur) ── */
   missions: [
     { id:"genai", company:"devoteam", cloud:"aws", live:true,
-      card:{fr:"Plateforme GenAI", en:"GenAI Platform"},
-      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      card:{fr:"Plateforme GenAI sécurisée", en:"Secure GenAI Platform"},
+      role:{fr:"Ingénieur DevOps AWS", en:"AWS DevOps Engineer"},
       sub:{fr:"Levallois-Perret", en:"Levallois-Perret"},
       tag:{fr:"LLM privés sur réseau AWS isolé · CI/CD GitLab · ECS", en:"Private LLMs on an isolated AWS network · GitLab CI/CD · ECS"},
       title:{fr:"Plateforme GenAI sécurisée", en:"Secured GenAI Platform"},
@@ -570,11 +571,11 @@ const CONFIG = {
       stack:"AWS · ECS · LiteLLM · GitLab CI · VPC" },
 
     { id:"courir", company:"hardis", cloud:"gcp", durationMonths:6, displayOrder:3,
-      card:{fr:"Courir", en:"Courir"},
-      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+      card:{fr:"Courir — Supervision automatisée", en:"Courir — Automated Monitoring"},
+      role:{fr:"Ingénieur Cloud GCP · Centre de services", en:"GCP Cloud Engineer · Service Center"},
       sub:{fr:"oct 2025 → mar 2026", en:"Oct 2025 → Mar 2026"},
       tag:{fr:"Alertes GCP → tickets d'incident automatisés · Terraform", en:"GCP alerts → automated incident tickets · Terraform"},
-      title:{fr:"Courir — supervision et détection automatisée d'incidents", en:"Courir — monitoring & automated incident detection"},
+      title:{fr:"Courir — Supervision & gestion automatisée des incidents", en:"Courir — Automated Monitoring & Incident Management"},
       when:{fr:"oct 2025 → mar 2026 · 6 mois", en:"Oct 2025 → Mar 2026 · 6 mos"},
       intro:{
         fr:"Pour l'enseigne Courir, mise en place de la supervision de l'infrastructure GCP et d'une chaîne de détection d'incidents entièrement automatisée, des alertes de monitoring jusqu'au ticket de support.",
@@ -591,11 +592,11 @@ const CONFIG = {
       stack:"GCP (Cloud Monitoring · Workflows) · Terraform · API REST · ITSM" },
 
     { id:"gl", company:"hardis", cloud:"gcp", durationMonths:8, displayOrder:2,
-      card:{fr:"Galeries Lafayette", en:"Galeries Lafayette"},
-      role:{fr:"DevOps · mission en régie", en:"DevOps · on-site assignment"},
+      card:{fr:"Galeries Lafayette — Migration vers GKE", en:"Galeries Lafayette — GKE Migration"},
+      role:{fr:"Ingénieur DevOps GCP · Régie", en:"GCP DevOps Engineer · Client Assignment"},
       sub:{fr:"mar → oct 2025", en:"Mar → Oct 2025"},
       tag:{fr:"Migration e-commerce vers GKE · CI/CD · blue/green", en:"E-commerce migration to GKE · CI/CD · blue/green"},
-      title:{fr:"Galeries Lafayette — migration e-commerce vers GCP", en:"Galeries Lafayette — e-commerce migration to GCP"},
+      title:{fr:"Galeries Lafayette — Migration e-commerce vers GKE", en:"Galeries Lafayette — E-commerce Migration to GKE"},
       when:{fr:"mar 2025 → oct 2025 · 8 mois", en:"Mar 2025 → Oct 2025 · 8 mos"},
       intro:{
         fr:"Intégré à l'équipe BUILD Cloud des Galeries Lafayette, j'ai participé à la migration d'un ensemble d'applications e-commerce depuis l'infrastructure on-premise vers Google Cloud Platform, dans une logique de modernisation et de réduction des coûts.",
@@ -616,11 +617,11 @@ const CONFIG = {
       stack:"GCP (GKE · Cloud SQL · Cloud Storage · IAM · Cloud DNS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes · Git" },
 
     { id:"fp", company:"hardis", cloud:"aws", durationMonths:25, displayOrder:1,
-      card:{fr:"Fitness Park", en:"Fitness Park"},
-      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+      card:{fr:"Fitness Park — Industrialisation Terraform", en:"Fitness Park — Terraform Industrialization"},
+      role:{fr:"Ingénieur Cloud AWS · Centre de services", en:"AWS Cloud Engineer · Service Center"},
       sub:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
       tag:{fr:"Refonte Terraform · ouvertures pays · projet Égérie", en:"Terraform overhaul · country rollouts · Égérie project"},
-      title:{fr:"Fitness Park — industrialisation Terraform", en:"Fitness Park — Terraform industrialization"},
+      title:{fr:"Fitness Park — Industrialisation Terraform & IaC", en:"Fitness Park — Terraform & IaC Industrialization"},
       when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
       intro:{
         fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
@@ -635,11 +636,11 @@ const CONFIG = {
       stack:"AWS · Terraform · CI/CD" },
 
     { id:"dim", company:"hardis", cloud:"aws", durationMonths:10, displayOrder:4,
-      card:{fr:"Dimotrans", en:"Dimotrans"},
-      role:{fr:"Cloud Engineer · RUN", en:"Cloud Engineer · RUN"},
+      card:{fr:"Dimotrans — RUN & modernisation", en:"Dimotrans — RUN & Modernization"},
+      role:{fr:"Ingénieur Cloud AWS · Centre de services / RUN", en:"AWS Cloud Engineer · Service Center / RUN"},
       sub:{fr:"mar → déc 2024", en:"Mar → Dec 2024"},
       tag:{fr:"RUN AWS · migrations de bases de données · audits", en:"AWS RUN · database migrations · audits"},
-      title:{fr:"Dimotrans — RUN et modernisation", en:"Dimotrans — RUN & modernization"},
+      title:{fr:"Dimotrans — RUN & modernisation AWS", en:"Dimotrans — AWS RUN & Modernization"},
       when:{fr:"mar 2024 → déc 2024 · 10 mois", en:"Mar 2024 → Dec 2024 · 10 mos"},
       intro:{
         fr:"Exploitation quotidienne de l'infrastructure AWS du groupe logistique Dimotrans, avec un volet audit et modernisation.",
@@ -654,11 +655,11 @@ const CONFIG = {
       stack:"AWS · RDS · iTop" },
 
     { id:"finare", company:"hardis", cloud:"aws", durationMonths:5, displayOrder:5,
-      card:{fr:"Finaré", en:"Finaré"},
-      role:{fr:"Cloud Architect · SRE · forfait", en:"Cloud Architect · SRE · fixed-price"},
+      card:{fr:"Finaré — Plateforme data AWS", en:"Finaré — AWS Data Platform"},
+      role:{fr:"Architecte Cloud AWS / SRE · Forfait", en:"AWS Cloud Architect / SRE · Fixed-price Project"},
       sub:{fr:"mai → sep 2024", en:"May → Sep 2024"},
       tag:{fr:"Data platform AWS × Snowflake · CloudFormation", en:"AWS × Snowflake data platform · CloudFormation"},
-      title:{fr:"Finaré — data platform AWS × Snowflake", en:"Finaré — AWS × Snowflake data platform"},
+      title:{fr:"Finaré — Plateforme data AWS × Snowflake", en:"Finaré — AWS × Snowflake Data Platform"},
       when:{fr:"mai 2024 → sep 2024 · 5 mois", en:"May 2024 → Sep 2024 · 5 mos"},
       intro:{
         fr:"Projet au forfait : conception et déploiement de l'architecture AWS d'une data platform s'appuyant sur Snowflake.",
@@ -863,7 +864,7 @@ function renderArch(){
 
     const logo=COMPANY_LOGOS[co.id];
     const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
-      <span><span class="arch-node-role">${pick(co.role)}</span><strong class="arch-company-name">${co.name}</strong>
+      <span><span class="arch-node-role">${pick(co.role)} · ${pick(co.contract)}</span><strong class="arch-company-name">${co.name}</strong>
       <span class="arch-node-when">${whenStr(co)}</span>
       ${co.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
     row.appendChild(makeArchItem('company',co.id,co,companyHead,'arch-company-head'));
@@ -874,7 +875,8 @@ function renderArch(){
       missions.forEach(m=>{
         const missionHead=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
           <span><strong class="arch-mission-name">${pick(m.card)}</strong>
-          <span class="arch-node-when">${CTXT[m.cloud]} · ${pick(m.when)}</span>
+          <span class="arch-mission-role">${pick(m.role)}</span>
+          <span class="arch-node-when">${pick(m.when)}</span>
           ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
         missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
       });
@@ -1047,7 +1049,8 @@ function renderChrono(){
       setBody(body,open);
       syncXall();
     });
-    const ms=CONFIG.missions.filter(m=>m.company===co.id);
+    const ms=CONFIG.missions.filter(m=>m.company===co.id)
+      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
       zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
