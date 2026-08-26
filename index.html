@@ -103,13 +103,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .ssub{font-size:13.5px;color:var(--mut);margin-bottom:30px;max-width:70ch}
 
 /* ── tabs ── */
-.tabbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule2);margin-bottom:30px;padding-bottom:12px;gap:14px;flex-wrap:wrap}
+.tabbar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule2);margin-bottom:30px;gap:14px;flex-wrap:wrap}
 .tabs{display:flex;gap:7px}
-.tabs button{font-size:14px;font-weight:600;color:var(--mut);padding:9px 13px;border:1px solid var(--rule2);background:var(--card);transition:color .16s,background .16s,border-color .16s,transform .16s}
+.tabs button{font-size:14px;font-weight:600;color:var(--mut);padding:9px 13px;border:1px solid var(--rule2);background:var(--card);margin-bottom:-1px;transition:color .16s,background .16s,border-color .16s,transform .16s}
 .tabs button.on{color:var(--paper);background:var(--green);border-color:var(--green)}
 .tabs button:not(.on):hover{color:var(--green);background:var(--green-bg);border-color:var(--green);transform:translateY(-1px)}
 .tabs button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
-.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:9px 2px}
+.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:9px 2px;margin-bottom:-1px}
 .xall:hover{text-decoration:underline}
 .view{display:none}
 .view.on{display:block;animation:vf .22s ease}
@@ -126,8 +126,8 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-wire-branch{stroke:var(--green);stroke-width:1.25;opacity:.58}
 .arch-packet{fill:var(--green)}
 .arch-rows{display:grid;gap:56px;position:relative;z-index:1}
-.arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);gap:70px;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
-.arch-row.has-company-open{grid-template-columns:minmax(0,1fr);gap:20px}
+.arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);column-gap:70px;row-gap:0;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
+.arch-row.has-company-open{grid-template-columns:minmax(0,1fr);column-gap:0;row-gap:20px}
 .arch-row-label{position:absolute;top:-9px;left:14px;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
 .arch-item{position:relative;z-index:3;min-width:0;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,box-shadow .22s,background .16s}
 .arch-item:hover{border-color:var(--ink)}
@@ -150,10 +150,8 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-body-in ul{list-style:none;margin-bottom:12px}
 .arch-body-in li{position:relative;padding-left:16px;margin-bottom:6px;font-size:13.5px;color:var(--ink2)}
 .arch-body-in li::before{content:"—";position:absolute;left:0;color:var(--green)}
-.arch-missions{display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
-.arch-row[data-company="hardis"] .arch-missions{grid-template-columns:repeat(2,minmax(0,1fr))}
-.arch-row[data-company="hardis"] .arch-missions.has-open{grid-template-columns:minmax(0,1fr)}
-.arch-missions.has-open .arch-item.on .arch-body-in{padding:20px 22px}
+.arch-missions{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:start}
+.arch-missions .arch-item.on .arch-body-in{padding:20px 22px}
 .arch-row.has-company-open > .arch-item.on .arch-body-in{padding:20px 22px}
 .arch-row.has-company-open > .arch-item.on .arch-body-in > *{max-width:82ch}
 .arch-mission-head{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:9px;align-items:start;padding:11px}
@@ -163,12 +161,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--rust);text-transform:uppercase;margin-top:6px}
 .arch-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
 @media(max-width:980px) and (min-width:861px){
-  .arch-row{grid-template-columns:250px minmax(0,1fr);gap:42px}
+  .arch-row{grid-template-columns:250px minmax(0,1fr);column-gap:42px}
 }
 @media(max-width:860px){
   .arch-intro{align-items:flex-start;flex-direction:column}
-  .arch-row{grid-template-columns:1fr;gap:26px}
-  .arch-row[data-company="hardis"] .arch-missions{grid-template-columns:1fr}
+  .arch-row{grid-template-columns:1fr;column-gap:0;row-gap:0}
+  .arch-row.has-company-open{row-gap:26px}
+  .arch-missions{margin-top:26px}
   .arch-wires{display:none}
   .arch-row:not(:last-child)::after{content:"↑";position:absolute;left:50%;bottom:-46px;height:36px;color:var(--green);font-family:var(--mono);font-size:18px;line-height:36px}
   .arch-missions{border-left:1px solid var(--green);padding-left:14px}
@@ -436,7 +435,7 @@ const CONFIG = {
       tab_arch:"Schéma du parcours", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
       arch_hint:"Cliquez sur un poste ou une mission : la fiche sélectionnée s'ouvre en pleine largeur et referme automatiquement la précédente.",
-      arch_direction:"flux : ancien → récent ↑",
+      arch_direction:"Lecture : du bas (ancien) vers le haut (récent)",
       arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
@@ -460,7 +459,7 @@ const CONFIG = {
       tab_arch:"Experience diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
       arch_hint:"Select a role or assignment: the chosen card opens at full width and automatically closes the previous one.",
-      arch_direction:"flow: earlier → recent ↑",
+      arch_direction:"Read from bottom (earlier) to top (recent)",
       arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
@@ -821,41 +820,8 @@ function makeArchItem(type,id,item,headHTML,headClass){
   body.addEventListener('transitionend',()=>drawArchWires());
   return article;
 }
-function captureArchPositions(){
-  const positions=new Map();
-  document.querySelectorAll('.arch-row .arch-item').forEach(item=>{
-    positions.set(`${item.dataset.type}:${item.dataset.id}`,item.getBoundingClientRect());
-  });
-  return positions;
-}
-function animateArchReflow(positions){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
-  requestAnimationFrame(()=>{
-    document.querySelectorAll('.arch-row .arch-item').forEach(item=>{
-      const before=positions.get(`${item.dataset.type}:${item.dataset.id}`),after=item.getBoundingClientRect();
-      if(!before)return;
-      const dx=before.left-after.left,dy=before.top-after.top;
-      if(Math.abs(dx)<1&&Math.abs(dy)<1)return;
-      item.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{
-        duration:360,easing:'cubic-bezier(.22,.61,.36,1)'
-      });
-    });
-    trackArchLayout(440);
-  });
-}
-function syncArchExpansionLayouts(){
+function syncCompanyLayout(){
   const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:400;
-  document.querySelectorAll('.arch-missions').forEach(grid=>{
-    clearTimeout(grid._archLayoutTimer);
-    if(grid.querySelector('.arch-item.on[data-type="mission"]')){grid.classList.add('has-open');return;}
-    if(!grid.classList.contains('has-open'))return;
-    grid._archLayoutTimer=setTimeout(()=>{
-      if(grid.querySelector('.arch-item.on[data-type="mission"]'))return;
-      const positions=captureArchPositions();
-      grid.classList.remove('has-open');
-      animateArchReflow(positions);trackArchLayout();
-    },delay);
-  });
   document.querySelectorAll('.arch-row').forEach(row=>{
     clearTimeout(row._archLayoutTimer);
     const company=row.querySelector(':scope > .arch-item[data-type="company"]');
@@ -863,14 +829,11 @@ function syncArchExpansionLayouts(){
     if(!row.classList.contains('has-company-open'))return;
     row._archLayoutTimer=setTimeout(()=>{
       if(company&&company.classList.contains('on'))return;
-      const positions=captureArchPositions();
-      row.classList.remove('has-company-open');
-      animateArchReflow(positions);trackArchLayout();
+      row.classList.remove('has-company-open');trackArchLayout(260);
     },delay);
   });
 }
 function toggleArchItem(type,id){
-  const positions=captureArchPositions();
   const same=ARCHEXPANDED&&ARCHEXPANDED.type===type&&ARCHEXPANDED.id===id;
   ARCHEXPANDED=same?null:{type,id};
   document.querySelectorAll('.arch-item').forEach(item=>{
@@ -879,9 +842,8 @@ function toggleArchItem(type,id){
     item.querySelector('.arch-item-head').setAttribute('aria-expanded',open?'true':'false');
     setBody(item.querySelector('.arch-item-body'),open);
   });
-  syncArchExpansionLayouts();
-  animateArchReflow(positions);
-  trackArchLayout();
+  syncCompanyLayout();
+  trackArchLayout(420);
 }
 function archZoneLocation(company){
   return pick(company.loc).replace(/\s*·\s*(hybride|hybrid)$/i,'');
@@ -934,6 +896,12 @@ function archPoint(el,side,base){
   if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
   return{x:r.left+r.width/2-base.left,y:r.top-base.top};
 }
+function archMainPoint(el,side,base){
+  const r=el.getBoundingClientRect(),columnWidth=matchMedia('(max-width:980px)').matches?250:290;
+  const point={x:r.left+Math.min(columnWidth,r.width)/2-base.left,y:r.top-base.top};
+  if(side==='bottom')point.y=r.bottom-base.top;
+  return point;
+}
 const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=54;
 function ensureArchDefs(svg){
   if(svg.querySelector('#arch-arrow'))return;
@@ -952,16 +920,16 @@ function syncArchWire(svg,key,d,main,index,alive){
     path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
     path.setAttribute('marker-end','url(#arch-arrow)');
     group.appendChild(path);
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-      const packet=document.createElementNS(ARCH_NS,'circle');
-      packet.setAttribute('class','arch-packet');
-      packet.setAttribute('r',main?'3':'2.3');
-      packet.dataset.seed=String(index*43);
-      group.appendChild(packet);
-    }
     svg.appendChild(group);
   }
   group.querySelector('.arch-wire').setAttribute('d',d);
+  let packet=group.querySelector('.arch-packet');
+  if(main||matchMedia('(prefers-reduced-motion: reduce)').matches){if(packet)packet.remove();return;}
+  if(!packet){
+    packet=document.createElementNS(ARCH_NS,'circle');
+    packet.setAttribute('class','arch-packet');packet.setAttribute('r','2.3');
+    packet.dataset.seed=String(index*43);group.appendChild(packet);
+  }
 }
 function scheduleArchWires(){
   if(ARCHDRAWRAF)return;
@@ -1018,7 +986,7 @@ function drawArchWires(){
     const companyId=newer.closest('.arch-row').dataset.company;
     if(index<companies.length-1){
       const older=companies[index+1],olderId=older.closest('.arch-row').dataset.company;
-      const a=archPoint(older,'top',base),b=archPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
+      const a=archMainPoint(older,'top',base),b=archMainPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
       syncArchWire(svg,`main:${olderId}:${companyId}`,`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`,true,index,alive);
     }
     const row=newer.closest('.arch-row');
