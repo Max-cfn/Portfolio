@@ -126,11 +126,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-packet{fill:var(--green)}
 .arch-rows{display:grid;gap:56px;position:relative;z-index:1}
 .arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);gap:70px;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
-.arch-row-label{position:absolute;top:-9px;left:14px;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
-.arch-item{position:relative;z-index:3;min-width:0}
-.arch-item-head{position:relative;width:100%;border:1px solid var(--rule2);background:var(--card);text-align:left;transition:border-color .16s,background .16s,transform .16s}
-.arch-item-head:hover{border-color:var(--ink);transform:translateY(-1px)}
-.arch-item.on .arch-item-head{border-color:var(--green);background:var(--green-bg)}
+.arch-row-label{position:absolute;top:-9px;left:14px;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
+.arch-item{position:relative;z-index:3;min-width:0;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,box-shadow .22s,background .16s}
+.arch-item:hover{border-color:var(--ink)}
+.arch-item.on{border-color:var(--green);background:var(--green-bg);box-shadow:0 8px 24px rgba(31,77,58,.07)}
+.arch-item-head{position:relative;width:100%;border:0;background:transparent;text-align:left;transition:background .16s,transform .16s}
+.arch-item-head:hover{transform:translateY(-1px)}
+.arch-item.on .arch-item-head{background:var(--green-bg)}
 .arch-company-head{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;gap:12px;align-items:center;padding:13px}
 .arch-company-logo{width:72px;height:46px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);padding:5px}
 .arch-company-logo img{display:block;max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
@@ -140,13 +142,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-node-when{display:block;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:4px;line-height:1.35}
 .arch-toggle{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--rule2);border-radius:50%;font-family:var(--mono);font-size:16px;color:var(--mut);transition:transform .2s,color .15s,border-color .15s}
 .arch-item.on .arch-toggle{transform:rotate(45deg);color:var(--green);border-color:var(--green)}
-.arch-item-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.arch-body-in{border-left:1px solid var(--green);border-right:1px solid var(--green);border-bottom:1px solid var(--green);background:var(--card);padding:16px}
+.arch-item-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.22,.61,.36,1)}
+.arch-body-in{border-top:1px solid var(--green);background:var(--card);padding:16px}
 .arch-body-in p{font-size:13.5px;color:var(--ink2);margin-bottom:12px}
 .arch-body-in ul{list-style:none;margin-bottom:12px}
 .arch-body-in li{position:relative;padding-left:16px;margin-bottom:6px;font-size:13.5px;color:var(--ink2)}
 .arch-body-in li::before{content:"—";position:absolute;left:0;color:var(--green)}
-.arch-missions{display:grid;grid-template-columns:1fr;gap:10px}
+.arch-missions{display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
 .arch-row[data-company="hardis"] .arch-missions{grid-template-columns:repeat(2,minmax(0,1fr))}
 .arch-mission-head{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:9px;align-items:start;padding:11px}
 .arch-provider{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
@@ -167,7 +169,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
   .arch-company-logo{width:58px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){
-  .arch-item-head,.arch-toggle,.arch-item-body{transition:none}
+  .arch-item,.arch-item-head,.arch-toggle,.arch-item-body{transition:none}
 }
 
 /* ── détail commun ── */
@@ -422,7 +424,7 @@ const CONFIG = {
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
       arch_hint:"Cliquez sur un poste ou une mission pour dérouler son contenu. L'ouverture d'un élément referme automatiquement le précédent.",
       arch_direction:"flux : ancien → récent ↑",
-      arch_zone:"poste",
+      arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
       s3:"Formation",
@@ -446,7 +448,7 @@ const CONFIG = {
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
       arch_hint:"Select a role or assignment to expand its content. Opening another item automatically closes the previous one.",
       arch_direction:"flow: earlier → recent ↑",
-      arch_zone:"role",
+      arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
       s3:"Education",
@@ -555,7 +557,7 @@ const CONFIG = {
             "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment."]},
       stack:"AWS · ECS · LiteLLM · GitLab CI · VPC" },
 
-    { id:"courir", company:"hardis", cloud:"gcp",
+    { id:"courir", company:"hardis", cloud:"gcp", durationMonths:6, displayOrder:3,
       card:{fr:"Courir", en:"Courir"},
       role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
       sub:{fr:"oct 2025 → mar 2026", en:"Oct 2025 → Mar 2026"},
@@ -576,7 +578,7 @@ const CONFIG = {
             "Terraform overhaul and remediation of accumulated drift."]},
       stack:"GCP (Cloud Monitoring · Workflows) · Terraform · API REST · ITSM" },
 
-    { id:"gl", company:"hardis", cloud:"gcp",
+    { id:"gl", company:"hardis", cloud:"gcp", durationMonths:8, displayOrder:2,
       card:{fr:"Galeries Lafayette", en:"Galeries Lafayette"},
       role:{fr:"DevOps · mission en régie", en:"DevOps · on-site assignment"},
       sub:{fr:"mar → oct 2025", en:"Mar → Oct 2025"},
@@ -601,13 +603,13 @@ const CONFIG = {
             "Released business-critical application updates into production."]},
       stack:"GCP (GKE · Cloud SQL · Cloud Storage · IAM · Cloud DNS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes · Git" },
 
-    { id:"fp", company:"hardis", cloud:"aws",
+    { id:"fp", company:"hardis", cloud:"aws", durationMonths:25, displayOrder:1,
       card:{fr:"Fitness Park", en:"Fitness Park"},
       role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
       sub:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
       tag:{fr:"Refonte Terraform · ouvertures pays · projet Égérie", en:"Terraform overhaul · country rollouts · Égérie project"},
       title:{fr:"Fitness Park — industrialisation Terraform", en:"Fitness Park — Terraform industrialization"},
-      when:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
+      when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
       intro:{
         fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
         en:"Long-term support of Fitness Park's AWS infrastructure through the Hardis service center: IaC remediation, international expansion projects and delivery of a complete application."},
@@ -620,13 +622,13 @@ const CONFIG = {
             "\"Égérie\" project delivered in one month: requirements scoping, architecture diagram and cost estimate, then deployment on a brand-new stack fully independent from the existing infrastructure."]},
       stack:"AWS · Terraform · CI/CD" },
 
-    { id:"dim", company:"hardis", cloud:"aws",
+    { id:"dim", company:"hardis", cloud:"aws", durationMonths:10, displayOrder:4,
       card:{fr:"Dimotrans", en:"Dimotrans"},
       role:{fr:"Cloud Engineer · RUN", en:"Cloud Engineer · RUN"},
       sub:{fr:"mar → déc 2024", en:"Mar → Dec 2024"},
       tag:{fr:"RUN AWS · migrations de bases de données · audits", en:"AWS RUN · database migrations · audits"},
       title:{fr:"Dimotrans — RUN et modernisation", en:"Dimotrans — RUN & modernization"},
-      when:{fr:"mar 2024 → déc 2024", en:"Mar 2024 → Dec 2024"},
+      when:{fr:"mar 2024 → déc 2024 · 10 mois", en:"Mar 2024 → Dec 2024 · 10 mos"},
       intro:{
         fr:"Exploitation quotidienne de l'infrastructure AWS du groupe logistique Dimotrans, avec un volet audit et modernisation.",
         en:"Day-to-day operation of logistics group Dimotrans' AWS infrastructure, with an audit and modernization dimension."},
@@ -639,13 +641,13 @@ const CONFIG = {
             "Infrastructure managed through ITSM (iTop) with ticket-based support."]},
       stack:"AWS · RDS · iTop" },
 
-    { id:"finare", company:"hardis", cloud:"aws",
+    { id:"finare", company:"hardis", cloud:"aws", durationMonths:5, displayOrder:5,
       card:{fr:"Finaré", en:"Finaré"},
       role:{fr:"Cloud Architect · SRE · forfait", en:"Cloud Architect · SRE · fixed-price"},
       sub:{fr:"mai → sep 2024", en:"May → Sep 2024"},
       tag:{fr:"Data platform AWS × Snowflake · CloudFormation", en:"AWS × Snowflake data platform · CloudFormation"},
       title:{fr:"Finaré — data platform AWS × Snowflake", en:"Finaré — AWS × Snowflake data platform"},
-      when:{fr:"mai 2024 → sep 2024", en:"May 2024 → Sep 2024"},
+      when:{fr:"mai 2024 → sep 2024 · 5 mois", en:"May 2024 → Sep 2024 · 5 mos"},
       intro:{
         fr:"Projet au forfait : conception et déploiement de l'architecture AWS d'une data platform s'appuyant sur Snowflake.",
         en:"Fixed-price project: design and deployment of the AWS architecture for a Snowflake-based data platform."},
@@ -783,7 +785,7 @@ const COMPANY_LOGOS={
   hardis:{src:"https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",alt:"Hardis Group"},
   also:{src:"https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",alt:"ALSO Group"}
 };
-let ARCHEXPANDED=null, ARCHOBSERVER=null, ARCHDRAWTIMER=null;
+let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
 
 function archBodyHTML(item){
   const bullets=item.bullets&&item.bullets[LANG]?item.bullets[LANG]:[];
@@ -803,7 +805,7 @@ function makeArchItem(type,id,item,headHTML,headClass){
   const body=article.querySelector('.arch-item-body');
   initBody(body,false);
   article.querySelector('.arch-item-head').addEventListener('click',()=>toggleArchItem(type,id));
-  body.addEventListener('transitionend',()=>scheduleArchWires());
+  body.addEventListener('transitionend',()=>drawArchWires());
   return article;
 }
 function toggleArchItem(type,id){
@@ -815,18 +817,23 @@ function toggleArchItem(type,id){
     item.querySelector('.arch-item-head').setAttribute('aria-expanded',open?'true':'false');
     setBody(item.querySelector('.arch-item-body'),open);
   });
-  scheduleArchWires();
+  trackArchLayout();
+}
+function archZoneLocation(company){
+  return pick(company.loc).replace(/\s*·\s*(hybride|hybrid)$/i,'');
 }
 function renderArch(){
   ARCHEXPANDED=null;
   const root=$('#arch-root');
   root.innerHTML='';
   CONFIG.companies.forEach((co,index)=>{
-    const missions=CONFIG.missions.filter(m=>m.company===co.id);
+    const missions=CONFIG.missions.filter(m=>m.company===co.id)
+      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     const row=document.createElement('div');
     row.className='arch-row';
     row.dataset.company=co.id;
-    row.innerHTML=`<span class="arch-row-label">${t('arch_zone')} 0${index+1}</span>`;
+    const zoneLabel=`${t('arch_zone')} ${co.name} · ${archZoneLocation(co)}`;
+    row.innerHTML=`<span class="arch-row-label" title="${zoneLabel}">${zoneLabel}</span>`;
 
     const logo=COMPANY_LOGOS[co.id];
     const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
@@ -863,55 +870,103 @@ function archPoint(el,side,base){
   if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
   return{x:r.left+r.width/2-base.left,y:r.top-base.top};
 }
-function addArchPacket(svg,d,index,main){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
-  circle.setAttribute('class','arch-packet');
-  circle.setAttribute('r',main?'3':'2.3');
-  const motion=document.createElementNS('http://www.w3.org/2000/svg','animateMotion');
-  motion.setAttribute('path',d);
-  motion.setAttribute('dur',main?'3.4s':'2.5s');
-  motion.setAttribute('begin',`-${(index*.38).toFixed(2)}s`);
-  motion.setAttribute('repeatCount','indefinite');
-  circle.appendChild(motion);
-  svg.appendChild(circle);
+const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=54;
+function ensureArchDefs(svg){
+  if(svg.querySelector('#arch-arrow'))return;
+  const defs=document.createElementNS(ARCH_NS,'defs');
+  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
+  svg.prepend(defs);
 }
-function addArchWire(svg,d,main,index){
-  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-  path.setAttribute('d',d);
-  path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
-  path.setAttribute('marker-end','url(#arch-arrow)');
-  svg.appendChild(path);
-  addArchPacket(svg,d,index,main);
+function syncArchWire(svg,key,d,main,index,alive){
+  alive.add(key);
+  let group=[...svg.querySelectorAll('.arch-wire-set')].find(node=>node.dataset.key===key);
+  if(!group){
+    group=document.createElementNS(ARCH_NS,'g');
+    group.setAttribute('class','arch-wire-set');
+    group.dataset.key=key;
+    const path=document.createElementNS(ARCH_NS,'path');
+    path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
+    path.setAttribute('marker-end','url(#arch-arrow)');
+    group.appendChild(path);
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const packet=document.createElementNS(ARCH_NS,'circle');
+      packet.setAttribute('class','arch-packet');
+      packet.setAttribute('r',main?'3':'2.3');
+      packet.dataset.seed=String(index*43);
+      group.appendChild(packet);
+    }
+    svg.appendChild(group);
+  }
+  group.querySelector('.arch-wire').setAttribute('d',d);
 }
 function scheduleArchWires(){
-  clearTimeout(ARCHDRAWTIMER);
-  ARCHDRAWTIMER=setTimeout(drawArchWires,90);
+  if(ARCHDRAWRAF)return;
+  ARCHDRAWRAF=requestAnimationFrame(()=>{ARCHDRAWRAF=null;drawArchWires();});
+}
+function trackArchLayout(duration=460){
+  if(ARCHLAYOUTRAF)cancelAnimationFrame(ARCHLAYOUTRAF);
+  const started=performance.now();
+  const follow=now=>{
+    drawArchWires();
+    if(now-started<duration)ARCHLAYOUTRAF=requestAnimationFrame(follow);
+    else{ARCHLAYOUTRAF=null;drawArchWires();}
+  };
+  ARCHLAYOUTRAF=requestAnimationFrame(follow);
+}
+function ensureArchPacketAnimation(){
+  if(ARCHPACKETRAF||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  ARCHPACKETLAST=0;
+  ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
+}
+function animateArchPackets(now){
+  ARCHPACKETRAF=null;
+  const canvas=$('#arch-canvas'),svg=$('#arch-wires');
+  if(!canvas||!svg||!canvas.getClientRects().length||matchMedia('(prefers-reduced-motion: reduce)').matches){ARCHPACKETLAST=0;return;}
+  const dt=ARCHPACKETLAST?Math.min((now-ARCHPACKETLAST)/1000,.05):0;
+  ARCHPACKETLAST=now;
+  const packets=[...svg.querySelectorAll('.arch-packet')];
+  packets.forEach(packet=>{
+    const path=packet.parentNode.querySelector('.arch-wire');
+    const length=path.getTotalLength();
+    if(!length)return;
+    const previousLength=Number(packet.dataset.pathLength)||length;
+    let distance=packet.dataset.distance===undefined?(Number(packet.dataset.seed)||0)%length:Number(packet.dataset.distance);
+    if(previousLength!==length)distance=distance/previousLength*length;
+    distance=(distance+ARCH_PACKET_SPEED*dt)%length;
+    const point=path.getPointAtLength(distance);
+    packet.setAttribute('cx',point.x);
+    packet.setAttribute('cy',point.y);
+    packet.dataset.distance=String(distance);
+    packet.dataset.pathLength=String(length);
+  });
+  if(packets.length)ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
 }
 function drawArchWires(){
   const canvas=$('#arch-canvas'),svg=$('#arch-wires');
   if(!canvas||!svg)return;
-  if(matchMedia('(max-width:760px)').matches){svg.innerHTML='';return;}
+  if(matchMedia('(max-width:760px)').matches){svg.replaceChildren();return;}
   const base=canvas.getBoundingClientRect();
   if(base.width<2||base.height<2)return;
   svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);
-  svg.innerHTML=`<defs><marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker></defs>`;
-
-  const companies=[...canvas.querySelectorAll('.arch-company-head')];
+  ensureArchDefs(svg);
+  const alive=new Set(),companies=[...canvas.querySelectorAll('.arch-company-head')];
   companies.forEach((newer,index)=>{
+    const companyId=newer.closest('.arch-row').dataset.company;
     if(index<companies.length-1){
-      const older=companies[index+1];
+      const older=companies[index+1],olderId=older.closest('.arch-row').dataset.company;
       const a=archPoint(older,'top',base),b=archPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
-      const d=`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`;
-      addArchWire(svg,d,true,index);
+      syncArchWire(svg,`main:${olderId}:${companyId}`,`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`,true,index,alive);
     }
     const row=newer.closest('.arch-row');
     row.querySelectorAll('.arch-mission-head').forEach((mission,missionIndex)=>{
+      const missionId=mission.closest('.arch-item').dataset.id;
       const a=archPoint(newer,'right',base),b=archPoint(mission,'left',base),mid=(a.x+b.x)/2;
-      const d=`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`;
-      addArchWire(svg,d,false,index*6+missionIndex);
+      syncArchWire(svg,`branch:${companyId}:${missionId}`,`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`,false,index*6+missionIndex,alive);
     });
   });
+  svg.querySelectorAll('.arch-wire-set').forEach(group=>{if(!alive.has(group.dataset.key))group.remove();});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)svg.querySelectorAll('.arch-packet').forEach(packet=>packet.remove());
+  else ensureArchPacketAnimation();
 }
 
 /* ── dépliage animé ──
