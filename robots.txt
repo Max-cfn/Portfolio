@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://REMPLACER-PAR-TON-DOMAINE/sitemap.xml
+Sitemap: https://maxence-cerfontaine.cloud/sitemap.xml

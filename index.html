@@ -8,15 +8,18 @@
 <meta name="author" content="Maxence Cerfontaine">
 <meta name="theme-color" content="#F4F2EB">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://REMPLACER-PAR-TON-DOMAINE/">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://maxence-cerfontaine.cloud/">
 
 <!-- Carte de partage (LinkedIn, Slack, WhatsApp, X…) -->
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Maxence Cerfontaine">
 <meta property="og:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
 <meta property="og:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure. 10 certifications dont AWS Solutions Architect Professional.">
-<meta property="og:url" content="https://REMPLACER-PAR-TON-DOMAINE/">
-<meta property="og:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<meta property="og:url" content="https://maxence-cerfontaine.cloud/">
+<meta property="og:image" content="https://maxence-cerfontaine.cloud/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
@@ -24,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
 <meta name="twitter:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure.">
-<meta name="twitter:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<meta name="twitter:image" content="https://maxence-cerfontaine.cloud/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..640;1,9..144,340..640&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,6 +52,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-heigh
 .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
 a{color:var(--ink)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:4px}
 ::selection{background:var(--green);color:var(--paper)}
 .mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--mut)}
 .mnum{font-family:var(--mono);font-size:11.5px;color:var(--rust)}
@@ -234,9 +238,18 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .contact p{color:var(--mut);margin-bottom:26px;max-width:52ch}
 .contact .big{font-family:var(--disp);font-size:clamp(19px,2.6vw,26px);font-weight:500;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--rule2);transition:.15s}
 .contact .big:hover{border-bottom-color:var(--green);color:var(--green)}
-footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
+footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.footer-links a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--rule2)}
+.footer-links a:hover{color:var(--green);border-bottom-color:var(--green)}
+.mobile-cta{display:none}
 
 @media(max-width:720px){
+  body{padding-bottom:72px}
+  .mobile-cta{position:fixed;display:grid;grid-template-columns:1fr 1fr;left:12px;right:12px;bottom:12px;z-index:70;background:var(--ink);border:1px solid var(--ink);box-shadow:0 8px 28px rgba(28,27,21,.22)}
+  .mobile-cta a{display:block;padding:12px 10px;text-align:center;text-decoration:none;font-size:13px;font-weight:600;color:var(--paper)}
+  .mobile-cta a+a{background:var(--paper);color:var(--ink)}
+
   .nav-links{display:none}
   .hero{grid-template-columns:1fr;gap:34px}
   .emp-head{flex-direction:column;gap:6px}
@@ -255,6 +268,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 </style>
 </head>
 <body>
+<noscript><div style="padding:14px 20px;background:#1C1B15;color:#F4F2EB;text-align:center;font-family:Arial,sans-serif">Ce portfolio utilise JavaScript pour afficher son contenu. Activez JavaScript pour consulter la page. — This portfolio needs JavaScript to display its content.</div></noscript>
 
 <nav><div class="wrap">
   <a class="brand" href="#top">Maxence <span>Cerfontaine</span></a>
@@ -344,8 +358,17 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 
 <footer>
   <span data-t="foot"></span>
+  <div class="footer-links">
+    <a href="/confidentialite.html" data-t="privacy"></a>
+    <a href="/mentions-legales.html" data-t="legal"></a>
+  </div>
   <span data-t="foot2"></span>
 </footer>
+</div>
+
+<div class="mobile-cta" aria-label="Actions rapides">
+  <a id="mobile-cv" href="cv/CV_FR_Cerfontaine_Maxence.pdf" download data-t="cv_short"></a>
+  <a href="#contact" data-t="contact_short"></a>
 </div>
 
 <script>
@@ -356,48 +379,50 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 const CONFIG = {
 
   /* CV : dépose les PDF dans cv/ à côté de index.html */
-  cv: { fr:"cv/CV_FR_CERFONTAINE_MAXENCE.pdf", en:"cv/CV_EN_Cerfontaine_Maxence.pdf" },
+  cv: { fr:"cv/CV_FR_Cerfontaine_Maxence.pdf", en:"cv/CV_EN_Cerfontaine_Maxence.pdf" },
 
   ui: {
     fr: {
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps", meta_desc:"Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform et FinOps. 10 certifications dont AWS Solutions Architect Professional.",
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
       lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
-      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter",
+      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
       s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture — filtrable par techno — ou la chronologie par employeur. Chaque élément se déplie.",
-      tab_arch:"Schéma d'architecture", tab_chrono:"Chronologie",
+      tab_arch:"Missions par environnement", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
       region:"RÉGION — eu-west-3 (Paris)",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
-      foot:"© 2026 Maxence Cerfontaine", foot2:"Site statique — sans cookies ni trackers",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
       verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
       stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions", filter_lbl:"filtrer —"
     },
     en: {
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 10 certifications including AWS Solutions Architect Professional.",
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
       lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
-      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch",
+      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
       s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram — filterable by tech — or the employer-by-employer timeline. Every item expands.",
-      tab_arch:"Architecture diagram", tab_chrono:"Timeline",
+      tab_arch:"Assignments by environment", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
       region:"REGION — eu-west-3 (Paris)",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
-      foot:"© 2026 Maxence Cerfontaine", foot2:"Static site — no cookies, no trackers",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
       verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
       stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments", filter_lbl:"filter —"
     }
@@ -697,12 +722,15 @@ const whenStr=o=>pick(o.when)+(o.since?' · '+dur(o.since):'');
 
 function renderStatic(){
   document.documentElement.lang=LANG;
+  document.title=t('meta_title');
+  document.querySelector('meta[name="description"]').setAttribute('content',t('meta_desc'));
   document.querySelectorAll('[data-t]').forEach(el=>{
     const v=t(el.dataset.t);
     if(el.dataset.html)el.innerHTML=v;else el.textContent=v;
   });
   $('#cv-main').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-alt').href=LANG==='fr'?CONFIG.cv.en:CONFIG.cv.fr;
+  $('#mobile-cv').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-main').innerHTML=(LANG==='fr'?FLAGS.fr:FLAGS.en)+' '+t('cv_btn');
   $('#cv-alt').innerHTML=(LANG==='fr'?FLAGS.en:FLAGS.fr)+' '+t('cv_alt');
   $('#btn-fr').innerHTML=FLAGS.fr+' FR';
