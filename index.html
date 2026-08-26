@@ -114,53 +114,60 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .view.on{display:block;animation:vf .22s ease}
 @keyframes vf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-/* ── schéma du parcours ── */
+/* ── schéma vertical du parcours ── */
 .arch-intro{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
-.arch-hint{font-size:13px;color:var(--mut);max-width:66ch}
-.arch-tour{font-family:var(--mono);font-size:11.5px;color:var(--green);border:1px solid var(--green);background:var(--green-bg);padding:7px 12px;border-radius:2px;white-space:nowrap;transition:.15s}
-.arch-tour:hover{background:var(--green);color:var(--paper)}
-.arch-tour.on{background:var(--green);color:var(--paper)}
-.arch-canvas{position:relative;border:1px solid var(--rule2);background:var(--card);padding:28px 18px 20px;overflow:hidden}
+.arch-hint{font-size:13px;color:var(--mut);max-width:68ch}
+.arch-direction{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--green);border:1px solid var(--green);background:var(--green-bg);padding:6px 10px;white-space:nowrap}
+.arch-canvas{position:relative;border:1px solid var(--rule2);background:var(--card);padding:28px 18px;overflow:hidden}
 .arch-wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.arch-wire{fill:none;stroke:var(--rule2);stroke-width:1.25;vector-effect:non-scaling-stroke}
-.arch-wire-main{stroke:var(--green);stroke-width:1.8;stroke-dasharray:7 8;animation:archFlow 8s linear infinite}
-@keyframes archFlow{to{stroke-dashoffset:-120}}
-.arch-zones{display:grid;grid-template-columns:.8fr 1.65fr .95fr;gap:48px;align-items:start;position:relative;z-index:1}
-.arch-zone{position:relative;min-width:0;border:1px dashed var(--rule2);background:transparent;padding:30px 12px 14px;transition:border-color .18s}
-.arch-zone.on{border-color:var(--green)}
-.arch-zone-label{position:absolute;top:-9px;left:12px;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
-.arch-company,.arch-mission{position:relative;z-index:3;width:100%;border:1px solid var(--rule2);background:var(--card);text-align:left;transition:border-color .16s,background .16s,transform .16s}
-.arch-company:hover,.arch-mission:hover{border-color:var(--ink);transform:translateY(-1px)}
-.arch-company.on,.arch-mission.on{border-color:var(--green);background:var(--green-bg)}
-.arch-company{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:12px}
-.arch-provider{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
-.arch-provider svg{width:18px;height:18px;display:block}
+.arch-wire{fill:none;vector-effect:non-scaling-stroke}
+.arch-wire-main{stroke:var(--green);stroke-width:1.8}
+.arch-wire-branch{stroke:var(--green);stroke-width:1.25;opacity:.58}
+.arch-packet{fill:var(--green)}
+.arch-rows{display:grid;gap:56px;position:relative;z-index:1}
+.arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);gap:70px;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
+.arch-row-label{position:absolute;top:-9px;left:14px;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
+.arch-item{position:relative;z-index:3;min-width:0}
+.arch-item-head{position:relative;width:100%;border:1px solid var(--rule2);background:var(--card);text-align:left;transition:border-color .16s,background .16s,transform .16s}
+.arch-item-head:hover{border-color:var(--ink);transform:translateY(-1px)}
+.arch-item.on .arch-item-head{border-color:var(--green);background:var(--green-bg)}
+.arch-company-head{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;gap:12px;align-items:center;padding:13px}
+.arch-company-logo{width:72px;height:46px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);padding:5px}
+.arch-company-logo img{display:block;max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
 .arch-company-name,.arch-mission-name{display:block;font-weight:600;line-height:1.25}
 .arch-company-name{font-family:var(--disp);font-size:18px;font-weight:520}
 .arch-node-role{display:block;font-family:var(--mono);font-size:9.5px;color:var(--green);margin-bottom:3px;line-height:1.35}
 .arch-node-when{display:block;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:4px;line-height:1.35}
-.arch-missions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:30px;padding-left:10px}
-.arch-zone[data-company="hardis"] .arch-missions{grid-template-columns:repeat(2,minmax(0,1fr))}
-.arch-mission{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:start;padding:10px}
-.arch-mission .arch-provider{width:24px;height:24px}
-.arch-mission .arch-provider svg{width:14px;height:14px}
-.arch-mission-name{font-size:12.5px}
+.arch-toggle{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--rule2);border-radius:50%;font-family:var(--mono);font-size:16px;color:var(--mut);transition:transform .2s,color .15s,border-color .15s}
+.arch-item.on .arch-toggle{transform:rotate(45deg);color:var(--green);border-color:var(--green)}
+.arch-item-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.arch-body-in{border-left:1px solid var(--green);border-right:1px solid var(--green);border-bottom:1px solid var(--green);background:var(--card);padding:16px}
+.arch-body-in p{font-size:13.5px;color:var(--ink2);margin-bottom:12px}
+.arch-body-in ul{list-style:none;margin-bottom:12px}
+.arch-body-in li{position:relative;padding-left:16px;margin-bottom:6px;font-size:13.5px;color:var(--ink2)}
+.arch-body-in li::before{content:"—";position:absolute;left:0;color:var(--green)}
+.arch-missions{display:grid;grid-template-columns:1fr;gap:10px}
+.arch-row[data-company="hardis"] .arch-missions{grid-template-columns:repeat(2,minmax(0,1fr))}
+.arch-mission-head{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:9px;align-items:start;padding:11px}
+.arch-provider{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
+.arch-provider svg{width:17px;height:17px;display:block}
+.arch-mission-name{font-size:13px}
 .arch-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--rust);text-transform:uppercase;margin-top:6px}
 .arch-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
-.arch-detail-panel{margin-top:16px;border-left:3px solid var(--green);border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--card);padding:18px 22px;animation:vf .2s ease}
-.arch-detail-panel .dt-intro{max-width:82ch}
-.arch-detail-panel .arch-jump{margin-top:4px}
 @media(max-width:760px){
   .arch-intro{align-items:flex-start;flex-direction:column}
-  .arch-zones{grid-template-columns:1fr;gap:42px}
+  .arch-row{grid-template-columns:1fr;gap:26px}
+  .arch-row[data-company="hardis"] .arch-missions{grid-template-columns:1fr}
   .arch-wires{display:none}
-  .arch-zone:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-43px;height:42px;border-left:2px dashed var(--green)}
-  .arch-zone[data-company="hardis"] .arch-missions{grid-template-columns:1fr}
-  .arch-missions{border-left:1px solid var(--rule2);padding-left:14px}
+  .arch-row:not(:last-child)::after{content:"↑";position:absolute;left:50%;bottom:-46px;height:36px;color:var(--green);font-family:var(--mono);font-size:18px;line-height:36px}
+  .arch-missions{border-left:1px solid var(--green);padding-left:14px}
+}
+@media(max-width:430px){
+  .arch-company-head{grid-template-columns:58px minmax(0,1fr) 24px;gap:9px;padding:10px}
+  .arch-company-logo{width:58px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){
-  .arch-wire-main{animation:none}
-  .arch-tour,.arch-zone,.arch-company,.arch-mission{transition:none}
+  .arch-item-head,.arch-toggle,.arch-item-body{transition:none}
 }
 
 /* ── détail commun ── */
@@ -336,13 +343,12 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <div class="view on" id="view-arch">
     <div class="arch-intro">
       <p class="arch-hint" data-t="arch_hint"></p>
-      <button class="arch-tour" id="arch-tour" type="button" onclick="toggleArchTour()"></button>
+      <span class="arch-direction" data-t="arch_direction"></span>
     </div>
     <div class="arch-canvas" id="arch-canvas">
       <svg class="arch-wires" id="arch-wires" aria-hidden="true"></svg>
-      <div class="arch-zones" id="arch-root"></div>
+      <div class="arch-rows" id="arch-root"></div>
     </div>
-    <div class="arch-detail-panel dt" id="arch-detail" aria-live="polite"></div>
   </div>
   <div class="view" id="view-chrono"><div id="tl-root"></div></div>
 </section>
@@ -411,12 +417,12 @@ const CONFIG = {
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
-      s1:"Parcours", s1_sub:"Mon parcours représenté comme une architecture cloud : suivez le fil, puis ouvrez chaque environnement pour découvrir les missions associées.",
+      s1:"Parcours", s1_sub:"Mes expériences les plus récentes en premier, reliées comme une architecture cloud. Chaque poste distribue ensuite vers ses missions.",
       tab_arch:"Schéma du parcours", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
-      arch_hint:"Le fil relie mes expériences dans l'ordre chronologique. Cliquez sur un environnement ou une mission pour l'explorer.",
-      arch_tour_start:"[▶] suivre le parcours", arch_tour_stop:"[■] arrêter",
-      arch_zone:"environnement", arch_timeline:"voir dans la chronologie ↓",
+      arch_hint:"Cliquez sur un poste ou une mission pour dérouler son contenu. L'ouverture d'un élément referme automatiquement le précédent.",
+      arch_direction:"flux : ancien → récent ↑",
+      arch_zone:"poste",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
       s3:"Formation",
@@ -435,12 +441,12 @@ const CONFIG = {
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
-      s1:"Experience", s1_sub:"My experience represented as a cloud architecture: follow the line, then open each environment to explore its assignments.",
+      s1:"Experience", s1_sub:"My most recent experience comes first, connected like a cloud architecture. Each role then distributes towards its assignments.",
       tab_arch:"Experience diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
-      arch_hint:"The line connects my experience in chronological order. Select an environment or assignment to explore it.",
-      arch_tour_start:"[▶] follow the journey", arch_tour_stop:"[■] stop",
-      arch_zone:"environment", arch_timeline:"view in timeline ↓",
+      arch_hint:"Select a role or assignment to expand its content. Opening another item automatically closes the previous one.",
+      arch_direction:"flow: earlier → recent ↑",
+      arch_zone:"role",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
       s3:"Education",
@@ -771,120 +777,82 @@ function detailHTML(o){
     <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
 }
 
-/* ── schéma du parcours ── */
-let ARCHSELECT={type:'company',id:'also'}, ARCHTIMER=null, ARCHSTEP=0, ARCHOBSERVER=null;
+/* ── schéma vertical du parcours ── */
+const COMPANY_LOGOS={
+  devoteam:{src:"https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",alt:"Devoteam"},
+  hardis:{src:"https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",alt:"Hardis Group"},
+  also:{src:"https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",alt:"ALSO Group"}
+};
+let ARCHEXPANDED=null, ARCHOBSERVER=null, ARCHDRAWTIMER=null;
 
-function archCompanies(){
-  return CONFIG.companies.slice().reverse();
-}
-function archCompanyCloud(co){
-  const mission=CONFIG.missions.find(m=>m.company===co.id);
-  return (co.coreCard&&co.coreCard.cloud)||(mission&&mission.cloud)||'multi';
-}
-function archSelectedObject(){
-  if(ARCHSELECT.type==='mission')return CONFIG.missions.find(m=>m.id===ARCHSELECT.id);
-  const co=CONFIG.companies.find(c=>c.id===ARCHSELECT.id);
-  return co?{...co,title:{fr:co.name,en:co.name}}:null;
-}
-function renderArchDetail(){
-  const item=archSelectedObject();
-  if(!item)return;
-  const bullets=(item.bullets&&item.bullets[LANG]?item.bullets[LANG]:[]).slice(0,ARCHSELECT.type==='company'?2:3);
-  $('#arch-detail').innerHTML=`<div class="dt-h"><h3>${pick(item.title)}</h3><span class="dt-when">${whenStr(item)}</span></div>
-    <div class="dt-role">${pick(item.role)}</div>
-    ${item.intro?`<p class="dt-intro">${pick(item.intro)}</p>`:''}
+function archBodyHTML(item){
+  const bullets=item.bullets&&item.bullets[LANG]?item.bullets[LANG]:[];
+  return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
     <ul>${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-    ${stackHTML(item)}
-    <button class="tlink arch-jump" type="button">${t('arch_timeline')}</button>`;
-  $('#arch-detail').querySelector('.arch-jump').addEventListener('click',openArchInTimeline);
+    ${stackHTML(item)}`;
 }
-function applyArchSelection(fromTour){
-  document.querySelectorAll('.arch-zone').forEach(zone=>{
-    zone.classList.toggle('on',zone.dataset.company===(ARCHSELECT.type==='company'?ARCHSELECT.id:(CONFIG.missions.find(m=>m.id===ARCHSELECT.id)||{}).company));
+function makeArchItem(type,id,item,headHTML,headClass){
+  const article=document.createElement('article');
+  article.className='arch-item';
+  article.dataset.type=type;
+  article.dataset.id=id;
+  article.innerHTML=`<button class="arch-item-head ${headClass}" type="button" aria-expanded="false">
+      ${headHTML}<span class="arch-toggle" aria-hidden="true">+</span>
+    </button>
+    <div class="arch-item-body"><div class="arch-body-in">${archBodyHTML(item)}</div></div>`;
+  const body=article.querySelector('.arch-item-body');
+  initBody(body,false);
+  article.querySelector('.arch-item-head').addEventListener('click',()=>toggleArchItem(type,id));
+  body.addEventListener('transitionend',()=>scheduleArchWires());
+  return article;
+}
+function toggleArchItem(type,id){
+  const same=ARCHEXPANDED&&ARCHEXPANDED.type===type&&ARCHEXPANDED.id===id;
+  ARCHEXPANDED=same?null:{type,id};
+  document.querySelectorAll('.arch-item').forEach(item=>{
+    const open=!!ARCHEXPANDED&&item.dataset.type===ARCHEXPANDED.type&&item.dataset.id===ARCHEXPANDED.id;
+    item.classList.toggle('on',open);
+    item.querySelector('.arch-item-head').setAttribute('aria-expanded',open?'true':'false');
+    setBody(item.querySelector('.arch-item-body'),open);
   });
-  document.querySelectorAll('.arch-company,.arch-mission').forEach(node=>{
-    const on=node.dataset.type===ARCHSELECT.type&&node.dataset.id===ARCHSELECT.id;
-    node.classList.toggle('on',on);
-    node.setAttribute('aria-pressed',on?'true':'false');
-    if(on&&fromTour&&matchMedia('(max-width:760px)').matches){
-      node.scrollIntoView({behavior:'smooth',block:'center'});
-    }
-  });
-  renderArchDetail();
-}
-function selectArchItem(type,id,fromTour){
-  if(!fromTour)stopArchTour();
-  ARCHSELECT={type,id};
-  applyArchSelection(!!fromTour);
-}
-function stopArchTour(){
-  if(ARCHTIMER){clearTimeout(ARCHTIMER);ARCHTIMER=null;}
-  const button=$('#arch-tour');
-  if(button){button.classList.remove('on');button.textContent=t('arch_tour_start');}
-}
-function nextArchTourStep(){
-  const companies=archCompanies();
-  if(ARCHSTEP>=companies.length){stopArchTour();return;}
-  selectArchItem('company',companies[ARCHSTEP].id,true);
-  ARCHSTEP++;
-  ARCHTIMER=setTimeout(nextArchTourStep,2600);
-}
-function toggleArchTour(){
-  if(ARCHTIMER){stopArchTour();return;}
-  ARCHSTEP=0;
-  const button=$('#arch-tour');
-  button.classList.add('on');
-  button.textContent=t('arch_tour_stop');
-  nextArchTourStep();
+  scheduleArchWires();
 }
 function renderArch(){
-  stopArchTour();
+  ARCHEXPANDED=null;
   const root=$('#arch-root');
   root.innerHTML='';
-  archCompanies().forEach((co,index)=>{
-    const missions=CONFIG.missions.filter(m=>m.company===co.id).slice().reverse();
-    const zone=document.createElement('div');
-    zone.className='arch-zone';
-    zone.dataset.company=co.id;
-    zone.innerHTML=`<span class="arch-zone-label">${t('arch_zone')} 0${index+1}</span>`;
+  CONFIG.companies.forEach((co,index)=>{
+    const missions=CONFIG.missions.filter(m=>m.company===co.id);
+    const row=document.createElement('div');
+    row.className='arch-row';
+    row.dataset.company=co.id;
+    row.innerHTML=`<span class="arch-row-label">${t('arch_zone')} 0${index+1}</span>`;
 
-    const company=document.createElement('button');
-    company.type='button';
-    company.className='arch-company';
-    company.dataset.type='company';
-    company.dataset.id=co.id;
-    company.innerHTML=`<span class="arch-provider">${LOGOS[archCompanyCloud(co)]||LOGOS.oth}</span>
+    const logo=COMPANY_LOGOS[co.id];
+    const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
       <span><span class="arch-node-role">${pick(co.role)}</span><strong class="arch-company-name">${co.name}</strong>
       <span class="arch-node-when">${whenStr(co)}</span>
       ${co.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
-    company.addEventListener('click',()=>selectArchItem('company',co.id,false));
-    zone.appendChild(company);
+    row.appendChild(makeArchItem('company',co.id,co,companyHead,'arch-company-head'));
 
-    const missionRoot=document.createElement('div');
-    missionRoot.className='arch-missions';
-    missions.forEach(m=>{
-      const mission=document.createElement('button');
-      mission.type='button';
-      mission.className='arch-mission';
-      mission.dataset.type='mission';
-      mission.dataset.id=m.id;
-      mission.innerHTML=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
-        <span><strong class="arch-mission-name">${pick(m.card)}</strong>
-        <span class="arch-node-when">${CTXT[m.cloud]} · ${pick(m.when)}</span>
-        ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
-      mission.addEventListener('click',()=>selectArchItem('mission',m.id,false));
-      missionRoot.appendChild(mission);
-    });
-    zone.appendChild(missionRoot);
-    root.appendChild(zone);
+    if(missions.length){
+      const missionRoot=document.createElement('div');
+      missionRoot.className='arch-missions';
+      missions.forEach(m=>{
+        const missionHead=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
+          <span><strong class="arch-mission-name">${pick(m.card)}</strong>
+          <span class="arch-node-when">${CTXT[m.cloud]} · ${pick(m.when)}</span>
+          ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
+        missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
+      });
+      row.appendChild(missionRoot);
+    }
+    root.appendChild(row);
   });
-  if(!archSelectedObject())ARCHSELECT={type:'company',id:archCompanies()[0].id};
-  $('#arch-tour').textContent=t('arch_tour_start');
-  applyArchSelection(false);
   requestAnimationFrame(drawArchWires);
   if('ResizeObserver' in window){
     if(ARCHOBSERVER)ARCHOBSERVER.disconnect();
-    ARCHOBSERVER=new ResizeObserver(()=>requestAnimationFrame(drawArchWires));
+    ARCHOBSERVER=new ResizeObserver(scheduleArchWires);
     ARCHOBSERVER.observe($('#arch-canvas'));
   }
 }
@@ -895,12 +863,30 @@ function archPoint(el,side,base){
   if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
   return{x:r.left+r.width/2-base.left,y:r.top-base.top};
 }
-function addArchWire(svg,d,main,arrow){
+function addArchPacket(svg,d,index,main){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  circle.setAttribute('class','arch-packet');
+  circle.setAttribute('r',main?'3':'2.3');
+  const motion=document.createElementNS('http://www.w3.org/2000/svg','animateMotion');
+  motion.setAttribute('path',d);
+  motion.setAttribute('dur',main?'3.4s':'2.5s');
+  motion.setAttribute('begin',`-${(index*.38).toFixed(2)}s`);
+  motion.setAttribute('repeatCount','indefinite');
+  circle.appendChild(motion);
+  svg.appendChild(circle);
+}
+function addArchWire(svg,d,main,index){
   const path=document.createElementNS('http://www.w3.org/2000/svg','path');
   path.setAttribute('d',d);
-  path.setAttribute('class','arch-wire'+(main?' arch-wire-main':''));
-  if(arrow)path.setAttribute('marker-end',main?'url(#arch-arrow-main)':'url(#arch-arrow-branch)');
+  path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
+  path.setAttribute('marker-end','url(#arch-arrow)');
   svg.appendChild(path);
+  addArchPacket(svg,d,index,main);
+}
+function scheduleArchWires(){
+  clearTimeout(ARCHDRAWTIMER);
+  ARCHDRAWTIMER=setTimeout(drawArchWires,90);
 }
 function drawArchWires(){
   const canvas=$('#arch-canvas'),svg=$('#arch-wires');
@@ -909,46 +895,23 @@ function drawArchWires(){
   const base=canvas.getBoundingClientRect();
   if(base.width<2||base.height<2)return;
   svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);
-  svg.innerHTML=`<defs>
-    <marker id="arch-arrow-main" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>
-    <marker id="arch-arrow-branch" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--rule2)"/></marker>
-  </defs>`;
-  const companies=[...canvas.querySelectorAll('.arch-company')];
-  companies.forEach((company,index)=>{
+  svg.innerHTML=`<defs><marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker></defs>`;
+
+  const companies=[...canvas.querySelectorAll('.arch-company-head')];
+  companies.forEach((newer,index)=>{
     if(index<companies.length-1){
-      const a=archPoint(company,'right',base),b=archPoint(companies[index+1],'left',base),mid=(a.x+b.x)/2;
-      addArchWire(svg,`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`,true,true);
+      const older=companies[index+1];
+      const a=archPoint(older,'top',base),b=archPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
+      const d=`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`;
+      addArchWire(svg,d,true,index);
     }
-    const zone=company.closest('.arch-zone');
-    zone.querySelectorAll('.arch-mission').forEach(mission=>{
-      const a=archPoint(company,'bottom',base),b=archPoint(mission,'top',base),mid=a.y+14;
-      addArchWire(svg,`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`,false,true);
+    const row=newer.closest('.arch-row');
+    row.querySelectorAll('.arch-mission-head').forEach((mission,missionIndex)=>{
+      const a=archPoint(newer,'right',base),b=archPoint(mission,'left',base),mid=(a.x+b.x)/2;
+      const d=`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`;
+      addArchWire(svg,d,false,index*6+missionIndex);
     });
   });
-}
-function openArchInTimeline(){
-  stopArchTour();
-  const mission=ARCHSELECT.type==='mission'?CONFIG.missions.find(m=>m.id===ARCHSELECT.id):null;
-  const companyId=mission?mission.company:ARCHSELECT.id;
-  setView('chrono');
-  const emp=document.querySelector(`.emp[data-company="${companyId}"]`);
-  if(!emp)return;
-  if(!emp.classList.contains('on')){
-    emp.classList.add('on');
-    emp.querySelector('.emp-head').setAttribute('aria-expanded','true');
-    setBody(emp.querySelector('.emp-body'),true);
-  }
-  let target=emp;
-  if(mission){
-    const card=emp.querySelector(`.e-card[data-mission="${mission.id}"]`);
-    if(card){
-      card.classList.add('on');
-      card.querySelector('.e-btn').setAttribute('aria-expanded','true');
-      setBody(card.querySelector('.e-body'),true);
-      target=card;
-    }
-  }
-  requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 
 /* ── dépliage animé ──
@@ -974,7 +937,7 @@ function setBody(el,open){
 function renderChrono(){
   const root=$('#tl-root');root.innerHTML='';
   CONFIG.companies.forEach(co=>{
-    const emp=document.createElement('div');emp.className='emp';emp.dataset.company=co.id;
+    const emp=document.createElement('div');emp.className='emp';
     emp.innerHTML=`<button class="emp-head" aria-expanded="true">
         <span><span class="emp-n">${co.name}</span>
           <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span>
@@ -1003,7 +966,7 @@ function renderChrono(){
       zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
       ms.forEach(m=>{
         const e=document.createElement('div');e.className='entry';
-        const card=document.createElement('div');card.className='e-card';card.dataset.mission=m.id;
+        const card=document.createElement('div');card.className='e-card';
         card.innerHTML=`<button class="e-btn" aria-expanded="false"><span class="e-logo">${LOGOS[m.cloud]||LOGOS.oth}</span><span class="e-txt">
             <span class="e-when">${whenStr(m)}</span>
             <span class="e-t">${pick(m.title)}</span>
@@ -1097,7 +1060,6 @@ function setView(v){
 }
 function setLang(l,remember){
   if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
-  stopArchTour();
   LANG=l;ALLOPEN=false;
   renderStatic();renderArch();renderChrono();renderSkills();renderCerts();renderEdu();
 }
