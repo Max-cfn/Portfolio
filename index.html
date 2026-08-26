@@ -103,12 +103,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .ssub{font-size:13.5px;color:var(--mut);margin-bottom:30px;max-width:70ch}
 
 /* ── tabs ── */
-.tabbar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule2);margin-bottom:30px;gap:14px;flex-wrap:wrap}
-.tabs{display:flex;gap:26px}
-.tabs button{font-size:14px;font-weight:500;color:var(--mut);padding:0 2px 10px;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tabs button.on{color:var(--ink);border-bottom-color:var(--green);font-weight:600}
-.tabs button:not(.on):hover{color:var(--ink2)}
-.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:0 2px 10px}
+.tabbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule2);margin-bottom:30px;padding-bottom:12px;gap:14px;flex-wrap:wrap}
+.tabs{display:flex;gap:7px}
+.tabs button{font-size:14px;font-weight:600;color:var(--mut);padding:9px 13px;border:1px solid var(--rule2);background:var(--card);transition:color .16s,background .16s,border-color .16s,transform .16s}
+.tabs button.on{color:var(--paper);background:var(--green);border-color:var(--green)}
+.tabs button:not(.on):hover{color:var(--green);background:var(--green-bg);border-color:var(--green);transform:translateY(-1px)}
+.tabs button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:9px 2px}
 .xall:hover{text-decoration:underline}
 .view{display:none}
 .view.on{display:block;animation:vf .22s ease}
@@ -126,6 +127,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-packet{fill:var(--green)}
 .arch-rows{display:grid;gap:56px;position:relative;z-index:1}
 .arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);gap:70px;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
+.arch-row.has-company-open{grid-template-columns:minmax(0,1fr);gap:20px}
 .arch-row-label{position:absolute;top:-9px;left:14px;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
 .arch-item{position:relative;z-index:3;min-width:0;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,box-shadow .22s,background .16s}
 .arch-item:hover{border-color:var(--ink)}
@@ -150,13 +152,20 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .arch-body-in li::before{content:"—";position:absolute;left:0;color:var(--green)}
 .arch-missions{display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
 .arch-row[data-company="hardis"] .arch-missions{grid-template-columns:repeat(2,minmax(0,1fr))}
+.arch-row[data-company="hardis"] .arch-missions.has-open{grid-template-columns:minmax(0,1fr)}
+.arch-missions.has-open .arch-item.on .arch-body-in{padding:20px 22px}
+.arch-row.has-company-open > .arch-item.on .arch-body-in{padding:20px 22px}
+.arch-row.has-company-open > .arch-item.on .arch-body-in > *{max-width:82ch}
 .arch-mission-head{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:9px;align-items:start;padding:11px}
 .arch-provider{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
 .arch-provider svg{width:17px;height:17px;display:block}
 .arch-mission-name{font-size:13px}
 .arch-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--rust);text-transform:uppercase;margin-top:6px}
 .arch-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
-@media(max-width:760px){
+@media(max-width:980px) and (min-width:861px){
+  .arch-row{grid-template-columns:250px minmax(0,1fr);gap:42px}
+}
+@media(max-width:860px){
   .arch-intro{align-items:flex-start;flex-direction:column}
   .arch-row{grid-template-columns:1fr;gap:26px}
   .arch-row[data-company="hardis"] .arch-missions{grid-template-columns:1fr}
@@ -169,7 +178,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
   .arch-company-logo{width:58px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){
-  .arch-item,.arch-item-head,.arch-toggle,.arch-item-body{transition:none}
+  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body{transition:none}
 }
 
 /* ── détail commun ── */
@@ -276,6 +285,10 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 
 @media(max-width:720px){
   body{padding-bottom:72px}
+  .tabbar{align-items:stretch}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .tabs button{width:100%;padding:10px 8px}
+  .xall{margin-left:auto}
   .mobile-cta{position:fixed;display:grid;grid-template-columns:1fr 1fr;left:12px;right:12px;bottom:12px;z-index:70;background:var(--ink);border:1px solid var(--ink);box-shadow:0 8px 28px rgba(28,27,21,.22)}
   .mobile-cta a{display:block;padding:12px 10px;text-align:center;text-decoration:none;font-size:13px;font-weight:600;color:var(--paper)}
   .mobile-cta a+a{background:var(--paper);color:var(--ink)}
@@ -336,13 +349,13 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <div class="shead"><span class="mnum">01</span><h2 data-t="s1"></h2></div>
   <p class="ssub" data-t="s1_sub"></p>
   <div class="tabbar">
-    <div class="tabs">
-      <button id="tab-arch" class="on" onclick="setView('arch')" data-t="tab_arch"></button>
-      <button id="tab-chrono" onclick="setView('chrono')" data-t="tab_chrono"></button>
+    <div class="tabs" role="tablist" aria-label="Affichage du parcours">
+      <button id="tab-arch" class="on" role="tab" aria-selected="true" aria-controls="view-arch" onclick="setView('arch')" data-t="tab_arch"></button>
+      <button id="tab-chrono" role="tab" aria-selected="false" aria-controls="view-chrono" tabindex="-1" onclick="setView('chrono')" data-t="tab_chrono"></button>
     </div>
     <button class="xall" id="xall" onclick="toggleAll()" style="display:none"></button>
   </div>
-  <div class="view on" id="view-arch">
+  <div class="view on" id="view-arch" role="tabpanel" aria-labelledby="tab-arch" aria-hidden="false">
     <div class="arch-intro">
       <p class="arch-hint" data-t="arch_hint"></p>
       <span class="arch-direction" data-t="arch_direction"></span>
@@ -352,7 +365,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <div class="arch-rows" id="arch-root"></div>
     </div>
   </div>
-  <div class="view" id="view-chrono"><div id="tl-root"></div></div>
+  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div id="tl-root"></div></div>
 </section>
 
 <section id="skills">
@@ -422,7 +435,7 @@ const CONFIG = {
       s1:"Parcours", s1_sub:"Mes expériences les plus récentes en premier, reliées comme une architecture cloud. Chaque poste distribue ensuite vers ses missions.",
       tab_arch:"Schéma du parcours", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
-      arch_hint:"Cliquez sur un poste ou une mission pour dérouler son contenu. L'ouverture d'un élément referme automatiquement le précédent.",
+      arch_hint:"Cliquez sur un poste ou une mission : la fiche sélectionnée s'ouvre en pleine largeur et referme automatiquement la précédente.",
       arch_direction:"flux : ancien → récent ↑",
       arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
@@ -446,7 +459,7 @@ const CONFIG = {
       s1:"Experience", s1_sub:"My most recent experience comes first, connected like a cloud architecture. Each role then distributes towards its assignments.",
       tab_arch:"Experience diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
-      arch_hint:"Select a role or assignment to expand its content. Opening another item automatically closes the previous one.",
+      arch_hint:"Select a role or assignment: the chosen card opens at full width and automatically closes the previous one.",
       arch_direction:"flow: earlier → recent ↑",
       arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
@@ -808,7 +821,56 @@ function makeArchItem(type,id,item,headHTML,headClass){
   body.addEventListener('transitionend',()=>drawArchWires());
   return article;
 }
+function captureArchPositions(){
+  const positions=new Map();
+  document.querySelectorAll('.arch-row .arch-item').forEach(item=>{
+    positions.set(`${item.dataset.type}:${item.dataset.id}`,item.getBoundingClientRect());
+  });
+  return positions;
+}
+function animateArchReflow(positions){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.arch-row .arch-item').forEach(item=>{
+      const before=positions.get(`${item.dataset.type}:${item.dataset.id}`),after=item.getBoundingClientRect();
+      if(!before)return;
+      const dx=before.left-after.left,dy=before.top-after.top;
+      if(Math.abs(dx)<1&&Math.abs(dy)<1)return;
+      item.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{
+        duration:360,easing:'cubic-bezier(.22,.61,.36,1)'
+      });
+    });
+    trackArchLayout(440);
+  });
+}
+function syncArchExpansionLayouts(){
+  const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:400;
+  document.querySelectorAll('.arch-missions').forEach(grid=>{
+    clearTimeout(grid._archLayoutTimer);
+    if(grid.querySelector('.arch-item.on[data-type="mission"]')){grid.classList.add('has-open');return;}
+    if(!grid.classList.contains('has-open'))return;
+    grid._archLayoutTimer=setTimeout(()=>{
+      if(grid.querySelector('.arch-item.on[data-type="mission"]'))return;
+      const positions=captureArchPositions();
+      grid.classList.remove('has-open');
+      animateArchReflow(positions);trackArchLayout();
+    },delay);
+  });
+  document.querySelectorAll('.arch-row').forEach(row=>{
+    clearTimeout(row._archLayoutTimer);
+    const company=row.querySelector(':scope > .arch-item[data-type="company"]');
+    if(company&&company.classList.contains('on')){row.classList.add('has-company-open');return;}
+    if(!row.classList.contains('has-company-open'))return;
+    row._archLayoutTimer=setTimeout(()=>{
+      if(company&&company.classList.contains('on'))return;
+      const positions=captureArchPositions();
+      row.classList.remove('has-company-open');
+      animateArchReflow(positions);trackArchLayout();
+    },delay);
+  });
+}
 function toggleArchItem(type,id){
+  const positions=captureArchPositions();
   const same=ARCHEXPANDED&&ARCHEXPANDED.type===type&&ARCHEXPANDED.id===id;
   ARCHEXPANDED=same?null:{type,id};
   document.querySelectorAll('.arch-item').forEach(item=>{
@@ -817,6 +879,8 @@ function toggleArchItem(type,id){
     item.querySelector('.arch-item-head').setAttribute('aria-expanded',open?'true':'false');
     setBody(item.querySelector('.arch-item-body'),open);
   });
+  syncArchExpansionLayouts();
+  animateArchReflow(positions);
   trackArchLayout();
 }
 function archZoneLocation(company){
@@ -944,7 +1008,7 @@ function animateArchPackets(now){
 function drawArchWires(){
   const canvas=$('#arch-canvas'),svg=$('#arch-wires');
   if(!canvas||!svg)return;
-  if(matchMedia('(max-width:760px)').matches){svg.replaceChildren();return;}
+  if(matchMedia('(max-width:860px)').matches){svg.replaceChildren();return;}
   const base=canvas.getBoundingClientRect();
   if(base.width<2||base.height<2)return;
   svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);
@@ -1106,13 +1170,22 @@ function renderEdu(){
 }
 
 function setView(v){
-  $('#tab-arch').classList.toggle('on',v==='arch');
-  $('#tab-chrono').classList.toggle('on',v==='chrono');
-  $('#view-arch').classList.toggle('on',v==='arch');
-  $('#view-chrono').classList.toggle('on',v==='chrono');
+  const arch=v==='arch',archTab=$('#tab-arch'),chronoTab=$('#tab-chrono');
+  archTab.classList.toggle('on',arch);chronoTab.classList.toggle('on',!arch);
+  archTab.setAttribute('aria-selected',arch?'true':'false');chronoTab.setAttribute('aria-selected',arch?'false':'true');
+  archTab.tabIndex=arch?0:-1;chronoTab.tabIndex=arch?-1:0;
+  $('#view-arch').classList.toggle('on',arch);$('#view-chrono').classList.toggle('on',!arch);
+  $('#view-arch').setAttribute('aria-hidden',arch?'false':'true');
+  $('#view-chrono').setAttribute('aria-hidden',arch?'true':'false');
   $('#xall').style.display=v==='chrono'?'block':'none';
   if(v==='arch')requestAnimationFrame(drawArchWires);
 }
+$('.tabs').addEventListener('keydown',event=>{
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
+  event.preventDefault();
+  const view=document.activeElement.id==='tab-arch'?'chrono':'arch';
+  setView(view);$(`#tab-${view}`).focus();
+});
 function setLang(l,remember){
   if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
   LANG=l;ALLOPEN=false;
