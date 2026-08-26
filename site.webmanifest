@@ -1,0 +1,25 @@
+{
+  "name": "Maxence Cerfontaine — Cloud & DevOps",
+  "short_name": "Maxence C.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F2EB",
+  "theme_color": "#1C1B15",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

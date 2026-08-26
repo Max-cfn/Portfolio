@@ -8,15 +8,18 @@
 <meta name="author" content="Maxence Cerfontaine">
 <meta name="theme-color" content="#F4F2EB">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://REMPLACER-PAR-TON-DOMAINE/">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://maxence-cerfontaine.cloud/">
 
 <!-- Carte de partage (LinkedIn, Slack, WhatsApp, X…) -->
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Maxence Cerfontaine">
 <meta property="og:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
 <meta property="og:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure. 10 certifications dont AWS Solutions Architect Professional.">
-<meta property="og:url" content="https://REMPLACER-PAR-TON-DOMAINE/">
-<meta property="og:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<meta property="og:url" content="https://maxence-cerfontaine.cloud/">
+<meta property="og:image" content="https://maxence-cerfontaine.cloud/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
@@ -24,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
 <meta name="twitter:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure.">
-<meta name="twitter:image" content="https://REMPLACER-PAR-TON-DOMAINE/og.png">
+<meta name="twitter:image" content="https://maxence-cerfontaine.cloud/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..640;1,9..144,340..640&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,6 +52,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-heigh
 .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
 a{color:var(--ink)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:4px}
 ::selection{background:var(--green);color:var(--paper)}
 .mlabel{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--mut)}
 .mnum{font-family:var(--mono);font-size:11.5px;color:var(--rust)}
@@ -100,43 +104,82 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 
 /* ── tabs ── */
 .tabbar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule2);margin-bottom:30px;gap:14px;flex-wrap:wrap}
-.tabs{display:flex;gap:26px}
-.tabs button{font-size:14px;font-weight:500;color:var(--mut);padding:0 2px 10px;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tabs button.on{color:var(--ink);border-bottom-color:var(--green);font-weight:600}
-.tabs button:not(.on):hover{color:var(--ink2)}
-.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:0 2px 10px}
+.tabs{display:flex;gap:7px}
+.tabs button{font-size:14px;font-weight:600;color:var(--mut);padding:9px 13px;border:1px solid var(--rule2);background:var(--card);margin-bottom:-1px;transition:color .16s,background .16s,border-color .16s,transform .16s}
+.tabs button.on{color:var(--paper);background:var(--green);border-color:var(--green)}
+.tabs button:not(.on):hover{color:var(--green);background:var(--green-bg);border-color:var(--green);transform:translateY(-1px)}
+.tabs button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.xall{font-family:var(--mono);font-size:12px;color:var(--green);padding:9px 2px;margin-bottom:-1px}
 .xall:hover{text-decoration:underline}
 .view{display:none}
 .view.on{display:block;animation:vf .22s ease}
 @keyframes vf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-/* ── vue schéma ── */
-.legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.legend .mlabel{margin-right:4px}
-.lgd{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;color:var(--mut);border:1px solid var(--rule2);background:var(--card);padding:5px 11px;border-radius:2px;transition:.14s}
-.lgd svg{width:13px;height:13px;display:block}
-.lgd:hover{border-color:var(--ink);color:var(--ink)}
-.lgd.on{border-color:var(--green);color:var(--green);background:var(--green-bg)}
-.region{border:1px dashed var(--rule2);padding:34px 18px 18px;position:relative;background:var(--card)}
-.region-lbl{position:absolute;top:-9px;left:16px;background:var(--paper);padding:0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
-.vpc{border:1px solid var(--rule2);padding:30px 14px 16px;position:relative;margin-bottom:20px;background:var(--paper)}
-.vpc:last-child{margin-bottom:0}
-.vpc-lbl{position:absolute;top:-10px;left:14px;background:var(--ink);color:var(--paper);padding:1px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
-.vpc-meta{position:absolute;top:-8px;right:14px;background:var(--paper);padding:0 8px;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
-.svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-.svc{background:var(--card);border:1px solid var(--rule2);padding:13px 14px;text-align:left;transition:.14s;position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
-.svc:hover{border-color:var(--ink);transform:translateY(-1px)}
-.svc.on{border-color:var(--green);background:var(--green-bg)}
-.svc.on::after{content:"";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green)}
-.svc-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.ico{width:22px;height:22px;display:grid;place-items:center;flex-shrink:0}
-.ico svg{width:19px;height:19px;display:block}
-.svc-n{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.005em}
-.svc-r{font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:2px}
-.svc-d{font-family:var(--mono);font-size:10.5px;color:var(--mut)}
-.svc-tag{font-size:12.5px;color:var(--ink2);line-height:1.45;margin-top:7px}
-.svc-live{font-family:var(--mono);font-size:9.5px;color:var(--rust);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
-.inline-detail{grid-column:1/-1;border-left:3px solid var(--green);background:var(--card);border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 24px;animation:vf .2s ease}
+/* ── schéma vertical du parcours ── */
+.arch-intro{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.arch-hint{font-size:13px;color:var(--mut);max-width:68ch}
+.arch-direction{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--green);border:1px solid var(--green);background:var(--green-bg);padding:6px 10px;white-space:nowrap}
+.arch-canvas{position:relative;border:1px solid var(--rule2);background:var(--card);padding:28px 18px;overflow:hidden}
+.arch-wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.arch-wire{fill:none;vector-effect:non-scaling-stroke}
+.arch-wire-main{stroke:var(--green);stroke-width:1.8}
+.arch-wire-branch{stroke:var(--green);stroke-width:1.25;opacity:.58}
+.arch-packet{fill:var(--green)}
+.arch-rows{display:grid;gap:56px;position:relative;z-index:1}
+.arch-row{position:relative;display:grid;grid-template-columns:290px minmax(0,1fr);column-gap:70px;row-gap:0;align-items:start;border:1px dashed var(--rule2);background:transparent;padding:32px 18px 20px}
+.arch-row.has-company-open{grid-template-columns:minmax(0,1fr);column-gap:0;row-gap:20px}
+.arch-row-label{position:absolute;top:-9px;left:14px;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--card);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
+.arch-item{position:relative;z-index:3;min-width:0;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,box-shadow .22s,background .16s}
+.arch-item:hover{border-color:var(--ink)}
+.arch-item.on{border-color:var(--green);background:var(--green-bg);box-shadow:0 8px 24px rgba(31,77,58,.07)}
+.arch-item-head{position:relative;width:100%;border:0;background:transparent;text-align:left;transition:background .16s,transform .16s}
+.arch-item-head:hover{transform:translateY(-1px)}
+.arch-item.on .arch-item-head{background:var(--green-bg)}
+.arch-company-head{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;gap:12px;align-items:center;padding:13px}
+.arch-company-logo{width:72px;height:46px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);padding:5px}
+.arch-company-logo img{display:block;max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.arch-company-name,.arch-mission-name{display:block;font-weight:600;line-height:1.25}
+.arch-company-name{font-family:var(--disp);font-size:18px;font-weight:520}
+.arch-node-role{display:block;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green);margin-bottom:3px;line-height:1.4}
+.arch-node-when{display:block;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:4px;line-height:1.35}
+.arch-toggle{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--rule2);border-radius:50%;font-family:var(--mono);font-size:16px;color:var(--mut);transition:transform .2s,color .15s,border-color .15s}
+.arch-item.on .arch-toggle{transform:rotate(45deg);color:var(--green);border-color:var(--green)}
+.arch-item-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.22,.61,.36,1)}
+.arch-body-in{border-top:1px solid var(--green);background:var(--card);padding:16px}
+.arch-body-in p{font-size:13.5px;color:var(--ink2);margin-bottom:12px}
+.arch-body-in ul{list-style:none;margin-bottom:12px}
+.arch-body-in li{position:relative;padding-left:16px;margin-bottom:6px;font-size:13.5px;color:var(--ink2)}
+.arch-body-in li::before{content:"—";position:absolute;left:0;color:var(--green)}
+.arch-missions{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:start}
+.arch-missions .arch-item.on .arch-body-in{padding:20px 22px}
+.arch-row.has-company-open > .arch-item.on .arch-body-in{padding:20px 22px}
+.arch-row.has-company-open > .arch-item.on .arch-body-in > *{max-width:82ch}
+.arch-mission-head{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:9px;align-items:start;padding:11px}
+.arch-provider{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--rule);background:var(--paper)}
+.arch-provider svg{width:17px;height:17px;display:block}
+.arch-mission-name{font-size:13px}
+.arch-mission-role{display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green);margin-top:5px;line-height:1.4}
+.arch-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--rust);text-transform:uppercase;margin-top:6px}
+.arch-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
+@media(max-width:980px) and (min-width:861px){
+  .arch-row{grid-template-columns:250px minmax(0,1fr);column-gap:42px}
+}
+@media(max-width:860px){
+  .arch-intro{align-items:flex-start;flex-direction:column}
+  .arch-row{grid-template-columns:1fr;column-gap:0;row-gap:0}
+  .arch-row.has-company-open{row-gap:26px}
+  .arch-missions{margin-top:26px}
+  .arch-wires{display:none}
+  .arch-row:not(:last-child)::after{content:"↑";position:absolute;left:50%;bottom:-46px;height:36px;color:var(--green);font-family:var(--mono);font-size:18px;line-height:36px}
+  .arch-missions{border-left:1px solid var(--green);padding-left:14px}
+}
+@media(max-width:430px){
+  .arch-company-head{grid-template-columns:58px minmax(0,1fr) 24px;gap:9px;padding:10px}
+  .arch-company-logo{width:58px;height:40px}
+}
+@media(prefers-reduced-motion:reduce){
+  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body{transition:none}
+}
 
 /* ── détail commun ── */
 .dt-h{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:2px}
@@ -234,9 +277,22 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .contact p{color:var(--mut);margin-bottom:26px;max-width:52ch}
 .contact .big{font-family:var(--disp);font-size:clamp(19px,2.6vw,26px);font-weight:500;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--rule2);transition:.15s}
 .contact .big:hover{border-bottom-color:var(--green);color:var(--green)}
-footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
+footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.footer-links a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--rule2)}
+.footer-links a:hover{color:var(--green);border-bottom-color:var(--green)}
+.mobile-cta{display:none}
 
 @media(max-width:720px){
+  body{padding-bottom:72px}
+  .tabbar{align-items:stretch}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .tabs button{width:100%;padding:10px 8px}
+  .xall{margin-left:auto}
+  .mobile-cta{position:fixed;display:grid;grid-template-columns:1fr 1fr;left:12px;right:12px;bottom:12px;z-index:70;background:var(--ink);border:1px solid var(--ink);box-shadow:0 8px 28px rgba(28,27,21,.22)}
+  .mobile-cta a{display:block;padding:12px 10px;text-align:center;text-decoration:none;font-size:13px;font-weight:600;color:var(--paper)}
+  .mobile-cta a+a{background:var(--paper);color:var(--ink)}
+
   .nav-links{display:none}
   .hero{grid-template-columns:1fr;gap:34px}
   .emp-head{flex-direction:column;gap:6px}
@@ -246,15 +302,10 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
-/* étroit : l'étiquette employeur et la période se chevauchaient sur la
-   bordure haute du bloc — la période repasse dans le flux, sous l'étiquette. */
-@media(max-width:560px){
-  .vpc{padding-top:22px}
-  .vpc-meta{position:static;display:block;background:none;padding:0;margin-bottom:12px}
-}
 </style>
 </head>
 <body>
+<noscript><div style="padding:14px 20px;background:#1C1B15;color:#F4F2EB;text-align:center;font-family:Arial,sans-serif">Ce portfolio utilise JavaScript pour afficher son contenu. Activez JavaScript pour consulter la page. — This portfolio needs JavaScript to display its content.</div></noscript>
 
 <nav><div class="wrap">
   <a class="brand" href="#top">Maxence <span>Cerfontaine</span></a>
@@ -298,20 +349,23 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <div class="shead"><span class="mnum">01</span><h2 data-t="s1"></h2></div>
   <p class="ssub" data-t="s1_sub"></p>
   <div class="tabbar">
-    <div class="tabs">
-      <button id="tab-arch" class="on" onclick="setView('arch')" data-t="tab_arch"></button>
-      <button id="tab-chrono" onclick="setView('chrono')" data-t="tab_chrono"></button>
+    <div class="tabs" role="tablist" aria-label="Affichage du parcours">
+      <button id="tab-arch" class="on" role="tab" aria-selected="true" aria-controls="view-arch" onclick="setView('arch')" data-t="tab_arch"></button>
+      <button id="tab-chrono" role="tab" aria-selected="false" aria-controls="view-chrono" tabindex="-1" onclick="setView('chrono')" data-t="tab_chrono"></button>
     </div>
     <button class="xall" id="xall" onclick="toggleAll()" style="display:none"></button>
   </div>
-  <div class="view on" id="view-arch">
-    <div class="legend" id="legend"></div>
-    <div class="region">
-      <span class="region-lbl" data-t="region"></span>
-      <div id="arch-root"></div>
+  <div class="view on" id="view-arch" role="tabpanel" aria-labelledby="tab-arch" aria-hidden="false">
+    <div class="arch-intro">
+      <p class="arch-hint" data-t="arch_hint"></p>
+      <span class="arch-direction" data-t="arch_direction"></span>
+    </div>
+    <div class="arch-canvas" id="arch-canvas">
+      <svg class="arch-wires" id="arch-wires" aria-hidden="true"></svg>
+      <div class="arch-rows" id="arch-root"></div>
     </div>
   </div>
-  <div class="view" id="view-chrono"><div id="tl-root"></div></div>
+  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div id="tl-root"></div></div>
 </section>
 
 <section id="skills">
@@ -344,8 +398,17 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 
 <footer>
   <span data-t="foot"></span>
+  <div class="footer-links">
+    <a href="/confidentialite.html" data-t="privacy"></a>
+    <a href="/mentions-legales.html" data-t="legal"></a>
+  </div>
   <span data-t="foot2"></span>
 </footer>
+</div>
+
+<div class="mobile-cta" aria-label="Actions rapides">
+  <a id="mobile-cv" href="cv/CV_FR_Cerfontaine_Maxence.pdf" download data-t="cv_short"></a>
+  <a href="#contact" data-t="contact_short"></a>
 </div>
 
 <script>
@@ -356,50 +419,56 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 const CONFIG = {
 
   /* CV : dépose les PDF dans cv/ à côté de index.html */
-  cv: { fr:"cv/CV_FR_CERFONTAINE_MAXENCE.pdf", en:"cv/CV_EN_Cerfontaine_Maxence.pdf" },
+  cv: { fr:"cv/CV_FR_Cerfontaine_Maxence.pdf", en:"cv/CV_EN_Cerfontaine_Maxence.pdf" },
 
   ui: {
     fr: {
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps", meta_desc:"Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform et FinOps. 10 certifications dont AWS Solutions Architect Professional.",
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
       lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
-      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter",
+      cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
-      s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture — filtrable par techno — ou la chronologie par employeur. Chaque élément se déplie.",
-      tab_arch:"Schéma d'architecture", tab_chrono:"Chronologie",
+      s1:"Parcours", s1_sub:"Mes expériences les plus récentes en premier, reliées comme une architecture cloud. Chaque poste distribue ensuite vers ses missions.",
+      tab_arch:"Schéma du parcours", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
-      region:"RÉGION — eu-west-3 (Paris)",
+      arch_hint:"Cliquez sur un poste ou une mission : la fiche sélectionnée s'ouvre en pleine largeur et referme automatiquement la précédente.",
+      arch_direction:"Lecture : du bas (ancien) vers le haut (récent)",
+      arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
-      foot:"© 2026 Maxence Cerfontaine", foot2:"Site statique — sans cookies ni trackers",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
       verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
-      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions", filter_lbl:"filtrer —"
+      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions"
     },
     en: {
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 10 certifications including AWS Solutions Architect Professional.",
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
       lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
-      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch",
+      cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
-      s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram — filterable by tech — or the employer-by-employer timeline. Every item expands.",
-      tab_arch:"Architecture diagram", tab_chrono:"Timeline",
+      s1:"Experience", s1_sub:"My most recent experience comes first, connected like a cloud architecture. Each role then distributes towards its assignments.",
+      tab_arch:"Experience diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
-      region:"REGION — eu-west-3 (Paris)",
+      arch_hint:"Select a role or assignment: the chosen card opens at full width and automatically closes the previous one.",
+      arch_direction:"Read from bottom (earlier) to top (recent)",
+      arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
-      foot:"© 2026 Maxence Cerfontaine", foot2:"Static site — no cookies, no trackers",
+      foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
       verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
-      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments", filter_lbl:"filter —"
+      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments"
     }
   },
 
@@ -407,7 +476,7 @@ const CONFIG = {
         intro + bullets = le poste lui-même (ex-« Socle & FinOps »). ── */
   companies: [
     { id:"devoteam", name:"Devoteam A Cloud",
-      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      role:{fr:"Ingénieur DevOps AWS", en:"AWS DevOps Engineer"},
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Levallois-Perret · hybride", en:"Levallois-Perret · hybrid"},
       when:{fr:"avr 2026 → aujourd'hui", en:"Apr 2026 → present"},
@@ -428,7 +497,7 @@ const CONFIG = {
       coreCard:null },
 
     { id:"hardis", name:"Hardis Group",
-      role:{fr:"Ingénieur Cloud — équipe Cloud Operations", en:"Cloud Engineer — Cloud Operations team"},
+      role:{fr:"Ingénieur Cloud multi-cloud · Cloud Operations", en:"Multi-cloud Engineer · Cloud Operations"},
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Paris La Défense · hybride", en:"Paris La Défense · hybrid"},
       when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
@@ -449,7 +518,7 @@ const CONFIG = {
       stack:"AWS · GCP · Azure · Terraform · CloudFormation · FinOps · ITSM",
       /* cette carte apparaît dans le schéma d'architecture */
       coreCard:{ cloud:"multi",
-        card:{fr:"Socle & FinOps", en:"Core & FinOps"},
+        card:{fr:"Cloud Operations & FinOps", en:"Cloud Operations & FinOps"},
         sub:{fr:"Paris La Défense", en:"Paris La Défense"},
         tag:{fr:"Architecture, IaC, FinOps et RUN multi-clients", en:"Architecture, IaC, FinOps & multi-client RUN"} } },
 
@@ -474,7 +543,7 @@ const CONFIG = {
             "Built up Azure and Microsoft 365 skills through Microsoft ecosystem training tracks."]},
       stack:"Azure · Microsoft 365 · Marketplace ALSO",
       coreCard:{ cloud:"az",
-        card:{fr:"Partenaires & marketplace", en:"Partners & marketplace"},
+        card:{fr:"Partenaires cloud & marketplace", en:"Cloud partners & marketplace"},
         sub:{fr:"Gennevilliers", en:"Gennevilliers"},
         tag:{fr:"Relation partenaires, marketplace, migrations Microsoft", en:"Partner relations, marketplace, Microsoft migrations"} } }
   ],
@@ -482,8 +551,8 @@ const CONFIG = {
   /* ── Missions (imbriquées sous leur employeur) ── */
   missions: [
     { id:"genai", company:"devoteam", cloud:"aws", live:true,
-      card:{fr:"Plateforme GenAI", en:"GenAI Platform"},
-      role:{fr:"Ingénieur DevOps", en:"DevOps Engineer"},
+      card:{fr:"Plateforme GenAI sécurisée", en:"Secure GenAI Platform"},
+      role:{fr:"Ingénieur DevOps AWS", en:"AWS DevOps Engineer"},
       sub:{fr:"Levallois-Perret", en:"Levallois-Perret"},
       tag:{fr:"LLM privés sur réseau AWS isolé · CI/CD GitLab · ECS", en:"Private LLMs on an isolated AWS network · GitLab CI/CD · ECS"},
       title:{fr:"Plateforme GenAI sécurisée", en:"Secured GenAI Platform"},
@@ -501,12 +570,12 @@ const CONFIG = {
             "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment."]},
       stack:"AWS · ECS · LiteLLM · GitLab CI · VPC" },
 
-    { id:"courir", company:"hardis", cloud:"gcp",
-      card:{fr:"Courir", en:"Courir"},
-      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+    { id:"courir", company:"hardis", cloud:"gcp", durationMonths:6, displayOrder:3,
+      card:{fr:"Courir — Supervision automatisée", en:"Courir — Automated Monitoring"},
+      role:{fr:"Ingénieur Cloud GCP · Centre de services", en:"GCP Cloud Engineer · Service Center"},
       sub:{fr:"oct 2025 → mar 2026", en:"Oct 2025 → Mar 2026"},
       tag:{fr:"Alertes GCP → tickets d'incident automatisés · Terraform", en:"GCP alerts → automated incident tickets · Terraform"},
-      title:{fr:"Courir — supervision et détection automatisée d'incidents", en:"Courir — monitoring & automated incident detection"},
+      title:{fr:"Courir — Supervision & gestion automatisée des incidents", en:"Courir — Automated Monitoring & Incident Management"},
       when:{fr:"oct 2025 → mar 2026 · 6 mois", en:"Oct 2025 → Mar 2026 · 6 mos"},
       intro:{
         fr:"Pour l'enseigne Courir, mise en place de la supervision de l'infrastructure GCP et d'une chaîne de détection d'incidents entièrement automatisée, des alertes de monitoring jusqu'au ticket de support.",
@@ -522,12 +591,12 @@ const CONFIG = {
             "Terraform overhaul and remediation of accumulated drift."]},
       stack:"GCP (Cloud Monitoring · Workflows) · Terraform · API REST · ITSM" },
 
-    { id:"gl", company:"hardis", cloud:"gcp",
-      card:{fr:"Galeries Lafayette", en:"Galeries Lafayette"},
-      role:{fr:"DevOps · mission en régie", en:"DevOps · on-site assignment"},
+    { id:"gl", company:"hardis", cloud:"gcp", durationMonths:8, displayOrder:2,
+      card:{fr:"Galeries Lafayette — Migration vers GKE", en:"Galeries Lafayette — GKE Migration"},
+      role:{fr:"Ingénieur DevOps GCP · Régie", en:"GCP DevOps Engineer · Client Assignment"},
       sub:{fr:"mar → oct 2025", en:"Mar → Oct 2025"},
       tag:{fr:"Migration e-commerce vers GKE · CI/CD · blue/green", en:"E-commerce migration to GKE · CI/CD · blue/green"},
-      title:{fr:"Galeries Lafayette — migration e-commerce vers GCP", en:"Galeries Lafayette — e-commerce migration to GCP"},
+      title:{fr:"Galeries Lafayette — Migration e-commerce vers GKE", en:"Galeries Lafayette — E-commerce Migration to GKE"},
       when:{fr:"mar 2025 → oct 2025 · 8 mois", en:"Mar 2025 → Oct 2025 · 8 mos"},
       intro:{
         fr:"Intégré à l'équipe BUILD Cloud des Galeries Lafayette, j'ai participé à la migration d'un ensemble d'applications e-commerce depuis l'infrastructure on-premise vers Google Cloud Platform, dans une logique de modernisation et de réduction des coûts.",
@@ -547,13 +616,13 @@ const CONFIG = {
             "Released business-critical application updates into production."]},
       stack:"GCP (GKE · Cloud SQL · Cloud Storage · IAM · Cloud DNS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes · Git" },
 
-    { id:"fp", company:"hardis", cloud:"aws",
-      card:{fr:"Fitness Park", en:"Fitness Park"},
-      role:{fr:"Cloud Engineer · centre de services", en:"Cloud Engineer · service center"},
+    { id:"fp", company:"hardis", cloud:"aws", durationMonths:25, displayOrder:1,
+      card:{fr:"Fitness Park — Industrialisation Terraform", en:"Fitness Park — Terraform Industrialization"},
+      role:{fr:"Ingénieur Cloud AWS · Centre de services", en:"AWS Cloud Engineer · Service Center"},
       sub:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
       tag:{fr:"Refonte Terraform · ouvertures pays · projet Égérie", en:"Terraform overhaul · country rollouts · Égérie project"},
-      title:{fr:"Fitness Park — industrialisation Terraform", en:"Fitness Park — Terraform industrialization"},
-      when:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
+      title:{fr:"Fitness Park — Industrialisation Terraform & IaC", en:"Fitness Park — Terraform & IaC Industrialization"},
+      when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
       intro:{
         fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
         en:"Long-term support of Fitness Park's AWS infrastructure through the Hardis service center: IaC remediation, international expansion projects and delivery of a complete application."},
@@ -566,13 +635,13 @@ const CONFIG = {
             "\"Égérie\" project delivered in one month: requirements scoping, architecture diagram and cost estimate, then deployment on a brand-new stack fully independent from the existing infrastructure."]},
       stack:"AWS · Terraform · CI/CD" },
 
-    { id:"dim", company:"hardis", cloud:"aws",
-      card:{fr:"Dimotrans", en:"Dimotrans"},
-      role:{fr:"Cloud Engineer · RUN", en:"Cloud Engineer · RUN"},
+    { id:"dim", company:"hardis", cloud:"aws", durationMonths:10, displayOrder:4,
+      card:{fr:"Dimotrans — RUN & modernisation", en:"Dimotrans — RUN & Modernization"},
+      role:{fr:"Ingénieur Cloud AWS · Centre de services / RUN", en:"AWS Cloud Engineer · Service Center / RUN"},
       sub:{fr:"mar → déc 2024", en:"Mar → Dec 2024"},
       tag:{fr:"RUN AWS · migrations de bases de données · audits", en:"AWS RUN · database migrations · audits"},
-      title:{fr:"Dimotrans — RUN et modernisation", en:"Dimotrans — RUN & modernization"},
-      when:{fr:"mar 2024 → déc 2024", en:"Mar 2024 → Dec 2024"},
+      title:{fr:"Dimotrans — RUN & modernisation AWS", en:"Dimotrans — AWS RUN & Modernization"},
+      when:{fr:"mar 2024 → déc 2024 · 10 mois", en:"Mar 2024 → Dec 2024 · 10 mos"},
       intro:{
         fr:"Exploitation quotidienne de l'infrastructure AWS du groupe logistique Dimotrans, avec un volet audit et modernisation.",
         en:"Day-to-day operation of logistics group Dimotrans' AWS infrastructure, with an audit and modernization dimension."},
@@ -585,13 +654,13 @@ const CONFIG = {
             "Infrastructure managed through ITSM (iTop) with ticket-based support."]},
       stack:"AWS · RDS · iTop" },
 
-    { id:"finare", company:"hardis", cloud:"aws",
-      card:{fr:"Finaré", en:"Finaré"},
-      role:{fr:"Cloud Architect · SRE · forfait", en:"Cloud Architect · SRE · fixed-price"},
+    { id:"finare", company:"hardis", cloud:"aws", durationMonths:5, displayOrder:5,
+      card:{fr:"Finaré — Plateforme data AWS", en:"Finaré — AWS Data Platform"},
+      role:{fr:"Architecte Cloud AWS / SRE · Forfait", en:"AWS Cloud Architect / SRE · Fixed-price Project"},
       sub:{fr:"mai → sep 2024", en:"May → Sep 2024"},
       tag:{fr:"Data platform AWS × Snowflake · CloudFormation", en:"AWS × Snowflake data platform · CloudFormation"},
-      title:{fr:"Finaré — data platform AWS × Snowflake", en:"Finaré — AWS × Snowflake data platform"},
-      when:{fr:"mai 2024 → sep 2024", en:"May 2024 → Sep 2024"},
+      title:{fr:"Finaré — Plateforme data AWS × Snowflake", en:"Finaré — AWS × Snowflake Data Platform"},
+      when:{fr:"mai 2024 → sep 2024 · 5 mois", en:"May 2024 → Sep 2024 · 5 mos"},
       intro:{
         fr:"Projet au forfait : conception et déploiement de l'architecture AWS d'une data platform s'appuyant sur Snowflake.",
         en:"Fixed-price project: design and deployment of the AWS architecture for a Snowflake-based data platform."},
@@ -697,19 +766,21 @@ const whenStr=o=>pick(o.when)+(o.since?' · '+dur(o.since):'');
 
 function renderStatic(){
   document.documentElement.lang=LANG;
+  document.title=t('meta_title');
+  document.querySelector('meta[name="description"]').setAttribute('content',t('meta_desc'));
   document.querySelectorAll('[data-t]').forEach(el=>{
     const v=t(el.dataset.t);
     if(el.dataset.html)el.innerHTML=v;else el.textContent=v;
   });
   $('#cv-main').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-alt').href=LANG==='fr'?CONFIG.cv.en:CONFIG.cv.fr;
+  $('#mobile-cv').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-main').innerHTML=(LANG==='fr'?FLAGS.fr:FLAGS.en)+' '+t('cv_btn');
   $('#cv-alt').innerHTML=(LANG==='fr'?FLAGS.en:FLAGS.fr)+' '+t('cv_alt');
   $('#btn-fr').innerHTML=FLAGS.fr+' FR';
   $('#btn-en').innerHTML=FLAGS.en+' EN';
   $('#btn-fr').classList.toggle('on',LANG==='fr');
   $('#btn-en').classList.toggle('on',LANG==='en');
-  renderLegend();
   updateXall();
 }
 
@@ -721,66 +792,216 @@ function detailHTML(o){
     <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
 }
 
-/* ── filtre par techno du schéma ── */
-let ARCHFILTER=null;
-function renderLegend(){
-  const lg=$('#legend');lg.innerHTML=`<span class="mlabel">${t('filter_lbl')}</span>`;
-  [['aws','AWS'],['gcp','GCP'],['az','Azure'],['multi',LANG==='fr'?'Général':'General']].forEach(([c,label])=>{
-    const b=document.createElement('button');
-    b.className='lgd'+(ARCHFILTER===c?' on':'');
-    b.innerHTML=`${LOGOS[c]}${label}`;
-    b.addEventListener('click',()=>{ARCHFILTER=(ARCHFILTER===c)?null:c;applyArchFilter();renderLegend();});
-    lg.appendChild(b);
-  });
-}
-function applyArchFilter(){
-  document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
-  document.querySelectorAll('.svc').forEach(sv=>{
-    sv.classList.remove('on');
-    sv.style.display=(!ARCHFILTER||sv.dataset.cloud===ARCHFILTER)?'':'none';
-  });
-  document.querySelectorAll('.vpc').forEach(v=>{
-    const any=[...v.querySelectorAll('.svc')].some(sv=>sv.style.display!=='none');
-    v.style.display=any?'':'none';
-  });
-}
+/* ── schéma vertical du parcours ── */
+const COMPANY_LOGOS={
+  devoteam:{src:"https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",alt:"Devoteam"},
+  hardis:{src:"https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",alt:"Hardis Group"},
+  also:{src:"https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",alt:"ALSO Group"}
+};
+let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
 
-/* ── schéma ── */
-function renderArch(){
-  const root=$('#arch-root');root.innerHTML='';
-  CONFIG.companies.forEach(co=>{
-    const vpc=document.createElement('div');vpc.className='vpc';
-    vpc.innerHTML=`<span class="vpc-lbl">${co.name}</span><span class="vpc-meta">${whenStr(co)}</span>`;
-    const grid=document.createElement('div');grid.className='svcs';
-    const items=[];
-    if(co.coreCard){
-      items.push({obj:{title:{fr:pick2(co.coreCard.card,'fr'),en:pick2(co.coreCard.card,'en')},when:co.when,since:co.since,role:co.role,intro:co.intro,bullets:co.bullets,stack:co.stack},
-                  card:co.coreCard.card,role:co.role,sub:co.coreCard.sub,tag:co.coreCard.tag,cloud:co.coreCard.cloud,live:false});
-    }
-    CONFIG.missions.filter(m=>m.company===co.id).forEach(m=>items.push({obj:m,card:m.card,role:m.role,sub:m.sub,tag:m.tag,cloud:m.cloud,live:m.live}));
-    items.forEach(it=>{
-      const b=document.createElement('button');b.className='svc';b.dataset.cloud=it.cloud;
-      b.innerHTML=`<div class="svc-top"><span class="ico">${LOGOS[it.cloud]||LOGOS.oth}</span>
-        <span class="svc-n">${pick(it.card)}</span></div>
-        <div class="svc-r">${pick(it.role)}</div><div class="svc-d">${pick(it.sub)}</div>
-        ${it.tag?`<div class="svc-tag">${pick(it.tag)}</div>`:''}
-        ${it.live?`<div class="svc-live">● ${t('current')}</div>`:''}`;
-      b.addEventListener('click',()=>{
-        const was=b.classList.contains('on');
-        document.querySelectorAll('.svc').forEach(x=>x.classList.remove('on'));
-        document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
-        if(was)return;
-        b.classList.add('on');
-        const d=document.createElement('div');d.className='inline-detail';d.innerHTML=detailHTML(it.obj);
-        b.after(d);d.scrollIntoView({behavior:'smooth',block:'nearest'});
-      });
-      grid.appendChild(b);
-    });
-    vpc.appendChild(grid);root.appendChild(vpc);
-  });
-  applyArchFilter();
+function archBodyHTML(item){
+  const bullets=item.bullets&&item.bullets[LANG]?item.bullets[LANG]:[];
+  return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
+    <ul>${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    ${stackHTML(item)}`;
 }
-function pick2(v,l){return (v&&typeof v==='object'&&!Array.isArray(v))?v[l]:v;}
+function makeArchItem(type,id,item,headHTML,headClass){
+  const article=document.createElement('article');
+  article.className='arch-item';
+  article.dataset.type=type;
+  article.dataset.id=id;
+  article.innerHTML=`<button class="arch-item-head ${headClass}" type="button" aria-expanded="false">
+      ${headHTML}<span class="arch-toggle" aria-hidden="true">+</span>
+    </button>
+    <div class="arch-item-body"><div class="arch-body-in">${archBodyHTML(item)}</div></div>`;
+  const body=article.querySelector('.arch-item-body');
+  initBody(body,false);
+  article.querySelector('.arch-item-head').addEventListener('click',()=>toggleArchItem(type,id));
+  body.addEventListener('transitionend',()=>drawArchWires());
+  return article;
+}
+function syncCompanyLayout(){
+  const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:400;
+  document.querySelectorAll('.arch-row').forEach(row=>{
+    clearTimeout(row._archLayoutTimer);
+    const company=row.querySelector(':scope > .arch-item[data-type="company"]');
+    if(company&&company.classList.contains('on')){row.classList.add('has-company-open');return;}
+    if(!row.classList.contains('has-company-open'))return;
+    row._archLayoutTimer=setTimeout(()=>{
+      if(company&&company.classList.contains('on'))return;
+      row.classList.remove('has-company-open');trackArchLayout(260);
+    },delay);
+  });
+}
+function toggleArchItem(type,id){
+  const same=ARCHEXPANDED&&ARCHEXPANDED.type===type&&ARCHEXPANDED.id===id;
+  ARCHEXPANDED=same?null:{type,id};
+  document.querySelectorAll('.arch-item').forEach(item=>{
+    const open=!!ARCHEXPANDED&&item.dataset.type===ARCHEXPANDED.type&&item.dataset.id===ARCHEXPANDED.id;
+    item.classList.toggle('on',open);
+    item.querySelector('.arch-item-head').setAttribute('aria-expanded',open?'true':'false');
+    setBody(item.querySelector('.arch-item-body'),open);
+  });
+  syncCompanyLayout();
+  trackArchLayout(420);
+}
+function archZoneLocation(company){
+  return pick(company.loc).replace(/\s*·\s*(hybride|hybrid)$/i,'');
+}
+function renderArch(){
+  ARCHEXPANDED=null;
+  const root=$('#arch-root');
+  root.innerHTML='';
+  CONFIG.companies.forEach((co,index)=>{
+    const missions=CONFIG.missions.filter(m=>m.company===co.id)
+      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
+    const row=document.createElement('div');
+    row.className='arch-row';
+    row.dataset.company=co.id;
+    const zoneLabel=`${t('arch_zone')} ${co.name} · ${archZoneLocation(co)}`;
+    row.innerHTML=`<span class="arch-row-label" title="${zoneLabel}">${zoneLabel}</span>`;
+
+    const logo=COMPANY_LOGOS[co.id];
+    const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
+      <span><span class="arch-node-role">${pick(co.role)} · ${pick(co.contract)}</span><strong class="arch-company-name">${co.name}</strong>
+      <span class="arch-node-when">${whenStr(co)}</span>
+      ${co.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
+    row.appendChild(makeArchItem('company',co.id,co,companyHead,'arch-company-head'));
+
+    if(missions.length){
+      const missionRoot=document.createElement('div');
+      missionRoot.className='arch-missions';
+      missions.forEach(m=>{
+        const missionHead=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
+          <span><strong class="arch-mission-name">${pick(m.card)}</strong>
+          <span class="arch-mission-role">${pick(m.role)}</span>
+          <span class="arch-node-when">${pick(m.when)}</span>
+          ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
+        missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
+      });
+      row.appendChild(missionRoot);
+    }
+    root.appendChild(row);
+  });
+  requestAnimationFrame(drawArchWires);
+  if('ResizeObserver' in window){
+    if(ARCHOBSERVER)ARCHOBSERVER.disconnect();
+    ARCHOBSERVER=new ResizeObserver(scheduleArchWires);
+    ARCHOBSERVER.observe($('#arch-canvas'));
+  }
+}
+function archPoint(el,side,base){
+  const r=el.getBoundingClientRect();
+  if(side==='right')return{x:r.right-base.left,y:r.top+r.height/2-base.top};
+  if(side==='left')return{x:r.left-base.left,y:r.top+r.height/2-base.top};
+  if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
+  return{x:r.left+r.width/2-base.left,y:r.top-base.top};
+}
+function archMainPoint(el,side,base){
+  const r=el.getBoundingClientRect(),columnWidth=matchMedia('(max-width:980px)').matches?250:290;
+  const point={x:r.left+Math.min(columnWidth,r.width)/2-base.left,y:r.top-base.top};
+  if(side==='bottom')point.y=r.bottom-base.top;
+  return point;
+}
+const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=54;
+function ensureArchDefs(svg){
+  if(svg.querySelector('#arch-arrow'))return;
+  const defs=document.createElementNS(ARCH_NS,'defs');
+  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
+  svg.prepend(defs);
+}
+function syncArchWire(svg,key,d,main,index,alive){
+  alive.add(key);
+  let group=[...svg.querySelectorAll('.arch-wire-set')].find(node=>node.dataset.key===key);
+  if(!group){
+    group=document.createElementNS(ARCH_NS,'g');
+    group.setAttribute('class','arch-wire-set');
+    group.dataset.key=key;
+    const path=document.createElementNS(ARCH_NS,'path');
+    path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
+    path.setAttribute('marker-end','url(#arch-arrow)');
+    group.appendChild(path);
+    svg.appendChild(group);
+  }
+  group.querySelector('.arch-wire').setAttribute('d',d);
+  let packet=group.querySelector('.arch-packet');
+  if(main||matchMedia('(prefers-reduced-motion: reduce)').matches){if(packet)packet.remove();return;}
+  if(!packet){
+    packet=document.createElementNS(ARCH_NS,'circle');
+    packet.setAttribute('class','arch-packet');packet.setAttribute('r','2.3');
+    packet.dataset.seed=String(index*43);group.appendChild(packet);
+  }
+}
+function scheduleArchWires(){
+  if(ARCHDRAWRAF)return;
+  ARCHDRAWRAF=requestAnimationFrame(()=>{ARCHDRAWRAF=null;drawArchWires();});
+}
+function trackArchLayout(duration=460){
+  if(ARCHLAYOUTRAF)cancelAnimationFrame(ARCHLAYOUTRAF);
+  const started=performance.now();
+  const follow=now=>{
+    drawArchWires();
+    if(now-started<duration)ARCHLAYOUTRAF=requestAnimationFrame(follow);
+    else{ARCHLAYOUTRAF=null;drawArchWires();}
+  };
+  ARCHLAYOUTRAF=requestAnimationFrame(follow);
+}
+function ensureArchPacketAnimation(){
+  if(ARCHPACKETRAF||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  ARCHPACKETLAST=0;
+  ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
+}
+function animateArchPackets(now){
+  ARCHPACKETRAF=null;
+  const canvas=$('#arch-canvas'),svg=$('#arch-wires');
+  if(!canvas||!svg||!canvas.getClientRects().length||matchMedia('(prefers-reduced-motion: reduce)').matches){ARCHPACKETLAST=0;return;}
+  const dt=ARCHPACKETLAST?Math.min((now-ARCHPACKETLAST)/1000,.05):0;
+  ARCHPACKETLAST=now;
+  const packets=[...svg.querySelectorAll('.arch-packet')];
+  packets.forEach(packet=>{
+    const path=packet.parentNode.querySelector('.arch-wire');
+    const length=path.getTotalLength();
+    if(!length)return;
+    const previousLength=Number(packet.dataset.pathLength)||length;
+    let distance=packet.dataset.distance===undefined?(Number(packet.dataset.seed)||0)%length:Number(packet.dataset.distance);
+    if(previousLength!==length)distance=distance/previousLength*length;
+    distance=(distance+ARCH_PACKET_SPEED*dt)%length;
+    const point=path.getPointAtLength(distance);
+    packet.setAttribute('cx',point.x);
+    packet.setAttribute('cy',point.y);
+    packet.dataset.distance=String(distance);
+    packet.dataset.pathLength=String(length);
+  });
+  if(packets.length)ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
+}
+function drawArchWires(){
+  const canvas=$('#arch-canvas'),svg=$('#arch-wires');
+  if(!canvas||!svg)return;
+  if(matchMedia('(max-width:860px)').matches){svg.replaceChildren();return;}
+  const base=canvas.getBoundingClientRect();
+  if(base.width<2||base.height<2)return;
+  svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);
+  ensureArchDefs(svg);
+  const alive=new Set(),companies=[...canvas.querySelectorAll('.arch-company-head')];
+  companies.forEach((newer,index)=>{
+    const companyId=newer.closest('.arch-row').dataset.company;
+    if(index<companies.length-1){
+      const older=companies[index+1],olderId=older.closest('.arch-row').dataset.company;
+      const a=archMainPoint(older,'top',base),b=archMainPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
+      syncArchWire(svg,`main:${olderId}:${companyId}`,`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`,true,index,alive);
+    }
+    const row=newer.closest('.arch-row');
+    row.querySelectorAll('.arch-mission-head').forEach((mission,missionIndex)=>{
+      const missionId=mission.closest('.arch-item').dataset.id;
+      const a=archPoint(newer,'right',base),b=archPoint(mission,'left',base),mid=(a.x+b.x)/2;
+      syncArchWire(svg,`branch:${companyId}:${missionId}`,`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`,false,index*6+missionIndex,alive);
+    });
+  });
+  svg.querySelectorAll('.arch-wire-set').forEach(group=>{if(!alive.has(group.dataset.key))group.remove();});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)svg.querySelectorAll('.arch-packet').forEach(packet=>packet.remove());
+  else ensureArchPacketAnimation();
+}
 
 /* ── dépliage animé ──
    Une fois ouvert, le bloc repasse en max-height:none : il suit alors les
@@ -828,7 +1049,8 @@ function renderChrono(){
       setBody(body,open);
       syncXall();
     });
-    const ms=CONFIG.missions.filter(m=>m.company===co.id);
+    const ms=CONFIG.missions.filter(m=>m.company===co.id)
+      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
       zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
@@ -919,12 +1141,22 @@ function renderEdu(){
 }
 
 function setView(v){
-  $('#tab-arch').classList.toggle('on',v==='arch');
-  $('#tab-chrono').classList.toggle('on',v==='chrono');
-  $('#view-arch').classList.toggle('on',v==='arch');
-  $('#view-chrono').classList.toggle('on',v==='chrono');
+  const arch=v==='arch',archTab=$('#tab-arch'),chronoTab=$('#tab-chrono');
+  archTab.classList.toggle('on',arch);chronoTab.classList.toggle('on',!arch);
+  archTab.setAttribute('aria-selected',arch?'true':'false');chronoTab.setAttribute('aria-selected',arch?'false':'true');
+  archTab.tabIndex=arch?0:-1;chronoTab.tabIndex=arch?-1:0;
+  $('#view-arch').classList.toggle('on',arch);$('#view-chrono').classList.toggle('on',!arch);
+  $('#view-arch').setAttribute('aria-hidden',arch?'false':'true');
+  $('#view-chrono').setAttribute('aria-hidden',arch?'true':'false');
   $('#xall').style.display=v==='chrono'?'block':'none';
+  if(v==='arch')requestAnimationFrame(drawArchWires);
 }
+$('.tabs').addEventListener('keydown',event=>{
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
+  event.preventDefault();
+  const view=document.activeElement.id==='tab-arch'?'chrono':'arch';
+  setView(view);$(`#tab-${view}`).focus();
+});
 function setLang(l,remember){
   if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
   LANG=l;ALLOPEN=false;
