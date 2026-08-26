@@ -114,33 +114,43 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .view.on{display:block;animation:vf .22s ease}
 @keyframes vf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-/* ── vue schéma ── */
-.legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.legend .mlabel{margin-right:4px}
-.lgd{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;color:var(--mut);border:1px solid var(--rule2);background:var(--card);padding:5px 11px;border-radius:2px;transition:.14s}
-.lgd svg{width:13px;height:13px;display:block}
-.lgd:hover{border-color:var(--ink);color:var(--ink)}
-.lgd.on{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+/* ── architecture de référence ── */
+.arch-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.arch-mode{font-family:var(--mono);font-size:11.5px;color:var(--mut);border:1px solid var(--rule2);background:var(--card);padding:7px 12px;border-radius:2px;transition:.14s}
+.arch-mode:hover{border-color:var(--ink);color:var(--ink)}
+.arch-mode.on{border-color:var(--green);color:var(--green);background:var(--green-bg)}
 .region{border:1px dashed var(--rule2);padding:34px 18px 18px;position:relative;background:var(--card)}
 .region-lbl{position:absolute;top:-9px;left:16px;background:var(--paper);padding:0 9px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
-.vpc{border:1px solid var(--rule2);padding:30px 14px 16px;position:relative;margin-bottom:20px;background:var(--paper)}
-.vpc:last-child{margin-bottom:0}
-.vpc-lbl{position:absolute;top:-10px;left:14px;background:var(--ink);color:var(--paper);padding:1px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
-.vpc-meta{position:absolute;top:-8px;right:14px;background:var(--paper);padding:0 8px;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
-.svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-.svc{background:var(--card);border:1px solid var(--rule2);padding:13px 14px;text-align:left;transition:.14s;position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
-.svc:hover{border-color:var(--ink);transform:translateY(-1px)}
-.svc.on{border-color:var(--green);background:var(--green-bg)}
-.svc.on::after{content:"";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green)}
-.svc-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.ico{width:22px;height:22px;display:grid;place-items:center;flex-shrink:0}
-.ico svg{width:19px;height:19px;display:block}
-.svc-n{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.005em}
-.svc-r{font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:2px}
-.svc-d{font-family:var(--mono);font-size:10.5px;color:var(--mut)}
-.svc-tag{font-size:12.5px;color:var(--ink2);line-height:1.45;margin-top:7px}
-.svc-live{font-family:var(--mono);font-size:9.5px;color:var(--rust);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
-.inline-detail{grid-column:1/-1;border-left:3px solid var(--green);background:var(--card);border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 24px;animation:vf .2s ease}
+.arch-map{display:grid;gap:12px}
+.arch-lane{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule);opacity:.48;transition:opacity .18s ease}
+.arch-lane:last-child{border-bottom:none}
+.arch-lane.on{opacity:1}
+.arch-lane-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.arch-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:7px;align-items:center}
+.arch-flow.three{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)}
+.arch-node{min-width:0;min-height:67px;background:var(--paper);border:1px solid var(--rule2);padding:10px 9px;text-align:left;transition:background .16s,border-color .16s,color .16s,transform .16s}
+.arch-node:hover{border-color:var(--ink);transform:translateY(-1px)}
+.arch-lane.on .arch-node{border-color:var(--green);background:var(--green-bg)}
+.arch-node.on,.arch-lane.on .arch-node.on{background:var(--green);border-color:var(--green);color:var(--paper)}
+.arch-name{display:block;font-size:13.5px;font-weight:600;line-height:1.25}
+.arch-tech{display:block;margin-top:5px;font-family:var(--mono);font-size:9.5px;color:var(--mut);line-height:1.35}
+.arch-node.on .arch-tech{color:var(--paper);opacity:.8}
+.arch-arrow{font-family:var(--mono);font-size:14px;color:var(--rule2);transition:color .18s}
+.arch-lane.on .arch-arrow{color:var(--green)}
+.arch-detail{display:grid;grid-template-columns:118px 150px 1fr;gap:16px;align-items:baseline;margin-top:16px;border-left:3px solid var(--green);border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper);padding:16px 18px;animation:vf .2s ease}
+.arch-detail-role{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.arch-detail-name{font-family:var(--disp);font-size:19px;font-weight:520}
+.arch-detail-copy{font-size:13.5px;color:var(--ink2)}
+@media(max-width:720px){
+  .arch-lane{grid-template-columns:1fr;gap:8px}
+  .arch-flow,.arch-flow.three{grid-template-columns:1fr;gap:5px}
+  .arch-node{min-height:0;text-align:center}
+  .arch-arrow{text-align:center;transform:rotate(90deg)}
+  .arch-detail{grid-template-columns:1fr;gap:4px}
+}
+@media(prefers-reduced-motion:reduce){
+  .arch-mode,.arch-lane,.arch-node,.arch-arrow{transition:none}
+}
 
 /* ── détail commun ── */
 .dt-h{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:2px}
@@ -259,12 +269,6 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
-/* étroit : l'étiquette employeur et la période se chevauchaient sur la
-   bordure haute du bloc — la période repasse dans le flux, sous l'étiquette. */
-@media(max-width:560px){
-  .vpc{padding-top:22px}
-  .vpc-meta{position:static;display:block;background:none;padding:0;margin-bottom:12px}
-}
 </style>
 </head>
 <body>
@@ -319,10 +323,11 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
     <button class="xall" id="xall" onclick="toggleAll()" style="display:none"></button>
   </div>
   <div class="view on" id="view-arch">
-    <div class="legend" id="legend"></div>
+    <div class="arch-controls" id="arch-controls"></div>
     <div class="region">
       <span class="region-lbl" data-t="region"></span>
-      <div id="arch-root"></div>
+      <div class="arch-map" id="arch-root"></div>
+      <div class="arch-detail" id="arch-detail" aria-live="polite"></div>
     </div>
   </div>
   <div class="view" id="view-chrono"><div id="tl-root"></div></div>
@@ -392,17 +397,18 @@ const CONFIG = {
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
       f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
-      s1:"Parcours", s1_sub:"Deux lectures du même parcours : le schéma d'architecture — filtrable par techno — ou la chronologie par employeur. Chaque élément se déplie.",
-      tab_arch:"Missions par environnement", tab_chrono:"Chronologie",
+      s1:"Parcours", s1_sub:"Deux lectures complémentaires : une architecture de référence pour comprendre mon approche Cloud & DevOps, puis la chronologie détaillée de mes expériences.",
+      tab_arch:"Architecture de référence", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
-      region:"RÉGION — eu-west-3 (Paris)",
+      region:"ARCHITECTURE — MULTI-CLOUD",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
       s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
       verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
-      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions", filter_lbl:"filtrer —"
+      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions",
+      arch_controls_label:"Choisir le flux d'architecture"
     },
     en: {
       meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 10 certifications including AWS Solutions Architect Professional.",
@@ -414,17 +420,53 @@ const CONFIG = {
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
       f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
-      s1:"Experience", s1_sub:"Two readings of the same track record: the architecture diagram — filterable by tech — or the employer-by-employer timeline. Every item expands.",
-      tab_arch:"Assignments by environment", tab_chrono:"Timeline",
+      s1:"Experience", s1_sub:"Two complementary views: a reference architecture showing my Cloud & DevOps approach, followed by a detailed timeline of my experience.",
+      tab_arch:"Reference architecture", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
-      region:"REGION — eu-west-3 (Paris)",
+      region:"ARCHITECTURE — MULTI-CLOUD",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
       s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
       verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
-      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments", filter_lbl:"filter —"
+      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments",
+      arch_controls_label:"Choose an architecture flow"
+    }
+  },
+
+  architecture: {
+    request: {
+      code:"01",
+      title:{fr:"Trafic utilisateur",en:"User traffic"},
+      lane:{fr:"Requête",en:"Request"},
+      nodes:[
+        {id:"visitor",label:{fr:"Visiteur",en:"Visitor"},tech:"Web · API",role:{fr:"Point d'entrée",en:"Entry point"},detail:{fr:"Le parcours commence par un service public lisible, rapide et protégé.",en:"The journey starts with a public service designed to be clear, fast and protected."}},
+        {id:"edge",label:"Edge",tech:"DNS · CDN · WAF",role:{fr:"Exposition",en:"Exposure"},detail:{fr:"DNS, chiffrement, distribution et filtrage protègent le système avant l'application.",en:"DNS, encryption, distribution and filtering protect the system before traffic reaches the application."}},
+        {id:"services",label:{fr:"Services",en:"Services"},tech:"Apps · API",role:{fr:"Exécution",en:"Runtime"},detail:{fr:"Les applications et API portent la logique métier et peuvent évoluer indépendamment.",en:"Applications and APIs carry business logic and can evolve independently."}},
+        {id:"data",label:{fr:"Données",en:"Data"},tech:"DB · Storage · Backup",role:{fr:"Persistance",en:"Persistence"},detail:{fr:"Stockage, bases de données et sauvegardes restent isolés des couches publiques.",en:"Storage, databases and backups remain isolated from public-facing layers."}}
+      ]
+    },
+    delivery: {
+      code:"02",
+      title:{fr:"Mise en production",en:"Delivery"},
+      lane:"Delivery",
+      nodes:[
+        {id:"git",label:"Git",tech:"Code · Review",role:{fr:"Source",en:"Source"},detail:{fr:"Le code applicatif et l'infrastructure suivent le même cycle de revue et de traçabilité.",en:"Application and infrastructure code follow the same review and traceability cycle."}},
+        {id:"pipeline",label:"CI/CD",tech:"Test · Control · Deploy",role:{fr:"Automatisation",en:"Automation"},detail:{fr:"Tests, contrôles et déploiements réduisent les opérations manuelles.",en:"Tests, controls and deployments reduce manual operations."}},
+        {id:"terraform",label:"Terraform",tech:"Modules · Environments",role:"Infrastructure as code",detail:{fr:"Les environnements sont décrits, relus et reproductibles.",en:"Environments are declared, reviewed and reproducible."}},
+        {id:"cloud",label:"Cloud",tech:"AWS · GCP · Azure",role:{fr:"Environnements",en:"Environments"},detail:{fr:"AWS, GCP ou Azure sont choisis selon les contraintes du contexte, sans imposer un fournisseur.",en:"AWS, GCP or Azure are selected according to the context rather than forcing one provider."}}
+      ]
+    },
+    operations: {
+      code:"03",
+      title:{fr:"Pilotage",en:"Operations"},
+      lane:{fr:"Pilotage",en:"Operations"},
+      nodes:[
+        {id:"security",label:{fr:"Sécurité",en:"Security"},tech:"IAM · Secrets · Policies",role:{fr:"Transverse",en:"Cross-cutting"},detail:{fr:"Identités, secrets et politiques s'appliquent à chaque couche.",en:"Identity, secrets and policies apply across every layer."}},
+        {id:"observability",label:{fr:"Observabilité",en:"Observability"},tech:"Logs · Metrics · Alerts",role:{fr:"Transverse",en:"Cross-cutting"},detail:{fr:"Logs, métriques et alertes rendent le fonctionnement observable et vérifiable.",en:"Logs, metrics and alerts make system behaviour observable and verifiable."}},
+        {id:"finops",label:"FinOps",tech:"Costs · Capacity · Optimisation",role:{fr:"Transverse",en:"Cross-cutting"},detail:{fr:"Coûts et capacité sont suivis comme des propriétés de l'architecture.",en:"Cost and capacity are tracked as properties of the architecture."}}
+      ]
     }
   },
 
@@ -737,7 +779,6 @@ function renderStatic(){
   $('#btn-en').innerHTML=FLAGS.en+' EN';
   $('#btn-fr').classList.toggle('on',LANG==='fr');
   $('#btn-en').classList.toggle('on',LANG==='en');
-  renderLegend();
   updateXall();
 }
 
@@ -749,66 +790,90 @@ function detailHTML(o){
     <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
 }
 
-/* ── filtre par techno du schéma ── */
-let ARCHFILTER=null;
-function renderLegend(){
-  const lg=$('#legend');lg.innerHTML=`<span class="mlabel">${t('filter_lbl')}</span>`;
-  [['aws','AWS'],['gcp','GCP'],['az','Azure'],['multi',LANG==='fr'?'Général':'General']].forEach(([c,label])=>{
-    const b=document.createElement('button');
-    b.className='lgd'+(ARCHFILTER===c?' on':'');
-    b.innerHTML=`${LOGOS[c]}${label}`;
-    b.addEventListener('click',()=>{ARCHFILTER=(ARCHFILTER===c)?null:c;applyArchFilter();renderLegend();});
-    lg.appendChild(b);
-  });
-}
-function applyArchFilter(){
-  document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
-  document.querySelectorAll('.svc').forEach(sv=>{
-    sv.classList.remove('on');
-    sv.style.display=(!ARCHFILTER||sv.dataset.cloud===ARCHFILTER)?'':'none';
-  });
-  document.querySelectorAll('.vpc').forEach(v=>{
-    const any=[...v.querySelectorAll('.svc')].some(sv=>sv.style.display!=='none');
-    v.style.display=any?'':'none';
-  });
-}
+/* ── architecture de référence ── */
+let ARCHFLOW='request', ARCHNODE='visitor';
 
-/* ── schéma ── */
-function renderArch(){
-  const root=$('#arch-root');root.innerHTML='';
-  CONFIG.companies.forEach(co=>{
-    const vpc=document.createElement('div');vpc.className='vpc';
-    vpc.innerHTML=`<span class="vpc-lbl">${co.name}</span><span class="vpc-meta">${whenStr(co)}</span>`;
-    const grid=document.createElement('div');grid.className='svcs';
-    const items=[];
-    if(co.coreCard){
-      items.push({obj:{title:{fr:pick2(co.coreCard.card,'fr'),en:pick2(co.coreCard.card,'en')},when:co.when,since:co.since,role:co.role,intro:co.intro,bullets:co.bullets,stack:co.stack},
-                  card:co.coreCard.card,role:co.role,sub:co.coreCard.sub,tag:co.coreCard.tag,cloud:co.coreCard.cloud,live:false});
-    }
-    CONFIG.missions.filter(m=>m.company===co.id).forEach(m=>items.push({obj:m,card:m.card,role:m.role,sub:m.sub,tag:m.tag,cloud:m.cloud,live:m.live}));
-    items.forEach(it=>{
-      const b=document.createElement('button');b.className='svc';b.dataset.cloud=it.cloud;
-      b.innerHTML=`<div class="svc-top"><span class="ico">${LOGOS[it.cloud]||LOGOS.oth}</span>
-        <span class="svc-n">${pick(it.card)}</span></div>
-        <div class="svc-r">${pick(it.role)}</div><div class="svc-d">${pick(it.sub)}</div>
-        ${it.tag?`<div class="svc-tag">${pick(it.tag)}</div>`:''}
-        ${it.live?`<div class="svc-live">● ${t('current')}</div>`:''}`;
-      b.addEventListener('click',()=>{
-        const was=b.classList.contains('on');
-        document.querySelectorAll('.svc').forEach(x=>x.classList.remove('on'));
-        document.querySelectorAll('.inline-detail').forEach(x=>x.remove());
-        if(was)return;
-        b.classList.add('on');
-        const d=document.createElement('div');d.className='inline-detail';d.innerHTML=detailHTML(it.obj);
-        b.after(d);d.scrollIntoView({behavior:'smooth',block:'nearest'});
-      });
-      grid.appendChild(b);
-    });
-    vpc.appendChild(grid);root.appendChild(vpc);
-  });
-  applyArchFilter();
+function findArchNode(flow,id){
+  const cfg=CONFIG.architecture[flow];
+  return cfg&&cfg.nodes.find(n=>n.id===id);
 }
-function pick2(v,l){return (v&&typeof v==='object'&&!Array.isArray(v))?v[l]:v;}
+function renderArchDetail(){
+  const node=findArchNode(ARCHFLOW,ARCHNODE);
+  if(!node)return;
+  $('#arch-detail').innerHTML=`<span class="arch-detail-role">${pick(node.role)}</span>
+    <strong class="arch-detail-name">${pick(node.label)}</strong>
+    <span class="arch-detail-copy">${pick(node.detail)}</span>`;
+}
+function applyArchState(){
+  document.querySelectorAll('.arch-mode').forEach(b=>{
+    const on=b.dataset.flow===ARCHFLOW;
+    b.classList.toggle('on',on);
+    b.setAttribute('aria-pressed',on?'true':'false');
+  });
+  document.querySelectorAll('.arch-lane').forEach(lane=>{
+    const on=lane.dataset.flow===ARCHFLOW;
+    lane.classList.toggle('on',on);
+    lane.querySelectorAll('.arch-node').forEach(node=>{
+      const selected=on&&node.dataset.node===ARCHNODE;
+      node.classList.toggle('on',selected);
+      node.setAttribute('aria-pressed',selected?'true':'false');
+    });
+  });
+  renderArchDetail();
+}
+function setArchFlow(flow,nodeId){
+  const cfg=CONFIG.architecture[flow];
+  if(!cfg)return;
+  ARCHFLOW=flow;
+  ARCHNODE=findArchNode(flow,nodeId)?nodeId:cfg.nodes[0].id;
+  applyArchState();
+}
+function renderArch(){
+  const controls=$('#arch-controls');
+  const root=$('#arch-root');
+  controls.innerHTML='';
+  root.innerHTML='';
+  controls.setAttribute('aria-label',t('arch_controls_label'));
+
+  Object.entries(CONFIG.architecture).forEach(([key,flow])=>{
+    const mode=document.createElement('button');
+    mode.className='arch-mode';
+    mode.type='button';
+    mode.dataset.flow=key;
+    mode.textContent=pick(flow.title);
+    mode.addEventListener('click',()=>setArchFlow(key));
+    controls.appendChild(mode);
+
+    const lane=document.createElement('div');
+    lane.className='arch-lane';
+    lane.dataset.flow=key;
+    lane.innerHTML=`<span class="arch-lane-label">${flow.code} · ${pick(flow.lane)}</span>`;
+    const path=document.createElement('div');
+    path.className='arch-flow'+(flow.nodes.length===3?' three':'');
+    flow.nodes.forEach((node,index)=>{
+      const button=document.createElement('button');
+      button.className='arch-node';
+      button.type='button';
+      button.dataset.node=node.id;
+      button.setAttribute('aria-label',`${pick(node.label)} — ${node.tech}`);
+      button.innerHTML=`<span class="arch-name">${pick(node.label)}</span><span class="arch-tech">${node.tech}</span>`;
+      button.addEventListener('click',()=>setArchFlow(key,node.id));
+      path.appendChild(button);
+      if(index<flow.nodes.length-1){
+        const arrow=document.createElement('span');
+        arrow.className='arch-arrow';
+        arrow.setAttribute('aria-hidden','true');
+        arrow.textContent=key==='operations'?'↔':'→';
+        path.appendChild(arrow);
+      }
+    });
+    lane.appendChild(path);
+    root.appendChild(lane);
+  });
+  if(!CONFIG.architecture[ARCHFLOW])ARCHFLOW='request';
+  if(!findArchNode(ARCHFLOW,ARCHNODE))ARCHNODE=CONFIG.architecture[ARCHFLOW].nodes[0].id;
+  applyArchState();
+}
 
 /* ── dépliage animé ──
    Une fois ouvert, le bloc repasse en max-height:none : il suit alors les
