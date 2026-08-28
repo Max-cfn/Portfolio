@@ -65,10 +65,15 @@ nav{position:sticky;top:0;z-index:50;background:rgba(244,242,235,.93);backdrop-f
 nav .wrap{display:flex;justify-content:space-between;height:60px;align-items:center;gap:16px}
 .brand{text-decoration:none;font-weight:600;font-size:14.5px;letter-spacing:-.01em}
 .brand span{color:var(--green)}
-.nav-r{display:flex;align-items:center;gap:26px}
+.nav-r{display:flex;align-items:center;gap:20px}
 .nav-links{display:flex;gap:22px;list-style:none}
 .nav-links a{font-size:13.5px;color:var(--ink2);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent}
 .nav-links a:hover{border-bottom-color:var(--green);color:var(--green)}
+.nav-socials{display:flex;align-items:center;gap:3px}
+.nav-social{display:grid;place-items:center;width:32px;height:32px;border:1px solid transparent;border-radius:50%;color:var(--mut);text-decoration:none;transition:color .15s,background .15s,border-color .15s,transform .15s}
+.nav-social svg{display:block;width:16px;height:16px;fill:currentColor}
+.nav-social:hover{color:var(--green);background:var(--green-bg);border-color:var(--rule2);transform:translateY(-1px)}
+.nav-social:active{transform:translateY(0)}
 .lang{font-family:var(--mono);font-size:12px;display:flex;gap:3px;color:var(--faint)}
 .lang button{color:var(--faint);padding:2px 3px}
 .lang button.on{color:var(--ink);border-bottom:2px solid var(--green)}
@@ -283,8 +288,15 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 .footer-links a:hover{color:var(--green);border-bottom-color:var(--green)}
 .mobile-cta{display:none}
 
+@media(max-width:880px){
+  .nav-links{display:none}
+}
 @media(max-width:720px){
   body{padding-bottom:72px}
+  nav .wrap{gap:10px}
+  .nav-r{gap:10px}
+  .nav-socials{gap:1px}
+  .nav-social{width:34px;height:34px}
   .tabbar{align-items:stretch}
   .tabs{display:grid;grid-template-columns:1fr 1fr;width:100%}
   .tabs button{width:100%;padding:10px 8px}
@@ -317,6 +329,14 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
     </ul>
+    <div class="nav-socials" aria-label="Réseaux professionnels">
+      <a class="nav-social" href="https://github.com/Max-cfn" target="_blank" rel="noopener noreferrer" aria-label="GitHub — Maxence Cerfontaine" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.4 22.8c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg>
+      </a>
+      <a class="nav-social" href="https://www.linkedin.com/in/maxence-cerfontaine" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Maxence Cerfontaine" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.3 7.8H1.6V22h3.7V7.8ZM3.4 2A2.2 2.2 0 1 0 3.4 6.4 2.2 2.2 0 0 0 3.4 2ZM22.4 13.9c0-4.3-2.3-6.3-5.4-6.3-2.5 0-3.6 1.4-4.2 2.3V7.8H9.1V22h3.7v-7c0-1.8.3-3.6 2.6-3.6 2.2 0 2.3 2.1 2.3 3.7V22h3.7l1-8.1Z"/></svg>
+      </a>
+    </div>
     <div class="lang"><button id="btn-fr" onclick="setLang('fr',true)">FR</button><span>/</span><button id="btn-en" onclick="setLang('en',true)">EN</button></div>
   </div>
 </div></nav>
