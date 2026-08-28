@@ -264,9 +264,8 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .cloud-gauge-copy{min-width:0}
 .cloud-gauge-name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:650;line-height:1.2}
 .cloud-gauge-level{display:block;margin-top:2px;font-family:var(--mono);font-size:9.5px;line-height:1.2;letter-spacing:.055em;text-transform:uppercase;color:var(--cloud)}
-.cloud-meter{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
-.cloud-meter span{height:7px;background:var(--paper2);border:1px solid var(--rule);border-radius:1px}
-.cloud-meter span.on{background:var(--cloud);border-color:var(--cloud)}
+.cloud-meter{display:block;height:8px;overflow:hidden;background:var(--paper2);border:1px solid var(--rule);border-radius:99px}
+.cloud-meter-fill{display:block;width:var(--fill);height:100%;background:var(--cloud);border-radius:99px;box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
 
 /* ── certifications ── */
 #certs .ssub:empty{display:none}
@@ -714,8 +713,8 @@ const CONFIG = {
 
   skills: [
     { kind:"clouds", lbl:{fr:"Cloud providers", en:"Cloud providers"},
-      items:{fr:[["aws","AWS","avancé",3],["gcp","Google Cloud","intermédiaire",2],["az","Azure","fondamentaux",1]],
-             en:[["aws","AWS","advanced",3],["gcp","Google Cloud","intermediate",2],["az","Azure","fundamentals",1]]} },
+      items:{fr:[["aws","AWS","avancé",78],["gcp","Google Cloud","intermédiaire",58],["az","Azure","fondamentaux",32]],
+             en:[["aws","AWS","advanced",78],["gcp","Google Cloud","intermediate",58],["az","Azure","fundamentals",32]]} },
     { lbl:{fr:"Infrastructure as Code", en:"Infrastructure as Code"},
       inline:{fr:"Terraform · CloudFormation · Atlantis", en:"Terraform · CloudFormation · Atlantis"} },
     { lbl:{fr:"Conteneurs & CI/CD", en:"Containers & CI/CD"},
@@ -1151,12 +1150,12 @@ function renderSkills(){
     let body='';
     if(s.kind==='clouds'){
       body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level])=>`
-        <div class="cloud-gauge" style="--cloud:${CLOUD[id]}" aria-label="${n} — ${l}">
+        <div class="cloud-gauge" style="--cloud:${CLOUD[id]};--fill:${level}%" aria-label="${n} — ${l}">
           <div class="cloud-gauge-head">
             <span class="cloud-gauge-logo" aria-hidden="true">${LOGOS[id]}</span>
             <span class="cloud-gauge-copy"><b class="cloud-gauge-name">${n}</b><span class="cloud-gauge-level">${l}</span></span>
           </div>
-          <span class="cloud-meter" aria-hidden="true">${[1,2,3].map(i=>`<span class="${i<=level?'on':''}"></span>`).join('')}</span>
+          <span class="cloud-meter" aria-hidden="true"><span class="cloud-meter-fill"></span></span>
         </div>`).join('')}</div>`;
     }
     else if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
