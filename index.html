@@ -65,10 +65,19 @@ nav{position:sticky;top:0;z-index:50;background:rgba(244,242,235,.93);backdrop-f
 nav .wrap{display:flex;justify-content:space-between;height:60px;align-items:center;gap:16px}
 .brand{text-decoration:none;font-weight:600;font-size:14.5px;letter-spacing:-.01em}
 .brand span{color:var(--green)}
-.nav-r{display:flex;align-items:center;gap:26px}
+.nav-r{display:flex;align-items:center;gap:20px}
 .nav-links{display:flex;gap:22px;list-style:none}
 .nav-links a{font-size:13.5px;color:var(--ink2);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent}
 .nav-links a:hover{border-bottom-color:var(--green);color:var(--green)}
+.nav-socials{display:flex;align-items:center;gap:6px}
+.nav-social{position:relative;display:grid;place-items:center;width:36px;height:36px;border:1px solid;border-radius:50%;color:var(--brand);background:var(--card);text-decoration:none;box-shadow:0 1px 0 rgba(28,27,21,.05);transition:color .16s,background .16s,border-color .16s,transform .16s,box-shadow .16s}
+.nav-social.github{--brand:#181717;border-color:rgba(24,23,23,.3)}
+.nav-social.linkedin{--brand:#0A66C2;border-color:rgba(10,102,194,.35)}
+.nav-social svg{display:block;width:19px;height:19px;fill:currentColor}
+.nav-social::after{content:attr(data-label);position:absolute;z-index:5;top:calc(100% + 8px);left:50%;padding:5px 8px;border-radius:3px;background:var(--brand);color:#fff;font-family:var(--mono);font-size:10px;font-weight:500;line-height:1;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;transform:translate(-50%,-5px);box-shadow:0 5px 14px rgba(28,27,21,.18);pointer-events:none;transition:opacity .16s,transform .16s,visibility .16s}
+.nav-social:hover,.nav-social:focus-visible{color:#fff;background:var(--brand);border-color:var(--brand);transform:translateY(-1px);box-shadow:0 4px 12px rgba(28,27,21,.16)}
+.nav-social:hover::after,.nav-social:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-social:active{transform:translateY(0)}
 .lang{font-family:var(--mono);font-size:12px;display:flex;gap:3px;color:var(--faint)}
 .lang button{color:var(--faint);padding:2px 3px}
 .lang button.on{color:var(--ink);border-bottom:2px solid var(--green)}
@@ -178,7 +187,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
   .arch-company-logo{width:58px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){
-  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body{transition:none}
+  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body,.nav-social,.nav-social::after,.cloud-gauge{transition:none}
 }
 
 /* ── détail commun ── */
@@ -246,8 +255,20 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .skitem{margin-bottom:6px}
 .skitem:last-child{margin-bottom:0}
 .skinline{font-size:14.5px;color:var(--ink2)}
+.cloud-gauges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cloud-gauge{--cloud:#28603C;min-width:0;padding:12px 13px 13px;background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--cloud);border-radius:4px;transition:transform .16s,box-shadow .16s,border-color .16s}
+.cloud-gauge:hover{transform:translateY(-2px);border-color:var(--cloud);box-shadow:0 7px 18px rgba(28,27,21,.09)}
+.cloud-gauge-head{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:9px;margin-bottom:11px}
+.cloud-gauge-logo{width:30px;height:30px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.cloud-gauge-logo svg{display:block;width:21px;height:21px}
+.cloud-gauge-copy{min-width:0}
+.cloud-gauge-name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:650;line-height:1.2}
+.cloud-gauge-level{display:block;margin-top:2px;font-family:var(--mono);font-size:9.5px;line-height:1.2;letter-spacing:.055em;text-transform:uppercase;color:var(--cloud)}
+.cloud-meter{display:block;height:8px;overflow:hidden;background:var(--paper2);border:1px solid var(--rule);border-radius:99px}
+.cloud-meter-fill{display:block;width:var(--fill);height:100%;background:var(--cloud);border-radius:99px;box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
 
 /* ── certifications ── */
+#certs .ssub:empty{display:none}
 .certcols{columns:2;column-gap:52px}
 .crow{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
 .crow .clogo{width:30px;height:30px;flex-shrink:0;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);border-radius:3px}
@@ -283,8 +304,15 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 .footer-links a:hover{color:var(--green);border-bottom-color:var(--green)}
 .mobile-cta{display:none}
 
+@media(max-width:880px){
+  .nav-links{display:none}
+}
 @media(max-width:720px){
   body{padding-bottom:72px}
+  nav .wrap{gap:10px}
+  .nav-r{gap:10px}
+  .nav-socials{gap:1px}
+  .nav-social{width:36px;height:36px}
   .tabbar{align-items:stretch}
   .tabs{display:grid;grid-template-columns:1fr 1fr;width:100%}
   .tabs button{width:100%;padding:10px 8px}
@@ -300,6 +328,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .emp-missions{padding:14px 14px 18px}
   .certcols{columns:1}
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
+  .cloud-gauges{grid-template-columns:1fr}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
 </style>
@@ -317,6 +346,14 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
     </ul>
+    <div class="nav-socials" aria-label="Réseaux professionnels">
+      <a class="nav-social github" data-label="GitHub" href="https://github.com/Max-cfn" target="_blank" rel="noopener noreferrer" aria-label="GitHub — Maxence Cerfontaine">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.4 22.8c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg>
+      </a>
+      <a class="nav-social linkedin" data-label="LinkedIn" href="https://www.linkedin.com/in/maxence-cerfontaine" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Maxence Cerfontaine">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg>
+      </a>
+    </div>
     <div class="lang"><button id="btn-fr" onclick="setLang('fr',true)">FR</button><span>/</span><button id="btn-en" onclick="setLang('en',true)">EN</button></div>
   </div>
 </div></nav>
@@ -439,7 +476,7 @@ const CONFIG = {
       arch_direction:"Lecture : du bas (ancien) vers le haut (récent)",
       arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
-      s2:"Certifications", s2_sub:"Dix certifications actives. Un lien de vérification accompagnera chacune.",
+      s2:"Certifications", s2_sub:"",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
@@ -463,7 +500,7 @@ const CONFIG = {
       arch_direction:"Read from bottom (earlier) to top (recent)",
       arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
-      s2:"Certifications", s2_sub:"Ten active certifications. A verification link will accompany each one.",
+      s2:"Certifications", s2_sub:"",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
@@ -675,9 +712,9 @@ const CONFIG = {
   ],
 
   skills: [
-    { lbl:{fr:"Cloud providers", en:"Cloud providers"},
-      items:{fr:[["AWS","avancé"],["Google Cloud","intermédiaire"],["Azure","fondamentaux"]],
-             en:[["AWS","advanced"],["Google Cloud","intermediate"],["Azure","fundamentals"]]} },
+    { kind:"clouds", lbl:{fr:"Cloud providers", en:"Cloud providers"},
+      items:{fr:[["aws","AWS","avancé",78],["gcp","Google Cloud","intermédiaire",58],["az","Azure","fondamentaux",32]],
+             en:[["aws","AWS","advanced",78],["gcp","Google Cloud","intermediate",58],["az","Azure","fundamentals",32]]} },
     { lbl:{fr:"Infrastructure as Code", en:"Infrastructure as Code"},
       inline:{fr:"Terraform · CloudFormation · Atlantis", en:"Terraform · CloudFormation · Atlantis"} },
     { lbl:{fr:"Conteneurs & CI/CD", en:"Containers & CI/CD"},
@@ -1111,7 +1148,17 @@ function renderSkills(){
   CONFIG.skills.forEach(s=>{
     const row=document.createElement('div');row.className='skrow';
     let body='';
-    if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
+    if(s.kind==='clouds'){
+      body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level])=>`
+        <div class="cloud-gauge" style="--cloud:${CLOUD[id]};--fill:${level}%" aria-label="${n} — ${l}">
+          <div class="cloud-gauge-head">
+            <span class="cloud-gauge-logo" aria-hidden="true">${LOGOS[id]}</span>
+            <span class="cloud-gauge-copy"><b class="cloud-gauge-name">${n}</b><span class="cloud-gauge-level">${l}</span></span>
+          </div>
+          <span class="cloud-meter" aria-hidden="true"><span class="cloud-meter-fill"></span></span>
+        </div>`).join('')}</div>`;
+    }
+    else if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
     else{body=`<div class="skinline">${pick(s.inline)}</div>`;}
     row.innerHTML=`<dt>${pick(s.lbl)}</dt><dd>${body}</dd>`;
     root.appendChild(row);
