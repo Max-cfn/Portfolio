@@ -187,7 +187,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
   .arch-company-logo{width:58px;height:40px}
 }
 @media(prefers-reduced-motion:reduce){
-  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body,.nav-social,.nav-social::after,.cloud-gauge{transition:none}
+  .tabs button,.arch-item,.arch-item-head,.arch-toggle,.arch-item-body,.nav-social,.nav-social::after,.cloud-gauge,.project-card{transition:none}
 }
 
 /* ── détail commun ── */
@@ -199,7 +199,13 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .dt ul,.inline-detail ul{list-style:none;margin-bottom:13px}
 .dt li,.inline-detail li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14.5px;color:var(--ink2)}
 .dt li::before,.inline-detail li::before{content:"—";position:absolute;left:0;color:var(--green)}
-.stackline{font-family:var(--mono);font-size:11.5px;color:var(--mut);line-height:1.8}
+.detail-group{margin-top:14px}
+.detail-label{margin-bottom:7px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.detail-results{padding:12px 14px 7px;border-left:3px solid var(--green);background:var(--green-bg)}
+.detail-results .detail-label{color:var(--green)}
+.detail-results ul{margin-bottom:0}
+.detail-results li::before{content:"✓";font-weight:700}
+.stackline{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--mut);line-height:1.8}
 .stackline b{color:var(--ink2);font-weight:500}
 
 /* ── chronologie par employeur ── */
@@ -266,6 +272,19 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .cloud-gauge-level{display:block;margin-top:2px;font-family:var(--mono);font-size:9.5px;line-height:1.2;letter-spacing:.055em;text-transform:uppercase;color:var(--cloud)}
 .cloud-meter{display:block;height:8px;overflow:hidden;background:var(--paper2);border:1px solid var(--rule);border-radius:99px}
 .cloud-meter-fill{display:block;width:var(--fill);height:100%;background:var(--cloud);border-radius:99px;box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
+.cloud-gauge-context{display:block;margin-top:8px;font-family:var(--mono);font-size:9.5px;line-height:1.45;color:var(--mut)}
+
+/* ── projets personnels ── */
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.project-card{display:flex;flex-direction:column;min-width:0;padding:20px;background:var(--card);border:1px solid var(--rule2);transition:transform .16s,border-color .16s,box-shadow .16s}
+.project-card:hover{transform:translateY(-2px);border-color:var(--green);box-shadow:0 8px 22px rgba(28,27,21,.08)}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:10px}
+.project-card h3{font-family:var(--disp);font-size:21px;font-weight:530;letter-spacing:-.006em}
+.project-status{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);white-space:nowrap;padding-top:5px}
+.project-card p{font-size:14px;color:var(--ink2);margin-bottom:14px}
+.project-stack{margin-top:auto;font-family:var(--mono);font-size:10.5px;line-height:1.65;color:var(--mut)}
+.project-link{align-self:flex-start;margin-top:14px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);text-decoration:none;border-bottom:1px solid var(--green)}
+.project-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
 
 /* ── certifications ── */
 #certs .ssub:empty{display:none}
@@ -329,6 +348,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .certcols{columns:1}
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
   .cloud-gauges{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:1fr}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
 </style>
@@ -411,14 +431,20 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <dl id="skills-root"></dl>
 </section>
 
+<section id="projects">
+  <div class="shead"><span class="mnum">03</span><h2 data-t="s_proj"></h2></div>
+  <p class="ssub" data-t="s_proj_sub"></p>
+  <div class="project-grid" id="projects-root"></div>
+</section>
+
 <section id="certs">
-  <div class="shead"><span class="mnum">03</span><h2 data-t="s2"></h2></div>
+  <div class="shead"><span class="mnum">04</span><h2 data-t="s2"></h2></div>
   <p class="ssub" data-t="s2_sub"></p>
   <div class="certcols" id="certs-root"></div>
 </section>
 
 <section id="edu">
-  <div class="shead"><span class="mnum">04</span><h2 data-t="s3"></h2></div>
+  <div class="shead"><span class="mnum">05</span><h2 data-t="s3"></h2></div>
   <div id="edu-root"></div>
 </section>
 
@@ -464,7 +490,7 @@ const CONFIG = {
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
-      lede:"Diplômé d'un Master en Architecture Cloud à l'EFREI Paris. Expérience centrée sur AWS, complétée par GCP et Azure — de la conception à l'industrialisation, performance et coûts sous contrôle.",
+      lede:"Après deux ans en Cloud Operations multi-clients chez Hardis, je conçois aujourd'hui chez Devoteam A Cloud des plateformes AWS sécurisées et industrialisées. Mon terrain : Infrastructure as Code, CI/CD, conteneurs, exploitation et FinOps, avec une expérience complémentaire sur GCP et Azure.",
       cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
@@ -475,20 +501,22 @@ const CONFIG = {
       arch_hint:"Cliquez sur un poste ou une mission : la fiche sélectionnée s'ouvre en pleine largeur et referme automatiquement la précédente.",
       arch_direction:"Lecture : du bas (ancien) vers le haut (récent)",
       arch_zone:"zone",
-      s_sk:"Compétences", s_sk_sub:"Ce que je pratique au quotidien, et à quel niveau.",
+      s_sk:"Compétences", s_sk_sub:"Technologies pratiquées en production.",
+      s_proj:"Projets personnels", s_proj_sub:"Deux réalisations récentes, développées hors contexte client.",
       s2:"Certifications", s2_sub:"",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
       verify:"vérifier ↗", verify_none:"attestation sur demande", current:"en cours",
-      stack_lbl:"Stack", env_lbl:"Environnement technique", missions_lbl:"Missions"
+      responsibilities_lbl:"Responsabilités", results_lbl:"Réalisations", project_view:"voir le dépôt ↗",
+      stack_lbl:"Technologies", env_lbl:"Environnement technique", missions_lbl:"Missions"
     },
     en: {
       meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 10 certifications including AWS Solutions Architect Professional.",
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
-      lede:"EFREI Paris engineering graduate (Master's in Cloud Architecture). Hands-on experience primarily on AWS with additional exposure to GCP and Azure — from design to industrialization, with performance and cost under control.",
+      lede:"After two years in multi-client Cloud Operations at Hardis, I now design and industrialize secure AWS platforms at Devoteam A Cloud. My focus spans Infrastructure as Code, CI/CD, containers, operations and FinOps, complemented by hands-on experience with GCP and Azure.",
       cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
@@ -499,13 +527,15 @@ const CONFIG = {
       arch_hint:"Select a role or assignment: the chosen card opens at full width and automatically closes the previous one.",
       arch_direction:"Read from bottom (earlier) to top (recent)",
       arch_zone:"zone",
-      s_sk:"Skills", s_sk_sub:"What I practice daily, and at what level.",
+      s_sk:"Skills", s_sk_sub:"Technologies used in production.",
+      s_proj:"Personal projects", s_proj_sub:"Two recent projects built outside client work.",
       s2:"Certifications", s2_sub:"",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
       verify:"verify ↗", verify_none:"attestation on request", current:"ongoing",
-      stack_lbl:"Stack", env_lbl:"Tech environment", missions_lbl:"Assignments"
+      responsibilities_lbl:"Responsibilities", results_lbl:"Outcomes", project_view:"view repository ↗",
+      stack_lbl:"Technologies", env_lbl:"Tech environment", missions_lbl:"Assignments"
     }
   },
 
@@ -520,16 +550,16 @@ const CONFIG = {
       since:"2026-04",
       live:true,
       intro:{
-        fr:"Ingénieur DevOps au sein de Devoteam A Cloud, entité de Devoteam dédiée à l'expertise AWS. J'interviens sur la conception, la sécurisation et l'industrialisation de plateformes cloud pour les clients du cabinet, avec une montée en compétences continue sur l'écosystème AWS.",
-        en:"DevOps Engineer at Devoteam A Cloud, Devoteam's AWS-focused entity. I work on designing, securing and industrializing cloud platforms for the firm's clients, with continuous upskilling across the AWS ecosystem."},
+        fr:"Ingénieur DevOps au sein de Devoteam A Cloud, entité de Devoteam dédiée à l'expertise AWS. J'interviens sur la conception, la sécurisation et l'industrialisation de plateformes cloud pour les clients du cabinet.",
+        en:"DevOps Engineer at Devoteam A Cloud, Devoteam's AWS-focused entity. I work on designing, securing and industrializing cloud platforms for the firm's clients."},
       bullets:{
-        fr:["Interventions sur des projets cloud AWS de bout en bout : cadrage technique, implémentation, mise en production.",
-            "Pratique quotidienne de la CI/CD (GitLab) et des services de conteneurs AWS (ECS).",
-            "Montée en compétences continue sur l'écosystème AWS."],
-        en:["End-to-end AWS cloud projects: technical scoping, implementation, production releases.",
-            "Daily practice of CI/CD (GitLab) and AWS container services (ECS).",
-            "Continuous upskilling across the AWS ecosystem."]},
-      stack:"AWS · ECS · GitLab CI · Terraform",
+        fr:["Interventions sur des projets AWS de bout en bout : cadrage technique, implémentation et mise en production.",
+            "Migration d'applications hébergées sur EC2 vers ECS et déploiement d'applications cloud native conteneurisées.",
+            "Conception, maintenance et évolution de chaînes CI/CD GitLab, du build jusqu'au déploiement."],
+        en:["End-to-end AWS projects: technical scoping, implementation and production releases.",
+            "Migration of EC2-hosted applications to ECS and deployment of containerized cloud-native applications.",
+            "Design, maintenance and evolution of GitLab CI/CD pipelines, from build to deployment."]},
+      stack:"AWS · EC2 · ECS · GitLab CI · Terraform · LiteLLM",
       /* carte affichée dans le schéma ? non : Devoteam n'a que la mission GenAI */
       coreCard:null },
 
@@ -605,7 +635,10 @@ const CONFIG = {
         en:["Platform deployed on a fully isolated, secured AWS network, guaranteeing strict separation of client data.",
             "Custom, compliant LLMs served through LiteLLM, with centralized access and quota management.",
             "Design, maintenance and evolution of the GitLab CI/CD pipeline, from build to deployment."]},
-      stack:"AWS · ECS · LiteLLM · GitLab CI · VPC" },
+      results:{
+        fr:["Socle AWS isolé et pipeline de déploiement opérationnels pour exposer des LLM privés et conformes."],
+        en:["Isolated AWS foundation and deployment pipeline operational for serving private, compliant LLMs."]},
+      stack:"AWS · VPC · EC2 · ECS · LiteLLM · GitLab CI" },
 
     { id:"courir", company:"hardis", cloud:"gcp", durationMonths:6, displayOrder:3,
       card:{fr:"Courir — Supervision automatisée", en:"Courir — Automated Monitoring"},
@@ -626,6 +659,9 @@ const CONFIG = {
             "Automatic qualification of every incident: priority derived from alert severity, routing to the right support team, formatted description with origin, summary and a direct link to the GCP console.",
             "Full lifecycle tooling for the Cloud Operations team: takeover, client communication and traceability through to closure.",
             "Terraform overhaul and remediation of accumulated drift."]},
+      results:{
+        fr:["Création, qualification et routage des tickets d'incident automatisés de bout en bout, sans intervention humaine.","Socle Terraform remis à plat et drifts accumulés résorbés."],
+        en:["End-to-end incident ticket creation, qualification and routing automated with no human intervention.","Terraform foundation overhauled and accumulated drift remediated."]},
       stack:"GCP (Cloud Monitoring · Workflows) · Terraform · API REST · ITSM" },
 
     { id:"gl", company:"hardis", cloud:"gcp", durationMonths:8, displayOrder:2,
@@ -651,7 +687,10 @@ const CONFIG = {
             "Performed an IAM audit to identify gaps against GCP best practices and ensure a compliant security posture.",
             "Took part in FinOps initiatives to rationalize resources and hand infrastructure ownership back to Galeries Lafayette teams.",
             "Released business-critical application updates into production."]},
-      stack:"GCP (GKE · Cloud SQL · Cloud Storage · IAM · Cloud DNS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes · Git" },
+      results:{
+        fr:["Migration de 5 applications critiques en 8 mois, de l'on-premise vers GCP.","Continuité de service assurée pendant les migrations grâce aux déploiements blue/green."],
+        en:["Five critical applications migrated from on-premises to GCP in eight months.","Service continuity maintained during migrations through blue/green deployments."]},
+      stack:"GCP (GKE · Cloud SQL · Cloud Storage · Cloud DNS · IAM · Secret Manager · KMS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes" },
 
     { id:"fp", company:"hardis", cloud:"aws", durationMonths:25, displayOrder:1,
       card:{fr:"Fitness Park — Industrialisation Terraform", en:"Fitness Park — Terraform Industrialization"},
@@ -664,13 +703,18 @@ const CONFIG = {
         fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
         en:"Long-term support of Fitness Park's AWS infrastructure through the Hardis service center: IaC remediation, international expansion projects and delivery of a complete application."},
       bullets:{
-        fr:["Refonte du socle Terraform de l'infrastructure : résorption des drifts accumulés et remise en service de la CI de déploiement automatique.",
-            "Réalisation des projets d'ouverture de nouveaux pays (Portugal, Italie) et d'amélioration continue, pilotés en Terraform.",
-            "Projet « Égérie » livré en un mois : cadrage du besoin, schéma d'architecture et estimation des coûts, puis déploiement sur une stack neuve, totalement indépendante de l'infrastructure existante."],
-        en:["Terraform overhaul of the infrastructure: remediation of accumulated drift and restoration of the automated deployment CI.",
-            "Delivered new-country rollouts (Portugal, Italy) and continuous improvement projects, driven with Terraform.",
-            "\"Égérie\" project delivered in one month: requirements scoping, architecture diagram and cost estimate, then deployment on a brand-new stack fully independent from the existing infrastructure."]},
-      stack:"AWS · Terraform · CI/CD" },
+        fr:["Audit et refactorisation du socle Terraform vers une structure modulaire, résorption des drifts et remise en service de la CI de déploiement automatique.",
+            "Déploiement des nouveaux marchés Portugal et Italie sur ECS Fargate, avec Application Load Balancer et Auto Scaling.",
+            "Renforcement de la sécurité avec AWS WAF v2, Geo-blocking, Rate-limiting, politiques IAM granulaires et MFA généralisé.",
+            "Projet « Égérie » : cadrage, schéma d'architecture, estimation AWS Pricing Calculator et déploiement sur une stack isolée dans un VPC dédié."],
+        en:["Audit and refactoring of the Terraform foundation into a modular structure, drift remediation and restoration of the automated deployment CI.",
+            "Portugal and Italy rollouts deployed on ECS Fargate with Application Load Balancer and Auto Scaling.",
+            "Security hardened with AWS WAF v2, geo-blocking, rate limiting, granular IAM policies and enforced MFA.",
+            "\"Égérie\" project: scoping, architecture diagram, AWS Pricing Calculator estimate and deployment on an isolated stack in a dedicated VPC."]},
+      results:{
+        fr:["Réduction de 30 % de la facture cloud globale et jusqu'à 50 % sur les environnements de développement.","Environnement de production Égérie complet et sécurisé livré en 4 semaines."],
+        en:["Cloud spend reduced by 30% overall and by up to 50% across development environments.","Complete, secured Égérie production environment delivered in four weeks."]},
+      stack:"AWS · ECS Fargate · ALB · Auto Scaling · CloudFront · WAF v2 · IAM · VPC · Terraform · AWS Pricing Calculator" },
 
     { id:"dim", company:"hardis", cloud:"aws", durationMonths:10, displayOrder:4,
       card:{fr:"Dimotrans — RUN & modernisation", en:"Dimotrans — RUN & Modernization"},
@@ -689,7 +733,10 @@ const CONFIG = {
         en:["AWS infrastructure RUN operations: supervision, audits and improvement recommendations.",
             "Migration of end-of-life databases to supported versions, minimizing application impact.",
             "Infrastructure managed through ITSM (iTop) with ticket-based support."]},
-      stack:"AWS · RDS · iTop" },
+      results:{
+        fr:["Migration des bases MySQL 5.6 obsolètes vers des versions supportées, avec continuité des opérations et amélioration de la sécurité."],
+        en:["End-of-life MySQL 5.6 databases migrated to supported versions while preserving operational continuity and improving security."]},
+      stack:"AWS · EC2 · RDS · EventBridge · MySQL · iTop" },
 
     { id:"finare", company:"hardis", cloud:"aws", durationMonths:5, displayOrder:5,
       card:{fr:"Finaré — Plateforme data AWS", en:"Finaré — AWS Data Platform"},
@@ -708,13 +755,16 @@ const CONFIG = {
         en:["End-to-end AWS architecture design, integrated with Snowflake.",
             "All resources deployed as Infrastructure as Code with AWS CloudFormation.",
             "Network, IAM users and monitoring configured following AWS best practices."]},
-      stack:"AWS · Snowflake · CloudFormation · IAM" }
+      results:{
+        fr:["Architecture AWS × Snowflake livrée intégralement en Infrastructure as Code, réseau, IAM et monitoring inclus."],
+        en:["AWS × Snowflake architecture delivered entirely as Infrastructure as Code, including networking, IAM and monitoring."]},
+      stack:"AWS · Aurora Serverless · VPN · Snowflake · CloudFormation · IAM · Monitoring" }
   ],
 
   skills: [
     { kind:"clouds", lbl:{fr:"Cloud providers", en:"Cloud providers"},
-      items:{fr:[["aws","AWS","avancé",78],["gcp","Google Cloud","intermédiaire",58],["az","Azure","fondamentaux",32]],
-             en:[["aws","AWS","advanced",78],["gcp","Google Cloud","intermediate",58],["az","Azure","fundamentals",32]]} },
+      items:{fr:[["aws","AWS","avancé",78,"ECS · Terraform · IAM · FinOps"],["gcp","Google Cloud","intermédiaire",58,"GKE · IAM · Monitoring · Workflows"],["az","Azure","fondamentaux",32,"Marketplace · migrations Microsoft"]],
+             en:[["aws","AWS","advanced",78,"ECS · Terraform · IAM · FinOps"],["gcp","Google Cloud","intermediate",58,"GKE · IAM · Monitoring · Workflows"],["az","Azure","fundamentals",32,"Marketplace · Microsoft migrations"]]} },
     { lbl:{fr:"Infrastructure as Code", en:"Infrastructure as Code"},
       inline:{fr:"Terraform · CloudFormation · Atlantis", en:"Terraform · CloudFormation · Atlantis"} },
     { lbl:{fr:"Conteneurs & CI/CD", en:"Containers & CI/CD"},
@@ -726,6 +776,21 @@ const CONFIG = {
     { lbl:{fr:"Langues", en:"Languages"},
       items:{fr:[["Français","langue maternelle"],["Anglais","avancé — TOEIC 930/990"]],
              en:[["French","native"],["English","advanced — TOEIC 930/990"]]} }
+  ],
+
+  projects: [
+    { name:"Arb-Bot",
+      status:{fr:"Projet personnel",en:"Personal project"},
+      summary:{fr:"Moteur d'exécution hybride Python/Rust pour marchés temps réel : control plane Python, hot path Rust embarqué via PyO3, WebSockets, observabilité et service systemd.",
+               en:"Hybrid Python/Rust execution engine for real-time markets: Python control plane, Rust hot path embedded through PyO3, WebSockets, observability and systemd service."},
+      stack:"Python · Rust · PyO3 · WebSockets · SQLite · systemd",
+      url:"https://github.com/Max-cfn/Arb-Bot" },
+    { name:"Quizzs",
+      status:{fr:"Projet personnel",en:"Personal project"},
+      summary:{fr:"Application locale multiplateforme de préparation aux certifications, avec modes examen et entraînement, historique et import de questionnaires.",
+               en:"Cross-platform local certification practice app with exam and training modes, history and question-set imports."},
+      stack:"Node.js · Express · JavaScript · Windows · macOS · Linux",
+      url:"https://github.com/Max-cfn/Quizzs" }
   ],
 
   /* url : colle ton lien Credly / CertMetrics / Microsoft Learn,
@@ -821,12 +886,18 @@ function renderStatic(){
   updateXall();
 }
 
-function stackHTML(o){return `<div class="stackline"><b>${t('env_lbl')}</b> — ${o.stack}</div>`;}
+function listHTML(items,labelKey,className=''){
+  const rows=items&&items[LANG]?items[LANG]:[];
+  return rows.length?`<div class="detail-group ${className}"><div class="detail-label">${t(labelKey)}</div><ul>${rows.map(b=>`<li>${b}</li>`).join('')}</ul></div>`:'';
+}
+function stackHTML(o){return `<div class="stackline"><b>${t('stack_lbl')}</b> — ${o.stack}</div>`;}
 function detailHTML(o){
   return `<div class="dt-h"><h3>${pick(o.title)}</h3><span class="dt-when">${whenStr(o)}</span></div>
     <div class="dt-role">${pick(o.role)}</div>
     ${o.intro?`<p class="dt-intro">${pick(o.intro)}</p>`:''}
-    <ul>${o.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(o)}`;
+    ${listHTML(o.bullets,'responsibilities_lbl')}
+    ${listHTML(o.results,'results_lbl','detail-results')}
+    ${stackHTML(o)}`;
 }
 
 /* ── schéma vertical du parcours ── */
@@ -838,9 +909,9 @@ const COMPANY_LOGOS={
 let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
 
 function archBodyHTML(item){
-  const bullets=item.bullets&&item.bullets[LANG]?item.bullets[LANG]:[];
   return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
-    <ul>${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    ${listHTML(item.bullets,'responsibilities_lbl')}
+    ${listHTML(item.results,'results_lbl','detail-results')}
     ${stackHTML(item)}`;
 }
 function makeArchItem(type,id,item,headHTML,headClass){
@@ -1101,7 +1172,9 @@ function renderChrono(){
           </span><span class="e-x">+</span></button>
           <div class="e-body"><div class="e-body-in dt">
             ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
-            <ul>${m.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(m)}
+            ${listHTML(m.bullets,'responsibilities_lbl')}
+            ${listHTML(m.results,'results_lbl','detail-results')}
+            ${stackHTML(m)}
           </div></div>`;
         const bd=card.querySelector('.e-body'), btn=card.querySelector('.e-btn');
         initBody(bd,false);
@@ -1149,19 +1222,31 @@ function renderSkills(){
     const row=document.createElement('div');row.className='skrow';
     let body='';
     if(s.kind==='clouds'){
-      body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level])=>`
+      body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level,context])=>`
         <div class="cloud-gauge" style="--cloud:${CLOUD[id]};--fill:${level}%" aria-label="${n} — ${l}">
           <div class="cloud-gauge-head">
             <span class="cloud-gauge-logo" aria-hidden="true">${LOGOS[id]}</span>
             <span class="cloud-gauge-copy"><b class="cloud-gauge-name">${n}</b><span class="cloud-gauge-level">${l}</span></span>
           </div>
           <span class="cloud-meter" aria-hidden="true"><span class="cloud-meter-fill"></span></span>
+          <span class="cloud-gauge-context">${context}</span>
         </div>`).join('')}</div>`;
     }
     else if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
     else{body=`<div class="skinline">${pick(s.inline)}</div>`;}
     row.innerHTML=`<dt>${pick(s.lbl)}</dt><dd>${body}</dd>`;
     root.appendChild(row);
+  });
+}
+function renderProjects(){
+  const root=$('#projects-root');root.innerHTML='';
+  CONFIG.projects.forEach(p=>{
+    const card=document.createElement('article');card.className='project-card';
+    card.innerHTML=`<div class="project-top"><h3>${p.name}</h3><span class="project-status">${pick(p.status)}</span></div>
+      <p>${pick(p.summary)}</p>
+      <div class="project-stack">${p.stack}</div>
+      <a class="project-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${t('project_view')}</a>`;
+    root.appendChild(card);
   });
 }
 function renderCerts(){
@@ -1207,7 +1292,7 @@ $('.tabs').addEventListener('keydown',event=>{
 function setLang(l,remember){
   if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
   LANG=l;ALLOPEN=false;
-  renderStatic();renderArch();renderChrono();renderSkills();renderCerts();renderEdu();
+  renderStatic();renderArch();renderChrono();renderSkills();renderProjects();renderCerts();renderEdu();
 }
 
 /* Langue initiale : choix mémorisé, sinon langue du navigateur —
