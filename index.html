@@ -1172,7 +1172,9 @@ function renderChrono(){
           </span><span class="e-x">+</span></button>
           <div class="e-body"><div class="e-body-in dt">
             ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
-            <ul>${m.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>${stackHTML(m)}
+            ${listHTML(m.bullets,'responsibilities_lbl')}
+            ${listHTML(m.results,'results_lbl','detail-results')}
+            ${stackHTML(m)}
           </div></div>`;
         const bd=card.querySelector('.e-body'), btn=card.querySelector('.e-btn');
         initBody(bd,false);
