@@ -1,0 +1,109 @@
+name: Synchroniser les CV vers main
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "cv/*.pdf"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-cv-to-main
+  cancel-in-progress: false
+
+jobs:
+  sync-cv:
+    name: Synchroniser uniquement les CV
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer l'historique
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Vérifier que le push ne contient que des CV
+        id: scope
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          zero_sha="0000000000000000000000000000000000000000"
+          if [[ "$BEFORE_SHA" == "$zero_sha" ]]; then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Synchronisation ignorée : impossible de comparer la création initiale d'une branche."
+            exit 0
+          fi
+
+          if ! git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$BEFORE_SHA"
+          fi
+
+          mapfile -t changed_files < <(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA")
+
+          if (( ${#changed_files[@]} == 0 )); then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Synchronisation ignorée : aucun changement effectif."
+            exit 0
+          fi
+
+          invalid_files=()
+          for file in "${changed_files[@]}"; do
+            if [[ ! "$file" =~ ^cv/[^/]+\.pdf$ ]]; then
+              invalid_files+=("$file")
+            fi
+          done
+
+          if (( ${#invalid_files[@]} > 0 )); then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Synchronisation ignorée : ce push contient aussi des fichiers hors CV."
+            printf 'Fichier hors périmètre : %s\n' "${invalid_files[@]}"
+            exit 0
+          fi
+
+          echo "allowed=true" >> "$GITHUB_OUTPUT"
+          {
+            echo "### CV autorisés pour la synchronisation"
+            printf -- '- %s\n' "${changed_files[@]}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reporter les PDF de dev vers main
+        if: steps.scope.outputs.allowed == 'true'
+        shell: bash
+        env:
+          DEV_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch --no-tags origin main
+          git switch --force-create sync-cv-main origin/main
+
+          # Synchronise exactement les PDF présents sur dev, sans toucher aux
+          # autres fichiers ni fusionner les autres commits de la branche.
+          git rm -f --ignore-unmatch -- "cv/*.pdf"
+
+          mapfile -t cv_files < <(
+            git ls-tree -r --name-only "$DEV_SHA" -- cv |
+              grep -E '^cv/[^/]+\.pdf$' || true
+          )
+
+          for file in "${cv_files[@]}"; do
+            git checkout "$DEV_SHA" -- "$file"
+          done
+
+          if git diff --cached --quiet; then
+            echo "Les CV de main sont déjà à jour." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          git commit -m "chore(cv): synchronise les CV depuis dev"
+          git push origin HEAD:main
