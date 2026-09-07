@@ -567,7 +567,7 @@ const CONFIG = {
       role:{fr:"Ingénieur Cloud multi-cloud · Cloud Operations", en:"Multi-cloud Engineer · Cloud Operations"},
       contract:{fr:"CDI", en:"Permanent"},
       loc:{fr:"Paris La Défense · hybride", en:"Paris La Défense · hybrid"},
-      when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
+      when:{fr:"jan 2024 → mar 2026 · 2 ans 3 mois", en:"Jan 2024 → Mar 2026 · 2 yrs 3 mos"},
       intro:{
         fr:"Au sein de l'équipe Cloud Operations (CO) d'Hardis Group, j'interviens sur des environnements AWS, GCP et Azure pour accompagner nos clients dans la conception, l'industrialisation et l'exploitation de leurs infrastructures cloud, en régie comme au forfait.",
         en:"Within Hardis Group's Cloud Operations (CO) team, I worked across AWS, GCP and Azure environments, supporting clients in the design, industrialization and operation of their cloud infrastructures, both on-site and under fixed-price contracts."},
@@ -692,10 +692,10 @@ const CONFIG = {
         en:["Five critical applications migrated from on-premises to GCP in eight months.","Service continuity maintained during migrations through blue/green deployments."]},
       stack:"GCP (GKE · Cloud SQL · Cloud Storage · Cloud DNS · IAM · Secret Manager · KMS) · Terraform · Jenkins · Bitbucket · ArgoCD · Atlantis · Docker · Kubernetes" },
 
-    { id:"fp", company:"hardis", cloud:"aws", durationMonths:25, displayOrder:1,
+    { id:"fp", company:"hardis", cloud:"aws", durationMonths:27, displayOrder:1,
       card:{fr:"Fitness Park — Industrialisation Terraform", en:"Fitness Park — Terraform Industrialization"},
       role:{fr:"Ingénieur Cloud AWS · Centre de services", en:"AWS Cloud Engineer · Service Center"},
-      sub:{fr:"mar 2024 → mar 2026", en:"Mar 2024 → Mar 2026"},
+      sub:{fr:"jan 2024 → mar 2026", en:"Jan 2024 → Mar 2026"},
       tag:{fr:"Refonte Terraform · ouvertures pays · projet Égérie", en:"Terraform overhaul · country rollouts · Égérie project"},
       title:{fr:"Fitness Park — Industrialisation Terraform & IaC", en:"Fitness Park — Terraform & IaC Industrialization"},
       when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
@@ -853,7 +853,7 @@ const FLAGS={
 FLAGS.en=FLAGS.gb+FLAGS.us;
 
 /* durée depuis une date "YYYY-MM", comptée en mois inclusifs
-   (mar 2024 → mar 2026 = « 2 ans 1 mois ») — l'affichage du poste
+   (jan 2024 → mar 2026 = « 2 ans 3 mois ») — l'affichage du poste
    en cours reste juste sans retoucher le CONFIG chaque mois. */
 function dur(since){
   const [y,m]=since.split('-').map(Number), now=new Date();
