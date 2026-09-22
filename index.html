@@ -490,7 +490,7 @@ const CONFIG = {
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
-      lede:"Après deux ans en Cloud Operations multi-clients chez Hardis, je conçois aujourd'hui chez Devoteam A Cloud des plateformes AWS sécurisées et industrialisées. Mon terrain : Infrastructure as Code, CI/CD, conteneurs, exploitation et FinOps, avec une expérience complémentaire sur GCP et Azure.",
+      lede:"Ingénieur Cloud & DevOps certifié AWS Solutions Architect Professional, spécialisé dans la conception et l’industrialisation d’environnements AWS et GCP. Expérience Build & Run : architecture cloud, Terraform, CI/CD, conteneurs, Kubernetes, sécurité, FinOps et exploitation de production.",
       cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
@@ -516,7 +516,7 @@ const CONFIG = {
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
-      lede:"After two years in multi-client Cloud Operations at Hardis, I now design and industrialize secure AWS platforms at Devoteam A Cloud. My focus spans Infrastructure as Code, CI/CD, containers, operations and FinOps, complemented by hands-on experience with GCP and Azure.",
+      lede:"Cloud & DevOps Engineer certified as an AWS Solutions Architect Professional, specializing in the design and industrialization of AWS and GCP environments. Build & Run experience: cloud architecture, Terraform, CI/CD, containers, Kubernetes, security, FinOps and production operations.",
       cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
@@ -560,7 +560,7 @@ const CONFIG = {
             "Migration of EC2-hosted applications to ECS and deployment of containerized cloud-native applications.",
             "Design, maintenance and evolution of GitLab CI/CD pipelines, from build to deployment."]},
       stack:"AWS · EC2 · ECS · GitLab CI · Terraform · LiteLLM",
-      /* carte affichée dans le schéma ? non : Devoteam n'a que la mission GenAI */
+      /* Le poste Devoteam distribue vers les missions Bureau Veritas et GenAI. */
       coreCard:null },
 
     { id:"hardis", name:"Hardis Group",
@@ -569,20 +569,27 @@ const CONFIG = {
       loc:{fr:"Paris La Défense · hybride", en:"Paris La Défense · hybrid"},
       when:{fr:"jan 2024 → mar 2026 · 2 ans 3 mois", en:"Jan 2024 → Mar 2026 · 2 yrs 3 mos"},
       intro:{
-        fr:"Au sein de l'équipe Cloud Operations (CO) d'Hardis Group, j'interviens sur des environnements AWS, GCP et Azure pour accompagner nos clients dans la conception, l'industrialisation et l'exploitation de leurs infrastructures cloud, en régie comme au forfait.",
-        en:"Within Hardis Group's Cloud Operations (CO) team, I worked across AWS, GCP and Azure environments, supporting clients in the design, industrialization and operation of their cloud infrastructures, both on-site and under fixed-price contracts."},
+        fr:"Au sein de l'équipe Cloud Operations d'Hardis Group, j'ai accompagné plusieurs clients sur des projets Build & Run : conception d'architectures AWS et GCP, industrialisation de l'IaC et des déploiements, sécurisation, exploitation et FinOps, en régie, au forfait et en centre de services.",
+        en:"In Hardis Group's Cloud Operations team, I supported multiple clients on AWS and GCP Build & Run projects: architecture design, IaC and deployment automation, security, operations and FinOps, across client assignments, fixed-price projects and managed services."},
       bullets:{
-        fr:["Conception et validation d'architectures cloud dans le cadre de projets en régie ou au forfait.",
-            "Automatisation et industrialisation des déploiements via Terraform, et CloudFormation selon les contextes.",
-            "Intégration de pratiques FinOps et pilotage d'optimisations de coûts cloud — fonctions Start/Stop, audits réguliers.",
-            "Gestion du RUN et traitement des incidents (N2/N3) dans un contexte multi-clients, via outil de ticketing.",
-            "Contribution à la transformation continue des environnements cloud clients, sous forme de plans d'action et de mini-projets."],
-        en:["Design and validation of cloud architectures for both on-site and fixed-price projects.",
-            "Deployment automation and industrialization with Terraform, and CloudFormation where relevant.",
-            "FinOps practices and cloud cost-optimization initiatives — Start/Stop functions, regular audits.",
-            "RUN operations and incident management (L2/L3) in a multi-client context, through a ticketing tool.",
-            "Continuous transformation of client cloud environments through action plans and mini-projects."]},
-      stack:"AWS · GCP · Azure · Terraform · CloudFormation · FinOps · ITSM",
+        fr:["Conception et déploiement d'environnements AWS et GCP pour des projets de migration, de modernisation et de mise en production.",
+            "Automatisation de l'infrastructure et des déploiements avec Terraform, CloudFormation et les chaînes CI/CD selon les contextes clients.",
+            "Exploitation de production : supervision, résolution d'incidents N2/N3 et suivi via outils de ticketing.",
+            "Sécurisation des accès et des environnements, audits IAM et documentation pour les équipes clientes.",
+            "Optimisation des coûts cloud : audits FinOps, automatisations Start/Stop et rationalisation des ressources."],
+        en:["Designed and deployed AWS and GCP environments for migrations, modernization and production releases.",
+            "Automated infrastructure and deployments with Terraform, CloudFormation and client-specific CI/CD pipelines.",
+            "Production operations: monitoring, L2/L3 incident resolution and ticket-based follow-up.",
+            "Secured access and cloud environments through IAM reviews and documentation for client teams.",
+            "Optimized cloud spend through FinOps audits, Start/Stop automation and resource rationalization."]},
+      results:{
+        fr:["Fitness Park — coûts cloud globaux réduits de 30 % et jusqu'à 50 % sur les environnements de développement.",
+            "Fitness Park — environnement de production Égérie livré en 4 semaines.",
+            "Galeries Lafayette — 5 applications critiques migrées vers GCP/GKE en 8 mois."],
+        en:["Fitness Park — cloud costs reduced by 30% overall and by up to 50% across development environments.",
+            "Fitness Park — Égérie production environment delivered in four weeks.",
+            "Galeries Lafayette — five critical applications migrated to GCP/GKE in eight months."]},
+      stack:"AWS · GCP · Azure · Terraform · CloudFormation · CI/CD · IAM · Monitoring · FinOps · ITSM",
       /* cette carte apparaît dans le schéma d'architecture */
       coreCard:{ cloud:"multi",
         card:{fr:"Cloud Operations & FinOps", en:"Cloud Operations & FinOps"},
@@ -617,7 +624,29 @@ const CONFIG = {
 
   /* ── Missions (imbriquées sous leur employeur) ── */
   missions: [
-    { id:"genai", company:"devoteam", cloud:"aws", live:true,
+    { id:"bv", company:"devoteam", cloud:"aws", displayOrder:1, live:true,
+      card:{fr:"Bureau Veritas — Architecture & delivery AWS", en:"Bureau Veritas — AWS Architecture & Delivery"},
+      role:{fr:"Ingénieur Cloud & DevOps AWS", en:"AWS Cloud & DevOps Engineer"},
+      sub:{fr:"depuis juin 2026", en:"since Jun 2026"},
+      tag:{fr:"Choix d'architecture · Terraform · GitLab CI/CD · conteneurs", en:"Architecture decisions · Terraform · GitLab CI/CD · containers"},
+      title:{fr:"Bureau Veritas — Architecture & industrialisation AWS", en:"Bureau Veritas — AWS Architecture & Industrialization"},
+      when:{fr:"juin 2026 → aujourd'hui", en:"Jun 2026 → present"},
+      since:"2026-06",
+      intro:{
+        fr:"Mission Build sur une application AWS existante : évolution fonctionnelle nécessitant des choix d'architecture, refonte de l'Infrastructure as Code et industrialisation des déploiements.",
+        en:"Build assignment on an existing AWS application: a new feature requiring architecture decisions, Infrastructure as Code refactoring and deployment automation."},
+      bullets:{
+        fr:["Conception de l'architecture et déploiement d'une nouvelle fonctionnalité sur une application existante.",
+            "Refonte et structuration du code Terraform pour fiabiliser la gestion des ressources AWS.",
+            "Mise en place de pipelines GitLab CI/CD sur certains dépôts pour automatiser les déploiements.",
+            "Contribution à la modernisation d'applications EC2 vers ECS et à leur conteneurisation."],
+        en:["Designed the architecture and deployed a new feature on an existing application.",
+            "Refactored and structured Terraform code to improve AWS resource management.",
+            "Set up GitLab CI/CD pipelines on selected repositories to automate deployments.",
+            "Contributed to application modernization from EC2 to ECS and containerization."]},
+      stack:"AWS · EC2 · ECS · Terraform · GitLab CI/CD · Docker" },
+
+    { id:"genai", company:"devoteam", cloud:"aws", displayOrder:2, live:true,
       card:{fr:"Plateforme GenAI sécurisée", en:"Secure GenAI Platform"},
       role:{fr:"Ingénieur DevOps AWS", en:"AWS DevOps Engineer"},
       sub:{fr:"Levallois-Perret", en:"Levallois-Perret"},
@@ -698,7 +727,7 @@ const CONFIG = {
       sub:{fr:"jan 2024 → mar 2026", en:"Jan 2024 → Mar 2026"},
       tag:{fr:"Refonte Terraform · ouvertures pays · projet Égérie", en:"Terraform overhaul · country rollouts · Égérie project"},
       title:{fr:"Fitness Park — Industrialisation Terraform & IaC", en:"Fitness Park — Terraform & IaC Industrialization"},
-      when:{fr:"mar 2024 → mar 2026 · 2 ans 1 mois", en:"Mar 2024 → Mar 2026 · 2 yrs 1 mo"},
+      when:{fr:"jan 2024 → mar 2026 · 2 ans 3 mois", en:"Jan 2024 → Mar 2026 · 2 yrs 3 mos"},
       intro:{
         fr:"Accompagnement dans la durée de l'infrastructure AWS de Fitness Park via le centre de services Hardis : remise en état de l'IaC, projets d'expansion internationale et livraison d'une application complète.",
         en:"Long-term support of Fitness Park's AWS infrastructure through the Hardis service center: IaC remediation, international expansion projects and delivery of a complete application."},
@@ -910,8 +939,8 @@ let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCH
 
 function archBodyHTML(item){
   return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
-    ${listHTML(item.bullets,'responsibilities_lbl')}
     ${listHTML(item.results,'results_lbl','detail-results')}
+    ${listHTML(item.bullets,'responsibilities_lbl')}
     ${stackHTML(item)}`;
 }
 function makeArchItem(type,id,item,headHTML,headClass){
@@ -1142,7 +1171,8 @@ function renderChrono(){
       </button>
       <div class="emp-body"><div class="emp-body-in dt">
         <p class="dt-intro">${pick(co.intro)}</p>
-        <ul>${co.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>
+        ${listHTML(co.results,'results_lbl','detail-results')}
+        ${listHTML(co.bullets,'responsibilities_lbl')}
         ${stackHTML(co)}
       </div></div>`;
     /* le poste lui-même (intro + missions du poste) est déplié d'entrée :
