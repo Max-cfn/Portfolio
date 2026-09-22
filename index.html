@@ -490,7 +490,7 @@ const CONFIG = {
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
-      lede:"Ingénieur Cloud & DevOps certifié AWS Solutions Architect Professional, je conçois et industrialise des plateformes AWS chez Devoteam A Cloud. Mon parcours chez Hardis associe projets Build & Run sur AWS et GCP : architecture, Terraform, CI/CD, conteneurs, sécurité et FinOps.",
+      lede:"Ingénieur Cloud & DevOps certifié AWS Solutions Architect Professional, spécialisé dans la conception et l’industrialisation d’environnements AWS et GCP. Expérience Build & Run : architecture cloud, Terraform, CI/CD, conteneurs, Kubernetes, sécurité, FinOps et exploitation de production.",
       cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
@@ -516,7 +516,7 @@ const CONFIG = {
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
-      lede:"Cloud & DevOps Engineer certified as an AWS Solutions Architect Professional, now designing and industrializing AWS platforms at Devoteam A Cloud. My experience at Hardis spans AWS and GCP Build & Run projects: architecture, Terraform, CI/CD, containers, security and FinOps.",
+      lede:"Cloud & DevOps Engineer certified as an AWS Solutions Architect Professional, specializing in the design and industrialization of AWS and GCP environments. Build & Run experience: cloud architecture, Terraform, CI/CD, containers, Kubernetes, security, FinOps and production operations.",
       cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
@@ -582,6 +582,13 @@ const CONFIG = {
             "Production operations: monitoring, L2/L3 incident resolution and ticket-based follow-up.",
             "Secured access and cloud environments through IAM reviews and documentation for client teams.",
             "Optimized cloud spend through FinOps audits, Start/Stop automation and resource rationalization."]},
+      results:{
+        fr:["Fitness Park — coûts cloud globaux réduits de 30 % et jusqu'à 50 % sur les environnements de développement.",
+            "Fitness Park — environnement de production Égérie livré en 4 semaines.",
+            "Galeries Lafayette — 5 applications critiques migrées vers GCP/GKE en 8 mois."],
+        en:["Fitness Park — cloud costs reduced by 30% overall and by up to 50% across development environments.",
+            "Fitness Park — Égérie production environment delivered in four weeks.",
+            "Galeries Lafayette — five critical applications migrated to GCP/GKE in eight months."]},
       stack:"AWS · GCP · Azure · Terraform · CloudFormation · CI/CD · IAM · Monitoring · FinOps · ITSM",
       /* cette carte apparaît dans le schéma d'architecture */
       coreCard:{ cloud:"multi",
@@ -932,8 +939,8 @@ let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCH
 
 function archBodyHTML(item){
   return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
-    ${listHTML(item.bullets,'responsibilities_lbl')}
     ${listHTML(item.results,'results_lbl','detail-results')}
+    ${listHTML(item.bullets,'responsibilities_lbl')}
     ${stackHTML(item)}`;
 }
 function makeArchItem(type,id,item,headHTML,headClass){
@@ -1164,7 +1171,8 @@ function renderChrono(){
       </button>
       <div class="emp-body"><div class="emp-body-in dt">
         <p class="dt-intro">${pick(co.intro)}</p>
-        <ul>${co.bullets[LANG].map(b=>`<li>${b}</li>`).join('')}</ul>
+        ${listHTML(co.results,'results_lbl','detail-results')}
+        ${listHTML(co.bullets,'responsibilities_lbl')}
         ${stackHTML(co)}
       </div></div>`;
     /* le poste lui-même (intro + missions du poste) est déplié d'entrée :
