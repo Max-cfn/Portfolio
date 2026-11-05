@@ -10,7 +10,12 @@ function decode(value = '') {
 }
 function field(xml, name) { return decode(xml.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${name}>`, 'i'))?.[1]); }
 function blogURL(value) {
-  try { const url = new URL(value, ORIGIN); return url.protocol === 'https:' && ['kloud.blog', 'www.kloud.blog'].includes(url.hostname) && !url.username && !url.password ? url.href : null; } catch { return null; }
+  try {
+    const url = new URL(value, ORIGIN);
+    // Astro's default Pages origin may still appear in older feed entries.
+    if (url.protocol !== 'https:' || !['kloud.blog', 'www.kloud.blog', 'kloud-blog.pages.dev'].includes(url.hostname) || url.username || url.password) return null;
+    return new URL(url.pathname + url.search, ORIGIN).href;
+  } catch { return null; }
 }
 export function latestFromRSS(xml, now = Date.now()) {
   return [...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)].map(([, item]) => ({
