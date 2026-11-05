@@ -290,12 +290,9 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 #certs .ssub:empty{display:none}
 .certcols{display:block}
 .cert-list{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 36px}
-.cert-featured{margin-bottom:28px;background:var(--card);padding:24px;gap:28px}
 .crow{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;gap:18px;padding:18px 0;min-width:0}
-.cert-featured .crow{grid-template-columns:140px minmax(0,1fr);padding:0}
 .cert-badge{display:grid;place-items:center;width:112px;height:112px;text-decoration:none}
 .cert-badge img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .18s}
-.cert-featured .cert-badge{width:140px;height:140px}
 .cert-badge:hover img{transform:scale(1.05)}
 .cert-badge svg{width:76px;height:76px}
 .crow .cn{min-width:0}
@@ -306,25 +303,19 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .cert-issuer-logo svg{width:100%;height:100%;display:block}
 .crow a.vf{display:inline-block;font-size:13px;font-weight:600;color:var(--green);text-underline-offset:3px;padding:3px 0}
 .crow a.vf:hover{text-decoration-thickness:2px}
-.cert-micro{margin-top:36px;padding:26px 24px;background:var(--paper2)}
+.cert-micro{margin-top:36px;padding:26px 0 0;border-top:1px solid var(--rule)}
 .cert-micro h3{font-family:var(--disp);font-size:25px;font-weight:500;line-height:1.2;margin-bottom:16px}
 .cert-profile{margin-top:24px;font-size:14px}
 .cert-profile a{color:var(--green);text-underline-offset:3px}
-@media(max-width:900px){
- .cert-featured .crow{grid-template-columns:112px minmax(0,1fr)}
- .cert-featured .cert-badge{width:112px;height:112px}
-}
 @media(max-width:680px){
  .cert-list{grid-template-columns:1fr;gap:4px}
- .cert-featured{padding:20px;gap:24px;margin-bottom:16px}
  .crow{grid-template-columns:104px minmax(0,1fr);gap:16px;padding:16px 0}
  .cert-badge{width:104px;height:104px}
- .cert-micro{margin-top:24px;padding:22px 20px}
+ .cert-micro{margin-top:24px;padding-top:22px}
 }
 @media(max-width:380px){
- .cert-featured,.cert-micro{padding:16px 12px}
- .cert-featured .crow,.crow{grid-template-columns:88px minmax(0,1fr);gap:12px}
- .cert-featured .cert-badge,.cert-badge{width:88px;height:88px}
+.crow{grid-template-columns:88px minmax(0,1fr);gap:12px}
+.cert-badge{width:88px;height:88px}
  .crow .nm{font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){.cert-badge img{transition:none}.cert-badge:hover img{transform:none}}
@@ -1422,9 +1413,7 @@ function renderCerts(){
     });
     return list;
   };
-  const featured=createList(CONFIG.certs.filter(c=>c.featured));featured.classList.add('cert-featured');
-  root.appendChild(featured);
-  root.appendChild(createList(CONFIG.certs.filter(c=>!c.featured&&c.group!=='micro')));
+  root.appendChild(createList(CONFIG.certs.filter(c=>c.group!=='micro')));
   const micro=document.createElement('div');micro.className='cert-micro';
   const heading=document.createElement('h3');heading.textContent=t('cert_micro');micro.appendChild(heading);
   micro.appendChild(createList(CONFIG.certs.filter(c=>c.group==='micro')));root.appendChild(micro);
