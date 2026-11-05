@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maxence Cerfontaine — Cloud &amp; DevOps</title>
-<meta name="description" content="Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform, FinOps. 10 certifications dont AWS Solutions Architect Professional.">
+<meta name="description" content="Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform, FinOps. 9 certifications, AWS Partner FDE et 2 microcredentials en IA agentique.">
 <meta name="author" content="Maxence Cerfontaine">
 <meta name="theme-color" content="#F4F2EB">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Maxence Cerfontaine">
 <meta property="og:title" content="Maxence Cerfontaine — Ingénieur Cloud & DevOps">
-<meta property="og:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure. 10 certifications dont AWS Solutions Architect Professional.">
+<meta property="og:description" content="Conception, industrialisation et FinOps d'infrastructures cloud. AWS · GCP · Azure. 9 certifications, AWS Partner FDE et 2 microcredentials en IA agentique.">
 <meta property="og:url" content="https://maxence-cerfontaine.cloud/">
 <meta property="og:image" content="https://maxence-cerfontaine.cloud/og.png">
 <meta property="og:image:width" content="1200">
@@ -288,17 +288,37 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 
 /* ── certifications ── */
 #certs .ssub:empty{display:none}
-.certcols{columns:2;column-gap:52px}
-.crow{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
-.crow .clogo{width:30px;height:30px;flex-shrink:0;display:grid;place-items:center;background:var(--paper);border:1px solid var(--rule);border-radius:3px}
-.crow .clogo svg{width:18px;height:18px;display:block}
+.certcols{display:block}
+.cert-list{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 36px}
+.crow{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;gap:18px;padding:18px 0;min-width:0}
+.cert-badge{display:grid;place-items:center;width:112px;height:112px;text-decoration:none}
+.cert-badge img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .18s}
+.cert-badge:hover img{transform:scale(1.05)}
+.cert-badge svg{width:76px;height:76px}
 .crow .cn{min-width:0}
-.crow .nm{display:block;font-size:14.5px;font-weight:600;letter-spacing:-.005em;line-height:1.3}
-.crow .lv{display:block;font-family:var(--mono);font-size:11px;color:var(--mut)}
-.crow .sp{flex:1;height:14px;border-bottom:1px dotted var(--rule2);min-width:18px}
-.crow a.vf{font-family:var(--mono);font-size:11.5px;color:var(--green);text-decoration:none;white-space:nowrap;padding-top:1px}
-.crow a.vf:hover{text-decoration:underline}
-.crow .vn{font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap;padding-top:2px}
+.crow .nm{display:block;font-size:16px;font-weight:600;line-height:1.35}
+.crow .lv{display:block;font-size:14px;color:var(--ink2);margin-top:3px}
+.cert-issuer{display:flex;align-items:center;gap:7px;margin:10px 0 7px;font-size:12px;line-height:1.4;color:var(--ink2)}
+.cert-issuer-logo{width:23px;height:23px;flex:none;display:grid;place-items:center}
+.cert-issuer-logo svg{width:100%;height:100%;display:block}
+.crow a.vf{display:inline-block;font-size:13px;font-weight:600;color:var(--green);text-underline-offset:3px;padding:3px 0}
+.crow a.vf:hover{text-decoration-thickness:2px}
+.cert-micro{margin-top:36px;padding:26px 0 0;border-top:1px solid var(--rule)}
+.cert-micro h3{font-family:var(--disp);font-size:25px;font-weight:500;line-height:1.2;margin-bottom:16px}
+.cert-profile{margin-top:24px;font-size:14px}
+.cert-profile a{color:var(--green);text-underline-offset:3px}
+@media(max-width:680px){
+ .cert-list{grid-template-columns:1fr;gap:4px}
+ .crow{grid-template-columns:104px minmax(0,1fr);gap:16px;padding:16px 0}
+ .cert-badge{width:104px;height:104px}
+ .cert-micro{margin-top:24px;padding-top:22px}
+}
+@media(max-width:380px){
+.crow{grid-template-columns:88px minmax(0,1fr);gap:12px}
+.cert-badge{width:88px;height:88px}
+ .crow .nm{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.cert-badge img{transition:none}.cert-badge:hover img{transform:none}}
 
 /* ── formation ── */
 .edrow{display:grid;grid-template-columns:200px 1fr auto;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule)}
@@ -345,7 +365,6 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .emp-head{flex-direction:column;gap:6px}
   .emp-right{text-align:left;flex-direction:row;align-items:center;align-self:stretch;justify-content:space-between;width:100%}
   .emp-missions{padding:14px 14px 18px}
-  .certcols{columns:1}
   .skrow,.edrow{grid-template-columns:1fr;gap:6px}
   .cloud-gauges{grid-template-columns:1fr}
   .project-grid{grid-template-columns:1fr}
@@ -397,7 +416,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <div class="frow"><span data-t="f2"></span><b>Paris, France</b></div>
       <div class="frow"><span data-t="f3"></span><b>AWS · GCP · Azure</b></div>
       <div class="frow"><span data-t="f4"></span><b data-t="f4v"></b></div>
-      <div class="frow"><span data-t="f5"></span><b>TOEIC 930/990</b></div>
+      <div class="frow"><span data-t="f5"></span><b data-t="f5v"></b></div>
     </aside>
   </div>
 </header>
@@ -486,7 +505,7 @@ const CONFIG = {
 
   ui: {
     fr: {
-      meta_title:"Maxence Cerfontaine — Cloud & DevOps", meta_desc:"Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform et FinOps. 10 certifications dont AWS Solutions Architect Professional.",
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps", meta_desc:"Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform et FinOps. 9 certifications, AWS Partner FDE et 2 microcredentials en IA agentique.",
       nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
@@ -494,7 +513,7 @@ const CONFIG = {
       cv_btn:"Télécharger le CV", cv_alt:"English resume (PDF)", contact_btn:"Me contacter", cv_short:"CV", contact_short:"Contact", privacy:"Confidentialité", legal:"Mentions légales",
       fiche:"Fiche technique",
       f1:"Poste actuel", f1v:"Ingénieur DevOps, Devoteam A Cloud",
-      f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"10 — dont AWS SA Pro", f5:"Anglais",
+      f2:"Base", f3:"Clouds", f4:"Certifications", f4v:"9 + AWS Partner FDE", f5:"Anglais", f5v:"Avancé · C1",
       s1:"Parcours", s1_sub:"Mes expériences les plus récentes en premier, reliées comme une architecture cloud. Chaque poste distribue ensuite vers ses missions.",
       tab_arch:"Schéma du parcours", tab_chrono:"Chronologie",
       xall_open:"[+] tout déplier", xall_close:"[–] tout replier",
@@ -503,7 +522,7 @@ const CONFIG = {
       arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Technologies pratiquées en production.",
       s_proj:"Projets personnels", s_proj_sub:"Deux réalisations récentes, développées hors contexte client.",
-      s2:"Certifications", s2_sub:"",
+      s2:"Certifications", s2_sub:"Architecture cloud, Infrastructure as Code et IA agentique.", cert_micro:"Microcredentials AWS", cert_profile:"Voir tous mes badges sur Credly",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Audience sans cookies via Cloudflare",
@@ -512,7 +531,7 @@ const CONFIG = {
       stack_lbl:"Technologies", env_lbl:"Environnement technique", missions_lbl:"Missions"
     },
     en: {
-      meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 10 certifications including AWS Solutions Architect Professional.",
+      meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 9 certifications, AWS Partner FDE and 2 agentic AI microcredentials.",
       nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
@@ -520,7 +539,7 @@ const CONFIG = {
       cv_btn:"Download resume", cv_alt:"CV français (PDF)", contact_btn:"Get in touch", cv_short:"Resume", contact_short:"Contact", privacy:"Privacy", legal:"Legal notice",
       fiche:"Data sheet",
       f1:"Current role", f1v:"DevOps Engineer, Devoteam A Cloud",
-      f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"10 — incl. AWS SA Pro", f5:"English",
+      f2:"Based in", f3:"Clouds", f4:"Certifications", f4v:"9 + AWS Partner FDE", f5:"English", f5v:"Advanced · C1",
       s1:"Experience", s1_sub:"My most recent experience comes first, connected like a cloud architecture. Each role then distributes towards its assignments.",
       tab_arch:"Experience diagram", tab_chrono:"Timeline",
       xall_open:"[+] expand all", xall_close:"[–] collapse all",
@@ -529,7 +548,7 @@ const CONFIG = {
       arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"Technologies used in production.",
       s_proj:"Personal projects", s_proj_sub:"Two recent projects built outside client work.",
-      s2:"Certifications", s2_sub:"",
+      s2:"Certifications", s2_sub:"Cloud architecture, Infrastructure as Code and agentic AI.", cert_micro:"AWS microcredentials", cert_profile:"View all my badges on Credly",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
       foot:"© 2026 Maxence Cerfontaine", foot2:"Cookie-free analytics via Cloudflare",
@@ -803,8 +822,8 @@ const CONFIG = {
     { lbl:{fr:"Pratiques", en:"Practices"},
       inline:{fr:"FinOps · SRE · Sécurité cloud · Migration · Audit IAM", en:"FinOps · SRE · Cloud security · Migration · IAM audit"} },
     { lbl:{fr:"Langues", en:"Languages"},
-      items:{fr:[["Français","langue maternelle"],["Anglais","avancé — TOEIC 930/990"]],
-             en:[["French","native"],["English","advanced — TOEIC 930/990"]]} }
+      items:{fr:[["Français","langue maternelle"],["Anglais","avancé — C1"]],
+             en:[["French","native"],["English","advanced — C1"]]} }
   ],
 
   projects: [
@@ -825,17 +844,112 @@ const CONFIG = {
   /* url : colle ton lien Credly / CertMetrics / Microsoft Learn,
      OU le chemin d'un PDF déposé dans certs/ (ex "certs/aws-sa-pro.pdf").
      null → « attestation sur demande ». */
+  // Curated by relevance to Cloud & DevOps; order is preserved in both languages.
   certs: [
-    { name:"AWS Solutions Architect", lvl:"Professional",        who:"aws", url:"https://www.credly.com/badges/52af07a4-d667-483f-baf8-4bfc88afe91c/public_url" },
-    { name:"AWS Solutions Architect", lvl:"Associate",           who:"aws", url:"https://www.credly.com/badges/707c418f-d83f-4135-9ef7-267904f93b2f/public_url" },
-    { name:"AWS AI Practitioner",     lvl:"Foundational",        who:"aws", url:"https://www.credly.com/badges/9ac72cb5-3984-4e9a-abdf-49a8bc8766d8/public_url" },
-    { name:"AWS Cloud Practitioner",  lvl:"Foundational",        who:"aws", url:"https://www.credly.com/badges/3653321e-3bb1-4ccd-9858-09c907f2a512/public_url" },
-    { name:"Associate Cloud Engineer",lvl:"Google Cloud",        who:"gcp", url:"https://www.credly.com/badges/9a7f3f5e-a563-4a4a-8b75-b99ed8fe49fe/public_url" },
-    { name:"Terraform Associate",     lvl:"HashiCorp",           who:"hc",  url:"https://www.credly.com/badges/2173fba6-372a-45a7-9755-680f1fc442bc/public_url" },
-    { name:"AZ-104",                  lvl:"Azure Administrator", who:"az",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/FC6CB99A727C9187?sharingId=2BC6B7FEA1075E9A" },
-    { name:"AZ-900",                  lvl:"Azure Fundamentals",  who:"az",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/A4DEE29AFA0F387A?sharingId=2BC6B7FEA1075E9A" },
-    { name:"MS-900",                  lvl:"Microsoft 365",       who:"ms",  url:"https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/1E66DB4A452CE7BD?sharingId=2BC6B7FEA1075E9A" },
-    { name:"TOEIC 930/990",           lvl:{fr:"Anglais",en:"English"}, who:"oth", url:null }
+      {
+          "name": "AWS Certified Solutions Architect",
+          "lvl": "Professional",
+          "who": "aws",
+          "url": "https://www.credly.com/badges/52af07a4-d667-483f-baf8-4bfc88afe91c/public_url",
+          "badge": "https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png",
+          "featured": true
+      },
+      {
+          "name": "HashiCorp Certified: Terraform Associate",
+          "lvl": "003",
+          "who": "hc",
+          "url": "https://www.credly.com/badges/2173fba6-372a-45a7-9755-680f1fc442bc/public_url",
+          "badge": "https://images.credly.com/images/0dc62494-dc94-469a-83af-e35309f27356/blob",
+          "featured": true
+      },
+      {
+          "name": "AWS Certified Solutions Architect",
+          "lvl": "Associate",
+          "who": "aws",
+          "url": "https://www.credly.com/badges/707c418f-d83f-4135-9ef7-267904f93b2f/public_url",
+          "badge": "https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
+          "featured": false
+      },
+      {
+          "name": "Associate Cloud Engineer",
+          "lvl": "Google Cloud",
+          "who": "gcp",
+          "url": "https://www.credly.com/badges/9a7f3f5e-a563-4a4a-8b75-b99ed8fe49fe/public_url",
+          "badge": "https://images.credly.com/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
+          "featured": false
+      },
+      {
+          "name": "Microsoft Certified: Azure Administrator",
+          "lvl": "Associate · AZ-104",
+          "who": "ms",
+          "url": "https://learn.microsoft.com/api/credentials/share/fr-fr/MaxenceCerfontaine/FC6CB99A727C9187?sharingId=2BC6B7FEA1075E9A",
+          "badge": "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+          "featured": false
+      },
+      {
+          "name": "AWS Partner: Forward Deployed Engineer (FDE)",
+          "lvl": {"fr":"Accréditation AWS Partner · Validated","en":"AWS Partner credential · Validated"},
+          "who": "aws",
+          "url": "https://www.credly.com/badges/3b76c502-acfe-42a6-b5c3-46c840f19ba5/public_url",
+          "badge": "https://images.credly.com/images/1e9b7606-d621-4dc6-b85c-752e9cdc3a28/blob",
+          "featured": false
+      },
+      {
+          "name": "AWS Certified AI Practitioner",
+          "lvl": "Foundational",
+          "who": "aws",
+          "url": "https://www.credly.com/badges/9ac72cb5-3984-4e9a-abdf-49a8bc8766d8/public_url",
+          "badge": "https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png",
+          "featured": false
+      },
+      {
+          "name": "AWS Certified Cloud Practitioner",
+          "lvl": "Foundational",
+          "who": "aws",
+          "url": "https://www.credly.com/badges/3653321e-3bb1-4ccd-9858-09c907f2a512/public_url",
+          "badge": "https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png",
+          "featured": false
+      },
+      {
+          "name": "Microsoft Certified: Azure Fundamentals",
+          "lvl": "AZ-900",
+          "who": "ms",
+          "url": "https://www.credly.com/badges/1527541e-13cd-4add-a519-0c23b83e7f64/public_url",
+          "badge": "https://images.credly.com/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+          "featured": false
+      },
+      {
+          "name": "Microsoft 365 Certified: Fundamentals",
+          "lvl": "MS-900",
+          "who": "ms",
+          "url": "https://www.credly.com/badges/3b4771d9-acc6-45a0-ab70-a7f0c841f367/public_url",
+          "badge": "https://images.credly.com/images/0c6d9839-f468-4adc-987d-5cfae4a9ee67/image.png",
+          "featured": false
+      },
+      {
+          "name": "AWS Agentic AI Demonstrated",
+          "lvl": {
+              "fr": "Microcredential · évaluation pratique",
+              "en": "Microcredential · hands-on assessment"
+          },
+          "who": "aws",
+          "url": "https://www.credly.com/badges/3834f388-8d86-42de-9fac-d623b78b89fa/public_url",
+          "badge": "https://images.credly.com/images/6f40bf38-1725-40d8-99a2-f6bb1bafec0e/blob",
+          "group": "micro",
+          "featured": false
+      },
+      {
+          "name": "AWS Securing Agent Identities Demonstrated",
+          "lvl": {
+              "fr": "Microcredential · évaluation pratique",
+              "en": "Microcredential · hands-on assessment"
+          },
+          "who": "aws",
+          "url": "https://www.credly.com/badges/acf82da1-5bfb-4af8-86ab-b5b63fc25cac/public_url",
+          "badge": "https://images.credly.com/images/d5137ca1-d9a1-4afb-b0da-82711fcb16e9/blob",
+          "group": "micro",
+          "featured": false
+      }
   ],
 
   /* logo : fichier dans assets/ + largeur d'affichage en px (commune → même taille) */
@@ -860,7 +974,7 @@ const CLOUD={aws:'#B06E10',gcp:'#3B6BB8',az:'#2E7CA8',ms:'#3F6E9E',hc:'#6C4BA8',
 const CTXT={aws:'AWS',gcp:'GCP',az:'AZ',ms:'MS',hc:'HC',multi:'MULTI',oth:'—'};
 
 /* Logos des organismes certificateurs (SVG inline, tracés officiels). */
-const ISSUER={aws:'Amazon Web Services',gcp:'Google Cloud',az:'Microsoft Azure',ms:'Microsoft',hc:'HashiCorp Terraform',oth:'ETS'};
+const ISSUER={aws:'Amazon Web Services',gcp:'Google Cloud',az:'Microsoft',ms:'Microsoft',hc:'HashiCorp · IBM Professional Certification',oth:''};
 const LOGOS={
   aws:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#232F3E" d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.295.072-.583.16-.862.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.263-.168.311a.51.51 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167z"/><path fill="#F90" d="M21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z"/></svg>',
   gcp:'<svg viewBox="0.75 -0.16 33.39 26.99" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M21.85,7.41l1,0,2.85-2.85.14-1.21A12.81,12.81,0,0,0,5,9.6a1.55,1.55,0,0,1,1-.06l5.7-.94s.29-.48.44-.45a7.11,7.11,0,0,1,9.73-.74Z"/><path fill="#4285F4" d="M29.76,9.6a12.84,12.84,0,0,0-3.87-6.24l-4,4A7.11,7.11,0,0,1,24.5,13v.71a3.56,3.56,0,1,1,0,7.12H17.38l-.71.72v4.27l.71.71H24.5A9.26,9.26,0,0,0,29.76,9.6Z"/><path fill="#34A853" d="M10.25,26.49h7.12v-5.7H10.25a3.54,3.54,0,0,1-1.47-.32l-1,.31L4.91,23.63l-.25,1A9.21,9.21,0,0,0,10.25,26.49Z"/><path fill="#FBBC05" d="M10.25,8A9.26,9.26,0,0,0,4.66,24.6l4.13-4.13a3.56,3.56,0,1,1,4.71-4.71l4.13-4.13A9.25,9.25,0,0,0,10.25,8Z"/></svg>',
@@ -871,6 +985,7 @@ const LOGOS={
 };
 const t=k=>CONFIG.ui[LANG][k]||'';
 LOGOS.multi=LOGOS.oth;
+const CERT_LOGOS={aws:LOGOS.aws,gcp:LOGOS.gcp,ms:LOGOS.ms,hc:'<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>HashiCorp</title><path d="M10.114 4.094 4.215 7.5v13.09L.666 18.542V5.45L10.114 0v4.094zm3.772 13.37 3.549-2.049V2.05L13.885 0v10.426h-3.77v-3.89L6.562 8.585v13.357l3.551 2.054V13.599h3.772v3.865zM19.783 3.41V16.5l-5.897 3.405V24l9.448-5.45V5.458l-3.551-2.05z"/></svg>'};
 
 /* Drapeaux en SVG inline : rendu identique partout, là où les emojis
    drapeaux s'affichent en lettres (Windows). Anglais = UK + US. */
@@ -1281,16 +1396,30 @@ function renderProjects(){
 }
 function renderCerts(){
   const root=$('#certs-root');root.innerHTML='';
-  CONFIG.certs.forEach(c=>{
-    const d=document.createElement('div');d.className='crow';
-    const link=c.url?`<a class="vf" href="${c.url}" target="_blank" rel="noopener">${t('verify')}</a>`
-                    :`<span class="vn">${t('verify_none')}</span>`;
-    const who=ISSUER[c.who]||CTXT[c.who]||'';
-    d.innerHTML=`<span class="clogo" role="img" aria-label="${who}" title="${who}">${LOGOS[c.who]||LOGOS.oth}</span>
-      <span class="cn"><span class="nm">${pick(c.name)}</span><span class="lv">${pick(c.lvl)}</span></span>
-      <span class="sp"></span>${link}`;
-    root.appendChild(d);
-  });
+  const createList=certs=>{
+    const list=document.createElement('ul');list.className='cert-list';
+    certs.forEach(c=>{
+      const d=document.createElement('li');d.className='crow';
+      const who=ISSUER[c.who]||'';
+      const label=pick(c.name)+' — '+pick(c.lvl);
+      const visual=c.badge
+        ? `<img src="${c.badge}" alt="${label}" width="140" height="140" loading="lazy" decoding="async">`
+        : CERT_LOGOS[c.who];
+      d.innerHTML=`<a class="cert-badge" href="${c.url}" target="_blank" rel="noopener noreferrer" aria-label="${label} — ${t('verify')}">${visual}</a>
+        <div class="cn"><span class="nm">${pick(c.name)}</span><span class="lv">${pick(c.lvl)}</span>
+        <span class="cert-issuer"><span class="cert-issuer-logo" aria-hidden="true">${CERT_LOGOS[c.who]}</span><span>${who}</span></span>
+        <a class="vf" href="${c.url}" target="_blank" rel="noopener noreferrer" aria-label="${t('verify')} — ${label}">${t('verify')}</a></div>`;
+      list.appendChild(d);
+    });
+    return list;
+  };
+  root.appendChild(createList(CONFIG.certs.filter(c=>c.group!=='micro')));
+  const micro=document.createElement('div');micro.className='cert-micro';
+  const heading=document.createElement('h3');heading.textContent=t('cert_micro');micro.appendChild(heading);
+  micro.appendChild(createList(CONFIG.certs.filter(c=>c.group==='micro')));root.appendChild(micro);
+  const profile=document.createElement('p');profile.className='cert-profile';
+  profile.innerHTML=`<a href="https://www.credly.com/users/maxence-cerfontaine/badges" target="_blank" rel="noopener noreferrer">${t('cert_profile')}</a>`;
+  root.appendChild(profile);
 }
 function renderEdu(){
   const root=$('#edu-root');root.innerHTML='';
