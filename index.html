@@ -371,6 +371,16 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .project-grid{grid-template-columns:1fr}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
+
+#skills-root{min-width:0}.sk-clouds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:24px}.sk-cloud{min-width:0;padding:24px;background:var(--card);border:1px solid var(--rule);border-radius:4px}.sk-cloud-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}.sk-logo{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px}.sk-logo svg{width:36px;height:36px}.sk-cloud h3{font:600 18px/1.3 var(--sans)}.sk-level{display:inline-block;margin-bottom:8px;color:var(--green);font-size:14px;font-weight:600}.sk-context{color:var(--ink2);font-size:14px;line-height:1.65}.sk-clouds .sk-cloud:first-child{border-color:var(--green);background:var(--green-bg)}.sk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.sk-panel{min-width:0;padding:24px;border:1px solid var(--rule);border-radius:4px;background:var(--card)}.sk-panel h3,.sk-row h3{font:500 22px/1.25 var(--disp);letter-spacing:-.015em}.sk-panel h3{margin-bottom:16px}.sk-chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px}.sk-chips li{padding:5px 10px;border:1px solid var(--rule);background:var(--paper);font-size:14px;line-height:1.5;border-radius:3px}.sk-languages{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2)}.sk-languages strong{color:var(--ink);font-weight:600}.sk-languages ul{display:flex;gap:12px 24px;flex-wrap:wrap;list-style:none}.sk-index{display:block;font:500 13px/1.5 var(--mono);color:var(--green);margin-bottom:16px}
+@media(max-width:720px){.sk-clouds{gap:12px}.sk-cloud{padding:16px}.sk-cloud-head{align-items:flex-start;flex-direction:column}.sk-grid{gap:12px}.sk-panel{padding:20px}}
+@media(max-width:560px){.sk-clouds,.sk-grid{grid-template-columns:1fr}.sk-cloud-head{flex-direction:row;align-items:center}.sk-cloud{padding:20px}.sk-languages{display:block}.sk-languages ul{margin-top:8px;display:grid;gap:8px}}
+@media(prefers-reduced-motion:reduce){#skills *{transition:none!important;animation:none!important}}
+
+.sk-explorer{display:grid;grid-template-columns:240px minmax(0,1fr);border:1px solid var(--rule2);background:var(--card);border-radius:4px;overflow:hidden;min-height:330px}.sk-explorer-nav{display:flex;flex-direction:column;padding:12px;background:var(--paper2);gap:4px;border-right:1px solid var(--rule)}.sk-explorer-nav button{display:flex;gap:12px;align-items:center;min-height:52px;text-align:left;font-size:14px;padding:12px;border:1px solid transparent;border-radius:3px;transition:background .16s,border-color .16s}.sk-explorer-nav button span{font:12px var(--mono);color:var(--green)}.sk-explorer-nav button[aria-selected="true"]{background:var(--card);border-color:var(--rule2);font-weight:600}.sk-explorer-nav button:hover{border-color:var(--green)}.sk-explorer-pane{padding:32px;min-width:0}.sk-explorer-pane[hidden]{display:none}.sk-explorer-pane h3{font:500 28px/1.2 var(--disp);margin-bottom:16px}.sk-explorer-pane>p{font-size:16px;color:var(--ink2);margin-bottom:24px}.sk-explorer-pane .sk-clouds{grid-template-columns:1fr;margin:0;gap:0}.sk-explorer-pane .sk-cloud{display:grid;grid-template-columns:1fr auto;gap:8px 24px;background:none;border:0;border-top:1px solid var(--rule);padding:16px 0;border-radius:0}.sk-explorer-pane .sk-cloud-head{margin:0;flex-direction:row;align-items:center}.sk-explorer-pane .sk-cloud .sk-level{align-self:center;margin:0}.sk-explorer-pane .sk-context{grid-column:1/-1;margin-left:52px}.sk-explorer-pane .sk-chips{gap:12px}.sk-explorer-pane .sk-chips li{padding:10px 14px;font-size:16px}
+@media(max-width:720px){.sk-explorer{grid-template-columns:1fr;min-height:0}.sk-explorer-nav{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--rule);padding:12px;gap:8px}.sk-explorer-nav button{min-height:44px;font-size:13px;flex:1 1 auto;padding:8px 10px;justify-content:center}.sk-explorer-nav button span{display:none}.sk-explorer-pane{padding:24px}.sk-explorer-pane .sk-cloud{gap:8px 12px}}
+@media(max-width:380px){.sk-explorer-pane{padding:16px}.sk-explorer-pane .sk-cloud{grid-template-columns:1fr}.sk-explorer-pane .sk-cloud .sk-level{padding-left:52px}.sk-explorer-pane .sk-cloud h3{font-size:16px}}
+@media print{.sk-explorer-nav{display:none}.sk-explorer{display:block}.sk-explorer-pane[hidden]{display:block}}
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -456,7 +466,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 <section id="skills">
   <div class="shead"><span class="mnum">02</span><h2 data-t="s_sk"></h2></div>
   <p class="ssub" data-t="s_sk_sub"></p>
-  <dl id="skills-root"></dl>
+  <div id="skills-root"></div>
 </section>
 
 <section id="projects">
@@ -1393,27 +1403,22 @@ function toggleAll(){
 
 /* ── compétences / certifs / formation ── */
 function renderSkills(){
-  const root=$('#skills-root');root.innerHTML='';
-  CONFIG.skills.forEach(s=>{
-    const row=document.createElement('div');row.className='skrow';
-    let body='';
-    if(s.kind==='clouds'){
-      body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level,context])=>`
-        <div class="cloud-gauge" style="--cloud:${CLOUD[id]};--fill:${level}%" aria-label="${n} — ${l}">
-          <div class="cloud-gauge-head">
-            <span class="cloud-gauge-logo" aria-hidden="true">${LOGOS[id]}</span>
-            <span class="cloud-gauge-copy"><b class="cloud-gauge-name">${n}</b><span class="cloud-gauge-level">${l}</span></span>
-          </div>
-          <span class="cloud-meter" aria-hidden="true"><span class="cloud-meter-fill"></span></span>
-          <span class="cloud-gauge-context">${context}</span>
-        </div>`).join('')}</div>`;
-    }
-    else if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
-    else{body=`<div class="skinline">${pick(s.inline)}</div>`;}
-    row.innerHTML=`<dt>${pick(s.lbl)}</dt><dd>${body}</dd>`;
-    root.appendChild(row);
-  });
+
+ const root=$('#skills-root'),fr=LANG==='fr',groups=CONFIG.skills;
+ const cloudCards=()=>'<div class="sk-clouds">'+groups[0].items[LANG].map(([id,name,level,,context])=>'<article class="sk-cloud"><div class="sk-cloud-head"><span class="sk-logo" aria-hidden="true">'+LOGOS[id]+'</span><h3>'+name+'</h3></div><span class="sk-level">'+level+'</span><p class="sk-context">'+context+'</p></article>').join('')+'</div>';
+ const chips=s=>'<ul class="sk-chips">'+pick(s.inline).split(' · ').map(n=>'<li>'+n+'</li>').join('')+'</ul>';
+ const languages=()=>'<div class="sk-languages"><strong>'+pick(groups[5].lbl)+'</strong><ul>'+groups[5].items[LANG].map(([n,l])=>'<li>'+n+' <span>· '+l+'</span></li>').join('')+'</ul></div>';
+ const panel=(s,i)=>'<article class="sk-panel"><span class="sk-index" aria-hidden="true">0'+i+'</span><h3>'+pick(s.lbl)+'</h3>'+chips(s)+'</article>';
+
+root.className='sk-interactive';
+const descriptions=fr?['AWS comme cloud principal, avec une pratique de GCP et Azure.','Des infrastructures définies dans le code et versionnées.','Des applications conteneurisées et des déploiements automatisés.','Les outils du quotidien pour administrer et automatiser.','La fiabilité, la sécurité et le coût des environnements cloud.']:['AWS as my main cloud, alongside hands-on GCP and Azure experience.','Infrastructure defined as code and versioned.','Containerized applications and automated deployments.','Everyday tools for administration and automation.','Reliability, security and cost of cloud environments.'];
+root.innerHTML='<div class="sk-explorer"><div class="sk-explorer-nav" role="tablist" aria-label="'+(fr?'Domaines de compétences':'Skill domains')+'">'+groups.slice(0,5).map((s,i)=>'<button type="button" role="tab" id="sk-tab-'+i+'" aria-controls="sk-pane-'+i+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?'0':'-1')+'"><span aria-hidden="true">0'+(i+1)+'</span>'+pick(s.lbl)+'</button>').join('')+'</div><div>'+groups.slice(0,5).map((s,i)=>'<div class="sk-explorer-pane" role="tabpanel" tabindex="0" id="sk-pane-'+i+'" aria-labelledby="sk-tab-'+i+'"'+(i?' hidden':'')+'><h3>'+pick(s.lbl)+'</h3><p>'+descriptions[i]+'</p>'+(i===0?cloudCards():chips(s))+'</div>').join('')+'</div></div>'+languages();
+const tabs=[...root.querySelectorAll('[role="tab"]')];
+const select=i=>{tabs.forEach((b,j)=>{b.setAttribute('aria-selected',String(i===j));b.tabIndex=i===j?0:-1;root.querySelector('#sk-pane-'+j).hidden=i!==j;});};
+tabs.forEach((b,i)=>{b.onclick=()=>select(i);b.onkeydown=e=>{let next=i;if(['ArrowDown','ArrowRight'].includes(e.key))next=(i+1)%tabs.length;else if(['ArrowUp','ArrowLeft'].includes(e.key))next=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();select(next);tabs[next].focus();};});
+
 }
+
 let kloudRefreshTimer,kloudObserver;
 function renderKloudProject(project){
   const fr=LANG==='fr',language=LANG,home=fr?'https://kloud.blog/fr/':project.url;
