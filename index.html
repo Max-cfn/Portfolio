@@ -183,6 +183,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
   .arch-missions{border-left:1px solid var(--green);padding-left:14px}
 }
 @media(max-width:430px){
+  .arch-direction{white-space:normal;max-width:100%}
   .arch-company-head{grid-template-columns:58px minmax(0,1fr) 24px;gap:9px;padding:10px}
   .arch-company-logo{width:58px;height:40px}
 }
@@ -335,7 +336,7 @@ section{padding:54px 0;border-bottom:1px solid var(--rule)}
 .contact h3{font-family:var(--disp);font-weight:470;font-size:clamp(28px,4vw,42px);letter-spacing:-.01em;margin-bottom:10px}
 .contact h3 em{font-style:italic;color:var(--green)}
 .contact p{color:var(--mut);margin-bottom:26px;max-width:52ch}
-.contact .big{font-family:var(--disp);font-size:clamp(19px,2.6vw,26px);font-weight:500;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--rule2);transition:.15s}
+.contact .big{font-family:var(--disp);font-size:clamp(19px,2.6vw,26px);font-weight:500;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--rule2);transition:.15s;overflow-wrap:anywhere;min-width:0}
 .contact .big:hover{border-bottom-color:var(--green);color:var(--green)}
 footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--faint)}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap}
@@ -371,6 +372,8 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
 </style>
+<link rel="stylesheet" href="assets/kloud-project.css">
+<link rel="stylesheet" href="assets/contributions.css">
 </head>
 <body>
 <noscript><div style="padding:14px 20px;background:#1C1B15;color:#F4F2EB;text-align:center;font-family:Arial,sans-serif">Ce portfolio utilise JavaScript pour afficher son contenu. Activez JavaScript pour consulter la page. — This portfolio needs JavaScript to display its content.</div></noscript>
@@ -381,6 +384,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
     <ul class="nav-links">
       <li><a href="#parcours" data-t="nav_exp"></a></li>
       <li><a href="#skills" data-t="nav_skills"></a></li>
+      <li><a href="#contributions" data-t="nav_contributions"></a></li>
       <li><a href="#certs" data-t="nav_certs"></a></li>
       <li><a href="#edu" data-t="nav_edu"></a></li>
       <li><a href="#contact" data-t="nav_contact"></a></li>
@@ -395,7 +399,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
     </div>
     <div class="lang"><button id="btn-fr" onclick="setLang('fr',true)">FR</button><span>/</span><button id="btn-en" onclick="setLang('en',true)">EN</button></div>
   </div>
-</div></nav>
+</div><div class="wrap mobile-sections"><a href="#projects" data-t="nav_projects"></a><a href="#contributions" data-t="nav_contributions"></a></div></nav>
 
 <div class="wrap" id="top">
 <header>
@@ -456,14 +460,21 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <div class="project-grid" id="projects-root"></div>
 </section>
 
+<section id="contributions" aria-labelledby="contributions-heading">
+  <div class="shead"><span class="mnum">04</span><h2 id="contributions-heading" data-t="s_contrib"></h2></div>
+  <p class="ssub" data-t="s_contrib_sub"></p>
+  <ol class="contributions-list" id="contributions-root" aria-busy="true"></ol>
+  <a class="contributions-all" id="contributions-all" href="https://kloud.blog/fr/authors/maxence/" target="_blank" rel="noopener noreferrer" data-t="contrib_all"></a>
+</section>
+
 <section id="certs">
-  <div class="shead"><span class="mnum">04</span><h2 data-t="s2"></h2></div>
+  <div class="shead"><span class="mnum">05</span><h2 data-t="s2"></h2></div>
   <p class="ssub" data-t="s2_sub"></p>
   <div class="certcols" id="certs-root"></div>
 </section>
 
 <section id="edu">
-  <div class="shead"><span class="mnum">05</span><h2 data-t="s3"></h2></div>
+  <div class="shead"><span class="mnum">06</span><h2 data-t="s3"></h2></div>
   <div id="edu-root"></div>
 </section>
 
@@ -493,6 +504,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <a href="#contact" data-t="contact_short"></a>
 </div>
 
+<script src="assets/kloud-contributions.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════════
    TOUT LE CONTENU EST ICI. Pour modifier le site, édite uniquement
@@ -506,7 +518,9 @@ const CONFIG = {
   ui: {
     fr: {
       meta_title:"Maxence Cerfontaine — Cloud & DevOps", meta_desc:"Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform et FinOps. 9 certifications, AWS Partner FDE et 2 microcredentials en IA agentique.",
-      nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact",
+      nav_exp:"Parcours", nav_skills:"Compétences", nav_certs:"Certifications", nav_edu:"Formation", nav_contact:"Contact", nav_projects:"Projets", nav_contributions:"Contributions",
+      s_contrib:"Articles & contributions", s_contrib_sub:"Mes dernières publications sur Kloud.blog : veille technologique, architectures et retours d’expérience.",
+      contrib_all:"Toutes mes publications sur Kloud.blog ↗", contrib_loading:"Chargement de mes dernières publications…", contrib_empty:"Mes publications sont à retrouver sur ma page auteur Kloud.blog.", contrib_read:"Lire l’article", contrib_author:"Maxence Cerfontaine · Kloud.blog",
       crumb_status:"en poste — Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'Ingénieur <em>Cloud</em> &amp; DevOps.',
       lede:"Ingénieur Cloud & DevOps certifié AWS Solutions Architect Professional, spécialisé dans la conception et l’industrialisation d’environnements AWS et GCP. Expérience Build & Run : architecture cloud, Terraform, CI/CD, conteneurs, Kubernetes, sécurité, FinOps et exploitation de production.",
@@ -521,7 +535,7 @@ const CONFIG = {
       arch_direction:"Lecture : du bas (ancien) vers le haut (récent)",
       arch_zone:"zone",
       s_sk:"Compétences", s_sk_sub:"Technologies pratiquées en production.",
-      s_proj:"Projets personnels", s_proj_sub:"Deux réalisations récentes, développées hors contexte client.",
+      s_proj:"Projets personnels", s_proj_sub:"Journal technique et applications développés hors contexte client.",
       s2:"Certifications", s2_sub:"Architecture cloud, Infrastructure as Code et IA agentique.", cert_micro:"Microcredentials AWS", cert_profile:"Voir tous mes badges sur Credly",
       s3:"Formation",
       c_h:'Parlons <em>cloud</em>.', c_p:"Ouvert aux échanges sur des sujets cloud, DevOps et FinOps.",
@@ -532,7 +546,9 @@ const CONFIG = {
     },
     en: {
       meta_title:"Maxence Cerfontaine — Cloud & DevOps Engineer", meta_desc:"Cloud & DevOps Engineer in Paris. AWS, GCP, Azure, Terraform and FinOps. 9 certifications, AWS Partner FDE and 2 agentic AI microcredentials.",
-      nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact",
+      nav_exp:"Experience", nav_skills:"Skills", nav_certs:"Certifications", nav_edu:"Education", nav_contact:"Contact", nav_projects:"Projects", nav_contributions:"Contributions",
+      s_contrib:"Articles & contributions", s_contrib_sub:"My latest publications on Kloud.blog: technology watch, architectures and lessons learned.",
+      contrib_all:"All my publications on Kloud.blog ↗", contrib_loading:"Loading my latest publications…", contrib_empty:"Find my publications on my Kloud.blog author page.", contrib_read:"Read the article", contrib_author:"Maxence Cerfontaine · Kloud.blog",
       crumb_status:"currently at Devoteam A Cloud", crumb_loc:"Paris, France",
       h1:'<em>Cloud</em> &amp; DevOps Engineer.',
       lede:"Cloud & DevOps Engineer certified as an AWS Solutions Architect Professional, specializing in the design and industrialization of AWS and GCP environments. Build & Run experience: cloud architecture, Terraform, CI/CD, containers, Kubernetes, security, FinOps and production operations.",
@@ -547,7 +563,7 @@ const CONFIG = {
       arch_direction:"Read from bottom (earlier) to top (recent)",
       arch_zone:"zone",
       s_sk:"Skills", s_sk_sub:"Technologies used in production.",
-      s_proj:"Personal projects", s_proj_sub:"Two recent projects built outside client work.",
+      s_proj:"Personal projects", s_proj_sub:"A technical journal and applications built outside client work.",
       s2:"Certifications", s2_sub:"Cloud architecture, Infrastructure as Code and agentic AI.", cert_micro:"AWS microcredentials", cert_profile:"View all my badges on Credly",
       s3:"Education",
       c_h:"Let's talk <em>cloud</em>.", c_p:"Open to conversations about cloud, DevOps and FinOps.",
@@ -827,6 +843,12 @@ const CONFIG = {
   ],
 
   projects: [
+    { name:"Kloud.blog", kind:"journal",
+      status:{fr:"Projet éditorial",en:"Editorial project"},
+      summary:{fr:"Un journal technique collaboratif sur AWS, le Cloud, DevOps et les agents IA. Analyses, architectures et retours d’expérience, en français et en anglais.",
+               en:"A collaborative technical journal on AWS, Cloud, DevOps and AI agents. Analysis, architectures and lessons learned, in English and French."},
+      stack:"Astro · MDX · Cloudflare Pages · GitHub",
+      url:"https://kloud.blog/" },
     { name:"Arb-Bot",
       status:{fr:"Projet personnel",en:"Personal project"},
       summary:{fr:"Moteur d'exécution hybride Python/Rust pour marchés temps réel : control plane Python, hot path Rust embarqué via PyO3, WebSockets, observabilité et service systemd.",
@@ -1383,9 +1405,52 @@ function renderSkills(){
     root.appendChild(row);
   });
 }
+let kloudRefreshTimer,kloudObserver;
+function renderKloudProject(project){
+  const fr=LANG==='fr',language=LANG,home=fr?'https://kloud.blog/fr/':project.url;
+  const text=fr?{
+    project:'PROJET ÉDITORIAL',title:'Le journal du Cloud.',discover:'Découvrir le journal',source:'Code source',latest:'À la une',journal:'Le journal du Cloud',edition:'Édition numérique',read:'Lire l’article',fallback:'AWS, Cloud, DevOps et agents IA.'
+  }:{project:'EDITORIAL PROJECT',title:'The Cloud journal.',discover:'Explore the journal',source:'Source code',latest:'Latest publication',journal:'The Cloud journal',edition:'Digital edition',read:'Read the article',fallback:'AWS, Cloud, DevOps and AI agents.'};
+  const card=document.createElement('article');card.className='project-card project-blog';
+  card.innerHTML=`<div class="kloud-top"><span>${text.project}</span><span>${fr?'FR / EN':'EN / FR'}</span></div>
+    <div class="kloud-body"><div class="kloud-intro">
+      <h3 class="kloud-brand"><a href="${home}" target="_blank" rel="noopener noreferrer">Kloud.blog</a></h3>
+      <div class="kloud-tagline">${text.title}</div><p class="kloud-summary">${pick(project.summary)}</p>
+      <p class="kloud-context">${fr?'Veille technologique · Journal collaboratif':'Technology watch · Collaborative journal'}</p>
+      <div class="kloud-links"><a class="kloud-link" href="${home}" target="_blank" rel="noopener noreferrer">${text.discover}<span class="kloud-arrow" aria-hidden="true">→</span></a><a class="kloud-link" href="#contributions">${fr?'Mes articles':'My articles'}<span class="kloud-arrow" aria-hidden="true">↓</span></a></div></div>
+    <div class="kloud-feature"><a class="kloud-article" href="${home}" target="_blank" rel="noopener noreferrer">
+      <div class="kloud-paper" aria-hidden="true"><div class="kloud-edition"><span data-kloud-category>AWS · CLOUD · DEVOPS</span><time data-kloud-date></time></div>
+      <div class="kloud-masthead">Kloud.blog</div><div class="kloud-media"><span class="kloud-signature">K.</span></div>
+      <div class="kloud-folio"><span>${text.journal}</span><span>${text.edition}</span></div></div>
+      <p class="kloud-latest">${text.journal}</p><h4 class="kloud-headline">${text.fallback}</h4><span class="kloud-read">${text.discover}<span class="kloud-arrow" aria-hidden="true">→</span></span>
+    </a></div></div><div class="kloud-bottom"><span>${project.stack}</span><span>kloud.blog ↗</span></div>`;
+  const load=async()=>{
+    try{
+      const {article}=await getKloudPublications(language);
+      if(!card.isConnected||!article||typeof article.title!=='string')return;
+      const safe=value=>{try{const u=new URL(value);return u.protocol==='https:'&&['kloud.blog','www.kloud.blog'].includes(u.hostname)&&!u.username&&!u.password?u.href:null}catch{return null}};
+      const href=safe(article.url);if(!href)return;
+      card.querySelector('.kloud-article').href=href;
+      card.querySelector('.kloud-latest').textContent=text.latest;
+      card.querySelector('.kloud-headline').textContent=article.title;
+      card.querySelector('.kloud-read').firstChild.textContent=text.read;
+      card.querySelector('[data-kloud-category]').textContent=article.category||'AWS · Cloud · DevOps';
+      const date=new Date(article.date);
+      if(Number.isFinite(date.valueOf())){const time=card.querySelector('[data-kloud-date]');time.dateTime=date.toISOString();time.textContent=new Intl.DateTimeFormat(language,{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(date)}
+      const image=safe(article.cover);
+      if(image){const media=card.querySelector('.kloud-media'),img=document.createElement('img');img.alt='';img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{media.innerHTML='<span class="kloud-signature">K.</span>'},{once:true});img.src=image;media.replaceChildren(img)}
+    }catch{/* The journal preview and both links remain available offline. */}
+  };
+  const start=()=>{load();kloudRefreshTimer=setInterval(load,300000)};
+  if('IntersectionObserver'in window){kloudObserver=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){kloudObserver.disconnect();start()}},{rootMargin:'400px'});kloudObserver.observe(card)}else{requestAnimationFrame(start)}
+  return card;
+}
+
 function renderProjects(){
+  clearInterval(kloudRefreshTimer);kloudObserver?.disconnect();
   const root=$('#projects-root');root.innerHTML='';
   CONFIG.projects.forEach(p=>{
+    if(p.kind==='journal'){root.appendChild(renderKloudProject(p));return;}
     const card=document.createElement('article');card.className='project-card';
     card.innerHTML=`<div class="project-top"><h3>${p.name}</h3><span class="project-status">${pick(p.status)}</span></div>
       <p>${pick(p.summary)}</p>
@@ -1451,7 +1516,7 @@ $('.tabs').addEventListener('keydown',event=>{
 function setLang(l,remember){
   if(remember){try{localStorage.setItem('lang',l)}catch(e){}}
   LANG=l;ALLOPEN=false;
-  renderStatic();renderArch();renderChrono();renderSkills();renderProjects();renderCerts();renderEdu();
+  renderStatic();renderArch();renderChrono();renderSkills();renderProjects();renderContributions();renderCerts();renderEdu();
 }
 
 /* Langue initiale : choix mémorisé, sinon langue du navigateur —
@@ -1467,3 +1532,4 @@ setLang(initLang);
 </script>
 </body>
 </html>
+
