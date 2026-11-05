@@ -374,7 +374,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
-<link rel="stylesheet" href="assets/navigation.css">
+<link rel="stylesheet" href="assets/navigation.css?v=flags-mobile-20261105">
 </head>
 <body>
 <noscript><div style="padding:14px 20px;background:#1C1B15;color:#F4F2EB;text-align:center;font-family:Arial,sans-serif">Ce portfolio utilise JavaScript pour afficher son contenu. Activez JavaScript pour consulter la page. — This portfolio needs JavaScript to display its content.</div></noscript>
@@ -401,7 +401,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg>
       </a>
     </div>
-    <div class="lang" role="group" aria-label="Langue / Language"><button id="btn-fr" onclick="setLang('fr',true)" aria-label="Français" aria-pressed="true">FR</button><button id="btn-en" onclick="setLang('en',true)" aria-label="English" aria-pressed="false">EN</button></div>
+    <div class="lang" role="group" aria-label="Langue / Language"><button id="btn-fr" onclick="setLang('fr',true)" aria-label="Français" aria-pressed="true">FR</button><span class="language-separator" aria-hidden="true">/</span><button id="btn-en" onclick="setLang('en',true)" aria-label="English" aria-pressed="false">EN</button></div>
     <button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </div></nav>
@@ -510,7 +510,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 </div>
 
 <script src="assets/kloud-contributions.js"></script>
-<script src="assets/navigation.js"></script>
+<script src="assets/navigation.js?v=flags-mobile-20261105"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════════
    TOUT LE CONTENU EST ICI. Pour modifier le site, édite uniquement
@@ -1051,8 +1051,8 @@ function renderStatic(){
   $('#mobile-cv').href=LANG==='fr'?CONFIG.cv.fr:CONFIG.cv.en;
   $('#cv-main').innerHTML=(LANG==='fr'?FLAGS.fr:FLAGS.en)+' '+t('cv_btn');
   $('#cv-alt').innerHTML=(LANG==='fr'?FLAGS.en:FLAGS.fr)+' '+t('cv_alt');
-  $('#btn-fr').textContent='FR';
-  $('#btn-en').textContent='EN';
+  $('#btn-fr').innerHTML=FLAGS.fr+'<span>FR</span>';
+  $('#btn-en').innerHTML=FLAGS.en+'<span>EN</span>';
   $('#btn-fr').classList.toggle('on',LANG==='fr');
   $('#btn-en').classList.toggle('on',LANG==='en');
   $('#btn-fr').setAttribute('aria-pressed',String(LANG==='fr'));

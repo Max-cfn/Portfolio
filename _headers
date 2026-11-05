@@ -1,0 +1,4 @@
+/assets/navigation.css
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/navigation.js
+  Cache-Control: public, max-age=0, must-revalidate
