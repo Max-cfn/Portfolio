@@ -22,7 +22,7 @@ navigationToggle.addEventListener('click',event=>{
 });
 navigationRoot.addEventListener('click',event=>{if(event.target.closest('a[href^="#"]'))setNavigationOpen(false)});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navigationToggle.getAttribute('aria-expanded')==='true'){event.preventDefault();setNavigationOpen(false,true)}});
-document.addEventListener('click',event=>{if(!navigationRoot.contains(event.target))setNavigationOpen(false)});
+document.addEventListener('click',event=>{if(!event.composedPath().includes(navigationRoot))setNavigationOpen(false)});
 compactNavigation.addEventListener('change',()=>{
   const wasInside=navigationPanel.contains(document.activeElement);
   setNavigationOpen(false,compactNavigation.matches&&wasInside);
