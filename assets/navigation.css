@@ -1,0 +1,45 @@
+/* One navigation tree, shared by desktop and the mobile disclosure. */
+html{scroll-padding-top:88px}
+.site-nav .nav-shell{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;height:auto;min-height:68px}
+.site-nav .brand{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;min-width:0;font-size:14px;line-height:1.3}
+.site-navigation{grid-column:2;grid-row:1;min-width:0}
+.site-nav .nav-links{display:flex;align-items:center;justify-content:center;gap:12px;list-style:none;margin:0;padding:0}
+.site-nav .nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;font-size:12px;line-height:1.35;white-space:nowrap;text-decoration:none;position:relative}
+.site-nav .nav-links a:after{content:'';position:absolute;left:0;right:0;bottom:8px;height:1px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .16s}
+.site-nav .nav-links a:hover:after,.site-nav .nav-links a:focus-visible:after{transform:scaleX(1)}
+.nav-actions{grid-column:3;grid-row:1;display:flex;align-items:center;gap:10px;flex:none}
+.site-nav .nav-socials{gap:5px}.site-nav .nav-social{width:32px;height:32px}.site-nav .nav-social svg{width:17px;height:17px}
+.site-nav .lang{display:flex;gap:0;flex:none;align-items:stretch;border:1px solid var(--rule);border-radius:3px;background:var(--card);overflow:hidden;font-size:11px;line-height:1;font-weight:500}
+.site-nav .lang button{display:grid;place-items:center;min-width:38px;min-height:42px;padding:0;color:var(--mut);border:0;line-height:1;transition:color .16s,background .16s}
+.site-nav .lang button+button{border-left:1px solid var(--rule)}
+.site-nav .lang button.on{color:var(--green);background:var(--green-bg);border-bottom:0}
+.site-nav .lang button:hover{color:var(--green);background:var(--paper2)}
+.site-nav .lang button:focus-visible{outline-offset:-4px}
+.nav-toggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid var(--rule2);background:var(--card);border-radius:3px;flex:none}
+.nav-toggle svg{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.nav-toggle:hover{color:var(--green);border-color:var(--green)}
+.nav-panel-socials{display:none}
+@media(max-width:1079px){
+ html{scroll-padding-top:84px}
+ .site-nav .nav-shell{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:64px auto;gap:0 14px;min-height:64px}
+ .site-nav .brand{grid-column:1;grid-row:1}
+ .nav-actions{grid-column:2;gap:10px}
+ .site-nav .nav-actions>.nav-socials{display:none}
+ .site-nav .lang button{min-width:44px;min-height:44px}
+ .nav-toggle{display:inline-flex}
+ .site-navigation{display:none;grid-column:1/-1;grid-row:2;padding:10px 0 16px;margin-top:0;border-top:1px solid var(--rule);max-height:calc(100svh - 84px);overflow-y:auto;overscroll-behavior:contain}
+ .site-nav[data-menu-open=true] .site-navigation{display:block}
+ .site-nav .nav-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;justify-content:stretch}
+ .site-nav .nav-links a{display:flex;width:100%;min-height:44px;font-size:14px;padding:10px 12px;white-space:normal;border-radius:2px}
+ .site-nav .nav-links a:hover,.site-nav .nav-links a:focus-visible{background:var(--green-bg)}
+ .site-nav .nav-links a:after{display:none}
+ .nav-panel-socials{display:flex;gap:22px;border-top:1px solid var(--rule);margin-top:10px;padding:8px 12px 0}
+ .nav-panel-socials a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;text-underline-offset:5px;color:var(--green)}
+ .site-nav[data-menu-open=true] .nav-toggle{color:var(--green);border-color:var(--green);background:var(--green-bg)}
+}
+@media(max-width:480px){
+ .site-nav .nav-shell{padding-left:18px;padding-right:18px;gap:0 12px}
+ .site-nav .brand{flex-direction:column;align-items:flex-start;gap:0;font-size:13.5px;line-height:1.3}
+ .nav-actions{gap:8px}
+}
+@media(prefers-reduced-motion:reduce){.site-nav .nav-links a:after,.site-nav .lang button{transition:none}}
