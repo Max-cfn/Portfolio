@@ -375,6 +375,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
 <link rel="stylesheet" href="assets/navigation.css?v=flags-mobile-20261105">
+<link rel="stylesheet" href="assets/skills-passport.css?v=20261106">
 </head>
 <body>
 <noscript><div style="padding:14px 20px;background:#1C1B15;color:#F4F2EB;text-align:center;font-family:Arial,sans-serif">Ce portfolio utilise JavaScript pour afficher son contenu. Activez JavaScript pour consulter la page. — This portfolio needs JavaScript to display its content.</div></noscript>
@@ -456,7 +457,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 <section id="skills">
   <div class="shead"><span class="mnum">02</span><h2 data-t="s_sk"></h2></div>
   <p class="ssub" data-t="s_sk_sub"></p>
-  <dl id="skills-root"></dl>
+  <div id="skills-root"></div>
 </section>
 
 <section id="projects">
@@ -1393,26 +1394,15 @@ function toggleAll(){
 
 /* ── compétences / certifs / formation ── */
 function renderSkills(){
-  const root=$('#skills-root');root.innerHTML='';
-  CONFIG.skills.forEach(s=>{
-    const row=document.createElement('div');row.className='skrow';
-    let body='';
-    if(s.kind==='clouds'){
-      body=`<div class="cloud-gauges">${s.items[LANG].map(([id,n,l,level,context])=>`
-        <div class="cloud-gauge" style="--cloud:${CLOUD[id]};--fill:${level}%" aria-label="${n} — ${l}">
-          <div class="cloud-gauge-head">
-            <span class="cloud-gauge-logo" aria-hidden="true">${LOGOS[id]}</span>
-            <span class="cloud-gauge-copy"><b class="cloud-gauge-name">${n}</b><span class="cloud-gauge-level">${l}</span></span>
-          </div>
-          <span class="cloud-meter" aria-hidden="true"><span class="cloud-meter-fill"></span></span>
-          <span class="cloud-gauge-context">${context}</span>
-        </div>`).join('')}</div>`;
-    }
-    else if(s.items){body=s.items[LANG].map(([n,l])=>`<div class="skitem"><span class="main"><b>${n}</b></span> <span class="lvl">— ${l}</span></div>`).join('');}
-    else{body=`<div class="skinline">${pick(s.inline)}</div>`;}
-    row.innerHTML=`<dt>${pick(s.lbl)}</dt><dd>${body}</dd>`;
-    root.appendChild(row);
-  });
+ const root=$('#skills-root'), fr=LANG==='fr';
+ const flagFR='<svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><path fill="#002395" d="M0 0h10v20H0z"/><path fill="#fff" d="M10 0h10v20H10z"/><path fill="#ed2939" d="M20 0h10v20H20z"/></svg>';
+ const flagEN='<svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><path fill="#012169" d="M0 0h30v20H0z"/><path stroke="#fff" stroke-width="4" d="m0 0 30 20M30 0 0 20"/><path stroke="#c8102e" stroke-width="1.6" d="m0 0 30 20M30 0 0 20"/><path stroke="#fff" stroke-width="6" d="M15 0v20M0 10h30"/><path stroke="#c8102e" stroke-width="3.5" d="M15 0v20M0 10h30"/></svg>';
+ const cloudMarkup='<div class="clouds">'+CONFIG.skills.find(s=>s.kind==='clouds').items[LANG].map(([id,n,l,_,context])=>'<div class="cloud"><span class="cloud-logo" aria-hidden="true">'+LOGOS[id]+'</span><div><b>'+n+'</b><em>'+l+'</em><small>'+context+'</small></div></div>').join('')+'</div>';
+ const domains=CONFIG.skills.filter(s=>s.inline).map((s,i)=>'<div class="domain d'+i+'"><span class="num" aria-hidden="true">0'+(i+1)+'</span><h3>'+pick(s.lbl)+'</h3><p class="tools">'+pick(s.inline).split(' · ').map(t=>'<span>'+t+'</span>').join('')+'</p></div>');
+ const languageMarkup='<div class="languages" role="group" aria-label="'+(fr?'Langues':'Languages')+'"><div class="language"><span class="code" aria-hidden="true">FR</span><div><b>'+flagFR+(fr?'Français':'French')+'</b><small>'+(fr?'Langue maternelle':'Native language')+'</small></div><span class="grade" aria-hidden="true">'+(fr?'Natif':'Native')+'</span></div><div class="language"><span class="code" aria-hidden="true">EN</span><div><b>'+flagEN+(fr?'Anglais':'English')+'</b><small>'+(fr?'Avancé · C1':'Advanced · C1')+'</small></div><span class="grade" aria-hidden="true">C1</span></div></div>';
+ let scene='';
+ scene='<div class="passport"><span class="spine" aria-hidden="true">CLOUD / DEVOPS / FR / EN</span><div class="passport-main">'+cloudMarkup+'<div class="domains">'+domains.join('')+'</div>'+languageMarkup+'</div></div>';
+ root.innerHTML='<div class="skill-scene v07">'+scene+'</div>';
 }
 let kloudRefreshTimer,kloudObserver;
 function renderKloudProject(project){
