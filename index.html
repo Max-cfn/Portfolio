@@ -373,8 +373,9 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 }
 
 /* Company signatures: employer plaques and client signatures on assignment cards. */
-.brand-signature{display:inline-grid;place-items:center;width:112px;height:44px;padding:6px 8px;background:#fff;flex:none;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
-.brand-signature img{display:block;width:100%;height:100%;object-fit:contain}
+.brand-signature{display:inline-flex;align-items:center;justify-content:center;width:112px;height:44px;padding:6px 8px;background:#fff;flex:none;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.brand-signature img{display:block;width:100%;height:30px;min-width:0;object-fit:contain}
+.brand-signature--employer img{height:34px}
 .brand-signature--dark{background:#171b1b;border-color:#171b1b}
 .brand-signature--employer{width:72px;height:48px;box-shadow:3px 3px 0 var(--green-bg)}
 .arch-company-head .brand-signature{transition:box-shadow .18s}
@@ -1106,40 +1107,40 @@ function detailHTML(o){
 /* ── schéma vertical du parcours ── */
 const COMPANY_LOGOS={
   "devoteam": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",
+    "src": "assets/companies/devoteam.png",
     "alt": "Devoteam"
   },
   "hardis": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",
+    "src": "assets/companies/hardis.svg",
     "alt": "Hardis Group"
   },
   "also": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",
+    "src": "assets/companies/also.svg",
     "alt": "ALSO Group"
   },
   "bv": {
-    "src": "https://cdn.worldvectorlogo.com/logos/bureau-veritas-2.svg",
+    "src": "assets/companies/bureau-veritas.svg",
     "alt": "Bureau Veritas"
   },
   "courir": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/3/34/Courir_%28logo%29.svg",
+    "src": "assets/companies/courir.svg",
     "alt": "Courir"
   },
   "gl": {
-    "src": "https://cdn.worldvectorlogo.com/logos/galeries-lafayette.svg",
+    "src": "assets/companies/galeries-lafayette.svg",
     "alt": "Galeries Lafayette"
   },
   "fp": {
-    "src": "https://d1nwmbf35sn2fq.cloudfront.net/s3fs-public/2025-12/LOGO_FITNESS%20PARK_WHITE_2020_FR%20%281%29%20%281%29.svg?VersionId=c9xFUFsleMk4wk4mV8FfPEzY8KueB1XW",
+    "src": "assets/companies/fitness-park.svg",
     "alt": "Fitness Park",
     "dark": true
   },
   "dim": {
-    "src": "https://www.dimotrans-group.com/wp-content/uploads/logo.png",
+    "src": "assets/companies/dimotrans.png",
     "alt": "Dimotrans Group"
   },
   "finare": {
-    "src": "https://finare.fr/wp-content/uploads/2018/08/Logo-Finare_062016.jpg.png",
+    "src": "assets/companies/finare.webp",
     "alt": "Finaré"
   }
 };
