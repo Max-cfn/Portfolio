@@ -1212,7 +1212,6 @@ function renderArch(){
     const zoneLabel=`${t('arch_zone')} ${co.name} · ${archZoneLocation(co)}`;
     row.innerHTML=`<span class="arch-row-label" title="${zoneLabel}">${zoneLabel}</span>`;
 
-    const logo=COMPANY_LOGOS[co.id];
     const companyHead=`${brandLogo(co.id,'brand-signature--employer')}
       <span><span class="arch-node-role">${pick(co.role)} · ${pick(co.contract)}</span><strong class="arch-company-name">${co.name}</strong>
       <span class="arch-node-when">${whenStr(co)}</span>
