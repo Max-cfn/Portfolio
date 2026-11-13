@@ -400,6 +400,41 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 @media(max-width:430px){.brand-signature--employer{width:58px;height:40px}}
 @media(prefers-reduced-motion:reduce){.arch-company-head .brand-signature{transition:none}}
 
+
+/* PNG identities, sized to their visible artwork; cloud and stack stay readable. */
+.brand-signature{width:176px;height:80px;padding:0;justify-content:flex-start;border:0;background:transparent;border-radius:0;overflow:visible}
+.brand-signature img{width:auto;height:auto;max-width:100%;max-height:100%;mix-blend-mode:multiply}
+.brand-signature--dark{background:#171b1b;padding:10px;width:176px;height:70px}
+.brand-signature--dark img{mix-blend-mode:normal}
+.brand-signature--employer{width:96px;height:66px;box-shadow:none}
+.arch-company-head{grid-template-columns:96px minmax(0,1fr) 24px}
+.arch-company-head:hover .brand-signature{box-shadow:none}
+.mission-identity{grid-column:1 / -1;gap:16px;padding-bottom:14px}
+.mission-cloud{gap:9px;padding:9px 12px;border:1px solid var(--rule2);background:#fff;font-family:var(--sans);font-size:14px;font-weight:650;color:var(--ink);border-radius:4px}
+.mission-cloud img{display:block;width:32px;height:28px;object-fit:contain}
+.mission-heading{grid-column:1;grid-row:2}
+.arch-mission-head>.arch-toggle{grid-column:2;grid-row:2;align-self:start;margin-top:3px}
+.mission-techs{display:flex;flex-wrap:wrap;gap:6px;grid-column:1 / -1;margin-top:2px}
+.mission-techs>span{padding:5px 8px;border:1px solid var(--rule2);background:var(--paper);font-family:var(--mono);font-size:11px;line-height:1.3;font-weight:500;color:var(--ink2)}
+.e-txt>.mission-techs{margin-top:8px}
+.brand-signature--chrono{width:132px;height:66px;margin-top:0}
+@media(max-width:600px){
+ .brand-signature{width:128px;height:66px}
+ .mission-identity{gap:8px}
+ .mission-cloud{font-size:12px;padding:6px 8px;gap:6px}
+ .mission-cloud img{width:26px;height:24px}
+ .brand-signature--employer{width:76px;height:56px}
+ .arch-company-head{grid-template-columns:76px minmax(0,1fr) 24px}
+ .brand-signature--chrono{width:84px;height:56px}
+ .mission-techs>span{font-size:10px;padding:5px 7px}
+}
+@media(max-width:360px){
+ .brand-signature{width:104px}
+ .brand-signature--employer{width:64px}
+ .arch-company-head{grid-template-columns:64px minmax(0,1fr) 24px}
+ .brand-signature--chrono{width:72px}
+}
+
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -1111,27 +1146,27 @@ const COMPANY_LOGOS={
     "alt": "Devoteam"
   },
   "hardis": {
-    "src": "assets/companies/hardis.svg",
+    "src": "assets/companies/hardis.png",
     "alt": "Hardis Group"
   },
   "also": {
-    "src": "assets/companies/also.svg",
+    "src": "assets/companies/also.png",
     "alt": "ALSO Group"
   },
   "bv": {
-    "src": "assets/companies/bureau-veritas.svg",
+    "src": "assets/companies/bureau-veritas.png",
     "alt": "Bureau Veritas"
   },
   "courir": {
-    "src": "assets/companies/courir.svg",
+    "src": "assets/companies/courir.png",
     "alt": "Courir"
   },
   "gl": {
-    "src": "assets/companies/galeries-lafayette.svg",
+    "src": "assets/companies/galeries-lafayette.png",
     "alt": "Galeries Lafayette"
   },
   "fp": {
-    "src": "assets/companies/fitness-park.svg",
+    "src": "assets/companies/fitness-park.png",
     "alt": "Fitness Park",
     "dark": true
   },
@@ -1140,7 +1175,7 @@ const COMPANY_LOGOS={
     "alt": "Dimotrans Group"
   },
   "finare": {
-    "src": "assets/companies/finare.webp",
+    "src": "assets/companies/finare.png",
     "alt": "Finaré"
   }
 };
@@ -1149,6 +1184,8 @@ function brandLogo(id,extra=''){
   const logo=COMPANY_LOGOS[id];
   return `<span class="brand-signature ${logo.dark?'brand-signature--dark ':''}${extra}"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" width="112" height="40" referrerpolicy="no-referrer"></span>`;
 }
+const MISSION_TECHS={"bv":["Terraform","GitLab CI","ECS"],"genai":["LiteLLM","GitLab CI","ECS"],"courir":["Monitoring","Workflows","Terraform"],"gl":["GKE","Kubernetes","Terraform","ArgoCD"],"fp":["ECS Fargate","Terraform","WAF"],"dim":["EC2","RDS","MySQL"],"finare":["Snowflake","CloudFormation","Aurora"]};
+function missionTech(m){return `<span class="mission-techs" aria-label="${LANG==='fr'?'Technologies principales':'Core technologies'}">${MISSION_TECHS[m.id].map(s=>`<span>${s}</span>`).join('')}</span>`;}
 let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
 
 function archBodyHTML(item){
@@ -1223,11 +1260,11 @@ function renderArch(){
       const missionRoot=document.createElement('div');
       missionRoot.className='arch-missions';
       missions.forEach(m=>{
-        const missionHead=`<span class="mission-identity">${brandLogo(m.id)}<span class="mission-cloud">${LOGOS[m.cloud]||LOGOS.oth}<span>${m.cloud==='aws'?'AWS':m.cloud==='gcp'?'GCP':'Cloud'}</span></span></span>
+        const missionHead=`<span class="mission-identity">${brandLogo(m.id)}<span class="mission-cloud"><img src="assets/companies/cloud-${m.cloud}.png" alt="" width="32" height="32"><span>${m.cloud==='aws'?'AWS':m.cloud==='gcp'?'GCP':'Cloud'}</span></span></span>
           <span class="mission-heading"><strong class="arch-mission-name">${pick(m.card)}</strong>
           <span class="arch-mission-role">${pick(m.role)}</span>
           <span class="arch-node-when">${pick(m.when)}</span>
-          ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
+          ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>${missionTech(m)}`;
         missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
       });
       row.appendChild(missionRoot);
@@ -1411,7 +1448,7 @@ function renderChrono(){
         card.innerHTML=`<button class="e-btn" aria-expanded="false">${brandLogo(m.id,'brand-signature--chrono')}<span class="e-txt">
             <span class="e-when">${whenStr(m)}</span>
             <span class="e-t">${pick(m.title)}</span>
-            <span class="e-c">${pick(m.role)}</span>
+            <span class="e-c">${pick(m.role)}</span>${missionTech(m)}
           </span><span class="e-x">+</span></button>
           <div class="e-body"><div class="e-body-in dt">
             ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
