@@ -371,6 +371,34 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .project-grid{grid-template-columns:1fr}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
+
+/* Company signatures: employer plaques and client signatures on assignment cards. */
+.brand-signature{display:inline-grid;place-items:center;width:112px;height:44px;padding:6px 8px;background:#fff;flex:none;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.brand-signature img{display:block;width:100%;height:100%;object-fit:contain}
+.brand-signature--dark{background:#171b1b;border-color:#171b1b}
+.brand-signature--employer{width:72px;height:48px;box-shadow:3px 3px 0 var(--green-bg)}
+.arch-company-head .brand-signature{transition:box-shadow .18s}
+.arch-company-head:hover .brand-signature{box-shadow:3px 3px 0 var(--rule2)}
+.arch-mission-head{grid-template-columns:minmax(0,1fr) 24px;gap:10px;padding:14px 16px}
+.mission-identity{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.mission-cloud{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;color:var(--mut);flex:none}
+.mission-cloud svg{width:18px;height:18px}
+.mission-heading{grid-column:1 / -1;min-width:0}
+.arch-mission-head>.arch-toggle{grid-column:2;grid-row:1;align-self:center}
+.arch-mission-name{font-size:14px;line-height:1.4}
+.arch-missions{gap:14px}
+.employer-identity{display:flex;align-items:center;gap:16px;min-width:0}
+.employer-identity>span:last-child{min-width:0}
+.brand-signature--chrono{width:94px;height:42px;margin-top:2px}
+@media(max-width:600px){
+ .employer-identity{gap:10px}
+ .brand-signature--chrono{width:72px;height:38px;padding:5px}
+ .e-btn{gap:10px;padding:12px 8px}
+ .arch-mission-head{padding:12px}
+}
+@media(max-width:430px){.brand-signature--employer{width:58px;height:40px}}
+@media(prefers-reduced-motion:reduce){.arch-company-head .brand-signature{transition:none}}
+
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -1077,10 +1105,49 @@ function detailHTML(o){
 
 /* ── schéma vertical du parcours ── */
 const COMPANY_LOGOS={
-  devoteam:{src:"https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",alt:"Devoteam"},
-  hardis:{src:"https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",alt:"Hardis Group"},
-  also:{src:"https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",alt:"ALSO Group"}
+  "devoteam": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",
+    "alt": "Devoteam"
+  },
+  "hardis": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",
+    "alt": "Hardis Group"
+  },
+  "also": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",
+    "alt": "ALSO Group"
+  },
+  "bv": {
+    "src": "https://cdn.worldvectorlogo.com/logos/bureau-veritas-2.svg",
+    "alt": "Bureau Veritas"
+  },
+  "courir": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/3/34/Courir_%28logo%29.svg",
+    "alt": "Courir"
+  },
+  "gl": {
+    "src": "https://cdn.worldvectorlogo.com/logos/galeries-lafayette.svg",
+    "alt": "Galeries Lafayette"
+  },
+  "fp": {
+    "src": "https://d1nwmbf35sn2fq.cloudfront.net/s3fs-public/2025-12/LOGO_FITNESS%20PARK_WHITE_2020_FR%20%281%29%20%281%29.svg?VersionId=c9xFUFsleMk4wk4mV8FfPEzY8KueB1XW",
+    "alt": "Fitness Park",
+    "dark": true
+  },
+  "dim": {
+    "src": "https://www.dimotrans-group.com/wp-content/uploads/logo.png",
+    "alt": "Dimotrans Group"
+  },
+  "finare": {
+    "src": "https://finare.fr/wp-content/uploads/2018/08/Logo-Finare_062016.jpg.png",
+    "alt": "Finaré"
+  }
 };
+COMPANY_LOGOS.genai=COMPANY_LOGOS.devoteam;
+function brandLogo(id,extra=''){
+  const logo=COMPANY_LOGOS[id];
+  return `<span class="brand-signature ${logo.dark?'brand-signature--dark ':''}${extra}"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" width="112" height="40" referrerpolicy="no-referrer"></span>`;
+}
 let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
 
 function archBodyHTML(item){
@@ -1146,7 +1213,7 @@ function renderArch(){
     row.innerHTML=`<span class="arch-row-label" title="${zoneLabel}">${zoneLabel}</span>`;
 
     const logo=COMPANY_LOGOS[co.id];
-    const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
+    const companyHead=`${brandLogo(co.id,'brand-signature--employer')}
       <span><span class="arch-node-role">${pick(co.role)} · ${pick(co.contract)}</span><strong class="arch-company-name">${co.name}</strong>
       <span class="arch-node-when">${whenStr(co)}</span>
       ${co.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
@@ -1156,8 +1223,8 @@ function renderArch(){
       const missionRoot=document.createElement('div');
       missionRoot.className='arch-missions';
       missions.forEach(m=>{
-        const missionHead=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
-          <span><strong class="arch-mission-name">${pick(m.card)}</strong>
+        const missionHead=`<span class="mission-identity">${brandLogo(m.id)}<span class="mission-cloud">${LOGOS[m.cloud]||LOGOS.oth}<span>${m.cloud==='aws'?'AWS':m.cloud==='gcp'?'GCP':'Cloud'}</span></span></span>
+          <span class="mission-heading"><strong class="arch-mission-name">${pick(m.card)}</strong>
           <span class="arch-mission-role">${pick(m.role)}</span>
           <span class="arch-node-when">${pick(m.when)}</span>
           ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
@@ -1311,8 +1378,8 @@ function renderChrono(){
   CONFIG.companies.forEach(co=>{
     const emp=document.createElement('div');emp.className='emp';
     emp.innerHTML=`<button class="emp-head" aria-expanded="true">
-        <span><span class="emp-n">${co.name}</span>
-          <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span>
+        <span class="employer-identity">${brandLogo(co.id,'brand-signature--employer')}<span><span class="emp-n">${co.name}</span>
+          <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span></span>
         <span class="emp-right"><span class="emp-when">${whenStr(co)}</span><span class="emp-x">+</span></span>
       </button>
       <div class="emp-body"><div class="emp-body-in dt">
@@ -1341,7 +1408,7 @@ function renderChrono(){
       ms.forEach(m=>{
         const e=document.createElement('div');e.className='entry';
         const card=document.createElement('div');card.className='e-card';
-        card.innerHTML=`<button class="e-btn" aria-expanded="false"><span class="e-logo">${LOGOS[m.cloud]||LOGOS.oth}</span><span class="e-txt">
+        card.innerHTML=`<button class="e-btn" aria-expanded="false">${brandLogo(m.id,'brand-signature--chrono')}<span class="e-txt">
             <span class="e-when">${whenStr(m)}</span>
             <span class="e-t">${pick(m.title)}</span>
             <span class="e-c">${pick(m.role)}</span>
