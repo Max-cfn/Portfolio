@@ -610,6 +610,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 .chrono-junction{position:absolute;left:calc(var(--chrono-rail-x) - 2px);top:33px;width:5px;height:5px;border:1px solid color-mix(in srgb,var(--green) 65%,transparent);border-radius:50%;background:var(--card);z-index:1;pointer-events:none}
 .chrono-flow{position:absolute;left:var(--chrono-rail-x);top:0;width:0;height:var(--chrono-flow-length,0px);pointer-events:none;z-index:2}
 .chrono-packet,.chrono-handoff{position:absolute;left:-2.5px;top:-2.5px;width:5px;height:5px;border-radius:50%;background:var(--green);opacity:0;pointer-events:none;animation:chrono-packet-down var(--chrono-flow-duration,12s) linear infinite;animation-play-state:paused}
+.chrono-packet:nth-child(2){animation-duration:var(--chrono-flow-fast-duration,7s);animation-delay:var(--chrono-flow-fast-delay,-2s)}
 .chrono-handoff{left:calc(var(--chrono-rail-x) - 2.5px);top:32.5px;z-index:2;animation-name:chrono-handoff;animation-delay:var(--chrono-arrival,0s)}
 #tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-packet,#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-handoff{animation-play-state:running}
 @keyframes chrono-packet-down{
@@ -1727,7 +1728,11 @@ function measureChronoFlow(){
     const value=length.toFixed(2)+'px';
     if(zone.style.getPropertyValue('--chrono-flow-length')!==value){
       zone.style.setProperty('--chrono-flow-length',value);
-      const duration=Math.max(6.4,length/40);
+      const speed=zone.closest('.emp').dataset.company==='hardis'?88:72;
+      const duration=Math.max(2.5,length/speed);
+      const fastDuration=Math.max(1.8,length/(speed*1.45));
+      zone.style.setProperty('--chrono-flow-fast-duration',fastDuration.toFixed(2)+'s');
+      zone.style.setProperty('--chrono-flow-fast-delay',(-fastDuration*.42).toFixed(2)+'s');
       zone.style.setProperty('--chrono-flow-duration',duration.toFixed(2)+'s');
       zone.querySelectorAll('.entry').forEach(entry=>{
         const distance=entry.getBoundingClientRect().top-zone.getBoundingClientRect().top+35;
@@ -1780,7 +1785,7 @@ function renderChrono(){
     const ms=CONFIG.missions.filter(m=>m.company===co.id).sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
-      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span></span>';
+      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span><span class="chrono-packet"></span></span>';
       ms.forEach(m=>{
         const entry=document.createElement('div');entry.className='entry';
         entry.innerHTML='<span class="chrono-junction" aria-hidden="true"></span><span class="chrono-handoff" aria-hidden="true"></span>';
