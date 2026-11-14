@@ -601,6 +601,20 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 #tl-root .emp-missions>.mlabel::before{content:"";position:absolute;left:calc(var(--chrono-rail-x) - var(--chrono-label-offset));top:-22px;bottom:-12px;width:1px;background:var(--green);pointer-events:none}
 @media(max-width:450px){#tl-root .emp-missions{--chrono-rail-x:5px;--chrono-label-offset:20px}}
 
+/* Downward packets follow the existing chronology rail without taking layout space. */
+#tl-root .emp-missions{position:relative}
+.chrono-controls{display:flex;justify-content:flex-end;margin:0 0 16px}
+.chrono-flow{position:absolute;left:var(--chrono-rail-x);top:0;width:0;height:var(--chrono-flow-length,0px);pointer-events:none;z-index:2}
+.chrono-packet{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:0;animation:chrono-packet-down var(--chrono-flow-duration,12s) linear infinite;animation-play-state:paused}
+.chrono-packet:nth-child(2){animation-delay:calc(var(--chrono-flow-duration,12s) * -.5)}
+#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-packet{animation-play-state:running}
+#chrono-motion{display:block}
+@keyframes chrono-packet-down{
+  0%{transform:translate3d(0,0,0);opacity:0}
+  4%,96%{opacity:1}
+  100%{transform:translate3d(0,var(--chrono-flow-length,0px),0);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.chrono-packet{display:none;animation:none}}
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -681,7 +695,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <div class="arch-rows" id="arch-root"></div>
     </div>
   </div>
-  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div id="tl-root"></div></div>
+  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div class="chrono-controls"><button id="chrono-motion" class="arch-motion" type="button" aria-pressed="false" onclick="toggleArchMotion()"></button></div><div id="tl-root"></div></div>
 </section>
 
 <section id="skills">
@@ -1562,6 +1576,7 @@ function stopArchPacketAnimation(){
   ARCHPACKETRAF=null;ARCHPACKETLAST=0;ARCHPACKETTICK=0;
 }
 function ensureArchPacketAnimation(){
+  syncChronoFlowState();
   if(!archCanAnimate()){stopArchPacketAnimation();return;}
   if(!ARCHPACKETRAF&&$('#arch-wires .arch-packet'))ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
 }
@@ -1582,11 +1597,13 @@ function animateArchPackets(now){
   if(packets.length)ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
 }
 function syncArchMotionControl(){
-  const button=$('#arch-motion');if(!button)return;
+  const buttons=[$('#arch-motion'),$('#chrono-motion')].filter(Boolean);
+  buttons.forEach(button=>{
   const reduced=ARCHMOTION_QUERY.matches;
   button.disabled=reduced;
   button.setAttribute('aria-pressed',ARCHPAUSED?'true':'false');
   button.textContent=reduced?(LANG==='fr'?'Animations réduites':'Reduced motion'):(ARCHPAUSED?(LANG==='fr'?'Reprendre le flux':'Resume flow'):(LANG==='fr'?'Mettre le flux en pause':'Pause flow'));
+  });
 }
 function toggleArchMotion(){
   ARCHPAUSED=!ARCHPAUSED;syncArchMotionControl();ensureArchPacketAnimation();
@@ -1688,6 +1705,40 @@ function setBody(el,open){
 }
 
 /* ── chronologie par employeur ── */
+let CHRONORESIZE=null,CHRONOINTERSECTION=null,CHRONOLAYOUTRAF=null;
+function syncChronoFlowState(){
+  const root=$('#tl-root'),view=$('#view-chrono');
+  if(root)root.classList.toggle('flow-enabled',!ARCHPAUSED&&!document.hidden&&!ARCHMOTION_QUERY.matches&&!!view&&view.classList.contains('on'));
+}
+function measureChronoFlow(){
+  CHRONOLAYOUTRAF=null;
+  if(!$('#view-chrono').classList.contains('on'))return;
+  document.querySelectorAll('#tl-root .emp-missions').forEach(zone=>{
+    const last=zone.querySelector('.entry:last-child');if(!last)return;
+    const length=Math.max(0,last.getBoundingClientRect().top-zone.getBoundingClientRect().top+35);
+    const value=length.toFixed(2)+'px';
+    if(zone.style.getPropertyValue('--chrono-flow-length')!==value){
+      zone.style.setProperty('--chrono-flow-length',value);
+      zone.style.setProperty('--chrono-flow-duration',Math.max(8,length/45).toFixed(2)+'s');
+    }
+  });
+}
+function scheduleChronoFlow(){
+  if(CHRONOLAYOUTRAF===null)CHRONOLAYOUTRAF=requestAnimationFrame(measureChronoFlow);
+}
+function observeChronoFlow(){
+  CHRONORESIZE?.disconnect();CHRONOINTERSECTION?.disconnect();
+  const zones=document.querySelectorAll('#tl-root .emp-missions');
+  if('ResizeObserver' in window){
+    CHRONORESIZE=new ResizeObserver(scheduleChronoFlow);
+    zones.forEach(zone=>CHRONORESIZE.observe(zone));
+  }
+  if('IntersectionObserver' in window){
+    CHRONOINTERSECTION=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('is-flow-visible',entry.isIntersecting)));
+    zones.forEach(zone=>CHRONOINTERSECTION.observe(zone));
+  }else zones.forEach(zone=>zone.classList.add('is-flow-visible'));
+  syncChronoFlowState();scheduleChronoFlow();
+}
 function renderChrono(){
   const root=$('#tl-root');
   const openedCompanies=new Set([...root.querySelectorAll('.emp.on')].map(el=>el.dataset.company));
@@ -1716,7 +1767,7 @@ function renderChrono(){
     const ms=CONFIG.missions.filter(m=>m.company===co.id).sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
-      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span>';
+      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span><span class="chrono-packet"></span></span>';
       ms.forEach(m=>{
         const entry=document.createElement('div');entry.className='entry';
         const card=document.createElement('article');card.className='e-card';
@@ -1746,7 +1797,7 @@ function renderChrono(){
     const card=event.target.closest('.e-card.on');
     if(card){event.preventDefault();const button=card.querySelector('.e-btn');button.click();button.focus({preventScroll:true});}
   };
-  syncXall();
+  syncXall();observeChronoFlow();syncArchMotionControl();
 }
 
 /* ── tout déplier ── */
@@ -1883,7 +1934,7 @@ function setView(v){
   $('#view-arch').setAttribute('aria-hidden',arch?'false':'true');
   $('#view-chrono').setAttribute('aria-hidden',arch?'true':'false');
   $('#xall').style.display=v==='chrono'?'block':'none';
-  if(v==='arch')scheduleArchWires();
+  if(v==='arch')scheduleArchWires();else scheduleChronoFlow();
   ensureArchPacketAnimation();
 }
 $('.tabs').addEventListener('keydown',event=>{
@@ -1917,8 +1968,9 @@ ARCHMOTION_QUERY.addEventListener('change',()=>{
 ARCHDESKTOP_QUERY.addEventListener('change',scheduleArchWires);
 document.addEventListener('visibilitychange',ensureArchPacketAnimation);
 window.addEventListener('resize',scheduleArchWires,{passive:true});
+window.addEventListener('resize',scheduleChronoFlow,{passive:true});
 window.addEventListener('pagehide',stopArchPacketAnimation);
-if(document.fonts)document.fonts.ready.then(scheduleArchWires);
+if(document.fonts)document.fonts.ready.then(()=>{scheduleArchWires();scheduleChronoFlow();});
 setLang(initLang);
 if(new URLSearchParams(location.search).get('view')==='chrono')setView('chrono');
 </script>
