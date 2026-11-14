@@ -601,20 +601,28 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 #tl-root .emp-missions>.mlabel::before{content:"";position:absolute;left:calc(var(--chrono-rail-x) - var(--chrono-label-offset));top:-22px;bottom:-12px;width:1px;background:var(--green);pointer-events:none}
 @media(max-width:450px){#tl-root .emp-missions{--chrono-rail-x:5px;--chrono-label-offset:20px}}
 
-/* Downward packets follow the existing chronology rail without taking layout space. */
+/* Quiet downward flow with a short handoff into each assignment. */
 #tl-root .emp-missions{position:relative}
 .chrono-controls{display:flex;justify-content:flex-end;margin:0 0 16px}
-.chrono-flow{position:absolute;left:var(--chrono-rail-x);top:0;width:0;height:var(--chrono-flow-length,0px);pointer-events:none;z-index:2}
-.chrono-packet{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:0;animation:chrono-packet-down var(--chrono-flow-duration,12s) linear infinite;animation-play-state:paused}
-.chrono-packet:nth-child(2){animation-delay:calc(var(--chrono-flow-duration,12s) * -.5)}
-#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-packet{animation-play-state:running}
 #chrono-motion{display:block}
+#tl-root .entry::before,#tl-root .emp-missions>.mlabel::before{background:color-mix(in srgb,var(--green) 38%,transparent)}
+#tl-root .entry::after{left:var(--chrono-rail-x);top:35px;width:calc(var(--chrono-label-offset) - var(--chrono-rail-x));height:1px;border:0;border-radius:0;background:color-mix(in srgb,var(--green) 38%,transparent)}
+.chrono-junction{position:absolute;left:calc(var(--chrono-rail-x) - 2px);top:33px;width:5px;height:5px;border:1px solid color-mix(in srgb,var(--green) 65%,transparent);border-radius:50%;background:var(--card);z-index:1;pointer-events:none}
+.chrono-flow{position:absolute;left:var(--chrono-rail-x);top:0;width:0;height:var(--chrono-flow-length,0px);pointer-events:none;z-index:2}
+.chrono-packet,.chrono-handoff{position:absolute;left:-2px;top:-2px;width:4px;height:4px;border-radius:50%;background:var(--green);opacity:0;pointer-events:none;animation:chrono-packet-down var(--chrono-flow-duration,12s) linear infinite;animation-play-state:paused}
+.chrono-handoff{left:calc(var(--chrono-rail-x) - 2px);top:33px;z-index:2;animation-name:chrono-handoff;animation-delay:var(--chrono-arrival,0s)}
+#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-packet,#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-handoff{animation-play-state:running}
 @keyframes chrono-packet-down{
   0%{transform:translate3d(0,0,0);opacity:0}
-  4%,96%{opacity:1}
+  3%,98%{opacity:.85}
   100%{transform:translate3d(0,var(--chrono-flow-length,0px),0);opacity:0}
 }
-@media(prefers-reduced-motion:reduce){.chrono-packet{display:none;animation:none}}
+@keyframes chrono-handoff{
+  0%{transform:translate3d(0,0,0);opacity:0}
+  .3%{opacity:.85}
+  3%,100%{transform:translate3d(calc(var(--chrono-label-offset) - var(--chrono-rail-x)),0,0);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.chrono-packet,.chrono-handoff{display:none;animation:none}}
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -1719,7 +1727,12 @@ function measureChronoFlow(){
     const value=length.toFixed(2)+'px';
     if(zone.style.getPropertyValue('--chrono-flow-length')!==value){
       zone.style.setProperty('--chrono-flow-length',value);
-      zone.style.setProperty('--chrono-flow-duration',Math.max(8,length/45).toFixed(2)+'s');
+      const duration=Math.max(8,length/32);
+      zone.style.setProperty('--chrono-flow-duration',duration.toFixed(2)+'s');
+      zone.querySelectorAll('.entry').forEach(entry=>{
+        const distance=entry.getBoundingClientRect().top-zone.getBoundingClientRect().top+35;
+        entry.style.setProperty('--chrono-arrival',(distance/length*duration).toFixed(3)+'s');
+      });
     }
   });
 }
@@ -1767,9 +1780,10 @@ function renderChrono(){
     const ms=CONFIG.missions.filter(m=>m.company===co.id).sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
-      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span><span class="chrono-packet"></span></span>';
+      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span></span>';
       ms.forEach(m=>{
         const entry=document.createElement('div');entry.className='entry';
+        entry.innerHTML='<span class="chrono-junction" aria-hidden="true"></span><span class="chrono-handoff" aria-hidden="true"></span>';
         const card=document.createElement('article');card.className='e-card';
         card.dataset.cloud=m.cloud;card.dataset.mission=m.id;
         const missionOpen=openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
