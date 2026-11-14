@@ -509,6 +509,82 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
  .arch-row.has-company-open > .arch-item > .arch-item-body > .arch-body-in{margin-top:14px;border:1px solid var(--green)}
 }
 
+
+/* Chronology: visible employers, a continuous mission rail, and cloud identity. */
+.chrono-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:4px 0 32px}
+.chrono-index a{display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:76px;padding:12px 16px;border:1px solid var(--rule2);border-left:3px solid var(--green);background:var(--card);text-decoration:none;transition:background .16s,border-color .16s}
+.chrono-index a:hover{background:var(--green-bg);border-color:var(--green)}
+.chrono-employer-name{font-size:14px;font-weight:650;color:var(--green)}
+.chrono-employer-dates{font-family:var(--mono);font-size:10px;color:var(--mut);line-height:1.5}
+#tl-root .emp{padding:0;border:0;background:transparent;margin:0 0 38px;scroll-margin-top:84px}
+#tl-root .emp-head{position:sticky;top:60px;z-index:4;display:grid;grid-template-columns:138px minmax(0,1fr) auto;gap:22px;align-items:center;padding:20px 22px;border:1px solid var(--rule2);border-top:3px solid var(--green);background:var(--card);box-shadow:0 5px 0 var(--paper)}
+#tl-root .emp-head:hover{border-color:var(--green)}
+#tl-root .emp-head .brand-signature--employer{width:138px;height:68px}
+.emp-kicker{display:block;font-family:var(--mono);font-size:10px;color:var(--mut);letter-spacing:.04em;margin-bottom:3px}
+#tl-root .emp-n{font-size:29px;line-height:1.2;color:var(--green)}
+#tl-root .emp-sub{font-size:11px;margin-top:5px;color:var(--ink2)}
+#tl-root .emp-when{font-size:11px;white-space:normal;margin-top:7px;color:var(--rust)}
+.emp-action{display:flex;align-items:center;gap:12px}
+.emp-action-label{font-family:var(--mono);font-size:10px;color:var(--green)}
+#tl-root .emp-x,#tl-root .e-x{border-color:#8a8778;color:var(--green)}
+#tl-root .emp-body-in{padding:22px;border:1px solid var(--rule2);border-top:0;background:var(--card)}
+#tl-root .emp-missions{padding:22px 0 0}
+#tl-root .emp-missions>.mlabel{margin-left:30px;font-size:10px}
+#tl-root .entry{padding-left:30px;margin-bottom:14px}
+#tl-root .entry::before{left:9px;background:var(--green)}
+#tl-root .entry::after{left:5.5px;top:31px;width:8px;height:8px;border:1px solid var(--green);border-radius:50%;background:var(--card)}
+#tl-root .entry:last-child::before{height:35px}
+#tl-root .e-card{position:relative;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,background .16s}
+#tl-root .e-card::before{content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:4px;background:var(--green);pointer-events:none}
+#tl-root .e-card[data-cloud=aws]::before{background:#ff9900}
+#tl-root .e-card[data-cloud=gcp]::before{background:linear-gradient(90deg,#4285f4 0 25%,#ea4335 25% 50%,#fbbc05 50% 75%,#34a853 75% 100%)}
+#tl-root .e-card:hover,#tl-root .e-card.on{border-color:var(--green)}
+#tl-root .e-btn{padding:19px 20px;gap:20px;align-items:center}
+#tl-root .brand-signature--chrono{width:130px;height:78px;flex:none}
+.e-topline{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+#tl-root .e-when{font-size:11px;color:var(--mut);margin:0}
+#tl-root .e-t{font-size:16px;line-height:1.4}
+#tl-root .e-c{font-size:11px;color:var(--green);margin-top:5px;line-height:1.45}
+#tl-root .mission-techs{margin-top:10px}
+#tl-root .mission-cloud{font-size:12px}
+#tl-root .mission-cloud img{width:30px;height:24px}
+#tl-root .e-body-in{margin:0 20px 20px;padding:18px 0 0;border-left:0;border-top:1px solid var(--rule)}
+@media(max-width:700px){
+ .chrono-index{gap:6px;margin-bottom:22px}
+ .chrono-index a{padding:10px;min-height:76px;gap:4px}
+ .chrono-employer-name{font-size:12px}
+ .chrono-employer-dates{font-size:9px}
+ #tl-root .emp-head{grid-template-columns:86px minmax(0,1fr) 28px;gap:12px;padding:15px 14px}
+ #tl-root .emp-head .brand-signature--employer{width:86px;height:62px}
+ #tl-root .emp-n{font-size:23px}
+ .emp-action-label{display:none}
+ #tl-root .emp-x{width:28px;height:28px}
+ .emp-kicker{font-size:9px}
+ #tl-root .emp-sub,#tl-root .emp-when{font-size:10px}
+ #tl-root .e-btn{padding:16px 13px;gap:12px;flex-wrap:wrap;align-items:flex-start}
+ #tl-root .brand-signature--chrono{width:108px;height:66px}
+ #tl-root .e-txt{flex:1;flex-basis:calc(100% - 150px);min-width:0}
+ #tl-root .e-x{width:26px;height:26px}
+ #tl-root .e-t{font-size:14px}
+ #tl-root .e-c,#tl-root .e-when{font-size:10px}
+ .e-topline{gap:8px}
+}
+@media(max-width:450px){
+ #tl-root .entry{padding-left:20px}
+ #tl-root .entry::before{left:5px}
+ #tl-root .entry::after{left:1.5px}
+ #tl-root .emp-missions>.mlabel{margin-left:20px}
+ #tl-root .e-btn{display:grid;grid-template-columns:minmax(0,1fr) 26px;gap:12px}
+ #tl-root .brand-signature--chrono{grid-column:1;grid-row:1;width:132px;height:70px}
+ #tl-root .e-txt{grid-column:1 / -1;grid-row:2}
+ #tl-root .e-x{grid-column:2;grid-row:1;align-self:center}
+ #tl-root .e-topline{flex-wrap:wrap}
+ #tl-root .emp-body-in{padding:17px}
+ .chrono-employer-dates{display:none}
+ .chrono-index a{min-height:48px;padding:9px 7px}
+}
+@media(prefers-reduced-motion:reduce){.chrono-index a,#tl-root .e-card,#tl-root .emp-body,#tl-root .e-body{transition:none}}
+
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -1577,66 +1653,68 @@ function setBody(el,open){
 
 /* ── chronologie par employeur ── */
 function renderChrono(){
-  const root=$('#tl-root');root.innerHTML='';
+  const root=$('#tl-root');
+  const openedCompanies=new Set([...root.querySelectorAll('.emp.on')].map(el=>el.dataset.company));
+  const openedMissions=new Set([...root.querySelectorAll('.e-card.on')].map(el=>el.dataset.mission));
+  root.innerHTML='';
+  const index=document.createElement('div');
+  index.className='chrono-index';index.setAttribute('role','navigation');
+  index.setAttribute('aria-label',LANG==='fr'?'Accès aux employeurs':'Jump to an employer');
+  index.innerHTML=CONFIG.companies.map(co=>'<a href="#chrono-'+co.id+'"><span class="chrono-employer-name">'+co.name+'</span><span class="chrono-employer-dates">'+whenStr(co)+'</span></a>').join('');
+  root.appendChild(index);
   CONFIG.companies.forEach(co=>{
-    const emp=document.createElement('div');emp.className='emp';
-    emp.innerHTML=`<button class="emp-head" aria-expanded="true">
-        <span class="employer-identity">${brandLogo(co.id,'brand-signature--employer')}<span><span class="emp-n">${co.name}</span>
-          <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span></span>
-        <span class="emp-right"><span class="emp-when">${whenStr(co)}</span><span class="emp-x">+</span></span>
-      </button>
-      <div class="emp-body"><div class="emp-body-in dt">
-        <p class="dt-intro">${pick(co.intro)}</p>
-        ${listHTML(co.results,'results_lbl','detail-results')}
-        ${listHTML(co.bullets,'responsibilities_lbl')}
-        ${stackHTML(co)}
-      </div></div>`;
-    /* le poste lui-même (intro + missions du poste) est déplié d'entrée :
-       c'est le contenu principal, les missions clients restent repliées. */
-    const body=emp.querySelector('.emp-body'), head=emp.querySelector('.emp-head');
-    emp.classList.add('on');
-    initBody(body,true);
+    const emp=document.createElement('section');emp.className='emp';
+    emp.id='chrono-'+co.id;emp.dataset.company=co.id;
+    const employerOpen=openedCompanies.has(co.id);
+    emp.classList.toggle('on',employerOpen);
+    emp.innerHTML='<button class="emp-head" aria-expanded="'+employerOpen+'">'
+      +brandLogo(co.id,'brand-signature--employer')
+      +'<span class="employer-copy"><span class="emp-kicker">'+pick(co.contract)+' · '+pick(co.loc)+'</span>'
+      +'<span class="emp-n">'+co.name+'</span><span class="emp-sub">'+pick(co.role)+'</span>'
+      +'<span class="emp-when">'+whenStr(co)+'</span></span>'
+      +'<span class="emp-action"><span class="emp-action-label">'+(LANG==='fr'?'Détail du poste':'Role details')+'</span><span class="emp-x" aria-hidden="true">+</span></span>'
+      +'</button><div class="emp-body"><div class="emp-body-in dt"><p class="dt-intro">'+pick(co.intro)+'</p>'
+      +listHTML(co.results,'results_lbl','detail-results')+listHTML(co.bullets,'responsibilities_lbl')+stackHTML(co)+'</div></div>';
+    const body=emp.querySelector('.emp-body'),head=emp.querySelector('.emp-head');
+    body.id='chrono-employer-'+co.id;initBody(body,employerOpen);
     head.addEventListener('click',()=>{
-      const open=!emp.classList.contains('on');
-      emp.classList.toggle('on',open);
-      head.setAttribute('aria-expanded',open);
-      setBody(body,open);
-      syncXall();
+      const open=!emp.classList.contains('on');emp.classList.toggle('on',open);
+      head.setAttribute('aria-expanded',open);setBody(body,open);syncXall();
     });
-    const ms=CONFIG.missions.filter(m=>m.company===co.id)
-      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
+    const ms=CONFIG.missions.filter(m=>m.company===co.id).sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
-      zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
+      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span>';
       ms.forEach(m=>{
-        const e=document.createElement('div');e.className='entry';
-        const card=document.createElement('div');card.className='e-card';
-        card.innerHTML=`<button class="e-btn" aria-expanded="false">${brandLogo(m.id,'brand-signature--chrono')}<span class="e-txt">
-            <span class="e-when">${whenStr(m)}</span>
-            <span class="e-t">${pick(m.title)}</span>
-            <span class="e-c">${pick(m.role)}</span>${missionTech(m)}
-          </span><span class="e-x">+</span></button>
-          <div class="e-body"><div class="e-body-in dt">
-            ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
-            ${listHTML(m.bullets,'responsibilities_lbl')}
-            ${listHTML(m.results,'results_lbl','detail-results')}
-            ${stackHTML(m)}
-          </div></div>`;
-        const bd=card.querySelector('.e-body'), btn=card.querySelector('.e-btn');
-        initBody(bd,false);
+        const entry=document.createElement('div');entry.className='entry';
+        const card=document.createElement('article');card.className='e-card';
+        card.dataset.cloud=m.cloud;card.dataset.mission=m.id;
+        const missionOpen=openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
+        const cloud='<span class="mission-cloud"><img src="assets/companies/cloud-'+m.cloud+'.png" alt="" width="30" height="26"><span>'+(m.cloud==='aws'?'AWS':'GCP')+'</span></span>';
+        card.innerHTML='<button class="e-btn" aria-expanded="'+missionOpen+'">'+brandLogo(m.id,'brand-signature--chrono')
+          +'<span class="e-txt"><span class="e-topline"><span class="e-when">'+whenStr(m)+'</span>'+cloud+'</span>'
+          +'<span class="e-t">'+pick(m.title).replace(/^[^—]+ — /,'')+'</span><span class="e-c">'+pick(m.role)+'</span>'+missionTech(m)
+          +'</span><span class="e-x" aria-hidden="true">+</span></button>'
+          +'<div class="e-body"><div class="e-body-in dt">'+(m.intro?'<p class="dt-intro">'+pick(m.intro)+'</p>':'')
+          +listHTML(m.results,'results_lbl','detail-results')+listHTML(m.bullets,'responsibilities_lbl')+stackHTML(m)+'</div></div>';
+        const bd=card.querySelector('.e-body'),btn=card.querySelector('.e-btn');
+        bd.id='chrono-mission-'+m.id;initBody(bd,missionOpen);
         btn.addEventListener('click',()=>{
-          const open=!card.classList.contains('on');
-          card.classList.toggle('on',open);
-          btn.setAttribute('aria-expanded',open);
-          setBody(bd,open);
-          syncXall();
+          const open=!card.classList.contains('on');card.classList.toggle('on',open);
+          btn.setAttribute('aria-expanded',open);setBody(bd,open);syncXall();
         });
-        e.appendChild(card);zone.appendChild(e);
+        entry.appendChild(card);zone.appendChild(entry);
       });
       emp.appendChild(zone);
     }
     root.appendChild(emp);
   });
+  root.onkeydown=event=>{
+    if(event.key!=='Escape')return;
+    const card=event.target.closest('.e-card.on');
+    if(card){event.preventDefault();const button=card.querySelector('.e-btn');button.click();button.focus({preventScroll:true});}
+  };
+  syncXall();
 }
 
 /* ── tout déplier ── */
