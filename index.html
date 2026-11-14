@@ -502,6 +502,13 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
  .arch-item-body,.arch-wire-set,.arch-item,.arch-item-head{transition:none}
 }
 
+
+@media(min-width:861px){
+ .arch-row.has-company-open > .arch-item.on{background:transparent;border-color:transparent;box-shadow:none}
+ .arch-row.has-company-open > .arch-item > .arch-company-head{width:calc(var(--arch-company-width) - 2px);grid-template-columns:86px minmax(0,1fr) 24px;gap:10px;outline:1px solid var(--green);background:var(--green-bg)}
+ .arch-row.has-company-open > .arch-item > .arch-item-body > .arch-body-in{margin-top:14px;border:1px solid var(--green)}
+}
+
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
