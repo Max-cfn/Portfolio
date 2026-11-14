@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" data-experience-variant="signature">
 <head>
-<meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maxence Cerfontaine — Cloud &amp; DevOps</title>
 <meta name="description" content="Ingénieur Cloud & DevOps à Paris. AWS, GCP, Azure, Terraform, FinOps. 9 certifications, AWS Partner FDE et 2 microcredentials en IA agentique.">
@@ -586,6 +586,21 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
 }
 @media(prefers-reduced-motion:reduce){.chrono-index a,#tl-root .e-card,#tl-root .emp-body,#tl-root .e-body{transition:none}}
 
+
+/* Exact graph coordinates and complete, consistently aligned provider PNGs. */
+@media(min-width:861px){
+ .arch-row > .arch-item > .arch-company-head,
+ .arch-row .arch-missions > .arch-item:first-child > .arch-mission-head{min-height:var(--arch-first-node-height,0px)}
+}
+.mission-cloud,#tl-root .mission-cloud{display:inline-flex;align-items:center;gap:6px;min-height:32px;line-height:1;overflow:visible;flex:none}
+.mission-cloud>img,#tl-root .mission-cloud>img{display:block;width:42px;height:32px;min-width:42px;max-width:none;object-fit:contain;object-position:center;flex:none;overflow:visible}
+.mission-cloud>span,#tl-root .mission-cloud>span{display:block;align-self:center;line-height:1;white-space:nowrap}
+#tl-root .e-topline{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
+#tl-root .emp-missions{--chrono-rail-x:9px;--chrono-label-offset:30px}
+#tl-root .emp-missions>.mlabel{position:relative}
+#tl-root .emp-missions>.mlabel::before{content:"";position:absolute;left:calc(var(--chrono-rail-x) - var(--chrono-label-offset));top:-22px;bottom:-12px;width:1px;background:var(--green);pointer-events:none}
+@media(max-width:450px){#tl-root .emp-missions{--chrono-rail-x:5px;--chrono-label-offset:20px}}
+
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -662,7 +677,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
       <span class="arch-controls"><span class="arch-direction" data-t="arch_direction"></span><button id="arch-motion" class="arch-motion" type="button" aria-pressed="false" onclick="toggleArchMotion()">Mettre le flux en pause</button></span>
     </div>
     <div class="arch-canvas" id="arch-canvas">
-      <svg class="arch-wires" id="arch-wires" aria-hidden="true"></svg>
+      <svg class="arch-wires" id="arch-wires" aria-hidden="true" preserveAspectRatio="none"></svg>
       <div class="arch-rows" id="arch-root"></div>
     </div>
   </div>
@@ -1424,7 +1439,7 @@ function renderArch(){
       const missionRoot=document.createElement('div');
       missionRoot.className='arch-missions';
       missions.forEach(m=>{
-        const missionHead=`<span class="mission-brand">${brandLogo(m.id)}</span><span class="mission-heading"><span class="mission-titleline"><span class="mission-cloud"><img src="assets/companies/cloud-${m.cloud}.png" alt="" width="32" height="32"><span>${m.cloud==='aws'?'AWS':'GCP'}</span></span><strong class="arch-mission-name">${missionName(m)}</strong></span><span class="arch-mission-role">${pick(m.role)}</span><span class="arch-node-when">${pick(m.when)}${m.live?' · '+t('current'):''}</span>${missionTech(m)}</span>`;
+        const missionHead=`<span class="mission-brand">${brandLogo(m.id)}</span><span class="mission-heading"><span class="mission-titleline"><span class="mission-cloud"><img src="assets/companies/cloud-${m.cloud}-full.png" alt="" width="32" height="32"><span>${m.cloud==='aws'?'AWS':'GCP'}</span></span><strong class="arch-mission-name">${missionName(m)}</strong></span><span class="arch-mission-role">${pick(m.role)}</span><span class="arch-node-when">${pick(m.when)}${m.live?' · '+t('current'):''}</span>${missionTech(m)}</span>`;
         missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
       });
       row.appendChild(missionRoot);
@@ -1460,8 +1475,8 @@ function renderArch(){
 
 function archPoint(el,side,base){
   const r=el.getBoundingClientRect();
-  if(side==='right')return{x:r.right-base.left,y:r.top+r.height/2-base.top};
-  if(side==='left')return{x:r.left-base.left,y:r.top+r.height/2-base.top};
+  if(side==='right')return{x:el.closest('.arch-item').getBoundingClientRect().right-base.left,y:r.top+r.height/2-base.top};
+  if(side==='left')return{x:el.closest('.arch-item').getBoundingClientRect().left-base.left,y:r.top+r.height/2-base.top};
   if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
   return{x:r.left+r.width/2-base.left,y:r.top-base.top};
 }
@@ -1475,7 +1490,7 @@ const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=46;
 function ensureArchDefs(svg){
   if(svg.querySelector('#arch-arrow'))return;
   const defs=document.createElementNS(ARCH_NS,'defs');
-  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
+  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
   svg.prepend(defs);
 }
 function syncArchWire(svg,key,d,main,index,alive){
@@ -1576,14 +1591,34 @@ function syncArchMotionControl(){
 function toggleArchMotion(){
   ARCHPAUSED=!ARCHPAUSED;syncArchMotionControl();ensureArchPacketAnimation();
 }
+function syncArchNodeHeights(){
+  const changes=[];
+  document.querySelectorAll('#arch-root > .arch-row').forEach(row=>{
+    const company=row.querySelector(':scope > .arch-item > .arch-company-head');
+    const mission=row.querySelector('.arch-missions > .arch-item:first-child > .arch-mission-head');
+    if(!company||!mission)return;
+    const naturalHeight=head=>{
+      const style=getComputedStyle(head);
+      return Math.max(...[...head.children].map(child=>child.getBoundingClientRect().height),0)
+        +parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)
+        +parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth);
+    };
+    const height=Math.ceil(Math.max(naturalHeight(company),naturalHeight(mission)))+'px';
+    if(row.style.getPropertyValue('--arch-first-node-height')!==height)changes.push([row,height]);
+  });
+  changes.forEach(([row,height])=>row.style.setProperty('--arch-first-node-height',height));
+}
+
 function drawArchWires(){
   const canvas=$('#arch-canvas'),svg=$('#arch-wires');
   if(!canvas||!svg)return;
   if(!ARCHDESKTOP_QUERY.matches){svg.replaceChildren();stopArchPacketAnimation();return;}
-  const base=canvas.getBoundingClientRect();
+  if(svg.getBoundingClientRect().width<2){stopArchPacketAnimation();return;}
+  syncArchNodeHeights();
+  const base=svg.getBoundingClientRect();
   if(base.width<2||base.height<2){stopArchPacketAnimation();return;}
   const geometry=[],companies=[...canvas.querySelectorAll('.arch-company-head')];
-  const coord=n=>Math.round(n*10)/10;
+  const coord=n=>Math.round(n*100)/100;
   const p=(a,axis)=>coord(a[axis]);
   companies.forEach((newer,index)=>{
     const row=newer.closest('.arch-row'),companyId=row.dataset.company;
@@ -1658,11 +1693,7 @@ function renderChrono(){
   const openedCompanies=new Set([...root.querySelectorAll('.emp.on')].map(el=>el.dataset.company));
   const openedMissions=new Set([...root.querySelectorAll('.e-card.on')].map(el=>el.dataset.mission));
   root.innerHTML='';
-  const index=document.createElement('div');
-  index.className='chrono-index';index.setAttribute('role','navigation');
-  index.setAttribute('aria-label',LANG==='fr'?'Accès aux employeurs':'Jump to an employer');
-  index.innerHTML=CONFIG.companies.map(co=>'<a href="#chrono-'+co.id+'"><span class="chrono-employer-name">'+co.name+'</span><span class="chrono-employer-dates">'+whenStr(co)+'</span></a>').join('');
-  root.appendChild(index);
+
   CONFIG.companies.forEach(co=>{
     const emp=document.createElement('section');emp.className='emp';
     emp.id='chrono-'+co.id;emp.dataset.company=co.id;
@@ -1691,7 +1722,7 @@ function renderChrono(){
         const card=document.createElement('article');card.className='e-card';
         card.dataset.cloud=m.cloud;card.dataset.mission=m.id;
         const missionOpen=openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
-        const cloud='<span class="mission-cloud"><img src="assets/companies/cloud-'+m.cloud+'.png" alt="" width="30" height="26"><span>'+(m.cloud==='aws'?'AWS':'GCP')+'</span></span>';
+        const cloud='<span class="mission-cloud"><img src="assets/companies/cloud-'+m.cloud+'-full.png" alt="" width="30" height="26"><span>'+(m.cloud==='aws'?'AWS':'GCP')+'</span></span>';
         card.innerHTML='<button class="e-btn" aria-expanded="'+missionOpen+'">'+brandLogo(m.id,'brand-signature--chrono')
           +'<span class="e-txt"><span class="e-topline"><span class="e-when">'+whenStr(m)+'</span>'+cloud+'</span>'
           +'<span class="e-t">'+pick(m.title).replace(/^[^—]+ — /,'')+'</span><span class="e-c">'+pick(m.role)+'</span>'+missionTech(m)
@@ -1893,4 +1924,5 @@ if(new URLSearchParams(location.search).get('view')==='chrono')setView('chrono')
 </script>
 </body>
 </html>
+
 
