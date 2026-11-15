@@ -254,3 +254,17 @@
 }
 @media(max-width:360px){.e4-ticket-band{font-size:7px;padding:10px 12px}.e4-ticket-content{padding:17px 12px}.e4-route strong{font-size:24px}.e4-route{gap:4px;grid-template-columns:1fr 28px 1fr}.e4-route-line::before,.e4-route-line::after{display:none}.e4-ticket-stub{padding:11px 12px;gap:9px}.e4-barcode{width:65px}.e4-degree h4{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.e4-ticket,.e4-ticket::before{transition:none}}
+
+/* End the rail at the final milestone, whatever its wrapped height. */
+.e4-timeline::before{bottom:0}
+.e4-step:last-child::after{content:"";position:absolute;left:-36px;top:24px;bottom:0;width:11px;background:var(--paper)}
+@media(max-width:700px){.e4-step:last-child::after{left:-24px}}
+
+@media(max-width:360px){
+ .e4-degree{min-height:160px}
+ .e4-route{grid-template-columns:minmax(0,.8fr) 24px minmax(0,1.4fr)}
+ .e4-route strong{font-size:21px}
+ .e4-ticket-stub{gap:8px;min-width:0}
+ .e4-barcode{width:55px;flex-shrink:1}
+ .e4-ticket-stub>span:last-child{font-size:6px}
+}
