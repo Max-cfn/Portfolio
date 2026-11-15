@@ -320,3 +320,22 @@
  .e4-stub-route{font-size:6px}
  .e4-ticket-stub>.e4-barcode{width:47px;height:20px}
 }
+
+/* Compact flags and airport codes complete the boarding pass. */
+.e4-route strong.e4-paris{display:flex;align-items:center;gap:9px}
+.e4-route>div>span.e4-country-mark{display:flex;align-items:center;justify-content:flex-end;gap:7px}
+.e4-route-flag{display:inline-block;flex:none;width:20px;height:15px;object-fit:cover;border:1px solid #b7b0a650;border-radius:2px}
+.e4-stub-route.e4-airport-codes{font:500 15px/1.4 var(--mono);letter-spacing:.1em;color:var(--ticket-red)}
+@media(max-width:700px){
+ .e4-route strong.e4-paris{gap:7px}
+ .e4-route-flag{width:16px;height:12px}
+ .e4-stub-route.e4-airport-codes{font-size:11px;letter-spacing:.07em}
+}
+@media(max-width:360px){
+ .e4-route{grid-template-columns:72px 22px minmax(0,1fr);gap:4px}
+ .e4-route strong{font-size:21px}
+ .e4-route strong.e4-paris{gap:6px}
+ .e4-route-flag{width:14px;height:10.5px}
+ .e4-route>div>span.e4-country-mark{gap:5px}
+ .e4-stub-route.e4-airport-codes{font-size:9px}
+}

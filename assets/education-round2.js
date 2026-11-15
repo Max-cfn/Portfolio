@@ -44,10 +44,10 @@ function passport(){return compactEFREI('book');}
     return `<article class="e4-ticket" aria-label="${tr('Échange universitaire à Concordia, janvier à mai 2022','Academic exchange at Concordia, January to May 2022')}">
       <header class="e4-ticket-band"><span>${tr('ÉCHANGE UNIVERSITAIRE','ACADEMIC EXCHANGE')}</span><span class="e4-canada-label"><img src="assets/flag-ca.svg" class="e4-canada-flag" alt="${tr('Drapeau du Canada','Flag of Canada')}" width="24" height="18"> CA / 2022</span></header>
       <div class="e4-ticket-body"><div class="e4-ticket-content">
-        <div class="e4-route"><div><span>FRANCE</span><strong>Paris</strong></div><span class="e4-route-line" aria-hidden="true">✈︎</span><div><span>CANADA</span><strong>Montréal</strong></div></div>
+        <div class="e4-route"><div><span>FRANCE</span><strong class="e4-paris">Paris <img class="e4-route-flag" src="assets/flag-fr.svg" alt="${tr('Drapeau français','French flag')}" width="20" height="15"></strong></div><span class="e4-route-line" aria-hidden="true">✈︎</span><div><span class="e4-country-mark">CANADA <img class="e4-route-flag" src="assets/flag-ca.svg" alt="${tr('Drapeau du Canada','Canadian flag')}" width="20" height="15"></span><strong>Montréal</strong></div></div>
         <div class="e4-schools"><div class="e4-origin">${logo(master)}<span>${tr("École d’ingénieurs","Engineering school")}</span></div><div class="e4-host">${logo(exchange)}<span>Concordia University</span></div></div>
         <dl class="e4-ticket-fields"><div><dt>${tr('PÉRIODE','PERIOD')}</dt><dd>${val(exchange.y)}</dd></div><div><dt>${tr('CURSUS','CURRICULUM')}</dt><dd>${tr('Cursus anglophone','English-language programme')}</dd></div></dl>
-      </div><aside class="e4-ticket-stub" aria-hidden="true"><span class="e4-stub-title">${tr("CARTE D’EMBARQUEMENT","BOARDING PASS")}</span><span class="e4-aircraft">✈︎</span><span class="e4-stub-route">PARIS → MONTRÉAL</span><span class="e4-barcode"></span><span>2022</span></aside></div>
+      </div><aside class="e4-ticket-stub" aria-hidden="true"><span class="e4-stub-title">${tr("CARTE D’EMBARQUEMENT","BOARDING PASS")}</span><span class="e4-aircraft">✈︎</span><span class="e4-stub-route e4-airport-codes">CDG – YUL</span><span class="e4-barcode"></span><span>2022</span></aside></div>
     </article>`;
   }
   function ticketTimeline(){
