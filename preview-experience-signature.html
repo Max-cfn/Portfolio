@@ -1759,6 +1759,7 @@ function observeChronoFlow(){
 }
 function renderChrono(){
   const root=$('#tl-root');
+  const firstRender=!root.querySelector('.emp');
   const openedCompanies=new Set([...root.querySelectorAll('.emp.on')].map(el=>el.dataset.company));
   const openedMissions=new Set([...root.querySelectorAll('.e-card.on')].map(el=>el.dataset.mission));
   root.innerHTML='';
@@ -1766,7 +1767,7 @@ function renderChrono(){
   CONFIG.companies.forEach(co=>{
     const emp=document.createElement('section');emp.className='emp';
     emp.id='chrono-'+co.id;emp.dataset.company=co.id;
-    const employerOpen=openedCompanies.has(co.id);
+    const employerOpen=firstRender||openedCompanies.has(co.id);
     emp.classList.toggle('on',employerOpen);
     emp.innerHTML='<button class="emp-head" aria-expanded="'+employerOpen+'">'
       +brandLogo(co.id,'brand-signature--employer')
@@ -1791,7 +1792,7 @@ function renderChrono(){
         entry.innerHTML='<span class="chrono-junction" aria-hidden="true"></span><span class="chrono-handoff" aria-hidden="true"></span>';
         const card=document.createElement('article');card.className='e-card';
         card.dataset.cloud=m.cloud;card.dataset.mission=m.id;
-        const missionOpen=openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
+        const missionOpen=firstRender||openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
         const cloud='<span class="mission-cloud"><img src="assets/companies/cloud-'+m.cloud+'-full.png" alt="" width="30" height="26"><span>'+(m.cloud==='aws'?'AWS':'GCP')+'</span></span>';
         card.innerHTML='<button class="e-btn" aria-expanded="'+missionOpen+'">'+brandLogo(m.id,'brand-signature--chrono')
           +'<span class="e-txt"><span class="e-topline"><span class="e-when">'+whenStr(m)+'</span>'+cloud+'</span>'
