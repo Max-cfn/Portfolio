@@ -202,7 +202,7 @@
 .e4-step{position:relative;min-width:0;margin:0;padding:0}
 .e4-step+.e4-step{margin-top:24px}
 .e4-node{position:absolute;left:-36px;top:18px;width:11px;height:11px;border:1px solid var(--green);border-radius:50%;background:var(--paper);z-index:1}
-.e4-step:last-child .e4-node{background:var(--green);box-shadow:0 0 0 4px var(--paper)}
+.e4-step:first-child .e4-node{background:var(--green);box-shadow:0 0 0 4px var(--paper)}
 .e4-degree{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center;min-height:80px;padding:18px 22px;border:1px solid var(--rule2);background:var(--card)}
 .e4-period{font:11px/1.5 var(--mono);color:var(--rust)}
 .e4-degree h4{font:500 25px/1.3 var(--disp);margin:0;color:var(--ink)}
@@ -267,4 +267,23 @@
  .e4-ticket-stub{gap:8px;min-width:0}
  .e4-barcode{width:55px;flex-shrink:1}
  .e4-ticket-stub>span:last-child{font-size:6px}
+}
+
+/* Latest studies first; equal degree cards with their own school mark. */
+.e4-degree{grid-template-columns:112px minmax(0,1fr);min-height:112px;gap:24px}
+.e4-degree>.e2-logo{width:112px;height:56px;object-fit:contain;object-position:center}
+.e4-degree-copy{min-width:0}.e4-degree-copy h4{margin-top:9px}
+.e4-canada-label{display:inline-flex;align-items:center;gap:9px}
+.e4-canada-flag{display:block;width:24px;height:18px;object-fit:cover;border:1px solid #ffffff80;border-radius:2px}
+@media(max-width:700px){
+ .e4-degree{grid-template-columns:72px minmax(0,1fr);gap:16px;min-height:154px}
+ .e4-degree>.e2-logo{width:72px;height:48px}
+ .e4-degree h4{font-size:22px;line-height:1.3}
+ .e4-canada-label{gap:6px}.e4-canada-flag{width:20px;height:15px}
+}
+@media(max-width:360px){
+ .e4-degree{grid-template-columns:62px minmax(0,1fr);gap:12px;min-height:180px;padding:16px}
+ .e4-degree>.e2-logo{width:62px;height:44px}
+ .e4-degree h4{font-size:21px}
+ .e4-canada-flag{width:18px;height:13.5px}
 }

@@ -41,7 +41,7 @@ function passport(){return compactEFREI('book');}
   /* Education is composed of independent milestones and a reusable travel ticket. */
   function semesterTicket(exchange){
     return `<article class="e4-ticket" aria-label="${tr('Échange universitaire à Concordia, janvier à mai 2022','Academic exchange at Concordia, January to May 2022')}">
-      <header class="e4-ticket-band"><span>${tr('ÉCHANGE UNIVERSITAIRE','ACADEMIC EXCHANGE')}</span><span>CA / 2022</span></header>
+      <header class="e4-ticket-band"><span>${tr('ÉCHANGE UNIVERSITAIRE','ACADEMIC EXCHANGE')}</span><span class="e4-canada-label"><img src="assets/flag-ca.svg" class="e4-canada-flag" alt="${tr('Drapeau du Canada','Flag of Canada')}" width="24" height="18"> CA / 2022</span></header>
       <div class="e4-ticket-body"><div class="e4-ticket-content">
         <div class="e4-route"><div><span>FRANCE</span><strong>Paris</strong></div><span class="e4-route-line" aria-hidden="true">✈︎</span><div><span>CANADA</span><strong>Montréal</strong></div></div>
         <div class="e4-destination">${logo(exchange)}<h4>Concordia University</h4></div>
@@ -52,12 +52,12 @@ function passport(){return compactEFREI('book');}
   function ticketTimeline(){
     const {master,bachelor,exchange}=data();
     const steps=[
-      {kind:'degree',value:bachelor},
+      {kind:'degree',value:master},
       {kind:'exchange',value:exchange},
-      {kind:'degree',value:master}
+      {kind:'degree',value:bachelor}
     ];
     return `<div class="e4-education"><header class="e4-school">${logo(master)}<div><h3>EFREI Paris</h3><span>2019 — 2024 · Paris, France</span></div></header>
-      <ol class="e4-timeline">${steps.map(step=>`<li class="e4-step e4-step-${step.kind}"><span class="e4-node" aria-hidden="true"></span>${step.kind==='exchange'?semesterTicket(step.value):`<article class="e4-degree"><span class="e4-period">${val(step.value.y)}</span><h4>${val(step.value.t)}</h4></article>`}</li>`).join('')}</ol></div>`;
+      <ol class="e4-timeline">${steps.map(step=>`<li class="e4-step e4-step-${step.kind}"><span class="e4-node" aria-hidden="true"></span>${step.kind==='exchange'?semesterTicket(step.value):`<article class="e4-degree">${logo(step.value)}<div class="e4-degree-copy"><span class="e4-period">${val(step.value.y)}</span><h4>${val(step.value.t)}</h4></div></article>`}</li>`).join('')}</ol></div>`;
   }
   function ticketPage(){return ticketTimeline();}
 
