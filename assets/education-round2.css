@@ -279,3 +279,44 @@
  .e4-ticket-stub>span:last-child{font-size:5.5px}
 }
 @media(prefers-reduced-motion:reduce){.e4-ticket,.e4-ticket::before{transition:none}}
+
+/* Align the two schools and the period/curriculum beneath their respective cities. */
+.e4-schools{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;margin:18px 0}
+.e4-schools>.e4-origin,.e4-host{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:9px;min-width:0;margin:0}
+.e4-host{align-items:flex-end;text-align:right}
+.e4-schools>.e4-origin>.e2-logo{width:108px;height:44px;object-fit:contain;object-position:left center}
+.e4-host>.e2-logo{width:155px;height:44px;max-width:100%;object-fit:contain;object-position:right center}
+.e4-schools .e4-origin>span,.e4-host>span{font:10px/1.5 var(--mono);color:var(--mut)}
+.e4-ticket-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
+.e4-ticket-fields>div:last-child{text-align:right}
+.e4-ticket-stub{gap:14px}
+.e4-stub-title{font:8px/1.6 var(--mono);letter-spacing:.07em;text-align:center;color:var(--ticket-red)}
+.e4-aircraft{font:56px/1 Arial,sans-serif;color:#dcdad4}
+.e4-stub-route{font:8px/1.6 var(--mono);color:var(--mut);white-space:nowrap}
+.e4-ticket-stub>span:last-child{font:16px/1.3 var(--mono);color:var(--ticket-red);letter-spacing:.12em}
+@media(max-width:700px){
+ .e4-schools{gap:20px;margin:18px 0}
+ .e4-schools>.e4-origin>.e2-logo{width:96px;height:36px}
+ .e4-host>.e2-logo{width:132px;height:36px}
+ .e4-schools .e4-origin>span,.e4-host>span{font-size:9px}
+ .e4-ticket-fields{gap:20px}
+ .e4-ticket-fields dd{overflow-wrap:anywhere}
+ .e4-ticket-stub{grid-template-columns:36px minmax(0,1fr) auto;gap:6px 13px;padding:15px 20px}
+ .e4-stub-title{grid-column:2;grid-row:1;text-align:left;font-size:7px}
+ .e4-aircraft{grid-column:1;grid-row:1/3;font-size:30px}
+ .e4-stub-route{grid-column:2;grid-row:2;font-size:7px}
+ .e4-ticket-stub>.e4-barcode{grid-column:3;grid-row:1;width:70px;height:22px}
+ .e4-ticket-stub>span:last-child{grid-column:3;grid-row:2;text-align:right;font-size:9px}
+}
+@media(max-width:360px){
+ .e4-schools{gap:12px}
+ .e4-schools>.e4-origin>.e2-logo{width:80px;height:32px}
+ .e4-host>.e2-logo{width:110px;height:32px}
+ .e4-schools .e4-origin>span,.e4-host>span{font-size:8px}
+ .e4-ticket-fields{gap:12px}.e4-ticket-fields dd{font-size:9px}
+ .e4-ticket-stub{grid-template-columns:24px minmax(0,1fr) 47px;gap:5px 8px;padding:13px}
+ .e4-aircraft{font-size:25px}
+ .e4-stub-title{font-size:6px;letter-spacing:0}
+ .e4-stub-route{font-size:6px}
+ .e4-ticket-stub>.e4-barcode{width:47px;height:20px}
+}
