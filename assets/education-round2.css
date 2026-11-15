@@ -1,4 +1,6 @@
 /* Six new explorations of academic timelines, passports and boarding passes. */
+.e2-intro,.e2-book-page>header{padding:0;border:0}
+.e2-path-study{padding:0;border:0}
 .e2-education{scroll-margin-top:90px}.e2-education #edu-root{margin-top:30px}
 .e2-intro{max-width:690px;margin:0 0 32px}.e2-eyebrow{font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
 .e2-intro h3{font:500 clamp(29px,3.8vw,43px)/1.13 var(--disp);letter-spacing:-.025em;margin:10px 0 14px;color:var(--green)}
