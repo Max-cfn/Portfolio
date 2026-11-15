@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-experience-variant="signature">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -371,6 +371,259 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   .project-grid{grid-template-columns:1fr}
   .edlogo{justify-content:flex-start;margin-top:8px}
 }
+
+/* Company signatures: employer plaques and client signatures on assignment cards. */
+.brand-signature{display:inline-flex;align-items:center;justify-content:center;width:112px;height:44px;padding:6px 8px;background:#fff;flex:none;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.brand-signature img{display:block;width:100%;height:30px;min-width:0;object-fit:contain}
+.brand-signature--employer img{height:34px}
+.brand-signature--dark{background:#171b1b;border-color:#171b1b}
+.brand-signature--employer{width:72px;height:48px;box-shadow:3px 3px 0 var(--green-bg)}
+.arch-company-head .brand-signature{transition:box-shadow .18s}
+.arch-company-head:hover .brand-signature{box-shadow:3px 3px 0 var(--rule2)}
+.arch-mission-head{grid-template-columns:minmax(0,1fr) 24px;gap:10px;padding:14px 16px}
+.mission-identity{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.mission-cloud{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;color:var(--mut);flex:none}
+.mission-cloud svg{width:18px;height:18px}
+.mission-heading{grid-column:1 / -1;min-width:0}
+.arch-mission-head>.arch-toggle{grid-column:2;grid-row:1;align-self:center}
+.arch-mission-name{font-size:14px;line-height:1.4}
+.arch-missions{gap:14px}
+.employer-identity{display:flex;align-items:center;gap:16px;min-width:0}
+.employer-identity>span:last-child{min-width:0}
+.brand-signature--chrono{width:94px;height:42px;margin-top:2px}
+@media(max-width:600px){
+ .employer-identity{gap:10px}
+ .brand-signature--chrono{width:72px;height:38px;padding:5px}
+ .e-btn{gap:10px;padding:12px 8px}
+ .arch-mission-head{padding:12px}
+}
+@media(max-width:430px){.brand-signature--employer{width:58px;height:40px}}
+@media(prefers-reduced-motion:reduce){.arch-company-head .brand-signature{transition:none}}
+
+
+/* PNG identities, sized to their visible artwork; cloud and stack stay readable. */
+.brand-signature{width:176px;height:80px;padding:0;justify-content:flex-start;border:0;background:transparent;border-radius:0;overflow:visible}
+.brand-signature img{width:auto;height:auto;max-width:100%;max-height:100%;mix-blend-mode:multiply}
+.brand-signature--dark{background:#171b1b;padding:10px;width:176px;height:70px}
+.brand-signature--dark img{mix-blend-mode:normal}
+.brand-signature--employer{width:96px;height:66px;box-shadow:none}
+.arch-company-head{grid-template-columns:96px minmax(0,1fr) 24px}
+.arch-company-head:hover .brand-signature{box-shadow:none}
+.mission-identity{grid-column:1 / -1;gap:16px;padding-bottom:14px}
+.mission-cloud{gap:9px;padding:9px 12px;border:1px solid var(--rule2);background:#fff;font-family:var(--sans);font-size:14px;font-weight:650;color:var(--ink);border-radius:4px}
+.mission-cloud img{display:block;width:32px;height:28px;object-fit:contain}
+.mission-heading{grid-column:1;grid-row:2}
+.arch-mission-head>.arch-toggle{grid-column:2;grid-row:2;align-self:start;margin-top:3px}
+.mission-techs{display:flex;flex-wrap:wrap;gap:6px;grid-column:1 / -1;margin-top:2px}
+.mission-techs>span{padding:5px 8px;border:1px solid var(--rule2);background:var(--paper);font-family:var(--mono);font-size:11px;line-height:1.3;font-weight:500;color:var(--ink2)}
+.e-txt>.mission-techs{margin-top:8px}
+.brand-signature--chrono{width:132px;height:66px;margin-top:0}
+@media(max-width:600px){
+ .brand-signature{width:128px;height:66px}
+ .mission-identity{gap:8px}
+ .mission-cloud{font-size:12px;padding:6px 8px;gap:6px}
+ .mission-cloud img{width:26px;height:24px}
+ .brand-signature--employer{width:76px;height:56px}
+ .arch-company-head{grid-template-columns:76px minmax(0,1fr) 24px}
+ .brand-signature--chrono{width:84px;height:56px}
+ .mission-techs>span{font-size:10px;padding:5px 7px}
+}
+@media(max-width:360px){
+ .brand-signature{width:104px}
+ .brand-signature--employer{width:64px}
+ .arch-company-head{grid-template-columns:64px minmax(0,1fr) 24px}
+ .brand-signature--chrono{width:72px}
+}
+
+
+.concept-switcher{position:static;top:auto;z-index:auto;display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--rule2)}
+.concept-switcher>span{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-right:auto}
+.concept-switcher a{padding:9px 12px;border:1px solid var(--rule2);font-size:12px;text-decoration:none;color:var(--ink);transition:background .15s}
+.concept-switcher a:hover,.concept-switcher a[aria-current=page]{background:var(--green);color:#fff;border-color:var(--green)}
+.brand-signature,.brand-signature--employer,.brand-signature--chrono{border:0;box-shadow:none;background:transparent;padding:0;overflow:visible;justify-content:flex-start}
+.brand-signature img{width:auto;height:auto;max-width:100%;max-height:100%;mix-blend-mode:multiply}
+.brand-signature--dark{background:#171b1b;padding:6px}
+.brand-signature--dark img{mix-blend-mode:normal}
+.mission-techs{gap:5px;margin-top:10px}
+.mission-techs>span{padding:4px 7px;font-size:10.5px;line-height:1.35}
+.arch-mission-name{font-size:15px;line-height:1.35}
+.arch-mission-role{font-size:10.5px;line-height:1.5}
+.arch-node-when{font-size:10px;line-height:1.4;margin-top:6px}
+.mission-cloud{border:0;background:transparent;padding:0;gap:6px;font-size:12px;color:var(--ink);font-family:inherit;white-space:nowrap}
+.mission-cloud img{width:30px;height:25px;object-fit:contain}
+.arch-row.has-company-open .arch-company-head{grid-template-columns:120px minmax(0,1fr) 24px}
+@media(max-width:600px){.concept-switcher{gap:6px}.concept-switcher>span{width:100%;margin-bottom:4px}.concept-switcher a{flex:1;text-align:center;padding:8px 6px;font-size:11px}.mission-techs>span{font-size:10px}.arch-row.has-company-open .arch-company-head{grid-template-columns:76px minmax(0,1fr) 24px}}
+
+.arch-company-head{grid-template-columns:86px minmax(0,1fr) 24px;gap:10px}
+.brand-signature--employer{width:86px;height:58px}
+.arch-mission-head{display:grid;grid-template-columns:106px minmax(0,1fr) 24px;gap:14px;align-items:center;padding:17px}
+.mission-brand{grid-column:1;grid-row:1;display:flex;align-items:center;min-width:0}
+.mission-brand .brand-signature{width:106px;height:76px}
+.mission-heading{grid-column:2;grid-row:1;min-width:0}
+.mission-titleline{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.arch-mission-head>.arch-toggle{grid-column:3;grid-row:1;align-self:center;margin:0}
+.arch-missions{gap:12px}
+@media(max-width:600px){
+.arch-mission-head{grid-template-columns:minmax(0,1fr) 24px;gap:12px;padding:14px}
+.mission-brand{grid-column:1;grid-row:1}.mission-brand .brand-signature{width:132px;height:68px}
+.mission-heading{grid-column:1 / -1;grid-row:2}.arch-mission-head>.arch-toggle{grid-column:2;grid-row:1}
+.mission-titleline{flex-direction:row;align-items:flex-start;gap:12px}.mission-titleline .arch-mission-name{flex:1}
+.arch-company-head{grid-template-columns:68px minmax(0,1fr) 24px}.brand-signature--employer{width:68px;height:48px}
+}
+
+/* Signature: stable load-balancer routing and accessible disclosure controls. */
+#parcours{--mut:#656456}
+.arch-row{--arch-company-width:290px;--arch-column-gap:70px}
+.arch-controls{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+.arch-motion{min-height:44px;padding:8px 11px;border:1px solid #8a8778;font-family:var(--mono);font-size:10.5px;color:var(--green);background:var(--card);white-space:nowrap}
+.arch-motion:hover:not(:disabled){background:var(--green-bg)}
+.arch-motion:disabled{cursor:default;color:var(--mut)}
+.arch-direction{border:0;background:transparent;padding:0;font-size:10px}
+.arch-intro{align-items:flex-start}
+.arch-item-head,.arch-item-head:hover{transform:none}
+.arch-item-head{scroll-margin-top:90px}
+.arch-item-head:focus-visible{outline-offset:3px}
+.arch-item.is-related{border-color:var(--green)}
+.arch-node-when{font-size:11px;color:var(--mut)}
+.arch-node-role,.arch-mission-role{font-size:11px}
+.arch-toggle{border-color:#8a8778;color:var(--green)}
+.arch-item-body{transition:max-height .32s cubic-bezier(.22,.61,.36,1)}
+.arch-wire-set{transition:opacity .16s}
+.arch-wire-set.is-muted{opacity:.23}
+.arch-wire-set.is-active .arch-wire-branch{opacity:1;stroke-width:1.8}
+@media(min-width:861px){
+ .arch-row.has-company-open .arch-missions{margin-left:calc(var(--arch-company-width) + var(--arch-column-gap))}
+ .arch-row.has-company-open .arch-company-head{grid-template-columns:86px minmax(0,calc(var(--arch-company-width) - 158px)) 24px;gap:10px}
+}
+@media(min-width:861px) and (max-width:980px){.arch-row{--arch-company-width:250px;--arch-column-gap:42px}}
+@media(max-width:860px){.arch-controls{justify-content:flex-start}.arch-motion{display:none}.arch-direction{white-space:normal}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .arch-item-body,.arch-wire-set,.arch-item,.arch-item-head{transition:none}
+}
+
+
+@media(min-width:861px){
+ .arch-row.has-company-open > .arch-item.on{background:transparent;border-color:transparent;box-shadow:none}
+ .arch-row.has-company-open > .arch-item > .arch-company-head{width:calc(var(--arch-company-width) - 2px);grid-template-columns:86px minmax(0,1fr) 24px;gap:10px;outline:1px solid var(--green);background:var(--green-bg)}
+ .arch-row.has-company-open > .arch-item > .arch-item-body > .arch-body-in{margin-top:14px;border:1px solid var(--green)}
+}
+
+
+/* Chronology: visible employers, a continuous mission rail, and cloud identity. */
+.chrono-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:4px 0 32px}
+.chrono-index a{display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:76px;padding:12px 16px;border:1px solid var(--rule2);border-left:3px solid var(--green);background:var(--card);text-decoration:none;transition:background .16s,border-color .16s}
+.chrono-index a:hover{background:var(--green-bg);border-color:var(--green)}
+.chrono-employer-name{font-size:14px;font-weight:650;color:var(--green)}
+.chrono-employer-dates{font-family:var(--mono);font-size:10px;color:var(--mut);line-height:1.5}
+#tl-root .emp{padding:0;border:0;background:transparent;margin:0 0 38px;scroll-margin-top:84px}
+#tl-root .emp-head{position:sticky;top:60px;z-index:4;display:grid;grid-template-columns:138px minmax(0,1fr) auto;gap:22px;align-items:center;padding:20px 22px;border:1px solid var(--rule2);border-top:3px solid var(--green);background:var(--card);box-shadow:0 5px 0 var(--paper)}
+#tl-root .emp-head:hover{border-color:var(--green)}
+#tl-root .emp-head .brand-signature--employer{width:138px;height:68px}
+.emp-kicker{display:block;font-family:var(--mono);font-size:10px;color:var(--mut);letter-spacing:.04em;margin-bottom:3px}
+#tl-root .emp-n{font-size:29px;line-height:1.2;color:var(--green)}
+#tl-root .emp-sub{font-size:11px;margin-top:5px;color:var(--ink2)}
+#tl-root .emp-when{font-size:11px;white-space:normal;margin-top:7px;color:var(--rust)}
+.emp-action{display:flex;align-items:center;gap:12px}
+.emp-action-label{font-family:var(--mono);font-size:10px;color:var(--green)}
+#tl-root .emp-x,#tl-root .e-x{border-color:#8a8778;color:var(--green)}
+#tl-root .emp-body-in{padding:22px;border:1px solid var(--rule2);border-top:0;background:var(--card)}
+#tl-root .emp-missions{padding:22px 0 0}
+#tl-root .emp-missions>.mlabel{margin-left:30px;font-size:10px}
+#tl-root .entry{padding-left:30px;margin-bottom:14px}
+#tl-root .entry::before{left:9px;background:var(--green)}
+#tl-root .entry::after{left:5.5px;top:31px;width:8px;height:8px;border:1px solid var(--green);border-radius:50%;background:var(--card)}
+#tl-root .entry:not(:last-child)::before{bottom:-14px}
+#tl-root .entry:last-child::before{height:35px}
+#tl-root .e-card{position:relative;border:1px solid var(--rule2);background:var(--card);transition:border-color .16s,background .16s}
+#tl-root .e-card::before{content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:4px;background:var(--green);pointer-events:none}
+#tl-root .e-card[data-cloud=aws]::before{background:#ff9900}
+#tl-root .e-card[data-cloud=gcp]::before{background:linear-gradient(90deg,#4285f4 0 25%,#ea4335 25% 50%,#fbbc05 50% 75%,#34a853 75% 100%)}
+#tl-root .e-card:hover,#tl-root .e-card.on{border-color:var(--green)}
+#tl-root .e-btn{padding:19px 20px;gap:20px;align-items:center}
+#tl-root .brand-signature--chrono{width:130px;height:78px;flex:none}
+.e-topline{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+#tl-root .e-when{font-size:11px;color:var(--mut);margin:0}
+#tl-root .e-t{font-size:16px;line-height:1.4}
+#tl-root .e-c{font-size:11px;color:var(--green);margin-top:5px;line-height:1.45}
+#tl-root .mission-techs{margin-top:10px}
+#tl-root .mission-cloud{font-size:12px}
+#tl-root .mission-cloud img{width:30px;height:24px}
+#tl-root .e-body-in{margin:0 20px 20px;padding:18px 0 0;border-left:0;border-top:1px solid var(--rule)}
+@media(max-width:700px){
+ .chrono-index{gap:6px;margin-bottom:22px}
+ .chrono-index a{padding:10px;min-height:76px;gap:4px}
+ .chrono-employer-name{font-size:12px}
+ .chrono-employer-dates{font-size:9px}
+ #tl-root .emp-head{grid-template-columns:86px minmax(0,1fr) 28px;gap:12px;padding:15px 14px}
+ #tl-root .emp-head .brand-signature--employer{width:86px;height:62px}
+ #tl-root .emp-n{font-size:23px}
+ .emp-action-label{display:none}
+ #tl-root .emp-x{width:28px;height:28px}
+ .emp-kicker{font-size:9px}
+ #tl-root .emp-sub,#tl-root .emp-when{font-size:10px}
+ #tl-root .e-btn{padding:16px 13px;gap:12px;flex-wrap:wrap;align-items:flex-start}
+ #tl-root .brand-signature--chrono{width:108px;height:66px}
+ #tl-root .e-txt{flex:1;flex-basis:calc(100% - 150px);min-width:0}
+ #tl-root .e-x{width:26px;height:26px}
+ #tl-root .e-t{font-size:14px}
+ #tl-root .e-c,#tl-root .e-when{font-size:10px}
+ .e-topline{gap:8px}
+}
+@media(max-width:450px){
+ #tl-root .entry{padding-left:20px}
+ #tl-root .entry::before{left:5px}
+ #tl-root .entry::after{left:1.5px}
+ #tl-root .emp-missions>.mlabel{margin-left:20px}
+ #tl-root .e-btn{display:grid;grid-template-columns:minmax(0,1fr) 26px;gap:12px}
+ #tl-root .brand-signature--chrono{grid-column:1;grid-row:1;width:132px;height:70px}
+ #tl-root .e-txt{grid-column:1 / -1;grid-row:2}
+ #tl-root .e-x{grid-column:2;grid-row:1;align-self:center}
+ #tl-root .e-topline{flex-wrap:wrap}
+ #tl-root .emp-body-in{padding:17px}
+ .chrono-employer-dates{display:none}
+ .chrono-index a{min-height:48px;padding:9px 7px}
+}
+@media(prefers-reduced-motion:reduce){.chrono-index a,#tl-root .e-card,#tl-root .emp-body,#tl-root .e-body{transition:none}}
+
+
+/* Exact graph coordinates and complete, consistently aligned provider PNGs. */
+@media(min-width:861px){
+ .arch-row > .arch-item > .arch-company-head,
+ .arch-row .arch-missions > .arch-item:first-child > .arch-mission-head{min-height:var(--arch-first-node-height,0px)}
+}
+.mission-cloud,#tl-root .mission-cloud{display:inline-flex;align-items:center;gap:6px;min-height:32px;line-height:1;overflow:visible;flex:none}
+.mission-cloud>img,#tl-root .mission-cloud>img{display:block;width:42px;height:32px;min-width:42px;max-width:none;object-fit:contain;object-position:center;flex:none;overflow:visible}
+.mission-cloud>span,#tl-root .mission-cloud>span{display:block;align-self:center;line-height:1;white-space:nowrap}
+#tl-root .e-topline{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
+#tl-root .emp-missions{--chrono-rail-x:9px;--chrono-label-offset:30px}
+#tl-root .emp-missions>.mlabel{position:relative}
+#tl-root .emp-missions>.mlabel::before{content:"";position:absolute;left:calc(var(--chrono-rail-x) - var(--chrono-label-offset));top:-22px;bottom:-12px;width:1px;background:var(--green);pointer-events:none}
+@media(max-width:450px){#tl-root .emp-missions{--chrono-rail-x:5px;--chrono-label-offset:20px}}
+
+/* Quiet downward flow with a short handoff into each assignment. */
+#tl-root .emp-missions{position:relative}
+.chrono-controls{display:flex;justify-content:flex-end;margin:0 0 16px}
+#chrono-motion{display:block}
+#tl-root .entry::before,#tl-root .emp-missions>.mlabel::before{background:color-mix(in srgb,var(--green) 38%,transparent)}
+#tl-root .entry::after{left:var(--chrono-rail-x);top:35px;width:calc(var(--chrono-label-offset) - var(--chrono-rail-x));height:1px;border:0;border-radius:0;background:color-mix(in srgb,var(--green) 38%,transparent)}
+.chrono-junction{position:absolute;left:calc(var(--chrono-rail-x) - 2px);top:33px;width:5px;height:5px;border:1px solid color-mix(in srgb,var(--green) 65%,transparent);border-radius:50%;background:var(--card);z-index:1;pointer-events:none}
+.chrono-flow{position:absolute;left:var(--chrono-rail-x);top:0;width:0;height:var(--chrono-flow-length,0px);pointer-events:none;z-index:2}
+.chrono-packet,.chrono-handoff{position:absolute;left:-2.5px;top:-2.5px;width:5px;height:5px;border-radius:50%;background:var(--green);opacity:0;pointer-events:none;animation:chrono-packet-down var(--chrono-flow-duration,12s) linear infinite;animation-play-state:paused}
+.chrono-packet:nth-child(2){animation-duration:var(--chrono-flow-fast-duration,7s);animation-delay:var(--chrono-flow-fast-delay,-2s)}
+.chrono-handoff{left:calc(var(--chrono-rail-x) - 2.5px);top:32.5px;z-index:2;animation-name:chrono-handoff;animation-delay:var(--chrono-arrival,0s)}
+#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-packet,#tl-root.flow-enabled .emp-missions.is-flow-visible .chrono-handoff{animation-play-state:running}
+@keyframes chrono-packet-down{
+  0%{transform:translate3d(0,0,0);opacity:0}
+  3%,98%{opacity:1}
+  100%{transform:translate3d(0,var(--chrono-flow-length,0px),0);opacity:0}
+}
+@keyframes chrono-handoff{
+  0%{transform:translate3d(0,0,0);opacity:0}
+  .3%{opacity:1}
+  3%,100%{transform:translate3d(calc(var(--chrono-label-offset) - var(--chrono-rail-x)),0,0);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.chrono-packet,.chrono-handoff{display:none;animation:none}}
 </style>
 <link rel="stylesheet" href="assets/kloud-project.css">
 <link rel="stylesheet" href="assets/contributions.css">
@@ -444,14 +697,14 @@ footer{border-top:1px solid var(--rule);padding:22px 0 34px;display:flex;justify
   <div class="view on" id="view-arch" role="tabpanel" aria-labelledby="tab-arch" aria-hidden="false">
     <div class="arch-intro">
       <p class="arch-hint" data-t="arch_hint"></p>
-      <span class="arch-direction" data-t="arch_direction"></span>
+      <span class="arch-controls"><span class="arch-direction" data-t="arch_direction"></span><button id="arch-motion" class="arch-motion" type="button" aria-pressed="false" onclick="toggleArchMotion()">Mettre le flux en pause</button></span>
     </div>
     <div class="arch-canvas" id="arch-canvas">
-      <svg class="arch-wires" id="arch-wires" aria-hidden="true"></svg>
+      <svg class="arch-wires" id="arch-wires" aria-hidden="true" preserveAspectRatio="none"></svg>
       <div class="arch-rows" id="arch-root"></div>
     </div>
   </div>
-  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div id="tl-root"></div></div>
+  <div class="view" id="view-chrono" role="tabpanel" aria-labelledby="tab-chrono" aria-hidden="true"><div class="chrono-controls"><button id="chrono-motion" class="arch-motion" type="button" aria-pressed="false" onclick="toggleArchMotion()"></button></div><div id="tl-root"></div></div>
 </section>
 
 <section id="skills">
@@ -1077,11 +1330,54 @@ function detailHTML(o){
 
 /* ── schéma vertical du parcours ── */
 const COMPANY_LOGOS={
-  devoteam:{src:"https://upload.wikimedia.org/wikipedia/commons/7/79/Dev_logo_rgb.png",alt:"Devoteam"},
-  hardis:{src:"https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_HG_Generic_RGB.svg",alt:"Hardis Group"},
-  also:{src:"https://upload.wikimedia.org/wikipedia/commons/f/fd/ALSO_Holding_AG_Logo_2020.svg",alt:"ALSO Group"}
+  "devoteam": {
+    "src": "assets/companies/devoteam.png",
+    "alt": "Devoteam"
+  },
+  "hardis": {
+    "src": "assets/companies/hardis.png",
+    "alt": "Hardis Group"
+  },
+  "also": {
+    "src": "assets/companies/also.png",
+    "alt": "ALSO Group"
+  },
+  "bv": {
+    "src": "assets/companies/bureau-veritas.png",
+    "alt": "Bureau Veritas"
+  },
+  "courir": {
+    "src": "assets/companies/courir.png",
+    "alt": "Courir"
+  },
+  "gl": {
+    "src": "assets/companies/galeries-lafayette.png",
+    "alt": "Galeries Lafayette"
+  },
+  "fp": {
+    "src": "assets/companies/fitness-park.png",
+    "alt": "Fitness Park",
+    "dark": true
+  },
+  "dim": {
+    "src": "assets/companies/dimotrans.png",
+    "alt": "Dimotrans Group"
+  },
+  "finare": {
+    "src": "assets/companies/finare.png",
+    "alt": "Finaré"
+  }
 };
+COMPANY_LOGOS.genai=COMPANY_LOGOS.devoteam;
+function brandLogo(id,extra=''){
+  const logo=COMPANY_LOGOS[id];
+  return `<span class="brand-signature ${logo.dark?'brand-signature--dark ':''}${extra}"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" width="112" height="40" referrerpolicy="no-referrer"></span>`;
+}
+const MISSION_TECHS={"bv":["Terraform","GitLab CI","ECS"],"genai":["LiteLLM","GitLab CI","ECS"],"courir":["Monitoring","Workflows","Terraform"],"gl":["GKE","Kubernetes","Terraform","ArgoCD"],"fp":["ECS Fargate","Terraform","WAF"],"dim":["EC2","RDS","MySQL"],"finare":["Snowflake","CloudFormation","Aurora"]};
+function missionTech(m){return `<span class="mission-techs" aria-label="${LANG==='fr'?'Technologies principales':'Core technologies'}">${MISSION_TECHS[m.id].map(s=>`<span>${s}</span>`).join('')}</span>`;}
 let ARCHEXPANDED=null,ARCHOBSERVER=null,ARCHDRAWRAF=null,ARCHLAYOUTRAF=null,ARCHPACKETRAF=null,ARCHPACKETLAST=0;
+let ARCHINTERSECTION=null,ARCHVISIBLE=false,ARCHPAUSED=false,ARCHPACKETTICK=0,DISCLOSURE_SEQ=0;
+const ARCHMOTION_QUERY=matchMedia('(prefers-reduced-motion: reduce)'),ARCHDESKTOP_QUERY=matchMedia('(min-width:861px)');
 
 function archBodyHTML(item){
   return `${item.intro?`<p>${pick(item.intro)}</p>`:''}
@@ -1094,12 +1390,20 @@ function makeArchItem(type,id,item,headHTML,headClass){
   article.className='arch-item';
   article.dataset.type=type;
   article.dataset.id=id;
+  if(item.cloud)article.dataset.cloud=item.cloud;
   article.innerHTML=`<button class="arch-item-head ${headClass}" type="button" aria-expanded="false">
       ${headHTML}<span class="arch-toggle" aria-hidden="true">+</span>
     </button>
     <div class="arch-item-body"><div class="arch-body-in">${archBodyHTML(item)}</div></div>`;
   const body=article.querySelector('.arch-item-body');
+  body.id='arch-panel-'+type+'-'+id;
+  body.setAttribute('role','region');
   initBody(body,false);
+  const trigger=article.querySelector('.arch-item-head');
+  trigger.addEventListener('mouseenter',()=>setArchEmphasis({type,id}));
+  trigger.addEventListener('mouseleave',()=>setArchEmphasis(ARCHEXPANDED));
+  trigger.addEventListener('focus',()=>setArchEmphasis({type,id}));
+  trigger.addEventListener('blur',()=>setArchEmphasis(ARCHEXPANDED));
   article.querySelector('.arch-item-head').addEventListener('click',()=>toggleArchItem(type,id));
   body.addEventListener('transitionend',()=>drawArchWires());
   return article;
@@ -1132,8 +1436,11 @@ function toggleArchItem(type,id){
 function archZoneLocation(company){
   return pick(company.loc).replace(/\s*·\s*(hybride|hybrid)$/i,'');
 }
+function missionName(m){return pick(m.card).replace(/^[^—]+ — /,"");}
 function renderArch(){
+  const previous=ARCHEXPANDED;
   ARCHEXPANDED=null;
+  stopArchPacketAnimation();
   const root=$('#arch-root');
   root.innerHTML='';
   CONFIG.companies.forEach((co,index)=>{
@@ -1145,8 +1452,7 @@ function renderArch(){
     const zoneLabel=`${t('arch_zone')} ${co.name} · ${archZoneLocation(co)}`;
     row.innerHTML=`<span class="arch-row-label" title="${zoneLabel}">${zoneLabel}</span>`;
 
-    const logo=COMPANY_LOGOS[co.id];
-    const companyHead=`<span class="arch-company-logo"><img src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>
+    const companyHead=`${brandLogo(co.id,'brand-signature--employer')}
       <span><span class="arch-node-role">${pick(co.role)} · ${pick(co.contract)}</span><strong class="arch-company-name">${co.name}</strong>
       <span class="arch-node-when">${whenStr(co)}</span>
       ${co.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
@@ -1156,47 +1462,63 @@ function renderArch(){
       const missionRoot=document.createElement('div');
       missionRoot.className='arch-missions';
       missions.forEach(m=>{
-        const missionHead=`<span class="arch-provider">${LOGOS[m.cloud]||LOGOS.oth}</span>
-          <span><strong class="arch-mission-name">${pick(m.card)}</strong>
-          <span class="arch-mission-role">${pick(m.role)}</span>
-          <span class="arch-node-when">${pick(m.when)}</span>
-          ${m.live?`<span class="arch-live">${t('current')}</span>`:''}</span>`;
+        const missionHead=`<span class="mission-brand">${brandLogo(m.id)}</span><span class="mission-heading"><span class="mission-titleline"><span class="mission-cloud"><img src="assets/companies/cloud-${m.cloud}-full.png" alt="" width="32" height="32"><span>${m.cloud==='aws'?'AWS':'GCP'}</span></span><strong class="arch-mission-name">${missionName(m)}</strong></span><span class="arch-mission-role">${pick(m.role)}</span><span class="arch-node-when">${pick(m.when)}${m.live?' · '+t('current'):''}</span>${missionTech(m)}</span>`;
         missionRoot.appendChild(makeArchItem('mission',m.id,m,missionHead,'arch-mission-head'));
       });
       row.appendChild(missionRoot);
     }
     root.appendChild(row);
   });
-  requestAnimationFrame(drawArchWires);
+  root.onkeydown=event=>{
+    if(event.key!=='Escape'||!ARCHEXPANDED)return;
+    event.preventDefault();
+    const selected=ARCHEXPANDED,trigger=root.querySelector('.arch-item[data-type="'+selected.type+'"][data-id="'+selected.id+'"] > .arch-item-head');
+    toggleArchItem(selected.type,selected.id);
+    if(trigger)trigger.focus({preventScroll:true});
+  };
+  if(previous&&root.querySelector('.arch-item[data-type="'+previous.type+'"][data-id="'+previous.id+'"]'))toggleArchItem(previous.type,previous.id);
+  if(ARCHOBSERVER)ARCHOBSERVER.disconnect();
   if('ResizeObserver' in window){
-    if(ARCHOBSERVER)ARCHOBSERVER.disconnect();
     ARCHOBSERVER=new ResizeObserver(scheduleArchWires);
     ARCHOBSERVER.observe($('#arch-canvas'));
+    root.querySelectorAll('.arch-item').forEach(el=>ARCHOBSERVER.observe(el));
   }
+  if(ARCHINTERSECTION)ARCHINTERSECTION.disconnect();
+  if('IntersectionObserver' in window){
+    ARCHVISIBLE=false;
+    ARCHINTERSECTION=new IntersectionObserver(entries=>{
+      ARCHVISIBLE=entries.some(entry=>entry.isIntersecting);
+      ensureArchPacketAnimation();
+    });
+    ARCHINTERSECTION.observe($('#arch-canvas'));
+  }else ARCHVISIBLE=true;
+  syncArchMotionControl();
+  scheduleArchWires();
 }
+
 function archPoint(el,side,base){
   const r=el.getBoundingClientRect();
-  if(side==='right')return{x:r.right-base.left,y:r.top+r.height/2-base.top};
-  if(side==='left')return{x:r.left-base.left,y:r.top+r.height/2-base.top};
+  if(side==='right')return{x:el.closest('.arch-item').getBoundingClientRect().right-base.left,y:r.top+r.height/2-base.top};
+  if(side==='left')return{x:el.closest('.arch-item').getBoundingClientRect().left-base.left,y:r.top+r.height/2-base.top};
   if(side==='bottom')return{x:r.left+r.width/2-base.left,y:r.bottom-base.top};
   return{x:r.left+r.width/2-base.left,y:r.top-base.top};
 }
 function archMainPoint(el,side,base){
-  const r=el.getBoundingClientRect(),columnWidth=matchMedia('(max-width:980px)').matches?250:290;
-  const point={x:r.left+Math.min(columnWidth,r.width)/2-base.left,y:r.top-base.top};
-  if(side==='bottom')point.y=r.bottom-base.top;
-  return point;
+  const row=el.closest('.arch-row'),article=el.closest('.arch-item');
+  const r=article.classList.contains('on')?article.getBoundingClientRect():el.getBoundingClientRect();
+  const width=parseFloat(getComputedStyle(row).getPropertyValue('--arch-company-width'))||r.width;
+  return{x:r.left+Math.min(width,r.width)/2-base.left,y:(side==='bottom'?r.bottom:r.top)-base.top};
 }
-const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=54;
+const ARCH_NS='http://www.w3.org/2000/svg',ARCH_PACKET_SPEED=46;
 function ensureArchDefs(svg){
   if(svg.querySelector('#arch-arrow'))return;
   const defs=document.createElementNS(ARCH_NS,'defs');
-  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
+  defs.innerHTML='<marker id="arch-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--green)"/></marker>';
   svg.prepend(defs);
 }
 function syncArchWire(svg,key,d,main,index,alive){
   alive.add(key);
-  let group=[...svg.querySelectorAll('.arch-wire-set')].find(node=>node.dataset.key===key);
+  let group=svg.querySelector('[data-key="'+key+'"]');
   if(!group){
     group=document.createElementNS(ARCH_NS,'g');
     group.setAttribute('class','arch-wire-set');
@@ -1204,17 +1526,40 @@ function syncArchWire(svg,key,d,main,index,alive){
     const path=document.createElementNS(ARCH_NS,'path');
     path.setAttribute('class','arch-wire '+(main?'arch-wire-main':'arch-wire-branch'));
     path.setAttribute('marker-end','url(#arch-arrow)');
-    group.appendChild(path);
-    svg.appendChild(group);
+    group.appendChild(path);svg.appendChild(group);
   }
-  group.querySelector('.arch-wire').setAttribute('d',d);
+  const path=group.firstElementChild;
+  let changed=path.getAttribute('d')!==d;
+  if(changed){
+    const oldLength=path._archLength||0;
+    path.setAttribute('d',d);path._archLength=path.getTotalLength();
+    const oldPacket=group.querySelector('.arch-packet');
+    if(oldPacket&&oldLength)oldPacket._archDistance=(oldPacket._archDistance||0)/oldLength*path._archLength;
+  }
   let packet=group.querySelector('.arch-packet');
-  if(main||matchMedia('(prefers-reduced-motion: reduce)').matches){if(packet)packet.remove();return;}
+  if(main||ARCHMOTION_QUERY.matches){if(packet)packet.remove();return;}
   if(!packet){
     packet=document.createElementNS(ARCH_NS,'circle');
     packet.setAttribute('class','arch-packet');packet.setAttribute('r','2.3');
-    packet.dataset.seed=String(index*43);group.appendChild(packet);
+    packet._archDistance=(index*43)%(path._archLength||1);
+    group.appendChild(packet);changed=true;
   }
+  packet._archPath=path;
+  if(changed&&path._archLength){
+    const point=path.getPointAtLength(packet._archDistance||0);
+    packet.setAttribute('cx',point.x);packet.setAttribute('cy',point.y);
+  }
+}
+function setArchEmphasis(selected=ARCHEXPANDED){
+  const mission=selected&&selected.type==='mission'?CONFIG.missions.find(m=>m.id===selected.id):null;
+  const company=mission?mission.company:selected&&selected.id;
+  document.querySelectorAll('.arch-wire-set').forEach(group=>{
+    if(!group.dataset.key.startsWith('branch:'))return;
+    const parts=group.dataset.key.split(':'),active=!!selected&&parts[1]===company&&(selected.type==='company'||parts[2]===selected.id);
+    group.classList.toggle('is-active',active);
+    group.classList.toggle('is-muted',!!selected&&!active);
+  });
+  document.querySelectorAll('#arch-root > .arch-row > .arch-item').forEach(item=>item.classList.toggle('is-related',!!mission&&item.dataset.id===company));
 }
 function scheduleArchWires(){
   if(ARCHDRAWRAF)return;
@@ -1222,151 +1567,257 @@ function scheduleArchWires(){
 }
 function trackArchLayout(duration=460){
   if(ARCHLAYOUTRAF)cancelAnimationFrame(ARCHLAYOUTRAF);
-  const started=performance.now();
+  if(ARCHMOTION_QUERY.matches){scheduleArchWires();return;}
+  const started=performance.now();let last=0;
   const follow=now=>{
-    drawArchWires();
+    if(now-last>=32){drawArchWires();last=now;}
     if(now-started<duration)ARCHLAYOUTRAF=requestAnimationFrame(follow);
-    else{ARCHLAYOUTRAF=null;drawArchWires();}
+    else{ARCHLAYOUTRAF=null;scheduleArchWires();}
   };
   ARCHLAYOUTRAF=requestAnimationFrame(follow);
 }
+function archCanAnimate(){
+  const view=$('#view-arch');
+  return !ARCHPAUSED&&!document.hidden&&ARCHVISIBLE&&ARCHDESKTOP_QUERY.matches&&!ARCHMOTION_QUERY.matches&&view&&view.classList.contains('on');
+}
+function stopArchPacketAnimation(){
+  if(ARCHPACKETRAF)cancelAnimationFrame(ARCHPACKETRAF);
+  ARCHPACKETRAF=null;ARCHPACKETLAST=0;ARCHPACKETTICK=0;
+}
 function ensureArchPacketAnimation(){
-  if(ARCHPACKETRAF||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  ARCHPACKETLAST=0;
-  ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
+  syncChronoFlowState();
+  if(!archCanAnimate()){stopArchPacketAnimation();return;}
+  if(!ARCHPACKETRAF&&$('#arch-wires .arch-packet'))ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
 }
 function animateArchPackets(now){
   ARCHPACKETRAF=null;
-  const canvas=$('#arch-canvas'),svg=$('#arch-wires');
-  if(!canvas||!svg||!canvas.getClientRects().length||matchMedia('(prefers-reduced-motion: reduce)').matches){ARCHPACKETLAST=0;return;}
-  const dt=ARCHPACKETLAST?Math.min((now-ARCHPACKETLAST)/1000,.05):0;
-  ARCHPACKETLAST=now;
-  const packets=[...svg.querySelectorAll('.arch-packet')];
+  if(!archCanAnimate()){stopArchPacketAnimation();return;}
+  if(now-ARCHPACKETTICK<32){ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);return;}
+  const dt=ARCHPACKETLAST?Math.min((now-ARCHPACKETLAST)/1000,.08):0;
+  ARCHPACKETLAST=now;ARCHPACKETTICK=now;
+  const packets=$('#arch-wires').querySelectorAll('.arch-packet');
   packets.forEach(packet=>{
-    const path=packet.parentNode.querySelector('.arch-wire');
-    const length=path.getTotalLength();
+    const path=packet._archPath,length=path&&path._archLength;
     if(!length)return;
-    const previousLength=Number(packet.dataset.pathLength)||length;
-    let distance=packet.dataset.distance===undefined?(Number(packet.dataset.seed)||0)%length:Number(packet.dataset.distance);
-    if(previousLength!==length)distance=distance/previousLength*length;
-    distance=(distance+ARCH_PACKET_SPEED*dt)%length;
-    const point=path.getPointAtLength(distance);
-    packet.setAttribute('cx',point.x);
-    packet.setAttribute('cy',point.y);
-    packet.dataset.distance=String(distance);
-    packet.dataset.pathLength=String(length);
+    packet._archDistance=((packet._archDistance||0)+ARCH_PACKET_SPEED*dt)%length;
+    const point=path.getPointAtLength(packet._archDistance);
+    packet.setAttribute('cx',point.x);packet.setAttribute('cy',point.y);
   });
   if(packets.length)ARCHPACKETRAF=requestAnimationFrame(animateArchPackets);
 }
+function syncArchMotionControl(){
+  const buttons=[$('#arch-motion'),$('#chrono-motion')].filter(Boolean);
+  buttons.forEach(button=>{
+  const reduced=ARCHMOTION_QUERY.matches;
+  button.disabled=reduced;
+  button.setAttribute('aria-pressed',ARCHPAUSED?'true':'false');
+  button.textContent=reduced?(LANG==='fr'?'Animations réduites':'Reduced motion'):(ARCHPAUSED?(LANG==='fr'?'Reprendre le flux':'Resume flow'):(LANG==='fr'?'Mettre le flux en pause':'Pause flow'));
+  });
+}
+function toggleArchMotion(){
+  ARCHPAUSED=!ARCHPAUSED;syncArchMotionControl();ensureArchPacketAnimation();
+}
+function syncArchNodeHeights(){
+  const changes=[];
+  document.querySelectorAll('#arch-root > .arch-row').forEach(row=>{
+    const company=row.querySelector(':scope > .arch-item > .arch-company-head');
+    const mission=row.querySelector('.arch-missions > .arch-item:first-child > .arch-mission-head');
+    if(!company||!mission)return;
+    const naturalHeight=head=>{
+      const style=getComputedStyle(head);
+      return Math.max(...[...head.children].map(child=>child.getBoundingClientRect().height),0)
+        +parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)
+        +parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth);
+    };
+    const height=Math.ceil(Math.max(naturalHeight(company),naturalHeight(mission)))+'px';
+    if(row.style.getPropertyValue('--arch-first-node-height')!==height)changes.push([row,height]);
+  });
+  changes.forEach(([row,height])=>row.style.setProperty('--arch-first-node-height',height));
+}
+
 function drawArchWires(){
   const canvas=$('#arch-canvas'),svg=$('#arch-wires');
   if(!canvas||!svg)return;
-  if(matchMedia('(max-width:860px)').matches){svg.replaceChildren();return;}
-  const base=canvas.getBoundingClientRect();
-  if(base.width<2||base.height<2)return;
-  svg.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);
-  ensureArchDefs(svg);
-  const alive=new Set(),companies=[...canvas.querySelectorAll('.arch-company-head')];
+  if(!ARCHDESKTOP_QUERY.matches){svg.replaceChildren();stopArchPacketAnimation();return;}
+  if(svg.getBoundingClientRect().width<2){stopArchPacketAnimation();return;}
+  syncArchNodeHeights();
+  const base=svg.getBoundingClientRect();
+  if(base.width<2||base.height<2){stopArchPacketAnimation();return;}
+  const geometry=[],companies=[...canvas.querySelectorAll('.arch-company-head')];
+  const coord=n=>Math.round(n*100)/100;
+  const p=(a,axis)=>coord(a[axis]);
   companies.forEach((newer,index)=>{
-    const companyId=newer.closest('.arch-row').dataset.company;
+    const row=newer.closest('.arch-row'),companyId=row.dataset.company;
     if(index<companies.length-1){
       const older=companies[index+1],olderId=older.closest('.arch-row').dataset.company;
-      const a=archMainPoint(older,'top',base),b=archMainPoint(newer,'bottom',base),mid=(a.y+b.y)/2;
-      syncArchWire(svg,`main:${olderId}:${companyId}`,`M${a.x} ${a.y}V${mid}H${b.x}V${b.y}`,true,index,alive);
+      const a=archMainPoint(older,'top',base),b=archMainPoint(newer,'bottom',base),mid=coord((a.y+b.y)/2);
+      geometry.push({key:'main:'+olderId+':'+companyId,d:'M'+p(a,'x')+' '+p(a,'y')+'V'+mid+'H'+p(b,'x')+'V'+p(b,'y'),main:true,index});
     }
-    const row=newer.closest('.arch-row');
     row.querySelectorAll('.arch-mission-head').forEach((mission,missionIndex)=>{
-      const missionId=mission.closest('.arch-item').dataset.id;
-      const a=archPoint(newer,'right',base),b=archPoint(mission,'left',base),mid=(a.x+b.x)/2;
-      syncArchWire(svg,`branch:${companyId}:${missionId}`,`M${a.x} ${a.y}H${mid}V${b.y}H${b.x}`,false,index*6+missionIndex,alive);
+      const missionId=mission.closest('.arch-item').dataset.id,b=archPoint(mission,'left',base);
+      let d;
+      if(row.classList.contains('has-company-open')){
+        const a=archMainPoint(newer,'bottom',base),mid=coord(b.x-28),elbow=coord(a.y+10);
+        d='M'+p(a,'x')+' '+p(a,'y')+'V'+elbow+'H'+mid+'V'+p(b,'y')+'H'+p(b,'x');
+      }else{
+        const a=archPoint(newer,'right',base),mid=coord((a.x+b.x)/2);
+        d='M'+p(a,'x')+' '+p(a,'y')+'H'+mid+'V'+p(b,'y')+'H'+p(b,'x');
+      }
+      geometry.push({key:'branch:'+companyId+':'+missionId,d,main:false,index:index*6+missionIndex});
     });
   });
+  const viewBox='0 0 '+coord(base.width)+' '+coord(base.height);
+  if(svg.getAttribute('viewBox')!==viewBox)svg.setAttribute('viewBox',viewBox);
+  ensureArchDefs(svg);
+  const alive=new Set();
+  geometry.forEach(g=>syncArchWire(svg,g.key,g.d,g.main,g.index,alive));
   svg.querySelectorAll('.arch-wire-set').forEach(group=>{if(!alive.has(group.dataset.key))group.remove();});
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)svg.querySelectorAll('.arch-packet').forEach(packet=>packet.remove());
-  else ensureArchPacketAnimation();
+  setArchEmphasis();
+  ensureArchPacketAnimation();
 }
 
 /* ── dépliage animé ──
    Une fois ouvert, le bloc repasse en max-height:none : il suit alors les
    reflows (resize, chargement des polices, onglet masqué) sans recalcul. */
+function setDisclosureAccessibility(el,open){
+  el.setAttribute('aria-hidden',open?'false':'true');
+  el.toggleAttribute('inert',!open);
+}
 function initBody(el,open){
   el.dataset.open=open?'1':'0';
   el.style.maxHeight=open?'none':'0px';
+  if(!el.id)el.id='disclosure-panel-'+(++DISCLOSURE_SEQ);
+  const trigger=el.previousElementSibling;
+  if(trigger&&trigger.tagName==='BUTTON'){
+    if(!trigger.id)trigger.id=el.id+'-trigger';
+    trigger.setAttribute('aria-controls',el.id);
+    el.setAttribute('aria-labelledby',trigger.id);
+  }
+  setDisclosureAccessibility(el,open);
   el.addEventListener('transitionend',ev=>{
     if(ev.target===el&&ev.propertyName==='max-height'&&el.dataset.open==='1')el.style.maxHeight='none';
   });
 }
 function setBody(el,open){
   if(el.dataset.open===(open?'1':'0'))return;
-  if(open){el.dataset.open='1';el.style.maxHeight=el.scrollHeight+'px';return;}
-  el.style.maxHeight=el.scrollHeight+'px';   /* fige la hauteur avant l'animation */
+  if(el._bodyRAF)cancelAnimationFrame(el._bodyRAF);
+  const current=el.getBoundingClientRect().height;
+  el.style.maxHeight=current+'px';
+  el.dataset.open=open?'1':'0';
+  setDisclosureAccessibility(el,open);
+  if(ARCHMOTION_QUERY.matches){el.style.maxHeight=open?'none':'0px';return;}
   void el.offsetHeight;
-  el.dataset.open='0';
-  requestAnimationFrame(()=>{if(el.dataset.open==='0')el.style.maxHeight='0px';});
+  el._bodyRAF=requestAnimationFrame(()=>{
+    el._bodyRAF=null;
+    el.style.maxHeight=el.dataset.open==='1'?el.scrollHeight+'px':'0px';
+  });
 }
 
 /* ── chronologie par employeur ── */
+let CHRONORESIZE=null,CHRONOINTERSECTION=null,CHRONOLAYOUTRAF=null;
+function syncChronoFlowState(){
+  const root=$('#tl-root'),view=$('#view-chrono');
+  if(root)root.classList.toggle('flow-enabled',!ARCHPAUSED&&!document.hidden&&!ARCHMOTION_QUERY.matches&&!!view&&view.classList.contains('on'));
+}
+function measureChronoFlow(){
+  CHRONOLAYOUTRAF=null;
+  if(!$('#view-chrono').classList.contains('on'))return;
+  document.querySelectorAll('#tl-root .emp-missions').forEach(zone=>{
+    const last=zone.querySelector('.entry:last-child');if(!last)return;
+    const length=Math.max(0,last.getBoundingClientRect().top-zone.getBoundingClientRect().top+35);
+    const value=length.toFixed(2)+'px';
+    if(zone.style.getPropertyValue('--chrono-flow-length')!==value){
+      zone.style.setProperty('--chrono-flow-length',value);
+      const speed=zone.closest('.emp').dataset.company==='hardis'?88:72;
+      const duration=Math.max(2.5,length/speed);
+      const fastDuration=Math.max(1.8,length/(speed*1.45));
+      zone.style.setProperty('--chrono-flow-fast-duration',fastDuration.toFixed(2)+'s');
+      zone.style.setProperty('--chrono-flow-fast-delay',(-fastDuration*.42).toFixed(2)+'s');
+      zone.style.setProperty('--chrono-flow-duration',duration.toFixed(2)+'s');
+      zone.querySelectorAll('.entry').forEach(entry=>{
+        const distance=entry.getBoundingClientRect().top-zone.getBoundingClientRect().top+35;
+        entry.style.setProperty('--chrono-arrival',(distance/length*duration).toFixed(3)+'s');
+      });
+    }
+  });
+}
+function scheduleChronoFlow(){
+  if(CHRONOLAYOUTRAF===null)CHRONOLAYOUTRAF=requestAnimationFrame(measureChronoFlow);
+}
+function observeChronoFlow(){
+  CHRONORESIZE?.disconnect();CHRONOINTERSECTION?.disconnect();
+  const zones=document.querySelectorAll('#tl-root .emp-missions');
+  if('ResizeObserver' in window){
+    CHRONORESIZE=new ResizeObserver(scheduleChronoFlow);
+    zones.forEach(zone=>CHRONORESIZE.observe(zone));
+  }
+  if('IntersectionObserver' in window){
+    CHRONOINTERSECTION=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('is-flow-visible',entry.isIntersecting)));
+    zones.forEach(zone=>CHRONOINTERSECTION.observe(zone));
+  }else zones.forEach(zone=>zone.classList.add('is-flow-visible'));
+  syncChronoFlowState();scheduleChronoFlow();
+}
 function renderChrono(){
-  const root=$('#tl-root');root.innerHTML='';
+  const root=$('#tl-root');
+  const firstRender=!root.querySelector('.emp');
+  const openedCompanies=new Set([...root.querySelectorAll('.emp.on')].map(el=>el.dataset.company));
+  const openedMissions=new Set([...root.querySelectorAll('.e-card.on')].map(el=>el.dataset.mission));
+  root.innerHTML='';
+
   CONFIG.companies.forEach(co=>{
-    const emp=document.createElement('div');emp.className='emp';
-    emp.innerHTML=`<button class="emp-head" aria-expanded="true">
-        <span><span class="emp-n">${co.name}</span>
-          <span class="emp-sub"><span class="rl">${pick(co.role)}</span> · ${pick(co.contract)} · ${pick(co.loc)}</span></span>
-        <span class="emp-right"><span class="emp-when">${whenStr(co)}</span><span class="emp-x">+</span></span>
-      </button>
-      <div class="emp-body"><div class="emp-body-in dt">
-        <p class="dt-intro">${pick(co.intro)}</p>
-        ${listHTML(co.results,'results_lbl','detail-results')}
-        ${listHTML(co.bullets,'responsibilities_lbl')}
-        ${stackHTML(co)}
-      </div></div>`;
-    /* le poste lui-même (intro + missions du poste) est déplié d'entrée :
-       c'est le contenu principal, les missions clients restent repliées. */
-    const body=emp.querySelector('.emp-body'), head=emp.querySelector('.emp-head');
-    emp.classList.add('on');
-    initBody(body,true);
+    const emp=document.createElement('section');emp.className='emp';
+    emp.id='chrono-'+co.id;emp.dataset.company=co.id;
+    const employerOpen=firstRender||openedCompanies.has(co.id);
+    emp.classList.toggle('on',employerOpen);
+    emp.innerHTML='<button class="emp-head" aria-expanded="'+employerOpen+'">'
+      +brandLogo(co.id,'brand-signature--employer')
+      +'<span class="employer-copy"><span class="emp-kicker">'+pick(co.contract)+' · '+pick(co.loc)+'</span>'
+      +'<span class="emp-n">'+co.name+'</span><span class="emp-sub">'+pick(co.role)+'</span>'
+      +'<span class="emp-when">'+whenStr(co)+'</span></span>'
+      +'<span class="emp-action"><span class="emp-action-label">'+(LANG==='fr'?'Détail du poste':'Role details')+'</span><span class="emp-x" aria-hidden="true">+</span></span>'
+      +'</button><div class="emp-body"><div class="emp-body-in dt"><p class="dt-intro">'+pick(co.intro)+'</p>'
+      +listHTML(co.results,'results_lbl','detail-results')+listHTML(co.bullets,'responsibilities_lbl')+stackHTML(co)+'</div></div>';
+    const body=emp.querySelector('.emp-body'),head=emp.querySelector('.emp-head');
+    body.id='chrono-employer-'+co.id;initBody(body,employerOpen);
     head.addEventListener('click',()=>{
-      const open=!emp.classList.contains('on');
-      emp.classList.toggle('on',open);
-      head.setAttribute('aria-expanded',open);
-      setBody(body,open);
-      syncXall();
+      const open=!emp.classList.contains('on');emp.classList.toggle('on',open);
+      head.setAttribute('aria-expanded',open);setBody(body,open);syncXall();
     });
-    const ms=CONFIG.missions.filter(m=>m.company===co.id)
-      .sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
+    const ms=CONFIG.missions.filter(m=>m.company===co.id).sort((a,b)=>(a.displayOrder??99)-(b.displayOrder??99));
     if(ms.length){
       const zone=document.createElement('div');zone.className='emp-missions';
-      zone.innerHTML=`<span class="mlabel">${t('missions_lbl')}</span>`;
+      zone.innerHTML='<span class="mlabel">'+t('missions_lbl')+'</span><span class="chrono-flow" aria-hidden="true"><span class="chrono-packet"></span><span class="chrono-packet"></span></span>';
       ms.forEach(m=>{
-        const e=document.createElement('div');e.className='entry';
-        const card=document.createElement('div');card.className='e-card';
-        card.innerHTML=`<button class="e-btn" aria-expanded="false"><span class="e-logo">${LOGOS[m.cloud]||LOGOS.oth}</span><span class="e-txt">
-            <span class="e-when">${whenStr(m)}</span>
-            <span class="e-t">${pick(m.title)}</span>
-            <span class="e-c">${pick(m.role)}</span>
-          </span><span class="e-x">+</span></button>
-          <div class="e-body"><div class="e-body-in dt">
-            ${m.intro?`<p class="dt-intro">${pick(m.intro)}</p>`:''}
-            ${listHTML(m.bullets,'responsibilities_lbl')}
-            ${listHTML(m.results,'results_lbl','detail-results')}
-            ${stackHTML(m)}
-          </div></div>`;
-        const bd=card.querySelector('.e-body'), btn=card.querySelector('.e-btn');
-        initBody(bd,false);
+        const entry=document.createElement('div');entry.className='entry';
+        entry.innerHTML='<span class="chrono-junction" aria-hidden="true"></span><span class="chrono-handoff" aria-hidden="true"></span>';
+        const card=document.createElement('article');card.className='e-card';
+        card.dataset.cloud=m.cloud;card.dataset.mission=m.id;
+        const missionOpen=firstRender||openedMissions.has(m.id);card.classList.toggle('on',missionOpen);
+        const cloud='<span class="mission-cloud"><img src="assets/companies/cloud-'+m.cloud+'-full.png" alt="" width="30" height="26"><span>'+(m.cloud==='aws'?'AWS':'GCP')+'</span></span>';
+        card.innerHTML='<button class="e-btn" aria-expanded="'+missionOpen+'">'+brandLogo(m.id,'brand-signature--chrono')
+          +'<span class="e-txt"><span class="e-topline"><span class="e-when">'+whenStr(m)+'</span>'+cloud+'</span>'
+          +'<span class="e-t">'+pick(m.title).replace(/^[^—]+ — /,'')+'</span><span class="e-c">'+pick(m.role)+'</span>'+missionTech(m)
+          +'</span><span class="e-x" aria-hidden="true">+</span></button>'
+          +'<div class="e-body"><div class="e-body-in dt">'+(m.intro?'<p class="dt-intro">'+pick(m.intro)+'</p>':'')
+          +listHTML(m.results,'results_lbl','detail-results')+listHTML(m.bullets,'responsibilities_lbl')+stackHTML(m)+'</div></div>';
+        const bd=card.querySelector('.e-body'),btn=card.querySelector('.e-btn');
+        bd.id='chrono-mission-'+m.id;initBody(bd,missionOpen);
         btn.addEventListener('click',()=>{
-          const open=!card.classList.contains('on');
-          card.classList.toggle('on',open);
-          btn.setAttribute('aria-expanded',open);
-          setBody(bd,open);
-          syncXall();
+          const open=!card.classList.contains('on');card.classList.toggle('on',open);
+          btn.setAttribute('aria-expanded',open);setBody(bd,open);syncXall();
         });
-        e.appendChild(card);zone.appendChild(e);
+        entry.appendChild(card);zone.appendChild(entry);
       });
       emp.appendChild(zone);
     }
     root.appendChild(emp);
   });
+  root.onkeydown=event=>{
+    if(event.key!=='Escape')return;
+    const card=event.target.closest('.e-card.on');
+    if(card){event.preventDefault();const button=card.querySelector('.e-btn');button.click();button.focus({preventScroll:true});}
+  };
+  syncXall();observeChronoFlow();syncArchMotionControl();
 }
 
 /* ── tout déplier ── */
@@ -1503,7 +1954,8 @@ function setView(v){
   $('#view-arch').setAttribute('aria-hidden',arch?'false':'true');
   $('#view-chrono').setAttribute('aria-hidden',arch?'true':'false');
   $('#xall').style.display=v==='chrono'?'block':'none';
-  if(v==='arch')requestAnimationFrame(drawArchWires);
+  if(v==='arch')scheduleArchWires();else scheduleChronoFlow();
+  ensureArchPacketAnimation();
 }
 $('.tabs').addEventListener('keydown',event=>{
   if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
@@ -1526,8 +1978,23 @@ if(initLang!=='fr'&&initLang!=='en'){
   const nav=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'fr'];
   initLang=nav.some(l=>/^fr/i.test(l))?'fr':'en';
 }
+ARCHMOTION_QUERY.addEventListener('change',()=>{
+  if(ARCHMOTION_QUERY.matches)document.querySelectorAll('.arch-item-body,.emp-body,.e-body').forEach(el=>{
+    if(el._bodyRAF)cancelAnimationFrame(el._bodyRAF);
+    el._bodyRAF=null;el.style.maxHeight=el.dataset.open==='1'?'none':'0px';
+  });
+  syncArchMotionControl();scheduleArchWires();ensureArchPacketAnimation();
+});
+ARCHDESKTOP_QUERY.addEventListener('change',scheduleArchWires);
+document.addEventListener('visibilitychange',ensureArchPacketAnimation);
+window.addEventListener('resize',scheduleArchWires,{passive:true});
+window.addEventListener('resize',scheduleChronoFlow,{passive:true});
+window.addEventListener('pagehide',stopArchPacketAnimation);
+if(document.fonts)document.fonts.ready.then(()=>{scheduleArchWires();scheduleChronoFlow();});
 setLang(initLang);
+if(new URLSearchParams(location.search).get('view')==='chrono')setView('chrono');
 </script>
 </body>
 </html>
+
 
