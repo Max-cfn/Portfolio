@@ -40,13 +40,14 @@ function passport(){return compactEFREI('book');}
 
   /* Education is composed of independent milestones and a reusable travel ticket. */
   function semesterTicket(exchange){
+    const {master}=data();
     return `<article class="e4-ticket" aria-label="${tr('Échange universitaire à Concordia, janvier à mai 2022','Academic exchange at Concordia, January to May 2022')}">
       <header class="e4-ticket-band"><span>${tr('ÉCHANGE UNIVERSITAIRE','ACADEMIC EXCHANGE')}</span><span class="e4-canada-label"><img src="assets/flag-ca.svg" class="e4-canada-flag" alt="${tr('Drapeau du Canada','Flag of Canada')}" width="24" height="18"> CA / 2022</span></header>
       <div class="e4-ticket-body"><div class="e4-ticket-content">
         <div class="e4-route"><div><span>FRANCE</span><strong>Paris</strong></div><span class="e4-route-line" aria-hidden="true">✈︎</span><div><span>CANADA</span><strong>Montréal</strong></div></div>
-        <div class="e4-destination">${logo(exchange)}<h4>Concordia University</h4></div>
-        <dl class="e4-ticket-fields"><div><dt>${tr('PÉRIODE','PERIOD')}</dt><dd>${val(exchange.y)}</dd></div><div><dt>${tr('COURS','COURSES')}</dt><dd>${tr('En anglais','In English')}</dd></div></dl>
-      </div><aside class="e4-ticket-stub" aria-hidden="true"><span class="e4-aircraft">✈︎</span><span class="e4-barcode"></span><span>MONTRÉAL · 2022</span></aside></div>
+        <div class="e4-origin">${logo(master)}<span>${tr("École d’ingénieurs","Engineering school")}</span></div>
+        <dl class="e4-ticket-fields"><div><dt>${tr('PÉRIODE','PERIOD')}</dt><dd>${val(exchange.y)}</dd></div><div><dt>${tr('CURSUS','CURRICULUM')}</dt><dd>${tr('Cursus anglophone','English-language programme')}</dd></div></dl>
+      </div><aside class="e4-ticket-stub">${logo(exchange)}<span class="e4-host-name">Concordia University</span><span class="e4-barcode" aria-hidden="true"></span><span>MONTRÉAL · 2022</span></aside></div>
     </article>`;
   }
   function ticketTimeline(){
@@ -57,7 +58,7 @@ function passport(){return compactEFREI('book');}
       {kind:'degree',value:bachelor}
     ];
     return `<div class="e4-education"><header class="e4-school">${logo(master)}<div><h3>EFREI Paris</h3><span>2019 — 2024 · Paris, France</span></div></header>
-      <ol class="e4-timeline">${steps.map(step=>`<li class="e4-step e4-step-${step.kind}"><span class="e4-node" aria-hidden="true"></span>${step.kind==='exchange'?semesterTicket(step.value):`<article class="e4-degree">${logo(step.value)}<div class="e4-degree-copy"><span class="e4-period">${val(step.value.y)}</span><h4>${val(step.value.t)}</h4></div></article>`}</li>`).join('')}</ol></div>`;
+      <ol class="e4-timeline">${steps.map(step=>`<li class="e4-step e4-step-${step.kind}"><span class="e4-node" aria-hidden="true"></span>${step.kind==='exchange'?semesterTicket(step.value):`<article class="e4-degree"><span class="e4-period">${val(step.value.y)}</span><div class="e4-degree-copy"><h4>${val(step.value.t)}</h4><p>${tr("EFREI Paris · École d’ingénieurs","EFREI Paris · Engineering school")}</p></div></article>`}</li>`).join('')}</ol></div>`;
   }
   function ticketPage(){return ticketTimeline();}
 

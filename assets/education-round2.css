@@ -191,99 +191,91 @@
 }
 @media(max-width:370px){.e3-flight-cities{gap:12px}.e3-flight-cities b{font-size:25px}.e3-exchange{padding:18px 15px;gap:10px}.e3-exchange h4{font-size:21px}.e3-small-stamp{width:48px;height:48px}.e3-small-stamp>b{font-size:20px}}
 
-/* A descending academic rail with a modular, responsive boarding pass. */
-.e4-education{--ticket-red:#bd3038;--ticket-line:#d8d4ca;--ticket-paper:#fffef9}
+
+/* Academic rail: equal widths, school details on degrees, a full-width travel pass. */
+.e4-education{--ticket-red:#bd3038;--ticket-paper:#fffef9}
 .e4-school{display:flex;align-items:center;gap:22px;padding-bottom:22px;border-bottom:1px solid var(--rule2)}
 .e4-school>.e2-logo{width:112px;height:48px;object-fit:contain}
 .e4-school h3{font:500 28px/1.2 var(--disp);color:var(--green);margin:0 0 7px}
 .e4-school>div>span{font:10px/1.6 var(--mono);color:var(--mut)}
 .e4-timeline{list-style:none;margin:26px 0 0;padding:0 0 0 36px;position:relative}
-.e4-timeline::before{content:"";position:absolute;left:5px;top:19px;bottom:44px;width:1px;background:var(--green);opacity:.42}
+.e4-timeline::before{content:"";position:absolute;left:5px;top:19px;bottom:0;width:1px;background:var(--green);opacity:.42}
 .e4-step{position:relative;min-width:0;margin:0;padding:0}
 .e4-step+.e4-step{margin-top:24px}
 .e4-node{position:absolute;left:-36px;top:18px;width:11px;height:11px;border:1px solid var(--green);border-radius:50%;background:var(--paper);z-index:1}
 .e4-step:first-child .e4-node{background:var(--green);box-shadow:0 0 0 4px var(--paper)}
-.e4-degree{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center;min-height:80px;padding:18px 22px;border:1px solid var(--rule2);background:var(--card)}
+.e4-step:last-child::after{content:"";position:absolute;left:-36px;top:24px;bottom:0;width:11px;background:var(--paper)}
+.e4-degree{display:grid;grid-template-columns:130px minmax(0,1fr);gap:24px;align-items:center;min-height:112px;padding:20px 24px;border:1px solid var(--rule2);background:var(--card)}
 .e4-period{font:11px/1.5 var(--mono);color:var(--rust)}
+.e4-degree-copy{min-width:0}
 .e4-degree h4{font:500 25px/1.3 var(--disp);margin:0;color:var(--ink)}
-.e4-step-exchange{padding:10px 0 10px;max-width:760px}
+.e4-degree p{font:11px/1.6 var(--mono);color:var(--mut);margin:10px 0 0}
+.e4-step-exchange{padding:10px 0;max-width:none;width:100%}
 .e4-step-exchange>.e4-node{top:37px;border-color:var(--ticket-red);background:var(--ticket-red);box-shadow:0 0 0 4px var(--paper)}
-.e4-ticket{position:relative;isolation:isolate;min-width:0;border:1px solid #d2d0c9;border-radius:12px;background:var(--ticket-paper);box-shadow:0 6px 15px #30261c08}
+.e4-ticket{position:relative;isolation:isolate;min-width:0;width:100%;border:1px solid #d2d0c9;border-radius:12px;background:var(--ticket-paper);box-shadow:0 6px 15px #30261c08}
 .e4-ticket::before{content:"";position:absolute;z-index:-2;inset:-9px 12px 7px -3px;border:1px solid #d6d2cb;border-top:9px solid var(--ticket-red);border-radius:12px;background:#f7f6f1;transform:rotate(-1.3deg);transform-origin:10% 50%;pointer-events:none}
-.e4-ticket-band{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 23px;background:var(--ticket-red);border-radius:11px 11px 0 0;color:#fff;font:9px/1.5 var(--mono);letter-spacing:.09em}
-.e4-ticket-band>span:last-child{white-space:nowrap}
-.e4-ticket-body{display:grid;grid-template-columns:minmax(0,1fr) 140px;min-width:0;border-radius:0 0 11px 11px;background:var(--ticket-paper)}
+.e4-ticket-band{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 24px;background:var(--ticket-red);border-radius:11px 11px 0 0;color:#fff;font:9px/1.5 var(--mono);letter-spacing:.09em}
+.e4-canada-label{display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+.e4-canada-flag{display:block;width:24px;height:18px;object-fit:cover;border:1px solid #ffffff80;border-radius:2px}
+.e4-ticket-body{display:grid;grid-template-columns:minmax(0,1fr) 205px;min-width:0;border-radius:0 0 11px 11px;background:var(--ticket-paper)}
 .e4-ticket-content{padding:22px 24px;min-width:0}
 .e4-route{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:12px}
 .e4-route>div{min-width:0}.e4-route>div:last-child{text-align:right}
 .e4-route>div>span{display:block;font:8px/1.5 var(--mono);letter-spacing:.12em;color:var(--mut)}
 .e4-route strong{display:block;font:500 clamp(27px,3vw,35px)/1.2 var(--disp);color:var(--ink);margin-top:4px;white-space:nowrap}
 .e4-route-line{position:relative;text-align:center;color:var(--ticket-red);font:24px/1 Arial,sans-serif}
-.e4-route-line::before,.e4-route-line::after{content:"";position:absolute;top:50%;width:16px;border-top:1px solid #d8c5c4}.e4-route-line::before{left:0}.e4-route-line::after{right:0}
-.e4-destination{display:flex;align-items:center;gap:12px;margin:20px 0}
-.e4-destination>.e2-logo{width:105px;height:28px;object-fit:contain;object-position:left center}
-.e4-destination h4{font:12px/1.5 var(--sans,Arial,sans-serif);margin:0;color:#77343e}
+.e4-route-line::before,.e4-route-line::after{content:"";position:absolute;top:50%;width:16px;border-top:1px solid #d8c5c4}
+.e4-route-line::before{left:0}.e4-route-line::after{right:0}
+.e4-origin{display:flex;align-items:center;gap:14px;margin:18px 0}
+.e4-origin>.e2-logo{width:108px;height:37px;object-fit:contain;object-position:left center}
+.e4-origin>span{font:10px/1.5 var(--mono);color:var(--mut)}
 .e4-ticket-fields{display:flex;flex-wrap:wrap;gap:12px 38px;margin:0}
 .e4-ticket-fields>div{min-width:0}.e4-ticket-fields dt{font:8px/1.5 var(--mono);letter-spacing:.07em;color:var(--mut)}
 .e4-ticket-fields dd{font:11px/1.5 var(--mono);margin:4px 0 0;color:var(--ink)}
-.e4-ticket-stub{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:15px;border-left:1px dashed #c5c0b8;padding:18px 12px}
+.e4-ticket-stub{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;border-left:1px dashed #c5c0b8;padding:20px 16px;min-width:0}
 .e4-ticket-stub::before,.e4-ticket-stub::after{content:"";position:absolute;left:-8px;width:15px;height:15px;border:1px solid #d2d0c9;border-radius:50%;background:var(--paper)}
 .e4-ticket-stub::before{top:-8px}.e4-ticket-stub::after{bottom:-8px}
-.e4-aircraft{font:56px/1 Arial,sans-serif;color:#e3e2de}
-.e4-barcode{display:block;width:86px;height:28px;background:repeating-linear-gradient(90deg,#51514c 0 1px,transparent 1px 3px,#51514c 3px 5px,transparent 5px 6px,#51514c 6px 7px,transparent 7px 10px);opacity:.55}
-.e4-ticket-stub>span:last-child{font:7px/1.5 var(--mono);color:var(--mut);letter-spacing:.04em;white-space:nowrap}
+.e4-ticket-stub>.e2-logo{width:155px;height:48px;max-width:100%;object-fit:contain}
+.e4-ticket-stub>.e4-host-name{font:11px/1.5 var(--mono);color:#77343e;text-align:center}
+.e4-barcode{display:block;width:108px;height:28px;background:repeating-linear-gradient(90deg,#51514c 0 1px,transparent 1px 3px,#51514c 3px 5px,transparent 5px 6px,#51514c 6px 7px,transparent 7px 10px);opacity:.55;margin-top:6px}
+.e4-ticket-stub>span:last-child{font:8px/1.5 var(--mono);color:var(--mut);letter-spacing:.04em;white-space:nowrap}
+@media(max-width:900px){
+ .e4-ticket-body{grid-template-columns:minmax(0,1fr) 170px}
+ .e4-ticket-stub>.e2-logo{width:135px}
+ .e4-route{grid-template-columns:1fr 46px 1fr;gap:9px}
+ .e4-route-line::before,.e4-route-line::after{width:8px}
+}
 @media(max-width:700px){
  .e4-school{gap:16px}.e4-school>.e2-logo{width:90px;height:44px}.e4-school h3{font-size:24px}
- .e4-school>div>span{font-size:9px}.e4-timeline{padding-left:24px}.e4-node{left:-24px}
- .e4-degree{grid-template-columns:1fr;gap:8px;padding:18px;min-height:112px}.e4-degree h4{font-size:24px}
+ .e4-school>div>span{font-size:9px}.e4-timeline{padding-left:24px}.e4-node,.e4-step:last-child::after{left:-24px}
+ .e4-degree{grid-template-columns:1fr;gap:8px;padding:20px;min-height:154px}
+ .e4-degree h4{font-size:24px}.e4-degree p{font-size:10px}
  .e4-ticket-band{padding:10px 16px;font-size:8px;letter-spacing:.04em}
- .e4-ticket-body{grid-template-columns:minmax(0,1fr) 92px}.e4-ticket-content{padding:20px 18px}
- .e4-route{grid-template-columns:1fr 40px 1fr;gap:8px}.e4-route-line::before,.e4-route-line::after{width:7px}
- .e4-route strong{font-size:28px}.e4-destination{gap:10px}.e4-destination h4{font-size:11px}
- .e4-ticket-stub{padding:14px 8px}.e4-aircraft{font-size:42px}.e4-barcode{width:62px}.e4-ticket-stub>span:last-child{font-size:6px}
-}
-@media(max-width:520px){
- .e4-ticket-body{grid-template-columns:1fr}
- .e4-ticket-content{padding:19px 16px}.e4-route{grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr);gap:7px}
- .e4-route strong{font-size:27px}.e4-route>div>span{font-size:7px}
- .e4-destination{flex-wrap:wrap;gap:6px 12px;margin:17px 0}.e4-destination>.e2-logo{width:100px;height:25px}
- .e4-ticket-fields{gap:12px 24px}.e4-ticket-fields dd{font-size:10px}
- .e4-ticket-stub{flex-direction:row;justify-content:space-between;gap:12px;border-left:0;border-top:1px dashed #c5c0b8;padding:12px 16px}
- .e4-ticket-stub::before{top:-8px;left:-8px}.e4-ticket-stub::after{top:-8px;left:auto;right:-8px;bottom:auto}
- .e4-aircraft{font-size:28px}.e4-barcode{width:85px;height:22px}.e4-ticket-stub>span:last-child{font-size:7px}
-}
-@media(max-width:360px){.e4-ticket-band{font-size:7px;padding:10px 12px}.e4-ticket-content{padding:17px 12px}.e4-route strong{font-size:24px}.e4-route{gap:4px;grid-template-columns:1fr 28px 1fr}.e4-route-line::before,.e4-route-line::after{display:none}.e4-ticket-stub{padding:11px 12px;gap:9px}.e4-barcode{width:65px}.e4-degree h4{font-size:23px}}
-@media(prefers-reduced-motion:reduce){.e4-ticket,.e4-ticket::before{transition:none}}
-
-/* End the rail at the final milestone, whatever its wrapped height. */
-.e4-timeline::before{bottom:0}
-.e4-step:last-child::after{content:"";position:absolute;left:-36px;top:24px;bottom:0;width:11px;background:var(--paper)}
-@media(max-width:700px){.e4-step:last-child::after{left:-24px}}
-
-@media(max-width:360px){
- .e4-degree{min-height:160px}
- .e4-route{grid-template-columns:minmax(0,.8fr) 24px minmax(0,1.4fr)}
- .e4-route strong{font-size:21px}
- .e4-ticket-stub{gap:8px;min-width:0}
- .e4-barcode{width:55px;flex-shrink:1}
- .e4-ticket-stub>span:last-child{font-size:6px}
-}
-
-/* Latest studies first; equal degree cards with their own school mark. */
-.e4-degree{grid-template-columns:112px minmax(0,1fr);min-height:112px;gap:24px}
-.e4-degree>.e2-logo{width:112px;height:56px;object-fit:contain;object-position:center}
-.e4-degree-copy{min-width:0}.e4-degree-copy h4{margin-top:9px}
-.e4-canada-label{display:inline-flex;align-items:center;gap:9px}
-.e4-canada-flag{display:block;width:24px;height:18px;object-fit:cover;border:1px solid #ffffff80;border-radius:2px}
-@media(max-width:700px){
- .e4-degree{grid-template-columns:72px minmax(0,1fr);gap:16px;min-height:154px}
- .e4-degree>.e2-logo{width:72px;height:48px}
- .e4-degree h4{font-size:22px;line-height:1.3}
  .e4-canada-label{gap:6px}.e4-canada-flag{width:20px;height:15px}
+ .e4-ticket-body{grid-template-columns:1fr}
+ .e4-ticket-content{padding:20px}
+ .e4-route{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr);gap:8px}
+ .e4-route strong{font-size:28px}
+ .e4-origin{gap:12px;margin:17px 0}.e4-origin>.e2-logo{width:96px;height:34px}.e4-origin>span{font-size:9px}
+ .e4-ticket-fields{gap:14px 28px}
+ .e4-ticket-stub{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 18px;border-left:0;border-top:1px dashed #c5c0b8;padding:16px 20px}
+ .e4-ticket-stub::before{top:-8px;left:-8px}.e4-ticket-stub::after{top:-8px;left:auto;right:-8px;bottom:auto}
+ .e4-ticket-stub>.e2-logo{grid-column:1;grid-row:1;width:132px;height:36px;object-position:left}
+ .e4-ticket-stub>.e4-host-name{grid-column:1;grid-row:2;text-align:left;font-size:9px}
+ .e4-barcode{grid-column:2;grid-row:1;width:80px;height:25px;margin:0}
+ .e4-ticket-stub>span:last-child{grid-column:2;grid-row:2;font-size:6px;text-align:right}
 }
 @media(max-width:360px){
- .e4-degree{grid-template-columns:62px minmax(0,1fr);gap:12px;min-height:180px;padding:16px}
- .e4-degree>.e2-logo{width:62px;height:44px}
- .e4-degree h4{font-size:21px}
- .e4-canada-flag{width:18px;height:13.5px}
+ .e4-degree{min-height:172px;padding:18px}.e4-degree h4{font-size:23px}
+ .e4-ticket-band{font-size:7px;padding:10px 12px}.e4-canada-flag{width:18px;height:13.5px}
+ .e4-ticket-content{padding:18px 13px}
+ .e4-route{grid-template-columns:minmax(0,.8fr) 24px minmax(0,1.4fr);gap:4px}
+ .e4-route strong{font-size:23px}.e4-route-line::before,.e4-route-line::after{display:none}
+ .e4-origin{gap:10px}.e4-origin>.e2-logo{width:80px;height:30px}.e4-origin>span{font-size:8px}
+ .e4-ticket-fields{gap:13px}.e4-ticket-fields dd{font-size:10px}
+ .e4-ticket-stub{padding:14px 13px;gap:4px 12px}
+ .e4-ticket-stub>.e2-logo{width:113px;height:32px}.e4-barcode{width:56px}
+ .e4-ticket-stub>.e4-host-name{font-size:8px}
+ .e4-ticket-stub>span:last-child{font-size:5.5px}
 }
+@media(prefers-reduced-motion:reduce){.e4-ticket,.e4-ticket::before{transition:none}}
