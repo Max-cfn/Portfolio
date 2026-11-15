@@ -339,3 +339,5 @@
  .e4-route>div>span.e4-country-mark{gap:5px}
  .e4-stub-route.e4-airport-codes{font-size:9px}
 }
+
+.e4-route>div:first-child>span.e4-country-mark{justify-content:flex-start}
